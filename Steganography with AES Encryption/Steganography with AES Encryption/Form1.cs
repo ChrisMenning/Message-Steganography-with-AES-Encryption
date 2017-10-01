@@ -35,7 +35,9 @@ namespace Steganography_with_AES_Encryption
 
                 // Instantiate the Image Encoder and the Image Decoder.
                 imgEnc = new ImageEncoder(this.openFileDialog1, this.saveFileDialog1, rawImage, pictureBoxEncoded);
-                imgDec = new ImageDecoder(textBoxOutput);
+
+                // Turn on encode button.
+                buttonEncodeImage.Enabled = true;
             }
         }
 
@@ -51,11 +53,13 @@ namespace Steganography_with_AES_Encryption
             {
                 encodedImage = new Bitmap(Bitmap.FromFile(openFileDialog1.FileName));
                 pictureBoxEncoded2.Image = encodedImage;
+                buttonDecode.Enabled = true;
             }
         }
 
         private void buttonDecode_Click(object sender, EventArgs e)
         {
+            imgDec = new ImageDecoder(textBoxOutput);
             imgDec.Decoder(encodedImage);
         }
     }

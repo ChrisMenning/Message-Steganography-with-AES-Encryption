@@ -55,7 +55,7 @@ namespace Steganography_with_AES_Encryption
             {
                 // Conver the char to its ASCII value, which is an int somewhere between 0 and 127.
                 int asciiValue = Convert.ToInt16(c);
-                Console.WriteLine("ASCII value of " + c + ": " + asciiValue);
+                //Console.WriteLine("ASCII value of " + c + ": " + asciiValue);
 
                 // Declare a temporary string for holding all of the digits in this asciiValue integer.
                 string avAsString = asciiValue.ToString();

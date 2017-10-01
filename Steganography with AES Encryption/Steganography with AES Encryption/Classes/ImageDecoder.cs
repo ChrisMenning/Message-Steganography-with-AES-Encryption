@@ -21,6 +21,7 @@ namespace Steganography_with_AES_Encryption
         public void Decoder(Bitmap encoded)
         {
             encodedImage = encoded;
+
             // Declare an int for holding the temporary ASCII value of a character.
             string charValue = "";
 
@@ -29,9 +30,7 @@ namespace Steganography_with_AES_Encryption
 
             // Declare a list of ints for storing our ASCII character values as they are pulled out of image.
             List<int> ASCII = new List<int>();
-
             List<string> threeDigits = new List<string>();
-
 
             // Loop through each pixel of the encoded image.
             for (int row = 0; row < encodedImage.Width; row++)
@@ -64,7 +63,7 @@ namespace Steganography_with_AES_Encryption
                 {
                     if (threeDigitNumber != "000")
                     {
-                        Console.WriteLine("Three digit ASCII value = " + threeDigitNumber);
+                        //Console.WriteLine("Three digit ASCII value = " + threeDigitNumber);
 
                         threeDigits.Add(threeDigitNumber);
                         threeCounter = 1;
@@ -72,12 +71,12 @@ namespace Steganography_with_AES_Encryption
                     }
                 }
             }
-            Console.WriteLine("There are " + threeDigits.Count + " in the list to be decoded.");
+            //Console.WriteLine("There are " + threeDigits.Count + " in the list to be decoded.");
 
             // Loop through the list of three-digit numbers
             foreach (string d in threeDigits)
             {
-                Console.WriteLine(d);
+                //Console.WriteLine(d);
 
                 // Append this char to the output string.
                 encodedText += (char)(Int32.Parse(d)); // Convert the ASCII characterValue into character.

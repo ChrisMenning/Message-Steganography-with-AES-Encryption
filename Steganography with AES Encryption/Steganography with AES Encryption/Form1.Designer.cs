@@ -38,14 +38,14 @@
             this.pictureBoxRaw = new System.Windows.Forms.PictureBox();
             this.buttonOpenImage = new System.Windows.Forms.Button();
             this.groupBoxDecode = new System.Windows.Forms.GroupBox();
+            this.labelDecodedMessage = new System.Windows.Forms.Label();
+            this.labelEncodedImage2 = new System.Windows.Forms.Label();
+            this.buttonDecode = new System.Windows.Forms.Button();
+            this.textBoxOutput = new System.Windows.Forms.TextBox();
+            this.pictureBoxEncoded2 = new System.Windows.Forms.PictureBox();
+            this.buttonOpenImage2 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.buttonOpenImage2 = new System.Windows.Forms.Button();
-            this.pictureBoxEncoded2 = new System.Windows.Forms.PictureBox();
-            this.textBoxOutput = new System.Windows.Forms.TextBox();
-            this.buttonDecode = new System.Windows.Forms.Button();
-            this.labelEncodedImage2 = new System.Windows.Forms.Label();
-            this.labelDecodedMessage = new System.Windows.Forms.Label();
             this.groupBoxEncode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEncoded)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRaw)).BeginInit();
@@ -72,6 +72,7 @@
             // 
             // buttonEncodeImage
             // 
+            this.buttonEncodeImage.Enabled = false;
             this.buttonEncodeImage.Location = new System.Drawing.Point(6, 232);
             this.buttonEncodeImage.Name = "buttonEncodeImage";
             this.buttonEncodeImage.Size = new System.Drawing.Size(137, 29);
@@ -92,8 +93,9 @@
             // textBoxInputMessage
             // 
             this.textBoxInputMessage.Location = new System.Drawing.Point(6, 159);
+            this.textBoxInputMessage.Multiline = true;
             this.textBoxInputMessage.Name = "textBoxInputMessage";
-            this.textBoxInputMessage.Size = new System.Drawing.Size(137, 22);
+            this.textBoxInputMessage.Size = new System.Drawing.Size(137, 67);
             this.textBoxInputMessage.TabIndex = 6;
             // 
             // labelEncodedImage
@@ -159,19 +161,42 @@
             this.groupBoxDecode.TabStop = false;
             this.groupBoxDecode.Text = "Retrieve Text from Image";
             // 
-            // openFileDialog1
+            // labelDecodedMessage
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.labelDecodedMessage.AutoSize = true;
+            this.labelDecodedMessage.Location = new System.Drawing.Point(379, 33);
+            this.labelDecodedMessage.Name = "labelDecodedMessage";
+            this.labelDecodedMessage.Size = new System.Drawing.Size(126, 17);
+            this.labelDecodedMessage.TabIndex = 7;
+            this.labelDecodedMessage.Text = "Decoded Message";
             // 
-            // buttonOpenImage2
+            // labelEncodedImage2
             // 
-            this.buttonOpenImage2.Location = new System.Drawing.Point(6, 53);
-            this.buttonOpenImage2.Name = "buttonOpenImage2";
-            this.buttonOpenImage2.Size = new System.Drawing.Size(137, 29);
-            this.buttonOpenImage2.TabIndex = 1;
-            this.buttonOpenImage2.Text = "Open Image";
-            this.buttonOpenImage2.UseVisualStyleBackColor = true;
-            this.buttonOpenImage2.Click += new System.EventHandler(this.buttonOpenImage2_Click);
+            this.labelEncodedImage2.AutoSize = true;
+            this.labelEncodedImage2.Location = new System.Drawing.Point(146, 33);
+            this.labelEncodedImage2.Name = "labelEncodedImage2";
+            this.labelEncodedImage2.Size = new System.Drawing.Size(106, 17);
+            this.labelEncodedImage2.TabIndex = 6;
+            this.labelEncodedImage2.Text = "Encoded Image";
+            // 
+            // buttonDecode
+            // 
+            this.buttonDecode.Enabled = false;
+            this.buttonDecode.Location = new System.Drawing.Point(6, 227);
+            this.buttonDecode.Name = "buttonDecode";
+            this.buttonDecode.Size = new System.Drawing.Size(137, 29);
+            this.buttonDecode.TabIndex = 5;
+            this.buttonDecode.Text = "Decode Image";
+            this.buttonDecode.UseVisualStyleBackColor = true;
+            this.buttonDecode.Click += new System.EventHandler(this.buttonDecode_Click);
+            // 
+            // textBoxOutput
+            // 
+            this.textBoxOutput.Location = new System.Drawing.Point(379, 53);
+            this.textBoxOutput.Multiline = true;
+            this.textBoxOutput.Name = "textBoxOutput";
+            this.textBoxOutput.Size = new System.Drawing.Size(214, 203);
+            this.textBoxOutput.TabIndex = 4;
             // 
             // pictureBoxEncoded2
             // 
@@ -183,40 +208,19 @@
             this.pictureBoxEncoded2.TabIndex = 3;
             this.pictureBoxEncoded2.TabStop = false;
             // 
-            // textBoxOutput
+            // buttonOpenImage2
             // 
-            this.textBoxOutput.Location = new System.Drawing.Point(379, 53);
-            this.textBoxOutput.Name = "textBoxOutput";
-            this.textBoxOutput.Size = new System.Drawing.Size(214, 22);
-            this.textBoxOutput.TabIndex = 4;
+            this.buttonOpenImage2.Location = new System.Drawing.Point(6, 53);
+            this.buttonOpenImage2.Name = "buttonOpenImage2";
+            this.buttonOpenImage2.Size = new System.Drawing.Size(137, 29);
+            this.buttonOpenImage2.TabIndex = 1;
+            this.buttonOpenImage2.Text = "Open Image";
+            this.buttonOpenImage2.UseVisualStyleBackColor = true;
+            this.buttonOpenImage2.Click += new System.EventHandler(this.buttonOpenImage2_Click);
             // 
-            // buttonDecode
+            // openFileDialog1
             // 
-            this.buttonDecode.Location = new System.Drawing.Point(6, 227);
-            this.buttonDecode.Name = "buttonDecode";
-            this.buttonDecode.Size = new System.Drawing.Size(137, 29);
-            this.buttonDecode.TabIndex = 5;
-            this.buttonDecode.Text = "Decode Image";
-            this.buttonDecode.UseVisualStyleBackColor = true;
-            this.buttonDecode.Click += new System.EventHandler(this.buttonDecode_Click);
-            // 
-            // labelEncodedImage2
-            // 
-            this.labelEncodedImage2.AutoSize = true;
-            this.labelEncodedImage2.Location = new System.Drawing.Point(146, 33);
-            this.labelEncodedImage2.Name = "labelEncodedImage2";
-            this.labelEncodedImage2.Size = new System.Drawing.Size(106, 17);
-            this.labelEncodedImage2.TabIndex = 6;
-            this.labelEncodedImage2.Text = "Encoded Image";
-            // 
-            // labelDecodedMessage
-            // 
-            this.labelDecodedMessage.AutoSize = true;
-            this.labelDecodedMessage.Location = new System.Drawing.Point(379, 33);
-            this.labelDecodedMessage.Name = "labelDecodedMessage";
-            this.labelDecodedMessage.Size = new System.Drawing.Size(126, 17);
-            this.labelDecodedMessage.TabIndex = 7;
-            this.labelDecodedMessage.Text = "Decoded Message";
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // FormMain
             // 
