@@ -41,7 +41,6 @@ namespace Steganography_with_AES_Encryption
 
                     // Strip the ASCII value out of the pixel's Alpha channel value, and add it to the list.
                     // 255 is the default Alpha channel value.
-
                     ASCII.Add(255 - pixelColor.A);
                 }
             }
@@ -71,16 +70,17 @@ namespace Steganography_with_AES_Encryption
                     }
                 }
             }
+
             //Console.WriteLine("There are " + threeDigits.Count + " in the list to be decoded.");
 
             // Loop through the list of three-digit numbers
             foreach (string d in threeDigits)
             {
-                //Console.WriteLine(d);
-
-                // Append this char to the output string.
+                
                 encodedText += (char)(Int32.Parse(d)); // Convert the ASCII characterValue into character.
             }
+
+            // Append this char to the output string.
             TextBoxOutput.Text = encodedText.ToString();
         }
     }

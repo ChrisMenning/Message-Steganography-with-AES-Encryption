@@ -122,7 +122,7 @@
             this.pictureBoxEncoded.Location = new System.Drawing.Point(379, 58);
             this.pictureBoxEncoded.Name = "pictureBoxEncoded";
             this.pictureBoxEncoded.Size = new System.Drawing.Size(214, 203);
-            this.pictureBoxEncoded.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxEncoded.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxEncoded.TabIndex = 3;
             this.pictureBoxEncoded.TabStop = false;
             // 
@@ -132,7 +132,7 @@
             this.pictureBoxRaw.Location = new System.Drawing.Point(149, 58);
             this.pictureBoxRaw.Name = "pictureBoxRaw";
             this.pictureBoxRaw.Size = new System.Drawing.Size(214, 203);
-            this.pictureBoxRaw.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxRaw.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxRaw.TabIndex = 2;
             this.pictureBoxRaw.TabStop = false;
             // 
@@ -204,7 +204,7 @@
             this.pictureBoxEncoded2.Location = new System.Drawing.Point(149, 53);
             this.pictureBoxEncoded2.Name = "pictureBoxEncoded2";
             this.pictureBoxEncoded2.Size = new System.Drawing.Size(214, 203);
-            this.pictureBoxEncoded2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxEncoded2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxEncoded2.TabIndex = 3;
             this.pictureBoxEncoded2.TabStop = false;
             // 
