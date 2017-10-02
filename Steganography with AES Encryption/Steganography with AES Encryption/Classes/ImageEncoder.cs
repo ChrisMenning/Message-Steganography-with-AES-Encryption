@@ -25,15 +25,17 @@ namespace Steganography_with_AES_Encryption
             this.PictureBoxEncoded = encoded;
         }
 
+        // The Encoder method can accept pretty much any string. 
         public void Encoder(string rawText)
         {
             /*
              * HOW IT WORKS:
              * 
-             * Loop through each character of the rawText string. Convert the char into an integer.
+             * Loop through each character of the rawText string. Convert the char into ASCII values
+             * between 000-127, then, digit-by-digt, add those digits to an array.
              * 
              * Then loop through every row of pixels and every column of pixels in the image, and 
-             * change the Alpha Channel value of each pixel according to the integer derived from the char.
+             * change the Alpha Channel value of each pixel according to the digits from the array.
              * 
              * In RGBA color space, a pixel has a Red, a Green, A Blue, and an Alpha value. The Alpha
              * is displayed as transparency. If we modify the transparency of individual pixels a very
@@ -57,10 +59,11 @@ namespace Steganography_with_AES_Encryption
                 int asciiValue = Convert.ToInt16(c);
                 //Console.WriteLine("ASCII value of " + c + ": " + asciiValue);
 
-                // Declare a temporary string for holding all of the digits in this asciiValue integer.
+                // Declare a temporary string for holding all of the digits in the asciiValue integer.
                 string avAsString = asciiValue.ToString();
 
-                // If the number is less than 3 digits long, add 0s to the beginning. Ex: "3" becomes "003", "42" becomes "042".
+                // If the number is less than 3 digits long, add 0s to the beginning. Ex: "3" becomes "003", 
+                // "42" becomes "042". This will make it easier to decode the ASCII back out of the image again.
                 if (avAsString.Length == 1)
                 {
                     avAsString = "00" + avAsString; // Tack on two 0s to the beginning of this one digit number.
@@ -70,16 +73,12 @@ namespace Steganography_with_AES_Encryption
                     avAsString = "0" + avAsString; // Tack on one 0 to the beginning of this two-digit number.
                 }
 
-                // Loop through each character in the string, 
+                // Loop through each character in the string. 
                 for (int d = 0; d < avAsString.Length; d++)
                 {
-                    // Add each the digit to the ASCII string list.
+                    // Add each digit to the ASCII string list.
                     ASCII.Add(Int32.Parse(avAsString[d].ToString()));
                 }
-
-                // NOTE: All of this should ensure that every ASCII value we try to pull back out of the image will be formatted
-                // as a clean 3-digit number, such as 003 or 020, which will make parsing them back out much easier than if they
-                // were of variable length.
             }
 
             // Declare a counter.
@@ -95,7 +94,6 @@ namespace Steganography_with_AES_Encryption
 
                     // Now, in the new bitmap image, let's set the pixel value, but modify the pixel's alpha channel (transparency) to
                     // contain an ASCII character from our list.
-
                     if (counter < ASCII.Count)
                     {
                         // Set the Alpha Channel value to 255 minus the small single-digit value from the ASCII int list.

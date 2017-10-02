@@ -10,9 +10,11 @@ namespace Steganography_with_AES_Encryption
 {
     public class ImageDecoder
     {
+        // Declare private fields. 
         Bitmap encodedImage;
         TextBox TextBoxOutput;
 
+        // The constructor.
         public ImageDecoder(TextBox output)
         {
             this.TextBoxOutput = output;

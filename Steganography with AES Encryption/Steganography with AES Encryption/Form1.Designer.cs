@@ -95,6 +95,7 @@
             this.textBoxInputMessage.Location = new System.Drawing.Point(6, 159);
             this.textBoxInputMessage.Multiline = true;
             this.textBoxInputMessage.Name = "textBoxInputMessage";
+            this.textBoxInputMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxInputMessage.Size = new System.Drawing.Size(137, 67);
             this.textBoxInputMessage.TabIndex = 6;
             // 
@@ -195,6 +196,7 @@
             this.textBoxOutput.Location = new System.Drawing.Point(379, 53);
             this.textBoxOutput.Multiline = true;
             this.textBoxOutput.Name = "textBoxOutput";
+            this.textBoxOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxOutput.Size = new System.Drawing.Size(214, 203);
             this.textBoxOutput.TabIndex = 4;
             // 
