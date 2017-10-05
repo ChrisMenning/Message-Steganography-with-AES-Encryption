@@ -31,8 +31,8 @@ namespace Steganography_with_AES_Encryption
         private Bitmap encodedImage;
 
         // Declare our image encoder and decoder.
-        ImageEncoder imgEnc;
-        ImageDecoder imgDec;
+        private ImageEncoder imgEnc;
+        private ImageDecoder imgDec;
 
         public FormMain()
         {

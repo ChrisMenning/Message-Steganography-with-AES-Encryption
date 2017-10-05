@@ -11,8 +11,8 @@ namespace Steganography_with_AES_Encryption
     public class ImageDecoder
     {
         // Declare private fields. 
-        Bitmap encodedImage;
-        TextBox TextBoxOutput;
+        private Bitmap encodedImage;
+        private TextBox TextBoxOutput;
 
         // The constructor.
         public ImageDecoder(TextBox output)
@@ -30,8 +30,10 @@ namespace Steganography_with_AES_Encryption
             // Declare a string for storing the encoded text.
             string encodedText = "";
 
-            // Declare a list of ints for storing our ASCII character values as they are pulled out of image.
+            // Declare a list of ints for storing the single digits of our ASCII character values as they are pulled out of image.
             List<int> ASCII = new List<int>();
+
+            // Declare a list of strings for storing the three-digit groups of ASCII characters.
             List<string> threeDigits = new List<string>();
 
             // Loop through each pixel of the encoded image.
@@ -78,7 +80,6 @@ namespace Steganography_with_AES_Encryption
             // Loop through the list of three-digit numbers
             foreach (string d in threeDigits)
             {
-                
                 encodedText += (char)(Int32.Parse(d)); // Convert the ASCII characterValue into character.
             }
 

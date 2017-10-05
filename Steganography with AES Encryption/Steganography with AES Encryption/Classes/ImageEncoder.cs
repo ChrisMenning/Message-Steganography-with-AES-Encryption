@@ -93,7 +93,7 @@ namespace Steganography_with_AES_Encryption
                     Color pixelColor = rawImage.GetPixel(row, col);
 
                     // Now, in the new bitmap image, let's set the pixel value, but modify the pixel's alpha channel (transparency) to
-                    // contain an ASCII character from our list.
+                    // contain a digit from the ASCII characters from our list.
                     if (counter < ASCII.Count)
                     {
                         // Set the Alpha Channel value to 255 minus the small single-digit value from the ASCII int list.
@@ -111,7 +111,7 @@ namespace Steganography_with_AES_Encryption
             saveEncodedImage();
         }
 
-        void saveEncodedImage()
+        public void saveEncodedImage()
         {
             // Save the image.
             saveDialog.Filter = "PNG Image|*.png|Bitmap Image|*.bmp";
