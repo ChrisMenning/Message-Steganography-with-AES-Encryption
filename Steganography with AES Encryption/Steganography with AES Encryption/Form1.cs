@@ -12,6 +12,8 @@
  *                                                          
  */
 
+ // I'm adding a comment
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
