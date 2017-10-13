@@ -1,2 +1,5 @@
 # 81229_Team
-new line
+
+10/13/17
+This is version 1.0.
+- Chris M
