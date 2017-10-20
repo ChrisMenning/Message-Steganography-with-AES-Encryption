@@ -1,4 +1,11 @@
-﻿using System.Reflection;
+﻿//----------------------------------------------------------------------------------
+// <copyright file="AssemblyInfo.cs" company="Legendary Lichens">
+//    © Legendary Lichens. All rights reserved. 
+//    2017 - Nathan Beyer / Chris Hoegger / Chris Menning / Leilani Ray
+// </copyright>
+//----------------------------------------------------------------------------------
+
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
