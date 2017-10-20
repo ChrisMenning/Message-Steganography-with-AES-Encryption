@@ -1,129 +1,176 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿//-----------------------------------------------------------------------
+// <copyright file="ImageEncoder.cs" company="Legendary Lichens">
+//     Copyright (c) Legendary Lichens. All rights reserved.
+// </copyright>
+// <author>Chris Menning</author>
+//-----------------------------------------------------------------------
 
 namespace Steganography_with_AES_Encryption
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+
+    /// <summary>
+    /// The ImageEncoder Class.
+    /// </summary>
     public class ImageEncoder
     {
-        // Declare our private fields.
+        /// <summary>
+        /// The OpenFileDialog box.
+        /// </summary>
         private OpenFileDialog openDialog;
-        private SaveFileDialog saveDialog;
-        private Bitmap rawImage;
-        private Bitmap encodedImage;
-        private PictureBox PictureBoxEncoded;
 
+        /// <summary>
+        /// The SaveFileDialog.
+        /// </summary>
+        private SaveFileDialog saveDialog;
+
+        /// <summary>
+        /// The rawImage bitmap.
+        /// </summary>
+        private Bitmap rawImage;
+
+        /// <summary>
+        /// The encodedImage bitmap.
+        /// </summary>
+        private Bitmap encodedImage;
+
+        /// <summary>
+        /// The pictureBox that displays the encoded image.
+        /// </summary>
+        private PictureBox pictureBoxEncoded;
+
+        /// <summary>
+        /// The bytesString string.
+        /// </summary>
+        private string bytesString;
+
+        /// <summary>
+        /// Initializes a new instance of the ImageEncoder class.
+        /// </summary>
+        /// <param name="open">The OpenFileDialog</param>
+        /// <param name="save">The SaveFileDialog</param>
+        /// <param name="raw">The raw Bitmap</param>
+        /// <param name="encoded">The PictureBox that displays the encoded image</param>
         public ImageEncoder(OpenFileDialog open, SaveFileDialog save, Bitmap raw, PictureBox encoded)
         {
             this.openDialog = open;
             this.saveDialog = save;
             this.rawImage = raw;
-            this.PictureBoxEncoded = encoded;
+            this.pictureBoxEncoded = encoded;
+            this.bytesString = string.Empty;
         }
 
-        // The Encoder method can accept pretty much any string. 
+        /// <summary>
+        /// Accepts a string and encodes it into the new bitmap.
+        /// </summary>
+        /// <param name="rawText">The unencoded input text</param>
         public void Encoder(string rawText)
         {
-            /*
-             * HOW IT WORKS:
-             * 
-             * Loop through each character of the rawText string. Convert the char into ASCII values
-             * between 000-127, then, digit-by-digt, add those digits to an array.
-             * 
-             * Then loop through every row of pixels and every column of pixels in the image, and 
-             * change the Alpha Channel value of each pixel according to the digits from the array.
-             * 
-             * In RGBA color space, a pixel has a Red, a Green, A Blue, and an Alpha value. The Alpha
-             * is displayed as transparency. If we modify the transparency of individual pixels a very
-             * small amount, we can encode information that is virtually invisible.
-             * 
-             * The concept is loosely based on this tutorial: 
-             * http://www.c-sharpcorner.com/UploadFile/6f0898/simple-steganography-encryption-and-decryption-huge-message/
-             * 
-             */
-
             // Declare a bitmap for encoding the image. Make it the same width and height as the original.
-            encodedImage = new Bitmap(rawImage.Width, rawImage.Height);
+            this.encodedImage = new Bitmap(this.rawImage.Width, this.rawImage.Height);
 
-            // Declare a list of ints for storing the ints derived from the raw message string.
-            List<int> ASCII = new List<int>();
-
-            // Loop through each individual character of the input text, convert them to a 3-digit number
-            foreach (char c in rawText)
-            {
-                // Conver the char to its ASCII value, which is an int somewhere between 0 and 127.
-                int asciiValue = Convert.ToInt16(c);
-                //Console.WriteLine("ASCII value of " + c + ": " + asciiValue);
-
-                // Declare a temporary string for holding all of the digits in the asciiValue integer.
-                string avAsString = asciiValue.ToString();
-
-                // If the number is less than 3 digits long, add 0s to the beginning. Ex: "3" becomes "003", 
-                // "42" becomes "042". This will make it easier to decode the ASCII back out of the image again.
-                if (avAsString.Length == 1)
-                {
-                    avAsString = "00" + avAsString; // Tack on two 0s to the beginning of this one digit number.
-                }
-                else if (avAsString.Length == 2)
-                {
-                    avAsString = "0" + avAsString; // Tack on one 0 to the beginning of this two-digit number.
-                }
-
-                // Loop through each character in the string. 
-                for (int d = 0; d < avAsString.Length; d++)
-                {
-                    // Add each digit to the ASCII string list.
-                    ASCII.Add(Int32.Parse(avAsString[d].ToString()));
-                }
-            }
+            // Convert the entire rawText into one long string of binary.
+            this.StringToBytesQueue(rawText);
 
             // Declare a counter.
             int counter = 0;
 
             // Loop through every row and every column of pixels in the original image.
-            for (int row = 0; row < rawImage.Width; row++)
+            for (int column = 0; column < this.rawImage.Width; column++)
             {
-                for (int col = 0; col < rawImage.Height; col++)
+                for (int row = 0; row < this.rawImage.Height; row++)
                 {
                     // Get the precise color value of the pixel at this row and this column.
-                    Color pixelColor = rawImage.GetPixel(row, col);
+                    Color pixelColor = this.rawImage.GetPixel(column, row);
 
-                    // Now, in the new bitmap image, let's set the pixel value, but modify the pixel's alpha channel (transparency) to
-                    // contain a digit from the ASCII characters from our list.
-                    if (counter < ASCII.Count)
+                    // Now create a copy of the pixelColor, but with the Least Significant Bit of each color cleared out.
+                    Color sanitizedColor = Color.FromArgb(
+                        pixelColor.R - (pixelColor.R % 2),
+                        pixelColor.G - (pixelColor.G % 2),
+                        pixelColor.B - (pixelColor.B % 2));
+
+                    // Now, in the new bitmap image, let's set the pixel value to be the same as the original pixelColor, plus
+                    // a bit from our long string of bytes, for each color channel.
+                    if (counter + 2 < this.bytesString.Length)
                     {
-                        // Set the Alpha Channel value to 255 minus the small single-digit value from the ASCII int list.
-                        encodedImage.SetPixel(row, col, Color.FromArgb(255 - ASCII[counter], pixelColor));
+                        // Next, declare a newR, newG, and newB consisting of the sanitized value, plus a bit from the byteString.
+                        int newR = sanitizedColor.R + int.Parse(this.bytesString[counter].ToString());
+                        int newG = sanitizedColor.G + int.Parse(this.bytesString[counter + 1].ToString());
+                        int newB = sanitizedColor.B + int.Parse(this.bytesString[counter + 2].ToString());
+
+                        this.encodedImage.SetPixel(column, row, Color.FromArgb(newR, newG, newB));
                     }
                     else
                     {
-                        encodedImage.SetPixel(row, col, Color.FromArgb(255, pixelColor));
+                        // Otherwise just give the image a pixel equal to the original pixel value.
+                        this.encodedImage.SetPixel(column, row, pixelColor);
                     }
 
-                    counter++;
+                    counter = counter + 3;
                 }
             }
 
-            saveEncodedImage();
+            this.SaveEncodedImage();
         }
 
-        public void saveEncodedImage()
+        /// <summary>
+        /// Save the new image.
+        /// </summary>
+        public void SaveEncodedImage()
         {
             // Save the image.
-            saveDialog.Filter = "PNG Image|*.png|Bitmap Image|*.bmp";
-            saveDialog.Title = "Save an Image File";
-            saveDialog.ShowDialog();
+            this.saveDialog.Filter = "PNG Image|*.png|Bitmap Image|*.bmp";
+            this.saveDialog.Title = "Save an Image File";
+            this.saveDialog.ShowDialog();
 
-            if (saveDialog.FileName != "")
+            if (this.saveDialog.FileName != string.Empty)
             {
-                encodedImage.Save(saveDialog.FileName);
-
-                PictureBoxEncoded.Image = encodedImage;
+                this.encodedImage.Save(this.saveDialog.FileName);
+                this.pictureBoxEncoded.Image = this.encodedImage;
             }
+        }
+
+        /// <summary>
+        /// For testing purposes, output the pixel values to the console.
+        /// </summary>
+        public void OutputPixelValuesToConsole()
+        {
+            for (int row = 0; row < this.rawImage.Width; row++)
+            {
+                for (int col = 0; col < this.rawImage.Height; col++)
+                {
+                    // Get the precise color value of the pixel at this row and this column.
+                    Console.WriteLine(this.encodedImage.GetPixel(row, col));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Accept an input string and add them to the byteStrings queue.
+        /// </summary>
+        /// <param name="input">The string that's passed in.</param>
+        private void StringToBytesQueue(string input)
+        {
+            foreach (char c in input)
+            {
+                // Convert each char to a binary.
+                byte charByte = Convert.ToByte(c);
+                string charAsBinaryString = Convert.ToString(charByte, 2).PadLeft(8, '0');
+
+                // Add it to the bytes list.
+                this.bytesString += charAsBinaryString;
+            }
+
+            // After the message, append the string "00000000" so the decoder can detect the end of the message.
+            this.bytesString += "00000000";
+
+            Console.WriteLine("Message as binary = " + this.bytesString);
         }
     }
 }
