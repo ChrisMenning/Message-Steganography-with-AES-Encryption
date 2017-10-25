@@ -78,7 +78,12 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event arguments</param>
         private void ButtonEncodeImage_Click(object sender, EventArgs e)
         {
-            this.imgEnc.Encoder(this.textBoxInputMessage.Text);
+            // Call the image encoder's main encoder method, passing in the text from the input box,
+            // return the encoded bitmap, and assign the encoded bitmap to this.encodedImage for later saving.
+            this.encodedImage = this.imgEnc.Encoder(this.textBoxInputMessage.Text);
+
+            // Save the image.
+            SaveEncodedImage();
         }
 
         /// <summary>
@@ -106,6 +111,23 @@ namespace Steganography_with_AES_Encryption
         {
             this.imgDec = new ImageDecoder();
             this.textBoxOutput.Text = this.imgDec.Decoder(this.encodedImage);
+        }
+
+        /// <summary>
+        /// Save the new image.
+        /// </summary>
+        private void SaveEncodedImage()
+        {
+            // Save the image.
+            saveFileDialog1.Filter = "PNG Image|*.png|Bitmap Image|*.bmp";
+            saveFileDialog1.Title = "Save an Image File";
+            saveFileDialog1.ShowDialog();
+
+            if (saveFileDialog1.FileName != string.Empty)
+            {
+                this.encodedImage.Save(saveFileDialog1.FileName);
+                this.pictureBoxEncoded.Image = this.encodedImage;
+            }
         }
     }
 }

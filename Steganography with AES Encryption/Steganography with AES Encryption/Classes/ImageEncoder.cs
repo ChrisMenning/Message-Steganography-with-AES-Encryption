@@ -64,7 +64,7 @@ namespace Steganography_with_AES_Encryption
         /// Accepts a string and encodes it into the new bitmap.
         /// </summary>
         /// <param name="rawText">The unencoded input text</param>
-        public void Encoder(string rawText)
+        public Bitmap Encoder(string rawText)
         {
             // Declare a bitmap for encoding the image. Make it the same width and height as the original.
             this.encodedImage = new Bitmap(this.rawImage.Width, this.rawImage.Height);
@@ -101,6 +101,8 @@ namespace Steganography_with_AES_Encryption
                         int newB = sanitizedColor.B + int.Parse(this.bytesString[counter + 2].ToString());
 
                         this.encodedImage.SetPixel(column, row, Color.FromArgb(newA, newR, newG, newB));
+
+                        Console.WriteLine("Encoder | Pixel color: " + this.encodedImage.GetPixel(column, row));
                     }
                     else
                     {
@@ -112,24 +114,7 @@ namespace Steganography_with_AES_Encryption
                 }
             }
 
-            this.SaveEncodedImage();
-        }
-
-        /// <summary>
-        /// Save the new image.
-        /// </summary>
-        public void SaveEncodedImage()
-        {
-            // Save the image.
-            this.saveDialog.Filter = "PNG Image|*.png|Bitmap Image|*.bmp";
-            this.saveDialog.Title = "Save an Image File";
-            this.saveDialog.ShowDialog();
-
-            if (this.saveDialog.FileName != string.Empty)
-            {
-                this.encodedImage.Save(this.saveDialog.FileName);
-                this.pictureBoxEncoded.Image = this.encodedImage;
-            }
+            return this.encodedImage;
         }
 
         /// <summary>
