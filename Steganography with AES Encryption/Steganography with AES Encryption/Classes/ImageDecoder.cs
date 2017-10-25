@@ -90,12 +90,10 @@ namespace Steganography_with_AES_Encryption
           //  Console.WriteLine("Byte from Color Channel: " + colorChannel);
             if (colorChannel % 2 == 0)
             {
-          //      Console.WriteLine("0");
                 return 0;
             }
             else
             {
-          //      Console.WriteLine("1");
                 return 1;
             }
         }
@@ -115,7 +113,6 @@ namespace Steganography_with_AES_Encryption
                 for (int row = 0; row < this.EncodedImage.Height; row++)
                 {
                     Color pixelColor = this.EncodedImage.GetPixel(column, row);
-               //     Console.WriteLine("Pixel color: " + pixelColor);
 
                     // Pull the last bit out of each color channel and concatenate them onto the bytesFromImage string.
                     this.bytesFromImage.Add(LastBitFromColorChannel(pixelColor.R));
@@ -128,12 +125,6 @@ namespace Steganography_with_AES_Encryption
             string eightDigitByte = string.Empty;
 
             Queue<string> bytesList = new Queue<string>();
-
-            // Make sure that the bits derived from the image are valid bits.
-          //  foreach (int i in this.bytesFromImage)
-          //  {
-          //      Console.WriteLine(i);
-          //  }
 
             // Loop through each digit of the bytesFromImage string.
             for (int i = 1; i < this.bytesFromImage.Count; i++)

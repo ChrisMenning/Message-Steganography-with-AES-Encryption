@@ -86,9 +86,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\2.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\pnggradHDrgba.png" />
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +93,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\32x32_crab.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IMG_1650.JPG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
