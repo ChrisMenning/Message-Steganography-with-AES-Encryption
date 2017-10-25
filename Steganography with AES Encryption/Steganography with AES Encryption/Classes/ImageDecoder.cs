@@ -138,34 +138,38 @@ namespace Steganography_with_AES_Encryption
 
                 if (i % 8 == 0)
                 {
-                    if (eightDigitByte != "00000000")
-                    {
-                        bytesList.Enqueue(eightDigitByte);
-                        eightCounter = 1;
-                        eightDigitByte = string.Empty;
-                    }
-                    else
-                    {
-                        Console.WriteLine("FOUND THE END OF THE MESSAGE!");
-                        bytesList.Enqueue(eightDigitByte);
-                        break;
-                    }
+                    bytesList.Enqueue(eightDigitByte);
+                    eightCounter = 1;
+                    eightDigitByte = string.Empty;
+
+                //    if (eightDigitByte != "00000000")
+                //    {
+                //        
+                //    }
+                //    else
+                //    {
+                //        Console.WriteLine("FOUND THE END OF THE MESSAGE!");
+                //        bytesList.Enqueue(eightDigitByte);
+                //        break;
+                //    }
                 }
             }
 
             // Loop through the list of eight-digit numbers
             foreach (string d in bytesList)
             {
-                if (d != "00000000")
-                {
-                    // Convert the byte string into a char.
-                    this.decodedText += (char)Convert.ToByte(d, 2); 
-                }
-                else
-                {
-                    // Stop appending bytes to the output string.
-                    break;
-                }
+                this.decodedText += (char)Convert.ToByte(d, 2);
+
+           //     if (d != "00000000")
+           //     {
+           //         // Convert the byte string into a char.
+           //         
+           //     }
+           //     else
+           //     {
+           //         // Stop appending bytes to the output string.
+           //         break;
+           //     }
             }
 
             // Update the output textbox's text.
