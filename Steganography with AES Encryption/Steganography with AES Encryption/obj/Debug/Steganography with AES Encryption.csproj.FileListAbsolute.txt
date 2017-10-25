@@ -6,3 +6,12 @@ C:\Users\Chris\Documents\NWTC\a 2017 Fall\Team Software Development - 81229\GitH
 C:\Users\Chris\Documents\NWTC\a 2017 Fall\Team Software Development - 81229\GitHub-Team\81229_Team-20171020-Hoeggy\Steganography with AES Encryption\Steganography with AES Encryption\obj\Debug\Steganography with AES Encryption.csproj.GenerateResource.Cache
 C:\Users\Chris\Documents\NWTC\a 2017 Fall\Team Software Development - 81229\GitHub-Team\81229_Team-20171020-Hoeggy\Steganography with AES Encryption\Steganography with AES Encryption\obj\Debug\Steganography with AES Encryption.exe
 C:\Users\Chris\Documents\NWTC\a 2017 Fall\Team Software Development - 81229\GitHub-Team\81229_Team-20171020-Hoeggy\Steganography with AES Encryption\Steganography with AES Encryption\obj\Debug\Steganography with AES Encryption.pdb
+C:\Users\Chris\Source\Repos\81229_Team\Steganography with AES Encryption\Steganography with AES Encryption\bin\Debug\Steganography with AES Encryption.exe.config
+C:\Users\Chris\Source\Repos\81229_Team\Steganography with AES Encryption\Steganography with AES Encryption\obj\Debug\Steganography with AES Encryption.exe
+C:\Users\Chris\Source\Repos\81229_Team\Steganography with AES Encryption\Steganography with AES Encryption\obj\Debug\Steganography with AES Encryption.pdb
+C:\Users\Chris\Source\Repos\81229_Team\Steganography with AES Encryption\Steganography with AES Encryption\obj\Debug\Steganography with AES Encryption.csprojResolveAssemblyReference.cache
+C:\Users\Chris\Source\Repos\81229_Team\Steganography with AES Encryption\Steganography with AES Encryption\obj\Debug\Steganography_with_AES_Encryption.FormMain.resources
+C:\Users\Chris\Source\Repos\81229_Team\Steganography with AES Encryption\Steganography with AES Encryption\obj\Debug\Steganography_with_AES_Encryption.Properties.Resources.resources
+C:\Users\Chris\Source\Repos\81229_Team\Steganography with AES Encryption\Steganography with AES Encryption\obj\Debug\Steganography with AES Encryption.csproj.GenerateResource.Cache
+C:\Users\Chris\Source\Repos\81229_Team\Steganography with AES Encryption\Steganography with AES Encryption\bin\Debug\Steganography with AES Encryption.exe
+C:\Users\Chris\Source\Repos\81229_Team\Steganography with AES Encryption\Steganography with AES Encryption\bin\Debug\Steganography with AES Encryption.pdb

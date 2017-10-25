@@ -22,7 +22,7 @@ namespace Steganography_with_AES_Encryption
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        public void Main()
+        public static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
