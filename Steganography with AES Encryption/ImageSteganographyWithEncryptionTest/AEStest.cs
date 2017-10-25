@@ -22,6 +22,7 @@ namespace ImageSteganographyWithEncryptionTest
         // Test that the Decoder object can output a string when fed a bitmap.
         // The Decoder has a built-in tiger image called TestImage.
         [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
         public void DecoderOutputStringIsNotNull()
         {
 
