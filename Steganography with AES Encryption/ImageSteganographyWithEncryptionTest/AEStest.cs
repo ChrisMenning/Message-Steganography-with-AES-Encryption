@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Drawing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Steganography_with_AES_Encryption;
+using System.Threading.Tasks;
+
 
 namespace ImageSteganographyWithEncryptionTest
 {
@@ -16,14 +19,20 @@ namespace ImageSteganographyWithEncryptionTest
          * Check that the alpha channel of every pixel on the rawImage is the same as on the encodedImage.
          */
 
-        // unit test method
+        // Test that the Decoder object can output a string when fed a bitmap.
+        // The Decoder has a built-in tiger image called TestImage.
         [TestMethod]
-        public void TestMethod1()
+        public void DecoderOutputStringIsNotNull()
         {
 
             // arrange
+            ImageDecoder id = new ImageDecoder();
+
             // act
+            string decodedMessage = id.Decoder(id.TestImage);
+
             // assert
+            Assert.AreNotEqual(null, decodedMessage);
         }
     }
 }

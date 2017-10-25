@@ -13,7 +13,6 @@ namespace Steganography_with_AES_Encryption
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using System.Windows.Forms;
 
     /// <summary>
     /// The ImageDecoder Class.
@@ -26,9 +25,9 @@ namespace Steganography_with_AES_Encryption
         private Bitmap encodedImage;
 
         /// <summary>
-        /// The textBoxOutput TextBox.
+        /// A pre-loaded bitmap used for unit testing.
         /// </summary>
-        private TextBox textBoxOutput;
+        private Bitmap testImage;
 
         /// <summary>
         /// The bytesFromImage List of integers.
@@ -41,13 +40,45 @@ namespace Steganography_with_AES_Encryption
         private string decodedText;
 
         /// <summary>
+        /// Gets and sets the encodedImage property.
+        /// </summary>
+        public Bitmap EncodedImage
+        {
+            get
+            {
+                return encodedImage;
+            }
+
+            set
+            {
+                encodedImage = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets and sets the testImage property.
+        /// </summary>
+        public Bitmap TestImage
+        {
+            get
+            {
+                return testImage;
+            }
+
+            set
+            {
+                testImage = value;
+            }
+        }
+
+        /// <summary>
         /// Initializes a new instance of the ImageDecoder class.
         /// </summary>
         /// <param name="output">The Textbox where the decoded message is displayed.</param>
-        public ImageDecoder(TextBox output)
+        public ImageDecoder()
         {
-            this.textBoxOutput = output;
             this.bytesFromImage = new List<int>();
+            this.TestImage = Properties.Resources.Tiger;
         }
 
         /// <summary>
@@ -73,17 +104,17 @@ namespace Steganography_with_AES_Encryption
         /// Accepts a bitmap and decodes the message hidden in the LSB of each color channel of each pixel.
         /// </summary>
         /// <param name="encoded">The bitmap with a hidden message in it.</param>
-        public void Decoder(Bitmap encoded)
+        public string Decoder(Bitmap encoded)
         {
           //  Console.WriteLine("Trying to decode");
-            this.encodedImage = encoded;
+            this.EncodedImage = encoded;
 
             // Loop through each pixel of the encoded image.
-            for (int column = 0; column < this.encodedImage.Width; column++)
+            for (int column = 0; column < this.EncodedImage.Width; column++)
             {
-                for (int row = 0; row < this.encodedImage.Height; row++)
+                for (int row = 0; row < this.EncodedImage.Height; row++)
                 {
-                    Color pixelColor = this.encodedImage.GetPixel(column, row);
+                    Color pixelColor = this.EncodedImage.GetPixel(column, row);
                //     Console.WriteLine("Pixel color: " + pixelColor);
 
                     // Pull the last bit out of each color channel and concatenate them onto the bytesFromImage string.
@@ -147,7 +178,7 @@ namespace Steganography_with_AES_Encryption
             }
 
             // Update the output textbox's text.
-            this.textBoxOutput.Text = this.decodedText.ToString();
+            return this.decodedText.ToString();
         }
     }
 }

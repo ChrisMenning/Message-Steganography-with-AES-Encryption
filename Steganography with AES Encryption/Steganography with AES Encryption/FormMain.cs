@@ -104,8 +104,8 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event arguments</param>
         private void ButtonDecode_Click(object sender, EventArgs e)
         {
-            this.imgDec = new ImageDecoder(this.textBoxOutput);
-            this.imgDec.Decoder(this.encodedImage);
+            this.imgDec = new ImageDecoder();
+            this.textBoxOutput.Text = this.imgDec.Decoder(this.encodedImage);
         }
     }
 }
