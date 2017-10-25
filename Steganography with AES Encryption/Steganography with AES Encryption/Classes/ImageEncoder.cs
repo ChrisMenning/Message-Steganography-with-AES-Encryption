@@ -21,11 +21,6 @@ namespace Steganography_with_AES_Encryption
     public class ImageEncoder
     {
         /// <summary>
-        /// The OpenFileDialog box.
-        /// </summary>
-        private OpenFileDialog openDialog;
-
-        /// <summary>
         /// The SaveFileDialog.
         /// </summary>
         private SaveFileDialog saveDialog;
@@ -57,9 +52,8 @@ namespace Steganography_with_AES_Encryption
         /// <param name="save">The SaveFileDialog</param>
         /// <param name="raw">The raw Bitmap</param>
         /// <param name="encoded">The PictureBox that displays the encoded image</param>
-        public ImageEncoder(OpenFileDialog open, SaveFileDialog save, Bitmap raw, PictureBox encoded)
+        public ImageEncoder(SaveFileDialog save, Bitmap raw, PictureBox encoded)
         {
-            this.openDialog = open;
             this.saveDialog = save;
             this.rawImage = raw;
             this.pictureBoxEncoded = encoded;
@@ -91,6 +85,7 @@ namespace Steganography_with_AES_Encryption
 
                     // Now create a copy of the pixelColor, but with the Least Significant Bit of each color cleared out.
                     Color sanitizedColor = Color.FromArgb(
+                        pixelColor.A - (pixelColor.A % 2),
                         pixelColor.R - (pixelColor.R % 2),
                         pixelColor.G - (pixelColor.G % 2),
                         pixelColor.B - (pixelColor.B % 2));
@@ -100,11 +95,12 @@ namespace Steganography_with_AES_Encryption
                     if (counter + 2 < this.bytesString.Length)
                     {
                         // Next, declare a newR, newG, and newB consisting of the sanitized value, plus a bit from the byteString.
+                        int newA = sanitizedColor.A;
                         int newR = sanitizedColor.R + int.Parse(this.bytesString[counter].ToString());
                         int newG = sanitizedColor.G + int.Parse(this.bytesString[counter + 1].ToString());
                         int newB = sanitizedColor.B + int.Parse(this.bytesString[counter + 2].ToString());
 
-                        this.encodedImage.SetPixel(column, row, Color.FromArgb(newR, newG, newB));
+                        this.encodedImage.SetPixel(column, row, Color.FromArgb(newA, newR, newG, newB));
                     }
                     else
                     {

@@ -54,15 +54,18 @@ namespace Steganography_with_AES_Encryption
         /// Accepts a byte, determines if it is even or odd, and adds either a 1 or 0 to the bytesFromImage list.
         /// </summary>
         /// <param name="colorChannel">A byte that should come from a color channel</param>
-        public void LastBitFromColorChannel(byte colorChannel)
+        public int LastBitFromColorChannel(byte colorChannel)
         {
+          //  Console.WriteLine("Byte from Color Channel: " + colorChannel);
             if (colorChannel % 2 == 0)
             {
-                this.bytesFromImage.Add(0);
+          //      Console.WriteLine("0");
+                return 0;
             }
             else
             {
-                this.bytesFromImage.Add(1);
+          //      Console.WriteLine("1");
+                return 1;
             }
         }
 
@@ -72,7 +75,7 @@ namespace Steganography_with_AES_Encryption
         /// <param name="encoded">The bitmap with a hidden message in it.</param>
         public void Decoder(Bitmap encoded)
         {
-            Console.WriteLine("Trying to decode");
+          //  Console.WriteLine("Trying to decode");
             this.encodedImage = encoded;
 
             // Loop through each pixel of the encoded image.
@@ -81,11 +84,12 @@ namespace Steganography_with_AES_Encryption
                 for (int row = 0; row < this.encodedImage.Height; row++)
                 {
                     Color pixelColor = this.encodedImage.GetPixel(column, row);
+               //     Console.WriteLine("Pixel color: " + pixelColor);
 
-                    // Pull the last bit out of each color channel and concatenate them onto our string.
-                    this.LastBitFromColorChannel(pixelColor.R);
-                    this.LastBitFromColorChannel(pixelColor.G);
-                    this.LastBitFromColorChannel(pixelColor.B);
+                    // Pull the last bit out of each color channel and concatenate them onto the bytesFromImage string.
+                    this.bytesFromImage.Add(LastBitFromColorChannel(pixelColor.R));
+                    this.bytesFromImage.Add(LastBitFromColorChannel(pixelColor.G));
+                    this.bytesFromImage.Add(LastBitFromColorChannel(pixelColor.B));
                 }
             }
 
@@ -93,6 +97,12 @@ namespace Steganography_with_AES_Encryption
             string eightDigitByte = string.Empty;
 
             Queue<string> bytesList = new Queue<string>();
+
+            // Make sure that the bits derived from the image are valid bits.
+          //  foreach (int i in this.bytesFromImage)
+          //  {
+          //      Console.WriteLine(i);
+          //  }
 
             // Loop through each digit of the bytesFromImage string.
             for (int i = 1; i < this.bytesFromImage.Count; i++)

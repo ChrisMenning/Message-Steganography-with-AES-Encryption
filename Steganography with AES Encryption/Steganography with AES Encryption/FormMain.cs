@@ -64,7 +64,7 @@ namespace Steganography_with_AES_Encryption
                 this.pictureBoxRaw.Image = this.rawImage;
 
                 // Instantiate the Image Encoder and the Image Decoder.
-                this.imgEnc = new ImageEncoder(this.openFileDialog1, this.saveFileDialog1, this.rawImage, this.pictureBoxEncoded);
+                this.imgEnc = new ImageEncoder(this.saveFileDialog1, this.rawImage, this.pictureBoxEncoded);
 
                 // Turn on encode button.
                 this.buttonEncodeImage.Enabled = true;
