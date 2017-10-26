@@ -76,16 +76,16 @@ namespace Steganography_with_AES_Encryption
             int counter = 0;
 
             // Loop through every row and every column of pixels in the original image.
-            for (int column = 0; column < this.rawImage.Width; column++)
+            for (int row = 0; row < this.rawImage.Height; row++)
             {
-                for (int row = 0; row < this.rawImage.Height; row++)
+                for (int column = 0; column < this.rawImage.Width; column++)
                 {
                     // Get the precise color value of the pixel at this row and this column.
                     Color pixelColor = this.rawImage.GetPixel(column, row);
 
                     // Now create a copy of the pixelColor, but with the Least Significant Bit of each color cleared out.
                     Color sanitizedColor = Color.FromArgb(
-                        pixelColor.A - (pixelColor.A % 2),
+                        pixelColor.A,
                         pixelColor.R - (pixelColor.R % 2),
                         pixelColor.G - (pixelColor.G % 2),
                         pixelColor.B - (pixelColor.B % 2));

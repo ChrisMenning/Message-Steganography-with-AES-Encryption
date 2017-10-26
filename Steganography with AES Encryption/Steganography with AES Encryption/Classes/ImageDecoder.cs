@@ -108,15 +108,15 @@ namespace Steganography_with_AES_Encryption
             this.EncodedImage = encoded;
 
             // Loop through each pixel of the encoded image.
-            for (int column = 0; column < this.EncodedImage.Width; column++)
+            for (int row = 0; row < this.EncodedImage.Height; row++)
             {
-                for (int row = 0; row < this.EncodedImage.Height; row++)
+                for (int column = 0; column < this.EncodedImage.Width; column++)
                 {
                     Color pixelColor = this.EncodedImage.GetPixel(column, row);
 
                     Console.WriteLine("Decoder | Pixel color: " + pixelColor);
 
-                    // Pull the last bit out of each color channel and concatenate them onto the bytesFromImage string.
+                    // Pull the last bit out of each color channel and concatenate them onto the bytesFromImage list.
                     this.bytesFromImage.Add(LastBitFromColorChannel(pixelColor.R));
                     this.bytesFromImage.Add(LastBitFromColorChannel(pixelColor.G));
                     this.bytesFromImage.Add(LastBitFromColorChannel(pixelColor.B));
@@ -128,7 +128,7 @@ namespace Steganography_with_AES_Encryption
 
             Queue<string> bytesList = new Queue<string>();
 
-            // Loop through each digit of the bytesFromImage string.
+            // Loop through each digit of the bytesFromImage list.
             for (int i = 1; i < this.bytesFromImage.Count; i++)
             {
                 // Create new 8-digit groups.
@@ -140,38 +140,36 @@ namespace Steganography_with_AES_Encryption
 
                 if (i % 8 == 0)
                 {
-                    bytesList.Enqueue(eightDigitByte);
-                    eightCounter = 1;
-                    eightDigitByte = string.Empty;
-
-                //    if (eightDigitByte != "00000000")
-                //    {
-                //        
-                //    }
-                //    else
-                //    {
-                //        Console.WriteLine("FOUND THE END OF THE MESSAGE!");
-                //        bytesList.Enqueue(eightDigitByte);
-                //        break;
-                //    }
+                    if (eightDigitByte != "00000000")
+                    {
+                        bytesList.Enqueue(eightDigitByte);
+                        eightCounter = 1;
+                        eightDigitByte = string.Empty;
+                    }
+                    else
+                    {
+                        Console.WriteLine("FOUND THE END OF THE MESSAGE!");
+                        bytesList.Enqueue(eightDigitByte);
+                        break;
+                    }
                 }
             }
 
             // Loop through the list of eight-digit numbers
             foreach (string d in bytesList)
             {
-                this.decodedText += (char)Convert.ToByte(d, 2);
+                
+                if (d != "00000000")
+                {
+                    // Convert the byte string into a char.
+                    this.decodedText += (char)Convert.ToByte(d, 2);
 
-           //     if (d != "00000000")
-           //     {
-           //         // Convert the byte string into a char.
-           //         
-           //     }
-           //     else
-           //     {
-           //         // Stop appending bytes to the output string.
-           //         break;
-           //     }
+                }
+                else
+                {
+                    // Stop appending bytes to the output string.
+                    break;
+                }
             }
 
             // Update the output textbox's text.
