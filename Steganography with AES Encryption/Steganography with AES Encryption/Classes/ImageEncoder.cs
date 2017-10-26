@@ -83,9 +83,26 @@ namespace Steganography_with_AES_Encryption
                     // Get the precise color value of the pixel at this row and this column.
                     Color pixelColor = this.rawImage.GetPixel(column, row);
 
+                    // NOTE: Allowing any encoded pixels to have an alpha value of 0 seems to cause the RGB
+                    // elements to zero out as well, if they're as low as 1 or 0. But when the Alpha channel
+                    // has a value, the the RGB are retained.
+
+                    // Declare a special temporary alpha value that can never be lower than 1.
+                    byte paddedAlpha;
+
+                    if (pixelColor.A == 0)
+                    {
+                        paddedAlpha = 1;
+                    }
+                    else
+                    {
+                        paddedAlpha = pixelColor.A;
+                    }
+
+
                     // Now create a copy of the pixelColor, but with the Least Significant Bit of each color cleared out.
                     Color sanitizedColor = Color.FromArgb(
-                        pixelColor.A,
+                        paddedAlpha,
                         pixelColor.R - (pixelColor.R % 2),
                         pixelColor.G - (pixelColor.G % 2),
                         pixelColor.B - (pixelColor.B % 2));
