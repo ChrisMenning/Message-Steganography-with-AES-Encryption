@@ -114,9 +114,10 @@ namespace Steganography_with_AES_Encryption
                 {
                     Color pixelColor = this.EncodedImage.GetPixel(column, row);
 
-                    Console.WriteLine("Decoder | Pixel color: " + pixelColor);
+                    //   Console.WriteLine("Decoder | Pixel color: " + pixelColor);
 
                     // Pull the last bit out of each color channel and concatenate them onto the bytesFromImage list.
+                    this.bytesFromImage.Add(LastBitFromColorChannel(pixelColor.A));
                     this.bytesFromImage.Add(LastBitFromColorChannel(pixelColor.R));
                     this.bytesFromImage.Add(LastBitFromColorChannel(pixelColor.G));
                     this.bytesFromImage.Add(LastBitFromColorChannel(pixelColor.B));

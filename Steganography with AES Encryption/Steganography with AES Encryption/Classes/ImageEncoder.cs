@@ -21,11 +21,6 @@ namespace Steganography_with_AES_Encryption
     public class ImageEncoder
     {
         /// <summary>
-        /// The SaveFileDialog.
-        /// </summary>
-        private SaveFileDialog saveDialog;
-
-        /// <summary>
         /// The rawImage bitmap.
         /// </summary>
         private Bitmap rawImage;
@@ -52,9 +47,8 @@ namespace Steganography_with_AES_Encryption
         /// <param name="save">The SaveFileDialog</param>
         /// <param name="raw">The raw Bitmap</param>
         /// <param name="encoded">The PictureBox that displays the encoded image</param>
-        public ImageEncoder(SaveFileDialog save, Bitmap raw, PictureBox encoded)
+        public ImageEncoder(Bitmap raw, PictureBox encoded)
         {
-            this.saveDialog = save;
             this.rawImage = raw;
             this.pictureBoxEncoded = encoded;
             this.bytesString = string.Empty;
@@ -87,35 +81,22 @@ namespace Steganography_with_AES_Encryption
                     // elements to zero out as well, if they're as low as 1 or 0. But when the Alpha channel
                     // has a value, the the RGB are retained.
 
-                    // Declare a special temporary alpha value that can never be lower than 1.
-                    byte paddedAlpha;
-
-                    if (pixelColor.A == 0)
-                    {
-                        paddedAlpha = 1;
-                    }
-                    else
-                    {
-                        paddedAlpha = pixelColor.A;
-                    }
-
-
                     // Now create a copy of the pixelColor, but with the Least Significant Bit of each color cleared out.
                     Color sanitizedColor = Color.FromArgb(
-                        paddedAlpha,
+                        pixelColor.A - (pixelColor.A % 2),
                         pixelColor.R - (pixelColor.R % 2),
                         pixelColor.G - (pixelColor.G % 2),
                         pixelColor.B - (pixelColor.B % 2));
 
                     // Now, in the new bitmap image, let's set the pixel value to be the same as the original pixelColor, plus
                     // a bit from our long string of bytes, for each color channel.
-                    if (counter + 2 < this.bytesString.Length)
+                    if (counter + 3 < this.bytesString.Length)
                     {
                         // Next, declare a newR, newG, and newB consisting of the sanitized value, plus a bit from the byteString.
-                        int newA = sanitizedColor.A;
-                        int newR = sanitizedColor.R + int.Parse(this.bytesString[counter].ToString());
-                        int newG = sanitizedColor.G + int.Parse(this.bytesString[counter + 1].ToString());
-                        int newB = sanitizedColor.B + int.Parse(this.bytesString[counter + 2].ToString());
+                        int newA = sanitizedColor.A + int.Parse(this.bytesString[counter].ToString());
+                        int newR = sanitizedColor.R + int.Parse(this.bytesString[counter + 1].ToString());
+                        int newG = sanitizedColor.G + int.Parse(this.bytesString[counter + 2].ToString());
+                        int newB = sanitizedColor.B + int.Parse(this.bytesString[counter + 3].ToString());
 
                         this.encodedImage.SetPixel(column, row, Color.FromArgb(newA, newR, newG, newB));
 
@@ -127,7 +108,7 @@ namespace Steganography_with_AES_Encryption
                         this.encodedImage.SetPixel(column, row, pixelColor);
                     }
 
-                    counter = counter + 3;
+                    counter = counter + 4;
                 }
             }
 
@@ -144,7 +125,7 @@ namespace Steganography_with_AES_Encryption
                 for (int col = 0; col < this.rawImage.Height; col++)
                 {
                     // Get the precise color value of the pixel at this row and this column.
-                    Console.WriteLine(this.encodedImage.GetPixel(row, col));
+                    //Console.WriteLine(this.encodedImage.GetPixel(col row));
                 }
             }
         }
