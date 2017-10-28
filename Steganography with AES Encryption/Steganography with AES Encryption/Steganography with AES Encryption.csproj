@@ -46,10 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvancedOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdvancedOptions.Designer.cs">
+      <DependentUpon>AdvancedOptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\AESdecrypt.cs" />
     <Compile Include="Classes\AESencrypt.cs" />
     <Compile Include="Classes\CharacterCompute.cs" />
     <Compile Include="Classes\ImageDecoder.cs" />
+    <Compile Include="Classes\JpegEncoder.cs" />
     <Compile Include="Classes\PasswordHandler.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -60,6 +67,9 @@
     <Compile Include="Classes\ImageEncoder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AdvancedOptions.resx">
+      <DependentUpon>AdvancedOptions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

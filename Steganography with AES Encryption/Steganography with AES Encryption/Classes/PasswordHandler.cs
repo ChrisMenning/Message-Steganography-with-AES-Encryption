@@ -54,7 +54,13 @@ namespace Steganography_with_AES_Encryption
             EncryptionKey = CreateKey(pw);
         }
 
-        private static byte[] CreateKey(string password, int keyBytes = 32)
+        /// <summary>
+        /// Returns a byte array to be used as encryption key.
+        /// </summary>
+        /// <param name="password"></param>
+        /// <param name="keyBytes"></param>
+        /// <returns></returns>
+        public byte[] CreateKey(string password, int keyBytes = 32)
         {
             const int Iterations = 300;
             var keyGenerator = new Rfc2898DeriveBytes(password, Salt, Iterations);
