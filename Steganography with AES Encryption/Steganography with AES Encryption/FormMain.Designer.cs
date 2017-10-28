@@ -325,14 +325,14 @@ namespace Steganography_with_AES_Encryption
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // frmMain
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(634, 638);
             this.Controls.Add(this.groupBoxDecode);
             this.Controls.Add(this.groupBoxEncode);
-            this.Name = "frmMain";
+            this.Name = "FormMain";
             this.Text = "Steganography";
             this.groupBoxEncode.ResumeLayout(false);
             this.groupBoxEncode.PerformLayout();

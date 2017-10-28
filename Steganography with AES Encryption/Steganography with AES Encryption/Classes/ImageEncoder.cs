@@ -41,6 +41,11 @@ namespace Steganography_with_AES_Encryption
         private string bytesString;
 
         /// <summary>
+        /// Modes determine which color channels are being encoded. Changed in "Advanced Options."
+        /// </summary>
+        private int mode;
+
+        /// <summary>
         /// Initializes a new instance of the ImageEncoder class.
         /// </summary>
         /// <param name="open">The OpenFileDialog</param>
@@ -52,6 +57,7 @@ namespace Steganography_with_AES_Encryption
             this.rawImage = raw;
             this.pictureBoxEncoded = encoded;
             this.bytesString = string.Empty;
+            this.mode = 1; // By default.
         }
 
         /// <summary>
