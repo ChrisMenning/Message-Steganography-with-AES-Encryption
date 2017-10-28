@@ -142,7 +142,7 @@ namespace Steganography_with_AES_Encryption
                 for (int col = 0; col < this.rawImage.Height; col++)
                 {
                     // Get the precise color value of the pixel at this row and this column.
-                    //Console.WriteLine(this.encodedImage.GetPixel(col row));
+                    Console.WriteLine(this.encodedImage.GetPixel(col, row));
                 }
             }
         }

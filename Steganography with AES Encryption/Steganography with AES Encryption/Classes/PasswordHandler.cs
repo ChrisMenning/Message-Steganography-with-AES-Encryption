@@ -7,10 +7,20 @@ using System.Threading.Tasks;
 
 namespace Steganography_with_AES_Encryption
 {
+    /// <summary>
+    /// The Password Handler accepts a password string and returns an encryption key as a bit array.
+    /// Some code from Stack Overflow: https://stackoverflow.com/questions/17195969/generating-aes-256-bit-key-value
+    /// Password Salt & Hash info on Wikipedia: https://en.wikipedia.org/wiki/PBKDF2
+    /// </summary>
     class PasswordHandler
     {
         private string password;
         private byte[] encryptionKey;
+
+        /// <summary>
+        /// Mode 1 = 128 bits / (16 bytes), Mode 2 = 192 bits (24 bytes), Mode 3 = 256 bits (32 bytes).
+        /// </summary>
+        private int mode;
 
         /// <summary>
         /// Gets and sets the password
@@ -60,8 +70,24 @@ namespace Steganography_with_AES_Encryption
         /// <param name="password"></param>
         /// <param name="keyBytes"></param>
         /// <returns></returns>
-        public byte[] CreateKey(string password, int keyBytes = 32)
+        public byte[] CreateKey(string password)
         {
+            // By default, use 32 bytes (256 bits) for AES key.
+            int keyBytes = 32;
+
+            switch (mode)
+            {
+                case 1:
+                    keyBytes = 16;
+                    break;
+                case 2:
+                    keyBytes = 24;
+                    break;
+                case 3:
+                    keyBytes = 32;
+                    break;
+            }
+
             const int Iterations = 300;
             var keyGenerator = new Rfc2898DeriveBytes(password, Salt, Iterations);
             return keyGenerator.GetBytes(keyBytes);
