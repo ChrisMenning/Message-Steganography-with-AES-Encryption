@@ -61,6 +61,17 @@ namespace Steganography_with_AES_Encryption
         }
 
         /// <summary>
+        /// The ImageEncoder Destructor marks things for garbage collection.
+        /// </summary>
+        ~ImageEncoder()
+        {
+            // Cleanup Statements.
+            this.encodedImage.Dispose();
+            this.rawImage.Dispose();
+            this.bytesString = string.Empty;
+        }
+
+        /// <summary>
         /// Accepts a string and encodes it into the new bitmap.
         /// </summary>
         /// <param name="rawText">The unencoded input text</param>
