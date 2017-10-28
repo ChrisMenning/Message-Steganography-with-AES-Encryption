@@ -25,14 +25,14 @@ namespace Steganography_with_AES_Encryption
      */
 
     /// <summary>
-    /// The AESdecrypt class.
+    /// The AESDecrypt class.
     /// </summary>
-    public class AESdecrypt
+    public class AESDecrypt
     {
         /// <summary>
-        /// Initializes a new instance of the AESdecrypt class.
+        /// Initializes a new instance of the AESDecrypt class.
         /// </summary>
-        public AESdecrypt()
+        public AESDecrypt()
         {
         }
 
@@ -40,10 +40,10 @@ namespace Steganography_with_AES_Encryption
         /// Accepts the cipherText, Key, and IV and decrypts the message.
         /// </summary>
         /// <param name="cipherText">The encrypted message.</param>
-        /// <param name="Key">The Key</param>
+        /// <param name="key">The Key</param>
         /// <param name="IV">The initialization vector.</param>
         /// <returns>The decrypted string.</returns>
-        public static string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
+        public static string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] key, byte[] IV)
         {
             // Check arguments.
             if (cipherText == null || cipherText.Length <= 0)
@@ -51,7 +51,7 @@ namespace Steganography_with_AES_Encryption
                 throw new ArgumentNullException("cipherText");
             }
 
-            if (Key == null || Key.Length <= 0)
+            if (key == null || key.Length <= 0)
             {
                 throw new ArgumentNullException("Key");
             }
@@ -68,7 +68,7 @@ namespace Steganography_with_AES_Encryption
             // Create an Aes object with the specified key and IV.
             using (Aes aesAlg = Aes.Create())
             {
-                aesAlg.Key = Key;
+                aesAlg.Key = key;
                 aesAlg.IV = IV;
 
                 // Create a decryptor to perform the stream transform.

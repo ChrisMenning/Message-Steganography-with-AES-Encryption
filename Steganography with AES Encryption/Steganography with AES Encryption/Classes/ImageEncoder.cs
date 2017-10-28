@@ -1,9 +1,9 @@
-﻿//-----------------------------------------------------------------------
+﻿//----------------------------------------------------------------------------------
 // <copyright file="ImageEncoder.cs" company="Legendary Lichens">
-//     Copyright (c) Legendary Lichens. All rights reserved.
+//    © Legendary Lichens. All rights reserved. 
+//    2017 - Nathan Beyer / Chris Hoegger / Chris Menning / Leilani Ray
 // </copyright>
-// <author>Chris Menning</author>
-//-----------------------------------------------------------------------
+//---------------------------------------------------------------------------------- 
 
 namespace Steganography_with_AES_Encryption
 {
@@ -48,8 +48,6 @@ namespace Steganography_with_AES_Encryption
         /// <summary>
         /// Initializes a new instance of the ImageEncoder class.
         /// </summary>
-        /// <param name="open">The OpenFileDialog</param>
-        /// <param name="save">The SaveFileDialog</param>
         /// <param name="raw">The raw Bitmap</param>
         /// <param name="encoded">The PictureBox that displays the encoded image</param>
         public ImageEncoder(Bitmap raw, PictureBox encoded)
@@ -61,7 +59,7 @@ namespace Steganography_with_AES_Encryption
         }
 
         /// <summary>
-        /// The ImageEncoder Destructor marks things for garbage collection.
+        /// Finalizes an instance of the ImageEncoder class.
         /// </summary>
         ~ImageEncoder()
         {
@@ -69,19 +67,22 @@ namespace Steganography_with_AES_Encryption
             this.encodedImage.Dispose();
             this.rawImage.Dispose();
             this.bytesString = string.Empty;
+
+            GC.ReRegisterForFinalize(this);
         }
 
         /// <summary>
         /// Accepts a string and encodes it into the new bitmap.
         /// </summary>
         /// <param name="rawText">The unencoded input text</param>
+        /// <returns>Bitmap with message hidden in LSB.</returns>
         public Bitmap Encoder(string rawText)
         {
             // Declare a bitmap for encoding the image. Make it the same width and height as the original.
             this.encodedImage = new Bitmap(this.rawImage.Width, this.rawImage.Height);
 
             // Convert the entire rawText into one long string of binary.
-            this.StringToBytesQueue(rawText);
+            this.StringToBytesString(rawText);
 
             // Declare a counter.
             int counter = 0;
@@ -151,7 +152,7 @@ namespace Steganography_with_AES_Encryption
         /// Accept an input string and add them to the byteStrings queue.
         /// </summary>
         /// <param name="input">The string that's passed in.</param>
-        private void StringToBytesQueue(string input)
+        private void StringToBytesString(string input)
         {
             foreach (char c in input)
             {

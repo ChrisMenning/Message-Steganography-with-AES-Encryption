@@ -25,9 +25,9 @@ namespace Steganography_with_AES_Encryption
      */
 
     /// <summary>
-    /// The AESencrypt class.
+    /// The AESEncrypt class.
     /// </summary>
-    public class AESencrypt
+    public class AESEncrypt
     {
         /// <summary>
         /// The rawMessage string.
@@ -50,20 +50,20 @@ namespace Steganography_with_AES_Encryption
         private byte[] encryptedMessage;
 
         /// <summary>
-        /// Initializes a new instance of the AESencrypt class.
+        /// Initializes a new instance of the AESEncrypt class.
         /// </summary>
         /// <param name="inputMessage">The raw message.</param>
         /// <param name="inputPassword">The password.</param>
-        public AESencrypt(string inputMessage, string inputPassword)
+        public AESEncrypt(string inputMessage, string inputPassword)
         {
             this.rawMessage = inputMessage;
             this.password = inputPassword;
 
             // Instantiate a new PasswordHandler.
-            PasswordHandler pwHandler = new PasswordHandler(this.password);
+            PasswordHandler passwordHandler = new PasswordHandler(this.password);
 
             // Set up the AESkey to be used later, using the PasswordHandler.
-            this.AESkey = pwHandler.CreateKey(this.password);
+            this.AESkey = passwordHandler.CreateKey(this.password);
         }
 
         /// <summary>
@@ -86,10 +86,10 @@ namespace Steganography_with_AES_Encryption
         /// Accepts plainText, the key byte array, and the IV byte array, and returns an encrypted byte array.
         /// </summary>
         /// <param name="plainText">The plainText</param>
-        /// <param name="Key">The secret key</param>
+        /// <param name="key">The secret key</param>
         /// <param name="IV">The initialization vector</param>
         /// <returns>Byte array</returns>
-        private static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
+        private static byte[] EncryptStringToBytes_Aes(string plainText, byte[] key, byte[] IV)
         {
             // Check arguments.
             if (plainText == null || plainText.Length <= 0)
@@ -97,7 +97,7 @@ namespace Steganography_with_AES_Encryption
                 throw new ArgumentNullException("plainText");
             }
 
-            if (Key == null || Key.Length <= 0)
+            if (key == null || key.Length <= 0)
             {
                 throw new ArgumentNullException("Key");
             }
@@ -112,7 +112,7 @@ namespace Steganography_with_AES_Encryption
             // Create an Aes object with the specified key and IV.
             using (Aes aesAlg = Aes.Create())
             {
-                aesAlg.Key = Key;
+                aesAlg.Key = key;
                 aesAlg.IV = IV;
 
                 // Create a decrytor to perform the stream transform.

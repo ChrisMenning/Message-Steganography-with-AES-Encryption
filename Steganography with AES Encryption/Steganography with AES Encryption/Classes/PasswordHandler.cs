@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
+﻿//----------------------------------------------------------------------------------
+// <copyright file="CharacterCompute.cs" company="Legendary Lichens">
+//    © Legendary Lichens. All rights reserved. 
+//    2017 - Nathan Beyer / Chris Hoegger / Chris Menning / Leilani Ray
+// </copyright>
+//---------------------------------------------------------------------------------- 
 
 namespace Steganography_with_AES_Encryption
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Security.Cryptography;
+    using System.Text;
+    using System.Threading.Tasks;
+
     /// <summary>
     /// The Password Handler accepts a password string and returns an encryption key as a bit array.
     /// Some code from Stack Overflow: https://stackoverflow.com/questions/17195969/generating-aes-256-bit-key-value
@@ -61,6 +68,7 @@ namespace Steganography_with_AES_Encryption
         public PasswordHandler(string pw)
         {
             this.Password = pw;
+            this.mode = 3;  // By default, set mode to 3 for 256 bits (highest security).
             EncryptionKey = CreateKey(pw);
         }
 

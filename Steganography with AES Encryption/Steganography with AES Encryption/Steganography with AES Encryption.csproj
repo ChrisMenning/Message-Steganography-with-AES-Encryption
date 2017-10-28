@@ -55,7 +55,9 @@
     <Compile Include="Classes\AESdecrypt.cs" />
     <Compile Include="Classes\AESencrypt.cs" />
     <Compile Include="Classes\CharacterCompute.cs" />
-    <Compile Include="Classes\ImageDecoder.cs" />
+    <Compile Include="Classes\ImageDecoder.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Classes\JpegEncoder.cs" />
     <Compile Include="Classes\PasswordHandler.cs" />
     <Compile Include="FormMain.cs">
