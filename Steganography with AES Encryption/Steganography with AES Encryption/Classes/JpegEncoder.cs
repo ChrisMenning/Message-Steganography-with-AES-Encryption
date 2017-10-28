@@ -7,15 +7,47 @@ using System.Threading.Tasks;
 
 namespace Steganography_with_AES_Encryption
 {
-    class JpegEncoder
+    public class JpegEncoder
     {
         private Image rawJpeg;
+        private Image testImage;
+
+        /// <summary>
+        /// Gets and sets the testImage property.
+        /// </summary>
+        public Image TestImage
+        {
+            get
+            {
+                return testImage;
+            }
+
+            set
+            {
+                testImage = value;
+            }
+        }
+
         /// <summary>
         /// Initializes a new instance of the JpegEncoder class.
         /// </summary>
-        public JpegEncoder(Image jpeg)
+        public JpegEncoder()
         {
-            this.rawJpeg = jpeg;
+            // By default, the rawJpeg used is a test image.
+            this.TestImage = Properties.Resources.IMG_1650; // A JPG file
+            this.rawJpeg = testImage;
+        }
+
+        /// <summary>
+        /// An overloaded constructor of the JpegEncoder that accepts an image.
+        /// </summary>
+        /// <param name="img"></param>
+        public JpegEncoder(Image img)
+        {
+            // When an image is passed in, that is the image used instead of the testimage.
+            // By default, the rawJpeg used is a test image.
+            this.rawJpeg = img;
+            this.TestImage = Properties.Resources.IMG_1650;
         }
 
         public void Encoder()
