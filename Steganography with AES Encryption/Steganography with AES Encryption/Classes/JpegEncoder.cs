@@ -32,7 +32,7 @@ namespace Steganography_with_AES_Encryption
         /// <summary>
         /// The bytesString string.
         /// </summary>
-        private string bytesString;
+        private List<byte> hiddenMessageBytes;
 
         /// <summary>
         /// Initializes a new instance of the JpegEncoder class.
@@ -42,6 +42,7 @@ namespace Steganography_with_AES_Encryption
             // By default, the rawJpeg used is a test image.
             this.TestImage = Properties.Resources.IMG_1650; // A JPG file
             this.rawJpeg = this.testImage;
+            this.hiddenMessageBytes = new List<byte>();
         }
 
         /// <summary>
@@ -54,6 +55,7 @@ namespace Steganography_with_AES_Encryption
             // By default, the rawJpeg used is a test image.
             this.rawJpeg = img;
             this.TestImage = Properties.Resources.IMG_1650;
+            this.hiddenMessageBytes = new List<byte>();
         }
 
         /// <summary>
@@ -79,8 +81,10 @@ namespace Steganography_with_AES_Encryption
         /// <returns>An Encoded JPG image.</returns>
         public Image Encoder(string rawText)
         {
+            List<byte> firstPartOfFile = new List<byte>();
+
             // Convert the rawText into an encoded byteString.
-            StringToBytesString(rawText);
+            stringToBytesList(rawText);
 
             int counter = 0;
 
@@ -90,6 +94,11 @@ namespace Steganography_with_AES_Encryption
                 // Search through bytes, looking for FFD9, which marks the end of the image within the file.
                 Console.WriteLine(sb.ToString());
 
+                // Add the bytes to firstPartOfFile byte list.
+                byte unsigned = (byte)sb;
+                firstPartOfFile.Add(unsigned);
+
+                // Look for FFD9 "end of image" token.
                 unchecked {
                     if (sb == (sbyte)0xFFD9)
                     {
@@ -101,26 +110,47 @@ namespace Steganography_with_AES_Encryption
                     }
                 }
 
+                // Incremement the counter.
                 counter++;
             }
 
             // TODO: Change all of these nulls to their needed values.
-            // Create a byte array consisting of the beginning of the JPG up to the FFD9 token.
-            byte[] firstPartOfFile = null;
 
             // Create a byte array of everything after FFD9 until the end of the file.
-            byte[] lastPartOfFile = null;
+            List<byte> lastPartOfFile = new List<byte>();
+
+            bool atBeginningOfLastPart = false;
+            Console.WriteLine("Trying to identify beginning of last part of file.");
+            foreach (sbyte sb in ImageToByte(this.rawJpeg))
+            {
+                if (atBeginningOfLastPart == true)
+                {
+                    lastPartOfFile.Add((byte)sb);
+                }
+
+                // Look for FFD9 "end of image" token.
+                unchecked
+                {
+                    if (sb == (sbyte)0xFFD9)
+                    {
+                        atBeginningOfLastPart = true;
+                    }
+                }  
+            }
+            Console.WriteLine("Finished compiling last part of file.");
 
             // Convert this.byteString (hidden message) into a byte array.
-            byte[] hiddenMessage = null;
+            List<byte> hiddenMessage = this.hiddenMessageBytes;
 
             // Create a third byte array, with the hidden message sandwiched between the first and last parts of the file.
-            byte[] newImageBytes = null;
+            byte[] newImageBytes = new byte[firstPartOfFile.Count + hiddenMessage.Count + 1 + lastPartOfFile.Count];
+
             firstPartOfFile.CopyTo(newImageBytes, 0);
             hiddenMessage.CopyTo(newImageBytes, counter + 1);
-            lastPartOfFile.CopyTo(newImageBytes, firstPartOfFile.Length + hiddenMessage.Length + 1);
+            lastPartOfFile.CopyTo(newImageBytes, firstPartOfFile.Count + hiddenMessage.Count + 1);
 
             // Convert newImageBytes into an image.
+            Console.WriteLine("Finished encoding message inside JPG file.");
             return (Image)((new ImageConverter()).ConvertFrom(newImageBytes));
         }
         
@@ -139,19 +169,18 @@ namespace Steganography_with_AES_Encryption
         /// Accept an input string and add them to the byteStrings queue.
         /// </summary>
         /// <param name="input">The string that's passed in.</param>
-        private void StringToBytesString(string input)
+        private void stringToBytesList(string input)
         {
             foreach (char c in input)
             {
                 // Convert each char to a binary.
                 byte charByte = Convert.ToByte(c);
-                string charAsBinaryString = Convert.ToString(charByte, 2).PadLeft(8, '0');
 
                 // Add it to the bytes list.
-                this.bytesString += charAsBinaryString;
+                this.hiddenMessageBytes.Add(charByte);
             }
 
-            Console.WriteLine("Message as binary = " + this.bytesString);
+            Console.WriteLine("Message as binary = " + this.hiddenMessageBytes);
         }
     }
 }
