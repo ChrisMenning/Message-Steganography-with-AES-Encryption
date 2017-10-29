@@ -43,6 +43,7 @@ namespace Steganography_with_AES_Encryption
             catch (Exception ex)
             {
                 MessageBox.Show("There was a problem opening the READEME.md file\nError Message: " + ex.Message);
+                rtbAboutSection.Text = "There was a problem opening the READEME.md file\nError Message: " + ex.Message;
             }
 
             
