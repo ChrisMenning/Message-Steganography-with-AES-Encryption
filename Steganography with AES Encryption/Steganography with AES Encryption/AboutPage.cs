@@ -37,12 +37,20 @@ namespace Steganography_with_AES_Encryption
                 {
                     String message = reader.ReadToEnd();
                     rtbAboutSection.Text = message;
+                    reader.Close();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("There was a problem opening the READEME.md file\nError Message: " + ex.Message);
             }
+
+            
+        }
+
+        private void btnCloseAboutPage_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
