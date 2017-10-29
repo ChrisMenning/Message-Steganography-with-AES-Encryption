@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutPage.Designer.cs">
+      <DependentUpon>AboutPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\AESdecrypt.cs" />
     <Compile Include="Classes\AESencrypt.cs" />
     <Compile Include="Classes\CharacterCompute.cs" />
@@ -59,6 +65,9 @@
     <Compile Include="Classes\ImageEncoder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutPage.resx">
+      <DependentUpon>AboutPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,6 +98,7 @@
     <None Include="Resources\pnggradHDrgba.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\README.md" />
     <None Include="Resources\Tiger.png" />
   </ItemGroup>
   <ItemGroup>

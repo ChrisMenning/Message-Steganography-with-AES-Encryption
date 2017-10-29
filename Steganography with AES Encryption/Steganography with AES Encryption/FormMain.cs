@@ -129,5 +129,11 @@ namespace Steganography_with_AES_Encryption
                 this.pictureBoxEncoded.Image = this.encodedImage;
             }
         }
+
+        private void btnAboutPageTest_Click(object sender, EventArgs e)
+        {
+            frmAboutPage aboutPage = new frmAboutPage();
+            aboutPage.ShowDialog();
+        }
     }
 }
