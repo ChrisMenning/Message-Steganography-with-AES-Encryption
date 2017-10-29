@@ -23,9 +23,17 @@ namespace Steganography_with_AES_Encryption
         {
             
 
+            string path = Directory.GetCurrentDirectory();
+            for(int i = 1; i <= 2; i++)
+            {
+                path = Directory.GetParent(path).ToString();
+            }
+            
+            path += "\\Resources\\README.md";        
+
             try
             {
-                using (StreamReader reader = new StreamReader())
+                using (StreamReader reader = new StreamReader(path))
                 {
                     String message = reader.ReadToEnd();
                     rtbAboutSection.Text = message;

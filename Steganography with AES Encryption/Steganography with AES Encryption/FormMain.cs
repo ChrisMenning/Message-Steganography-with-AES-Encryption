@@ -133,7 +133,7 @@ namespace Steganography_with_AES_Encryption
         private void btnAboutPageTest_Click(object sender, EventArgs e)
         {
             frmAboutPage aboutPage = new frmAboutPage();
-            aboutPage.ShowDialog();
+            aboutPage.Show();
         }
     }
 }
