@@ -52,8 +52,8 @@
     <Compile Include="AdvancedOptions.Designer.cs">
       <DependentUpon>AdvancedOptions.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\AESdecrypt.cs" />
-    <Compile Include="Classes\AESencrypt.cs" />
+    <Compile Include="Classes\AESDecrypt.cs" />
+    <Compile Include="Classes\AESEncrypt.cs" />
     <Compile Include="Classes\CharacterCompute.cs" />
     <Compile Include="Classes\ImageDecoder.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
