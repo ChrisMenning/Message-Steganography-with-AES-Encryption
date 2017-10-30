@@ -148,6 +148,7 @@ namespace Steganography_with_AES_Encryption
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.btnAboutPageTest = new System.Windows.Forms.Button();
+            this.btnHelpPageTest = new System.Windows.Forms.Button();
             this.groupBoxEncode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEncoded)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRaw)).BeginInit();
@@ -166,9 +167,9 @@ namespace Steganography_with_AES_Encryption
             this.groupBoxEncode.Controls.Add(this.pictureBoxRaw);
             this.groupBoxEncode.Controls.Add(this.buttonOpenImage);
             this.groupBoxEncode.Location = new System.Drawing.Point(9, 10);
-            this.groupBoxEncode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxEncode.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxEncode.Name = "groupBoxEncode";
-            this.groupBoxEncode.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxEncode.Padding = new System.Windows.Forms.Padding(2);
             this.groupBoxEncode.Size = new System.Drawing.Size(458, 249);
             this.groupBoxEncode.TabIndex = 0;
             this.groupBoxEncode.TabStop = false;
@@ -178,7 +179,7 @@ namespace Steganography_with_AES_Encryption
             // 
             this.buttonEncodeImage.Enabled = false;
             this.buttonEncodeImage.Location = new System.Drawing.Point(4, 188);
-            this.buttonEncodeImage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonEncodeImage.Margin = new System.Windows.Forms.Padding(2);
             this.buttonEncodeImage.Name = "buttonEncodeImage";
             this.buttonEncodeImage.Size = new System.Drawing.Size(103, 24);
             this.buttonEncodeImage.TabIndex = 8;
@@ -199,7 +200,7 @@ namespace Steganography_with_AES_Encryption
             // textBoxInputMessage
             // 
             this.textBoxInputMessage.Location = new System.Drawing.Point(4, 129);
-            this.textBoxInputMessage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxInputMessage.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxInputMessage.Multiline = true;
             this.textBoxInputMessage.Name = "textBoxInputMessage";
             this.textBoxInputMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -230,7 +231,7 @@ namespace Steganography_with_AES_Encryption
             // 
             this.pictureBoxEncoded.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxEncoded.Location = new System.Drawing.Point(284, 47);
-            this.pictureBoxEncoded.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBoxEncoded.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxEncoded.Name = "pictureBoxEncoded";
             this.pictureBoxEncoded.Size = new System.Drawing.Size(161, 165);
             this.pictureBoxEncoded.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -241,7 +242,7 @@ namespace Steganography_with_AES_Encryption
             // 
             this.pictureBoxRaw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxRaw.Location = new System.Drawing.Point(112, 47);
-            this.pictureBoxRaw.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBoxRaw.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxRaw.Name = "pictureBoxRaw";
             this.pictureBoxRaw.Size = new System.Drawing.Size(161, 165);
             this.pictureBoxRaw.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -251,7 +252,7 @@ namespace Steganography_with_AES_Encryption
             // buttonOpenImage
             // 
             this.buttonOpenImage.Location = new System.Drawing.Point(4, 47);
-            this.buttonOpenImage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonOpenImage.Margin = new System.Windows.Forms.Padding(2);
             this.buttonOpenImage.Name = "buttonOpenImage";
             this.buttonOpenImage.Size = new System.Drawing.Size(103, 24);
             this.buttonOpenImage.TabIndex = 0;
@@ -268,9 +269,9 @@ namespace Steganography_with_AES_Encryption
             this.groupBoxDecode.Controls.Add(this.pictureBoxEncoded2);
             this.groupBoxDecode.Controls.Add(this.buttonOpenImage2);
             this.groupBoxDecode.Location = new System.Drawing.Point(9, 263);
-            this.groupBoxDecode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxDecode.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxDecode.Name = "groupBoxDecode";
-            this.groupBoxDecode.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxDecode.Padding = new System.Windows.Forms.Padding(2);
             this.groupBoxDecode.Size = new System.Drawing.Size(458, 245);
             this.groupBoxDecode.TabIndex = 1;
             this.groupBoxDecode.TabStop = false;
@@ -300,7 +301,7 @@ namespace Steganography_with_AES_Encryption
             // 
             this.buttonDecode.Enabled = false;
             this.buttonDecode.Location = new System.Drawing.Point(4, 184);
-            this.buttonDecode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonDecode.Margin = new System.Windows.Forms.Padding(2);
             this.buttonDecode.Name = "buttonDecode";
             this.buttonDecode.Size = new System.Drawing.Size(103, 24);
             this.buttonDecode.TabIndex = 5;
@@ -311,7 +312,7 @@ namespace Steganography_with_AES_Encryption
             // textBoxOutput
             // 
             this.textBoxOutput.Location = new System.Drawing.Point(284, 43);
-            this.textBoxOutput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxOutput.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxOutput.Multiline = true;
             this.textBoxOutput.Name = "textBoxOutput";
             this.textBoxOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -322,7 +323,7 @@ namespace Steganography_with_AES_Encryption
             // 
             this.pictureBoxEncoded2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxEncoded2.Location = new System.Drawing.Point(112, 43);
-            this.pictureBoxEncoded2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBoxEncoded2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxEncoded2.Name = "pictureBoxEncoded2";
             this.pictureBoxEncoded2.Size = new System.Drawing.Size(161, 165);
             this.pictureBoxEncoded2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -332,7 +333,7 @@ namespace Steganography_with_AES_Encryption
             // buttonOpenImage2
             // 
             this.buttonOpenImage2.Location = new System.Drawing.Point(4, 43);
-            this.buttonOpenImage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonOpenImage2.Margin = new System.Windows.Forms.Padding(2);
             this.buttonOpenImage2.Name = "buttonOpenImage2";
             this.buttonOpenImage2.Size = new System.Drawing.Size(103, 24);
             this.buttonOpenImage2.TabIndex = 1;
@@ -346,7 +347,7 @@ namespace Steganography_with_AES_Encryption
             // 
             // btnAboutPageTest
             // 
-            this.btnAboutPageTest.Location = new System.Drawing.Point(176, 556);
+            this.btnAboutPageTest.Location = new System.Drawing.Point(34, 556);
             this.btnAboutPageTest.Name = "btnAboutPageTest";
             this.btnAboutPageTest.Size = new System.Drawing.Size(120, 23);
             this.btnAboutPageTest.TabIndex = 2;
@@ -354,15 +355,26 @@ namespace Steganography_with_AES_Encryption
             this.btnAboutPageTest.UseVisualStyleBackColor = true;
             this.btnAboutPageTest.Click += new System.EventHandler(this.btnAboutPageTest_Click);
             // 
+            // btnHelpPageTest
+            // 
+            this.btnHelpPageTest.Location = new System.Drawing.Point(214, 556);
+            this.btnHelpPageTest.Name = "btnHelpPageTest";
+            this.btnHelpPageTest.Size = new System.Drawing.Size(110, 23);
+            this.btnHelpPageTest.TabIndex = 3;
+            this.btnHelpPageTest.Text = "Help Page Test";
+            this.btnHelpPageTest.UseVisualStyleBackColor = true;
+            this.btnHelpPageTest.Click += new System.EventHandler(this.btnHelpPageTest_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(476, 616);
+            this.Controls.Add(this.btnHelpPageTest);
             this.Controls.Add(this.btnAboutPageTest);
             this.Controls.Add(this.groupBoxDecode);
             this.Controls.Add(this.groupBoxEncode);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormMain";
             this.Text = "Steganography";
             this.groupBoxEncode.ResumeLayout(false);
@@ -378,5 +390,6 @@ namespace Steganography_with_AES_Encryption
         #endregion
 
         private System.Windows.Forms.Button btnAboutPageTest;
+        private System.Windows.Forms.Button btnHelpPageTest;
     }
 }

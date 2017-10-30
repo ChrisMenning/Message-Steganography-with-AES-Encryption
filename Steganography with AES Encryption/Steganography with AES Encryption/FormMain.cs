@@ -135,5 +135,11 @@ namespace Steganography_with_AES_Encryption
             frmAboutPage aboutPage = new frmAboutPage();
             aboutPage.Show();
         }
+
+        private void btnHelpPageTest_Click(object sender, EventArgs e)
+        {
+            frmHelpPage helpPage = new frmHelpPage();
+            helpPage.Show();
+        }
     }
 }
