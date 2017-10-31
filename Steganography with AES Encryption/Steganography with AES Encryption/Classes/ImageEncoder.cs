@@ -36,9 +36,9 @@ namespace Steganography_with_AES_Encryption
         private PictureBox pictureBoxEncoded;
 
         /// <summary>
-        /// The bytesString string.
+        /// A list of bytes, as strings. Used for ensuring all the zeros are kept when encoding binary into the pixels.
         /// </summary>
-        private string bytesString;
+        private StringBuilder bytesString;
 
         /// <summary>
         /// Modes determine which color channels are being encoded. Changed in "Advanced Options."
@@ -54,7 +54,7 @@ namespace Steganography_with_AES_Encryption
         {
             this.rawImage = raw;
             this.pictureBoxEncoded = encoded;
-            this.bytesString = string.Empty;
+            this.bytesString = new StringBuilder();
             this.mode = 1; // By default.
         }
 
@@ -66,7 +66,7 @@ namespace Steganography_with_AES_Encryption
             // Cleanup Statements.
             this.encodedImage.Dispose();
             this.rawImage.Dispose();
-            this.bytesString = string.Empty;
+            this.bytesString = new StringBuilder();
 
             GC.ReRegisterForFinalize(this);
         }
@@ -161,11 +161,11 @@ namespace Steganography_with_AES_Encryption
                 string charAsBinaryString = Convert.ToString(charByte, 2).PadLeft(8, '0');
 
                 // Add it to the bytes list.
-                this.bytesString += charAsBinaryString;
+                this.bytesString.Append(charAsBinaryString);
             }
 
             // After the message, append the string "00000000" so the decoder can detect the end of the message.
-            this.bytesString += "00000000";
+            this.bytesString.Append("00000000");
 
             Console.WriteLine("Message as binary = " + this.bytesString);
         }
