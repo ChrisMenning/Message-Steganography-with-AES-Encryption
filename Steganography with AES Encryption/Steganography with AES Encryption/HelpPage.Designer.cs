@@ -34,6 +34,7 @@
             // 
             // rtbHelpPage
             // 
+            this.rtbHelpPage.Enabled = false;
             this.rtbHelpPage.Location = new System.Drawing.Point(70, 30);
             this.rtbHelpPage.Name = "rtbHelpPage";
             this.rtbHelpPage.Size = new System.Drawing.Size(386, 317);
