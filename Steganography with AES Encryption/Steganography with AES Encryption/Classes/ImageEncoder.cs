@@ -31,6 +31,11 @@ namespace Steganography_with_AES_Encryption
         private Bitmap encodedImage;
 
         /// <summary>
+        /// The initializationVector byte array from the encrypter.
+        /// </summary>
+        private byte[] initializationVector;
+
+        /// <summary>
         /// The pictureBox that displays the encoded image.
         /// </summary>
         private PictureBox pictureBoxEncoded;
@@ -56,6 +61,22 @@ namespace Steganography_with_AES_Encryption
             this.pictureBoxEncoded = encoded;
             this.bytesString = new StringBuilder();
             this.mode = 1; // By default.
+            this.initializationVector = new byte[0]; // Initialize at 0.
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the ImageEncoder class, overloaded to accept an initialization
+        /// vector as a byte array.
+        /// </summary>
+        /// <param name="raw">The raw Bitmap</param>
+        /// <param name="encoded">The PictureBox that displays the encoded image</param>
+        public ImageEncoder(Bitmap raw, PictureBox encoded, byte[] initVect)
+        {
+            this.rawImage = raw;
+            this.pictureBoxEncoded = encoded;
+            this.bytesString = new StringBuilder();
+            this.mode = 1; // By default.
+            this.initializationVector = initVect;
         }
 
         /// <summary>
@@ -80,6 +101,12 @@ namespace Steganography_with_AES_Encryption
         {
             // Declare a bitmap for encoding the image. Make it the same width and height as the original.
             this.encodedImage = new Bitmap(this.rawImage.Width, this.rawImage.Height);
+
+            // If we're using encryption, then prepend the rawText string with the Initialization Vector.
+            if (initializationVector.Length != 0)
+            {
+                rawText = PrependIV(rawText);
+            }
 
             // Convert the entire rawText into one long string of binary.
             this.StringToBytesString(rawText);
@@ -168,6 +195,24 @@ namespace Steganography_with_AES_Encryption
             this.bytesString.Append("00000000");
 
             Console.WriteLine("Message as binary = " + this.bytesString);
+        }
+
+        private string PrependIV(string input)
+        { 
+            // Decalre a temp stringbuilder.
+            StringBuilder sb = new StringBuilder();
+
+            // Append each byte of the intialization vector to the new stringbuilder.
+            foreach (byte b in initializationVector)
+            {
+                sb.Append(b.ToString());
+            }
+
+            // Append the rawText onto the stringbuilder.
+            sb.Append(input);
+
+            // Assign the stringbuilder's contents to the rawString.
+            return sb.ToString();
         }
     }
 }
