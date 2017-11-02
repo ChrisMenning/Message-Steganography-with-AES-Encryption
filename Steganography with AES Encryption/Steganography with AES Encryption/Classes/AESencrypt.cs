@@ -1,5 +1,5 @@
 ﻿//----------------------------------------------------------------------------------
-// <copyright file="AESencrypt.cs" company="Legendary Lichens">
+// <copyright file="AESEncrypt.cs" company="Legendary Lichens">
 //    © Legendary Lichens. All rights reserved. 
 //    2017 - Nathan Beyer / Chris Hoegger / Chris Menning / Leilani Ray
 // </copyright>
