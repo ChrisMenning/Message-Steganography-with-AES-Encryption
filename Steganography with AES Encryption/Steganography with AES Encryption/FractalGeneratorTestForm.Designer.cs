@@ -1,6 +1,6 @@
 ﻿namespace Steganography_with_AES_Encryption
 {
-    partial class FractalGeneratorTestForm
+    partial class frmFractalGeneratorTestForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.ptbTest = new System.Windows.Forms.PictureBox();
             this.btnGenerateFractal = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbTest)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // ptbTest
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(93, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(358, 299);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.ptbTest.Location = new System.Drawing.Point(93, 12);
+            this.ptbTest.Name = "ptbTest";
+            this.ptbTest.Size = new System.Drawing.Size(358, 299);
+            this.ptbTest.TabIndex = 0;
+            this.ptbTest.TabStop = false;
             // 
             // btnGenerateFractal
             // 
@@ -49,24 +49,25 @@
             this.btnGenerateFractal.TabIndex = 1;
             this.btnGenerateFractal.Text = "Generate Fractal";
             this.btnGenerateFractal.UseVisualStyleBackColor = true;
+            this.btnGenerateFractal.Click += new System.EventHandler(this.btnGenerateFractal_Click);
             // 
-            // FractalGeneratorTestForm
+            // frmFractalGeneratorTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(572, 400);
             this.Controls.Add(this.btnGenerateFractal);
-            this.Controls.Add(this.pictureBox1);
-            this.Name = "FractalGeneratorTestForm";
+            this.Controls.Add(this.ptbTest);
+            this.Name = "frmFractalGeneratorTestForm";
             this.Text = "FractalGeneratorTestForm";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbTest)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox ptbTest;
         private System.Windows.Forms.Button btnGenerateFractal;
     }
 }

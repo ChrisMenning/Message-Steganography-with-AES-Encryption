@@ -141,5 +141,11 @@ namespace Steganography_with_AES_Encryption
             frmHelpPage helpPage = new frmHelpPage();
             helpPage.Show();
         }
+
+        private void btnFractalGeneratorTest_Click(object sender, EventArgs e)
+        {
+            frmFractalGeneratorTestForm fractalTestForm = new frmFractalGeneratorTestForm();
+            fractalTestForm.Show();
+        }
     }
 }

@@ -149,6 +149,7 @@ namespace Steganography_with_AES_Encryption
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.btnAboutPageTest = new System.Windows.Forms.Button();
             this.btnHelpPageTest = new System.Windows.Forms.Button();
+            this.btnFractalGeneratorTest = new System.Windows.Forms.Button();
             this.groupBoxEncode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEncoded)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRaw)).BeginInit();
@@ -357,7 +358,7 @@ namespace Steganography_with_AES_Encryption
             // 
             // btnHelpPageTest
             // 
-            this.btnHelpPageTest.Location = new System.Drawing.Point(214, 556);
+            this.btnHelpPageTest.Location = new System.Drawing.Point(172, 556);
             this.btnHelpPageTest.Name = "btnHelpPageTest";
             this.btnHelpPageTest.Size = new System.Drawing.Size(110, 23);
             this.btnHelpPageTest.TabIndex = 3;
@@ -365,11 +366,22 @@ namespace Steganography_with_AES_Encryption
             this.btnHelpPageTest.UseVisualStyleBackColor = true;
             this.btnHelpPageTest.Click += new System.EventHandler(this.btnHelpPageTest_Click);
             // 
+            // btnFractalGeneratorTest
+            // 
+            this.btnFractalGeneratorTest.Location = new System.Drawing.Point(315, 556);
+            this.btnFractalGeneratorTest.Name = "btnFractalGeneratorTest";
+            this.btnFractalGeneratorTest.Size = new System.Drawing.Size(139, 23);
+            this.btnFractalGeneratorTest.TabIndex = 4;
+            this.btnFractalGeneratorTest.Text = "Fractal Generator Test";
+            this.btnFractalGeneratorTest.UseVisualStyleBackColor = true;
+            this.btnFractalGeneratorTest.Click += new System.EventHandler(this.btnFractalGeneratorTest_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(476, 616);
+            this.Controls.Add(this.btnFractalGeneratorTest);
             this.Controls.Add(this.btnHelpPageTest);
             this.Controls.Add(this.btnAboutPageTest);
             this.Controls.Add(this.groupBoxDecode);
@@ -391,5 +403,6 @@ namespace Steganography_with_AES_Encryption
 
         private System.Windows.Forms.Button btnAboutPageTest;
         private System.Windows.Forms.Button btnHelpPageTest;
+        private System.Windows.Forms.Button btnFractalGeneratorTest;
     }
 }
