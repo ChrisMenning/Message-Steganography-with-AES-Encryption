@@ -41,7 +41,7 @@ namespace Steganography_with_AES_Encryption
         private PictureBox pictureBoxEncoded;
 
         /// <summary>
-        /// A list of bytes, as strings. Used for ensuring all the zeros are kept when encoding binary into the pixels.
+        /// A StringBuilder. Used for ensuring all the zeros are kept when encoding binary into the pixels.
         /// </summary>
         private StringBuilder bytesString;
 
@@ -109,7 +109,10 @@ namespace Steganography_with_AES_Encryption
             }
 
             // Convert the entire rawText into one long string of binary.
-            this.StringToBytesString(rawText);
+            StringBuilder forEncoding = this.StringToBytesString(rawText);
+
+            // Append an empty byte to mark the end of the message.
+            forEncoding.Append("00000000");
 
             // Declare a counter.
             int counter = 0;
@@ -138,10 +141,10 @@ namespace Steganography_with_AES_Encryption
                     if (counter + 3 < this.bytesString.Length)
                     {
                         // Next, declare a newR, newG, and newB consisting of the sanitized value, plus a bit from the byteString.
-                        int newA = sanitizedColor.A + int.Parse(this.bytesString[counter].ToString());
-                        int newR = sanitizedColor.R + int.Parse(this.bytesString[counter + 1].ToString());
-                        int newG = sanitizedColor.G + int.Parse(this.bytesString[counter + 2].ToString());
-                        int newB = sanitizedColor.B + int.Parse(this.bytesString[counter + 3].ToString());
+                        int newA = sanitizedColor.A + int.Parse(forEncoding[counter].ToString());
+                        int newR = sanitizedColor.R + int.Parse(forEncoding[counter + 1].ToString());
+                        int newG = sanitizedColor.G + int.Parse(forEncoding[counter + 2].ToString());
+                        int newB = sanitizedColor.B + int.Parse(forEncoding[counter + 3].ToString());
 
                         this.encodedImage.SetPixel(column, row, Color.FromArgb(newA, newR, newG, newB));
 
@@ -179,8 +182,9 @@ namespace Steganography_with_AES_Encryption
         /// Accept an input string and add them to the byteStrings queue.
         /// </summary>
         /// <param name="input">The string that's passed in.</param>
-        private void StringToBytesString(string input)
+        private StringBuilder StringToBytesString(string input)
         {
+            this.bytesString.Clear();
             foreach (char c in input)
             {
                 // Convert each char to a binary.
@@ -191,10 +195,7 @@ namespace Steganography_with_AES_Encryption
                 this.bytesString.Append(charAsBinaryString);
             }
 
-            // After the message, append the string "00000000" so the decoder can detect the end of the message.
-            this.bytesString.Append("00000000");
-
-            Console.WriteLine("Message as binary = " + this.bytesString);
+            return this.bytesString;
         }
 
         private string PrependIV(string input)
@@ -205,7 +206,8 @@ namespace Steganography_with_AES_Encryption
             // Append each byte of the intialization vector to the new stringbuilder.
             foreach (byte b in initializationVector)
             {
-                sb.Append(b.ToString());
+                // Ensure that the byte is encoded as a string of exactly eight 1s and 0s.
+                sb.Append(StringToBytesString(b.ToString()));
             }
 
             // Append the rawText onto the stringbuilder.
