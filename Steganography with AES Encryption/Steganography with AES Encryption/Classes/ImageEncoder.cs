@@ -148,7 +148,7 @@ namespace Steganography_with_AES_Encryption
 
                         this.encodedImage.SetPixel(column, row, Color.FromArgb(newA, newR, newG, newB));
 
-                        Console.WriteLine("Encoder | Pixel color: " + this.encodedImage.GetPixel(column, row));
+                        // Console.WriteLine("Encoder | Pixel color: " + this.encodedImage.GetPixel(column, row));
                     }
                     else
                     {
@@ -184,12 +184,34 @@ namespace Steganography_with_AES_Encryption
         /// <param name="input">The string that's passed in.</param>
         private StringBuilder StringToBytesString(string input)
         {
+            Console.WriteLine("Input string is " + input.Length + " chars long");
+
+            // Force string to be ASCII in case there is other encoding (UTF-8, etc) contained therein.
+            // Non-ASCII chars may be more than one byte long, but this method can only handle one byte at this time.
+            Encoding ascii = Encoding.ASCII;
+            Encoding unicode = Encoding.Unicode;
+
+            // Convert the string into a byte array.
+            byte[] unicodeBytes = unicode.GetBytes(input);
+
+            // Perform the conversion from one encoding to the other.
+            byte[] asciiBytes = Encoding.Convert(unicode, ascii, unicodeBytes);
+
+            // Convert the new byte[] into a char[] and then into a string.
+            char[] asciiChars = new char[ascii.GetCharCount(asciiBytes, 0, asciiBytes.Length)];
+            ascii.GetChars(asciiBytes, 0, asciiBytes.Length, asciiChars, 0);
+            string asciiString = new string(asciiChars);
+            input = asciiString;
+
             this.bytesString.Clear();
             foreach (char c in input)
             {
                 // Convert each char to a binary.
                 byte charByte = Convert.ToByte(c);
-                string charAsBinaryString = Convert.ToString(charByte, 2).PadLeft(8, '0');
+                StringBuilder charAsBinaryString = new StringBuilder();
+
+                charAsBinaryString.Append(Convert.ToString(charByte, 2).PadLeft(8, '0'));
+                    
 
                 // Add it to the bytes list.
                 this.bytesString.Append(charAsBinaryString);
