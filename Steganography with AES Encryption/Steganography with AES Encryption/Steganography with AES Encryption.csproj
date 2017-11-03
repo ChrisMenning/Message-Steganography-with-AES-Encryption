@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutPage.Designer.cs">
+      <DependentUpon>AboutPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdvancedOptions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,11 +61,13 @@
     <Compile Include="Classes\AESDecrypt.cs" />
     <Compile Include="Classes\AESEncrypt.cs" />
     <Compile Include="Classes\CharacterCompute.cs" />
+    <Compile Include="Classes\FractalGenerator.cs" />
     <Compile Include="Classes\ImageDecoder.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Classes\JpegEncoder.cs" />
     <Compile Include="Classes\PasswordHandler.cs" />
+
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,13 +75,35 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\ImageEncoder.cs" />
+    <Compile Include="FractalGeneratorTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FractalGeneratorTestForm.Designer.cs">
+      <DependentUpon>FractalGeneratorTestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HelpPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelpPage.Designer.cs">
+      <DependentUpon>HelpPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+
+        <EmbeddedResource Include="AboutPage.resx">
+      <DependentUpon>AboutPage.cs</DependentUpon>
     <EmbeddedResource Include="AdvancedOptions.resx">
       <DependentUpon>AdvancedOptions.cs</DependentUpon>
+
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FractalGeneratorTestForm.resx">
+      <DependentUpon>FractalGeneratorTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpPage.resx">
+      <DependentUpon>HelpPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -102,6 +132,7 @@
     <None Include="Resources\pnggradHDrgba.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\README.md" />
     <None Include="Resources\Tiger.png" />
   </ItemGroup>
   <ItemGroup>
