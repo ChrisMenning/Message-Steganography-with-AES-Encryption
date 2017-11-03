@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -52,11 +52,22 @@
     <Compile Include="AboutPage.Designer.cs">
       <DependentUpon>AboutPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\AESdecrypt.cs" />
-    <Compile Include="Classes\AESencrypt.cs" />
+    <Compile Include="AdvancedOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdvancedOptions.Designer.cs">
+      <DependentUpon>AdvancedOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\AESDecrypt.cs" />
+    <Compile Include="Classes\AESEncrypt.cs" />
     <Compile Include="Classes\CharacterCompute.cs" />
     <Compile Include="Classes\FractalGenerator.cs" />
-    <Compile Include="Classes\ImageDecoder.cs" />
+    <Compile Include="Classes\ImageDecoder.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Classes\JpegEncoder.cs" />
+    <Compile Include="Classes\PasswordHandler.cs" />
+
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,8 +89,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AboutPage.resx">
+
+        <EmbeddedResource Include="AboutPage.resx">
       <DependentUpon>AboutPage.cs</DependentUpon>
+    <EmbeddedResource Include="AdvancedOptions.resx">
+      <DependentUpon>AdvancedOptions.cs</DependentUpon>
+
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
