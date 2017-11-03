@@ -63,7 +63,6 @@
     <Compile Include="Classes\CharacterCompute.cs" />
     <Compile Include="Classes\FractalGenerator.cs" />
     <Compile Include="Classes\ImageDecoder.cs">
-      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Classes\JpegEncoder.cs" />
     <Compile Include="Classes\PasswordHandler.cs" />
@@ -90,8 +89,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
 
-        <EmbeddedResource Include="AboutPage.resx">
-      <DependentUpon>AboutPage.cs</DependentUpon>
+     <EmbeddedResource Include="AboutPage.resx">
+     <DependentUpon>AboutPage.cs</DependentUpon>
+     </EmbeddedResource>
     <EmbeddedResource Include="AdvancedOptions.resx">
       <DependentUpon>AdvancedOptions.cs</DependentUpon>
 
