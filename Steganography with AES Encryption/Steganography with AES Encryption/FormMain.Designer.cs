@@ -150,6 +150,7 @@ namespace Steganography_with_AES_Encryption
             this.btnAboutPageTest = new System.Windows.Forms.Button();
             this.btnHelpPageTest = new System.Windows.Forms.Button();
             this.btnFractalGeneratorTest = new System.Windows.Forms.Button();
+            this.btnStockImagePageTest = new System.Windows.Forms.Button();
             this.groupBoxEncode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEncoded)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRaw)).BeginInit();
@@ -376,11 +377,22 @@ namespace Steganography_with_AES_Encryption
             this.btnFractalGeneratorTest.UseVisualStyleBackColor = true;
             this.btnFractalGeneratorTest.Click += new System.EventHandler(this.btnFractalGeneratorTest_Click);
             // 
+            // btnStockImagePageTest
+            // 
+            this.btnStockImagePageTest.Location = new System.Drawing.Point(154, 602);
+            this.btnStockImagePageTest.Name = "btnStockImagePageTest";
+            this.btnStockImagePageTest.Size = new System.Drawing.Size(141, 23);
+            this.btnStockImagePageTest.TabIndex = 5;
+            this.btnStockImagePageTest.Text = "Stock Image Page Test";
+            this.btnStockImagePageTest.UseVisualStyleBackColor = true;
+            this.btnStockImagePageTest.Click += new System.EventHandler(this.btnStockImagePageTest_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(476, 616);
+            this.ClientSize = new System.Drawing.Size(476, 637);
+            this.Controls.Add(this.btnStockImagePageTest);
             this.Controls.Add(this.btnFractalGeneratorTest);
             this.Controls.Add(this.btnHelpPageTest);
             this.Controls.Add(this.btnAboutPageTest);
@@ -404,5 +416,6 @@ namespace Steganography_with_AES_Encryption
         private System.Windows.Forms.Button btnAboutPageTest;
         private System.Windows.Forms.Button btnHelpPageTest;
         private System.Windows.Forms.Button btnFractalGeneratorTest;
+        private System.Windows.Forms.Button btnStockImagePageTest;
     }
 }
