@@ -1,9 +1,9 @@
-﻿//-----------------------------------------------------------------------
+﻿//----------------------------------------------------------------------------------
 // <copyright file="ImageDecoder.cs" company="Legendary Lichens">
-//     Copyright (c) Legendary Lichens. All rights reserved.
+//    © Legendary Lichens. All rights reserved. 
+//    2017 - Nathan Beyer / Chris Hoegger / Chris Menning / Leilani Ray
 // </copyright>
-// <author>Chris Menning</author>
-//-----------------------------------------------------------------------
+//---------------------------------------------------------------------------------- 
 
 namespace Steganography_with_AES_Encryption
 {
@@ -40,41 +40,8 @@ namespace Steganography_with_AES_Encryption
         private string decodedText;
 
         /// <summary>
-        /// Gets and sets the encodedImage property.
-        /// </summary>
-        public Bitmap EncodedImage
-        {
-            get
-            {
-                return encodedImage;
-            }
-
-            set
-            {
-                encodedImage = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets and sets the testImage property.
-        /// </summary>
-        public Bitmap TestImage
-        {
-            get
-            {
-                return testImage;
-            }
-
-            set
-            {
-                testImage = value;
-            }
-        }
-
-        /// <summary>
         /// Initializes a new instance of the ImageDecoder class.
         /// </summary>
-        /// <param name="output">The Textbox where the decoded message is displayed.</param>
         public ImageDecoder()
         {
             this.bytesFromImage = new List<int>();
@@ -82,12 +49,45 @@ namespace Steganography_with_AES_Encryption
         }
 
         /// <summary>
+        /// Gets or sets the encodedImage property.
+        /// </summary>
+        public Bitmap EncodedImage
+        {
+            get
+            {
+                return this.encodedImage;
+            }
+
+            set
+            {
+                this.encodedImage = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the testImage property.
+        /// </summary>
+        public Bitmap TestImage
+        {
+            get
+            {
+                return this.testImage;
+            }
+
+            set
+            {
+                this.testImage = value;
+            }
+        }
+
+        /// <summary>
         /// Accepts a byte, determines if it is even or odd, and adds either a 1 or 0 to the bytesFromImage list.
         /// </summary>
         /// <param name="colorChannel">A byte that should come from a color channel</param>
+        /// <returns>The last bit of any byte.</returns>
         public int LastBitFromColorChannel(byte colorChannel)
         {
-          //  Console.WriteLine("Byte from Color Channel: " + colorChannel);
+          // Console.WriteLine("Byte from Color Channel: " + colorChannel);
             if (colorChannel % 2 == 0)
             {
                 return 0;
@@ -102,9 +102,10 @@ namespace Steganography_with_AES_Encryption
         /// Accepts a bitmap and decodes the message hidden in the LSB of each color channel of each pixel.
         /// </summary>
         /// <param name="encoded">The bitmap with a hidden message in it.</param>
+        /// <returns>A string of bits from the bitmap</returns>
         public string Decoder(Bitmap encoded)
         {
-          //  Console.WriteLine("Trying to decode");
+          // Console.WriteLine("Trying to decode");
             this.EncodedImage = encoded;
 
             // Loop through each pixel of the encoded image.
@@ -114,13 +115,13 @@ namespace Steganography_with_AES_Encryption
                 {
                     Color pixelColor = this.EncodedImage.GetPixel(column, row);
 
-                    //   Console.WriteLine("Decoder | Pixel color: " + pixelColor);
+                    // Console.WriteLine("Decoder | Pixel color: " + pixelColor);
 
                     // Pull the last bit out of each color channel and concatenate them onto the bytesFromImage list.
-                    this.bytesFromImage.Add(LastBitFromColorChannel(pixelColor.A));
-                    this.bytesFromImage.Add(LastBitFromColorChannel(pixelColor.R));
-                    this.bytesFromImage.Add(LastBitFromColorChannel(pixelColor.G));
-                    this.bytesFromImage.Add(LastBitFromColorChannel(pixelColor.B));
+                    this.bytesFromImage.Add(this.LastBitFromColorChannel(pixelColor.A));
+                    this.bytesFromImage.Add(this.LastBitFromColorChannel(pixelColor.R));
+                    this.bytesFromImage.Add(this.LastBitFromColorChannel(pixelColor.G));
+                    this.bytesFromImage.Add(this.LastBitFromColorChannel(pixelColor.B));
                 }
             }
 
@@ -159,12 +160,10 @@ namespace Steganography_with_AES_Encryption
             // Loop through the list of eight-digit numbers
             foreach (string d in bytesList)
             {
-                
                 if (d != "00000000")
                 {
                     // Convert the byte string into a char.
                     this.decodedText += (char)Convert.ToByte(d, 2);
-
                 }
                 else
                 {
@@ -178,3 +177,28 @@ namespace Steganography_with_AES_Encryption
         }
     }
 }
+
+/*
+ *                                                                                                 
+ *                                                            ,,                                   
+ *    `7MMF'                                                `7MM                                   
+ *      MM                                                    MM                                   
+ *      MM         .gP"Ya   .P"Ybmmm .gP"Ya `7MMpMMMb.   ,M""bMM   ,6"Yb.  `7Mb,od8 `7M'   `MF'    
+ *      MM        ,M'   Yb :MI  I8  ,M'   Yb  MM    MM ,AP    MM  8)   MM    MM' "'   VA   ,V      
+ *      MM      , 8M""""""  WmmmP"  8M""""""  MM    MM 8MI    MM   ,pm9MM    MM        VA ,V       
+ *      MM     ,M YM.    , 8M       YM.    ,  MM    MM `Mb    MM  8M   MM    MM         VVV        
+ *    .JMMmmmmMMM  `Mbmmd'  YMMMMMb  `Mbmmd'.JMML  JMML.`Wbmd"MML.`Moo9^Yo..JMML.       ,V         
+ *                         6'     dP                                                   ,V          
+ *                         Ybmmmd'                                                  OOb"           
+ *                                                                                                 
+ *                  ,,          ,,                                                                 
+ *    `7MMF'        db        `7MM                                                                 
+ *      MM                      MM                                                                 
+ *      MM        `7MM  ,p6"bo  MMpMMMb.  .gP"Ya `7MMpMMMb.  ,pP"Ybd                               
+ *      MM          MM 6M'  OO  MM    MM ,M'   Yb  MM    MM  8I   `"                               
+ *      MM      ,   MM 8M       MM    MM 8M""""""  MM    MM  `YMMMa.                               
+ *      MM     ,M   MM YM.    , MM    MM YM.    ,  MM    MM  L.   I8                               
+ *    .JMMmmmmMMM .JMML.YMbmd'.JMML  JMML.`Mbmmd'.JMML  JMML.M9mmmP'                               
+ *                                                                                                 
+ *                                                                                                 
+ */
