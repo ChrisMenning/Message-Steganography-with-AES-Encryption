@@ -156,12 +156,7 @@ namespace Steganography_with_AES_Encryption
                 }
 
                 // Now append the message.
-                forEncoding.Append(rawText);
-
-                // Prepend the Initialization Vector.
-               // rawText = PrependIV(forEncoding.ToString());
-               // forEncoding.Clear();
-              //  forEncoding.Append(rawText);                
+                forEncoding.Append(rawText);          
             }
             else
             {

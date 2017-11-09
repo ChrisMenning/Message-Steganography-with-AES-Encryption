@@ -7,6 +7,7 @@
 
 namespace Steganography_with_AES_Encryption
 {
+    using PNGCompression;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -145,14 +146,17 @@ namespace Steganography_with_AES_Encryption
         /// <summary>
         /// Opens an image
         /// </summary>
-        private void OpenImage()
+        private void OpenRawImage()
         {
-            this.openFileDialog1.Filter = "PNG Image|*.png|Bitmap Image|*.bmp|JPG Image|*.jpg";
-            this.openFileDialog1.ShowHelp = true;
-            this.openFileDialog1.FileName = string.Empty;
-            if (this.openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            this.dialogOpenRawImage.Filter = "PNG Image|*.png|Bitmap Image|*.bmp|JPG Image|*.jpg";
+            this.dialogOpenRawImage.ShowHelp = true;
+            this.dialogOpenRawImage.FileName = string.Empty;
+            if (this.dialogOpenRawImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                this.rawImage = new Bitmap(Bitmap.FromFile(this.openFileDialog1.FileName));
+                this.rawImage = new Bitmap(Bitmap.FromFile(this.dialogOpenRawImage.FileName));
+
+                PNGCompressor pc = new PNGCompressor();
+
                 this.pictureBoxRaw.Image = this.rawImage;
 
                 // Turn on encode button.
@@ -179,15 +183,15 @@ namespace Steganography_with_AES_Encryption
             myEncoderParameters.Param[0] = myEncoderParameter;
 
             // Save the image.
-            saveFileDialog1.Filter = "PNG Image|*.png|Bitmap Image|*.bmp";
-            saveFileDialog1.Title = "Save an Image File";
-            this.saveFileDialog1.ShowHelp = true;
-            this.saveFileDialog1.FileName = "encoded";
-            saveFileDialog1.ShowDialog();
+            dialogSaveImage.Filter = "PNG Image|*.png";
+            dialogSaveImage.Title = "Save an Image File";
+            this.dialogSaveImage.ShowHelp = true;
+            this.dialogSaveImage.FileName = "encoded";
+            dialogSaveImage.ShowDialog();
 
-            if (saveFileDialog1.FileName != string.Empty)
+            if (dialogSaveImage.FileName != string.Empty)
             {
-                this.encodedImage.Save(saveFileDialog1.FileName, myImageCodecInfo, myEncoderParameters);
+                this.encodedImage.Save(dialogSaveImage.FileName, myImageCodecInfo, myEncoderParameters);
                 this.pictureBoxEncoded.Image = this.encodedImage;
             }
         }
@@ -213,21 +217,17 @@ namespace Steganography_with_AES_Encryption
 
                 // Instantiate the Encrypter and pass in the message and password.
                 AESEncrypt aes = new AESEncrypt(ascii, this.password, this);
-                aes.EncryptMessage();
 
-                // For testing, write AES key to listbox.
-                foreach (byte b in aes.InitializationVector)
-                {
-                    listBoxDebugA.Items.Add(b.ToString());
-                }
+                // Encrypt the message.
+                aes.EncryptMessage();
 
                 this.Update();
 
-                // Instantiate the Image Encoder, passing in the raw image
-                // and the Initialization Vector from the AES encrypter.
+                // Instantiate the Image Encoder, passing in the raw image and the Initialization Vector from 
+                // the AES encrypter.
                 this.imgEnc = new BitmapEncoder(this.rawImage, aes.InitializationVector);
 
-                Console.WriteLine("Encrypted string is " + aes.EncryptedMessageString().Length + " characters long.");
+                // Console.WriteLine("Encrypted string is " + aes.EncryptedMessageString().Length + " characters long.");
                 string toBeEncoded = aes.EncryptedMessageString();
                 this.encodedImage = this.imgEnc.Encoder(toBeEncoded);
             }
@@ -279,12 +279,6 @@ namespace Steganography_with_AES_Encryption
 
                 Console.WriteLine("Derived IV is " + derivedIV.Count() + " bytes long.");
 
-                // Write IV out to debug listbox.
-                foreach (byte b in derivedIV)
-                {
-                    listBoxDebugB.Items.Add(b.ToString());
-                }
-
                 this.Update();
 
                 AESDecrypt aes = new AESDecrypt();
@@ -333,7 +327,7 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event arguments</param>
         private void btnOpenImage_Click(object sender, EventArgs e)
         {
-            this.OpenImage();
+            this.OpenRawImage();
         }
 
         /// <summary>
@@ -353,12 +347,12 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event arguments</param>
         private void btnOpenImage2_Click(object sender, EventArgs e)
         {
-            this.openFileDialog1.Filter = "PNG Image|*.png|Bitmap Image|*.bmp";
-            this.openFileDialog1.ShowHelp = true;
-            this.openFileDialog1.FileName = "*.png";
-            if (this.openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            this.dialogOpenRawImage.Filter = "PNG Image|*.png|Bitmap Image|*.bmp";
+            this.dialogOpenRawImage.ShowHelp = true;
+            this.dialogOpenRawImage.FileName = "*.png";
+            if (this.dialogOpenRawImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                this.encodedImage = new Bitmap(Bitmap.FromFile(this.openFileDialog1.FileName));
+                this.encodedImage = new Bitmap(Bitmap.FromFile(this.dialogOpenRawImage.FileName));
                 this.pictureBoxEncoded2.Image = this.encodedImage;
                 this.btnDecode.Enabled = true;
             }
@@ -413,7 +407,7 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e"> e </param>
         private void openUnencodedImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.OpenImage();
+            this.OpenRawImage();
         }
 
         /// <summary>

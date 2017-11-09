@@ -40,12 +40,12 @@ namespace Steganography_with_AES_Encryption
         /// <summary>
         /// Field identified
         /// </summary>
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog dialogOpenRawImage;
 
         /// <summary>
         /// Field identified
         /// </summary>
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.SaveFileDialog dialogSaveImage;
 
         /// <summary>
         /// Field identified
@@ -147,8 +147,8 @@ namespace Steganography_with_AES_Encryption
             this.textBoxOutput = new System.Windows.Forms.TextBox();
             this.pictureBoxEncoded2 = new System.Windows.Forms.PictureBox();
             this.buttonOpenImage2 = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.dialogOpenRawImage = new System.Windows.Forms.OpenFileDialog();
+            this.dialogSaveImage = new System.Windows.Forms.SaveFileDialog();
             this.btnAboutPageTest = new System.Windows.Forms.Button();
             this.btnHelpPageTest = new System.Windows.Forms.Button();
             this.btnFractalGeneratorTest = new System.Windows.Forms.Button();
@@ -168,20 +168,16 @@ namespace Steganography_with_AES_Encryption
             this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advancedOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useEncryptionslowerButMoreSecureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.listBoxDebugB = new System.Windows.Forms.ListBox();
-            this.listBoxDebugA = new System.Windows.Forms.ListBox();
-            this.useEncryptionslowerButMoreSecureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxEncode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEncoded)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRaw)).BeginInit();
             this.groupBoxDecode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEncoded2)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxEncode
@@ -385,9 +381,9 @@ namespace Steganography_with_AES_Encryption
             this.buttonOpenImage2.UseVisualStyleBackColor = true;
             this.buttonOpenImage2.Click += new System.EventHandler(this.btnOpenImage2_Click);
             // 
-            // openFileDialog1
+            // dialogOpenRawImage
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.dialogOpenRawImage.FileName = "openFileDialog1";
             // 
             // btnAboutPageTest
             // 
@@ -546,6 +542,14 @@ namespace Steganography_with_AES_Encryption
             this.advancedOptionsToolStripMenuItem.Text = "Advanced Options";
             this.advancedOptionsToolStripMenuItem.Click += new System.EventHandler(this.advancedOptionsToolStripMenuItem_Click);
             // 
+            // useEncryptionslowerButMoreSecureToolStripMenuItem
+            // 
+            this.useEncryptionslowerButMoreSecureToolStripMenuItem.CheckOnClick = true;
+            this.useEncryptionslowerButMoreSecureToolStripMenuItem.Name = "useEncryptionslowerButMoreSecureToolStripMenuItem";
+            this.useEncryptionslowerButMoreSecureToolStripMenuItem.Size = new System.Drawing.Size(353, 26);
+            this.useEncryptionslowerButMoreSecureToolStripMenuItem.Text = "Use Encryption (slower, but more secure)";
+            this.useEncryptionslowerButMoreSecureToolStripMenuItem.Click += new System.EventHandler(this.useEncryptionToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -569,50 +573,12 @@ namespace Steganography_with_AES_Encryption
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.listBoxDebugB);
-            this.groupBox1.Controls.Add(this.listBoxDebugA);
-            this.groupBox1.Location = new System.Drawing.Point(10, 528);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1228, 229);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Debug";
-            // 
-            // listBoxDebugB
-            // 
-            this.listBoxDebugB.FormattingEnabled = true;
-            this.listBoxDebugB.ItemHeight = 16;
-            this.listBoxDebugB.Location = new System.Drawing.Point(617, 21);
-            this.listBoxDebugB.Name = "listBoxDebugB";
-            this.listBoxDebugB.Size = new System.Drawing.Size(605, 196);
-            this.listBoxDebugB.TabIndex = 1;
-            // 
-            // listBoxDebugA
-            // 
-            this.listBoxDebugA.FormattingEnabled = true;
-            this.listBoxDebugA.ItemHeight = 16;
-            this.listBoxDebugA.Location = new System.Drawing.Point(7, 22);
-            this.listBoxDebugA.Name = "listBoxDebugA";
-            this.listBoxDebugA.Size = new System.Drawing.Size(604, 196);
-            this.listBoxDebugA.TabIndex = 0;
-            // 
-            // useEncryptionslowerButMoreSecureToolStripMenuItem
-            // 
-            this.useEncryptionslowerButMoreSecureToolStripMenuItem.CheckOnClick = true;
-            this.useEncryptionslowerButMoreSecureToolStripMenuItem.Name = "useEncryptionslowerButMoreSecureToolStripMenuItem";
-            this.useEncryptionslowerButMoreSecureToolStripMenuItem.Size = new System.Drawing.Size(353, 26);
-            this.useEncryptionslowerButMoreSecureToolStripMenuItem.Text = "Use Encryption (slower, but more secure)";
-            this.useEncryptionslowerButMoreSecureToolStripMenuItem.Click += new System.EventHandler(this.useEncryptionToolStripMenuItem_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1266, 755);
+            this.ClientSize = new System.Drawing.Size(1266, 531);
             this.Controls.Add(this.checkBoxEncryption);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnFractalGeneratorTest);
             this.Controls.Add(this.btnHelpPageTest);
             this.Controls.Add(this.btnAboutPageTest);
@@ -622,7 +588,7 @@ namespace Steganography_with_AES_Encryption
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormMain";
-            this.Text = "Steganography";
+            this.Text = "Steganography with AES Encryption";
             this.groupBoxEncode.ResumeLayout(false);
             this.groupBoxEncode.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEncoded)).EndInit();
@@ -632,7 +598,6 @@ namespace Steganography_with_AES_Encryption
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEncoded2)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -660,9 +625,6 @@ namespace Steganography_with_AES_Encryption
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewHelpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ListBox listBoxDebugB;
-        private System.Windows.Forms.ListBox listBoxDebugA;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem openEncodedImageToolStripMenuItem;
         private System.Windows.Forms.Label labelCharLimit;
