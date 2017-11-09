@@ -165,7 +165,7 @@ namespace Steganography_with_AES_Encryption
                 this.rawImage.Save(Path.GetFullPath(@"temp1.png"), ImageFormat.Png);
                 File.SetAttributes((@"temp1.png"), FileAttributes.Hidden);
 
-                PleaseWait pw = new PleaseWait("Ensuring Lossless Compression. \n This may take a minute or three.");
+                PleaseWait pw = new PleaseWait("Ensuring Lossless Compression." + "\n" + "This may take a minute or three.");
                 pw.Show();
 
                 // Save a temporary lossless copy of the the just-opened image. Hide it.
