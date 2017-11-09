@@ -12,8 +12,11 @@ namespace Steganography_with_AES_Encryption
 {
     public partial class AdvancedOptions : Form
     {
-        public AdvancedOptions()
+        FormMain main;
+
+        public AdvancedOptions(FormMain main)
         {
+            this.main = main;
             InitializeComponent();
         }
 
@@ -25,6 +28,22 @@ namespace Steganography_with_AES_Encryption
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (radioButton128.Checked)
+            {
+                main.AesBlockSize = 16;
+            }
+            else if (radioButton192.Checked)
+            {
+                main.AesBlockSize = 24;
+            }
+            else if (radioButton256.Checked)
+            {
+                main.AesBlockSize = 32;
+            }
         }
     }
 }

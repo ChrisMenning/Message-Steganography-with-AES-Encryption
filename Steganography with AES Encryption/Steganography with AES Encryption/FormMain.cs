@@ -12,6 +12,7 @@ namespace Steganography_with_AES_Encryption
     using System.ComponentModel;
     using System.Data;
     using System.Drawing;
+    using System.Drawing.Imaging;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
@@ -35,12 +36,22 @@ namespace Steganography_with_AES_Encryption
         /// <summary>
         /// Declare the image encoder.
         /// </summary>
-        private ImageEncoder imgEnc;
+        private BitmapEncoder imgEnc;
 
         /// <summary>
         /// Declare the image decoder
         /// </summary>
-        private ImageDecoder imgDec;
+        private BitmapDecoder imgDec;
+
+        /// <summary>
+        /// The password
+        /// </summary>
+        private string password;
+
+        /// <summary>
+        /// the size of the AES block (16, 24, or 32)
+        /// </summary>
+        private int aesBlockSize;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FormMain"/> class 
@@ -48,6 +59,271 @@ namespace Steganography_with_AES_Encryption
         public FormMain()
         {
             this.InitializeComponent();
+            this.aesBlockSize = 16;
+        }
+
+        /// <summary>
+        /// Gets or sets the password field.
+        /// </summary>
+        public string Password
+        {
+            get
+            {
+                return this.password;
+            }
+
+            set
+            {
+                this.password = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the aesBlockSize field.
+        /// </summary>
+        public int AesBlockSize
+        {
+            get
+            {
+                return this.aesBlockSize;
+            }
+
+            set
+            {
+                this.aesBlockSize = value;
+            }
+        }
+
+        /// <summary>
+        /// Accepts unicode and outputs ascii.
+        /// </summary>
+        /// <param name="inputUnicode">A string.</param>
+        /// <returns>Another string.</returns>
+        public string UnicodeToAscii(string inputUnicode)
+        {
+            // Force string to be ASCII in case there is other encoding (UTF-8, etc) contained therein.
+            // Non-ASCII chars may be more than one byte long, but this method can only handle one byte at this time.
+            Encoding ascii = Encoding.ASCII;
+            Encoding unicode = Encoding.Unicode;
+
+            // Convert the string into a byte array.
+            byte[] unicodeBytes = unicode.GetBytes(inputUnicode);
+
+            // Perform the conversion from one encoding to the other.
+            byte[] asciiBytes = Encoding.Convert(unicode, ascii, unicodeBytes);
+
+            // Convert the new byte[] into a char[] and then into a string.
+            char[] asciiChars = new char[ascii.GetCharCount(asciiBytes, 0, asciiBytes.Length)];
+            ascii.GetChars(asciiBytes, 0, asciiBytes.Length, asciiChars, 0);
+            string asciiString = new string(asciiChars);
+            inputUnicode = asciiString;
+
+            return inputUnicode;
+        }
+
+        /// <summary>
+        /// Accepts a mimeType and returns ImageCodecInfo.
+        /// </summary>
+        /// <param name="mimeType"> mimeType </param>
+        /// <returns> ImageCodecInfo </returns>
+        private static ImageCodecInfo GetEncoderInfo(string mimeType)
+        {
+            int j;
+            ImageCodecInfo[] encoders;
+            encoders = ImageCodecInfo.GetImageEncoders();
+            for (j = 0; j < encoders.Length; ++j)
+            {
+                if (encoders[j].MimeType == mimeType)
+                {
+                    return encoders[j];
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Opens an image
+        /// </summary>
+        private void OpenImage()
+        {
+            this.openFileDialog1.Filter = "PNG Image|*.png|Bitmap Image|*.bmp|JPG Image|*.jpg";
+            this.openFileDialog1.ShowHelp = true;
+            this.openFileDialog1.FileName = string.Empty;
+            if (this.openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.rawImage = new Bitmap(Bitmap.FromFile(this.openFileDialog1.FileName));
+                this.pictureBoxRaw.Image = this.rawImage;
+
+                // Turn on encode button.
+                this.btnEncodeImage.Enabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Save the new image.
+        /// </summary>
+        private void SaveEncodedImage()
+        {
+            ImageCodecInfo myImageCodecInfo;
+            System.Drawing.Imaging.Encoder myEncoder;
+
+            // Get an ImageCodecInfo object that represents the PNG codec.
+            myImageCodecInfo = GetEncoderInfo("image/png");
+
+            // for the Quality parameter category.
+            myEncoder = System.Drawing.Imaging.Encoder.Quality;
+
+            EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, 100L);
+            EncoderParameters myEncoderParameters = new EncoderParameters();
+            myEncoderParameters.Param[0] = myEncoderParameter;
+
+            // Save the image.
+            saveFileDialog1.Filter = "PNG Image|*.png|Bitmap Image|*.bmp";
+            saveFileDialog1.Title = "Save an Image File";
+            this.saveFileDialog1.ShowHelp = true;
+            this.saveFileDialog1.FileName = "encoded";
+            saveFileDialog1.ShowDialog();
+
+            if (saveFileDialog1.FileName != string.Empty)
+            {
+                this.encodedImage.Save(saveFileDialog1.FileName, myImageCodecInfo, myEncoderParameters);
+                this.pictureBoxEncoded.Image = this.encodedImage;
+            }
+        }
+
+        /// <summary>
+        /// Collects the text from the textbox and the image, passes them into the encoder, and if neccessary
+        /// the encrypter, and then calls the Save method.
+        /// </summary>
+        private void DoEncoding()
+        {
+            // First, make sure whatever unicode has been entered into the input box is forced into ASCII.
+            string ascii = this.UnicodeToAscii(this.textBoxInputMessage.Text);
+
+            // Call the image encoder's main encoder method, passing in the text from the input box,
+            // return the encoded bitmap, and assign the encoded bitmap to this.encodedImage for later saving.
+
+            // But if using encryption...
+            if (checkBoxEncryption.Checked)
+            {
+                // Prompt the user to enter a password.
+                PasswordInputDialog pwid = new PasswordInputDialog(this);
+                pwid.ShowDialog();
+
+                // Instantiate the Encrypter and pass in the message and password.
+                AESEncrypt aes = new AESEncrypt(ascii, this.password, this);
+                aes.EncryptMessage();
+
+                // For testing, write AES key to listbox.
+                foreach (byte b in aes.InitializationVector)
+                {
+                    listBoxDebugA.Items.Add(b.ToString());
+                }
+
+                this.Update();
+
+                // Instantiate the Image Encoder, passing in the raw image
+                // and the Initialization Vector from the AES encrypter.
+                this.imgEnc = new BitmapEncoder(this.rawImage, aes.InitializationVector);
+
+                Console.WriteLine("Encrypted string is " + aes.EncryptedMessageString().Length + " characters long.");
+                string toBeEncoded = aes.EncryptedMessageString();
+                this.encodedImage = this.imgEnc.Encoder(toBeEncoded);
+            }
+            else
+            {
+                this.imgEnc = new BitmapEncoder(this.rawImage);
+                this.encodedImage = this.imgEnc.Encoder(ascii);
+                this.pictureBoxEncoded.Image = this.encodedImage;
+            }
+
+            // Save the image.
+            this.SaveEncodedImage();
+        }
+
+        /// <summary>
+        /// If using encryption, this will go through many additional steps to parse out the Initialization Vector and 
+        /// the message length from the encoded bytes, then trim the decoded bytes down to just the cipher, before
+        /// finally passing the cipher, the IV, and the Key into the decryptor.
+        /// </summary>
+        private void DoDecoding()
+        {
+            if (checkBoxEncryption.Checked)
+            {
+                // Prompt the user to enter a password.
+                PasswordInputDialog pwid = new PasswordInputDialog(this);
+                pwid.ShowDialog();
+
+                // Instantiate the passwordHandler and pass in the password, to get an encryption key.
+                PasswordHandler passwordHandler = new PasswordHandler(this.password, this);
+
+                // Instantiate an image decoder.
+                this.imgDec = new BitmapDecoder();
+
+                // Decode the message from the image.
+                // Note: The Decoder method must be called, in order to decode the data, 
+                // despite not needing to use the string formatted version of the information. 
+                // The bytes will be more useful.
+                string stillEncryptedButDecoded = this.imgDec.Decoder(this.encodedImage);
+                List<string> bytesFomImage = this.imgDec.BytesList;
+
+                Console.WriteLine("BytesList is " + this.imgDec.BytesList.Count + " long.");
+
+                // 32 for 256 bits, 24 for 192 bits, and 16 for 128 bits
+                byte[] derivedIV = new byte[this.aesBlockSize];
+                for (int i = 0; i < this.aesBlockSize; i++)
+                {
+                    derivedIV[i] = Convert.ToByte(bytesFomImage[i], 2);
+                }
+
+                Console.WriteLine("Derived IV is " + derivedIV.Count() + " bytes long.");
+
+                // Write IV out to debug listbox.
+                foreach (byte b in derivedIV)
+                {
+                    listBoxDebugB.Items.Add(b.ToString());
+                }
+
+                this.Update();
+
+                AESDecrypt aes = new AESDecrypt();
+
+                // Confirm that the derivedIV is the same length as the aesBlockSize.
+                if (derivedIV.Length != this.aesBlockSize)
+                {
+                    Console.WriteLine("!!!!!!!! DERIVED IV BLOCK SIZE MISMATCH !!!!!!!!");
+                }
+
+                // Erase IV from bytesFomImage list.
+                for (int i = 0; i < this.aesBlockSize; i++)
+                {
+                    // remove the first from the list, 16, 24, or 32 times.
+                    bytesFomImage.RemoveAt(0);
+                }
+
+                // Convert the List of binary strings into a byte array.
+                int c = bytesFomImage.Count;
+                byte[] byteStringsToBytes = new byte[c];
+                for (int i = 0; i < c; i++)
+                {
+                    byteStringsToBytes[i] = Convert.ToByte(bytesFomImage[i], 2);
+                }
+
+                // Pull the first byte from the list. Convert this byte to an int. This should
+                // represent how many bytes are in the message.
+                int messageLength = byteStringsToBytes[0];
+
+                Console.WriteLine("The message to be decrypted is " + messageLength);
+
+                // Pass the byteStringsToBytes byte array, encryption key, and derived IV to the decrypter.
+                textBoxOutput.Text = aes.DecryptStringFromBytes_Aes(byteStringsToBytes, passwordHandler.EncryptionKey, derivedIV);
+            }
+            else
+            {
+                this.imgDec = new BitmapDecoder();
+                this.textBoxOutput.Text = this.imgDec.Decoder(this.encodedImage);
+            }
         }
 
         /// <summary>
@@ -55,20 +331,9 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         /// <param name="sender">The object that initiates this event</param>
         /// <param name="e">The event arguments</param>
-        private void ButtonOpenImage_Click(object sender, EventArgs e)
+        private void btnOpenImage_Click(object sender, EventArgs e)
         {
-            this.openFileDialog1.Filter = "PNG Image|*.png|Bitmap Image|*.bmp";
-            if (this.openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                this.rawImage = new Bitmap(Bitmap.FromFile(this.openFileDialog1.FileName));
-                this.pictureBoxRaw.Image = this.rawImage;
-
-                // Instantiate the Image Encoder and the Image Decoder.
-                this.imgEnc = new ImageEncoder(this.rawImage, this.pictureBoxEncoded);
-
-                // Turn on encode button.
-                this.buttonEncodeImage.Enabled = true;
-            }
+            this.OpenImage();
         }
 
         /// <summary>
@@ -76,14 +341,9 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         /// <param name="sender">The object that initiated the event</param>
         /// <param name="e">The event arguments</param>
-        private void ButtonEncodeImage_Click(object sender, EventArgs e)
+        private void btnEncodeImage_Click(object sender, EventArgs e)
         {
-            // Call the image encoder's main encoder method, passing in the text from the input box,
-            // return the encoded bitmap, and assign the encoded bitmap to this.encodedImage for later saving.
-            this.encodedImage = this.imgEnc.Encoder(this.textBoxInputMessage.Text);
-
-            // Save the image.
-            SaveEncodedImage();
+            this.DoEncoding();
         }
 
         /// <summary>
@@ -91,14 +351,16 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         /// <param name="sender">The object that initiated the event</param>
         /// <param name="e">The event arguments</param>
-        private void ButtonOpenImage2_Click(object sender, EventArgs e)
+        private void btnOpenImage2_Click(object sender, EventArgs e)
         {
-           this.openFileDialog1.Filter = "PNG Image|*.png|Bitmap Image|*.bmp";
+            this.openFileDialog1.Filter = "PNG Image|*.png|Bitmap Image|*.bmp";
+            this.openFileDialog1.ShowHelp = true;
+            this.openFileDialog1.FileName = "*.png";
             if (this.openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 this.encodedImage = new Bitmap(Bitmap.FromFile(this.openFileDialog1.FileName));
                 this.pictureBoxEncoded2.Image = this.encodedImage;
-                this.buttonDecode.Enabled = true;
+                this.btnDecode.Enabled = true;
             }
         }
 
@@ -107,27 +369,9 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         /// <param name="sender">The object that initiated the event</param>
         /// <param name="e">The event arguments</param>
-        private void ButtonDecode_Click(object sender, EventArgs e)
+        private void btnDecode_Click(object sender, EventArgs e)
         {
-            this.imgDec = new ImageDecoder();
-            this.textBoxOutput.Text = this.imgDec.Decoder(this.encodedImage);
-        }
-
-        /// <summary>
-        /// Save the new image.
-        /// </summary>
-        private void SaveEncodedImage()
-        {
-            // Save the image.
-            saveFileDialog1.Filter = "PNG Image|*.png|Bitmap Image|*.bmp";
-            saveFileDialog1.Title = "Save an Image File";
-            saveFileDialog1.ShowDialog();
-
-            if (saveFileDialog1.FileName != string.Empty)
-            {
-                this.encodedImage.Save(saveFileDialog1.FileName);
-                this.pictureBoxEncoded.Image = this.encodedImage;
-            }
+            this.DoDecoding();
         }
 
         private void btnAboutPageTest_Click(object sender, EventArgs e)
@@ -146,6 +390,80 @@ namespace Steganography_with_AES_Encryption
         {
             frmFractalGeneratorTestForm fractalTestForm = new frmFractalGeneratorTestForm();
             fractalTestForm.Show();
+        }
+
+        /// <summary>
+        /// Toolstrip Menu Item for Generating a fractal.
+        /// </summary>
+        /// <param name="sender"> sender </param>
+        /// <param name="e"> e </param>
+        private void generateFractalImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Mandelbrot mb = new Mandelbrot();
+            Bitmap fractal = mb.DrawMandelbrot(1000, 1000);
+            pictureBoxRaw.Image = fractal;
+            this.rawImage = fractal;
+            btnEncodeImage.Enabled = true;
+        }
+
+        /// <summary>
+        /// The ToolStrip Menu Item for opening an unencoded image.
+        /// </summary>
+        /// <param name="sender"> sender </param>
+        /// <param name="e"> e </param>
+        private void openUnencodedImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.OpenImage();
+        }
+
+        /// <summary>
+        /// The ToolStrip Menu Item for viewing the About menu.
+        /// </summary>
+        /// <param name="sender"> sender </param>
+        /// <param name="e"> e </param>
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAboutPage aboutPage = new frmAboutPage();
+            aboutPage.Show();
+        }
+
+        /// <summary>
+        /// The Toolstrip Menu Item for viewing Help.
+        /// </summary>
+        /// <param name="sender"> sender </param>
+        /// <param name="e"> e </param>
+        private void viewHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmHelpPage helpPage = new frmHelpPage();
+            helpPage.Show();
+        }
+
+        /// <summary>
+        /// The ToolStrip Menu Item for viewing Advanced Options
+        /// </summary>
+        /// <param name="sender"> sender </param>
+        /// <param name="e"> e </param>
+        private void advancedOptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AdvancedOptions ao = new AdvancedOptions(this);
+            ao.ShowDialog();
+        }
+
+        /// <summary>
+        /// The ToolStrip Menu Item for using Encryption.
+        /// </summary>
+        /// <param name="sender"> sender </param>
+        /// <param name="e"> e </param>
+        private void useEncryptionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (checkBoxEncryption.Checked)
+            {
+                checkBoxEncryption.Checked = false;
+            }
+            else
+            {
+                checkBoxEncryption.Checked = true;
+            }
         }
     }
 }

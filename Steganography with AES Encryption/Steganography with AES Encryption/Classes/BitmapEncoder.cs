@@ -18,10 +18,10 @@ namespace Steganography_with_AES_Encryption
     /// <summary>
     /// The ImageEncoder Class.
     /// </summary>
-    public class ImageEncoder
+    public class BitmapEncoder
     {
         /// <summary>
-        /// The rawImage bitmap..
+        /// The rawImage bitmap.
         /// </summary>
         private Bitmap rawImage;
 
@@ -31,14 +31,14 @@ namespace Steganography_with_AES_Encryption
         private Bitmap encodedImage;
 
         /// <summary>
+        /// A pre-loaded bitmap used for unit testing.
+        /// </summary>
+        private Bitmap testImage;
+
+        /// <summary>
         /// The initializationVector byte array from the encrypter.
         /// </summary>
         private byte[] initializationVector;
-
-        /// <summary>
-        /// The pictureBox that displays the encoded image.
-        /// </summary>
-        private PictureBox pictureBoxEncoded;
 
         /// <summary>
         /// A StringBuilder. Used for ensuring all the zeros are kept when encoding binary into the pixels.
@@ -46,21 +46,27 @@ namespace Steganography_with_AES_Encryption
         private StringBuilder bytesString;
 
         /// <summary>
-        /// Modes determine which color channels are being encoded. Changed in "Advanced Options."
+        /// Initializes a new instance of the ImageEncoder class.
+        /// For the sake of unit testing, the base constuctor accepts no parameters and 
+        /// uses the tiger image.
         /// </summary>
-        private int mode;
+        public BitmapEncoder()
+        {
+            this.testImage = Properties.Resources.Tiger;
+            this.rawImage = this.testImage;
+            this.bytesString = new StringBuilder();
+            this.initializationVector = new byte[0]; // Initialize at 0.
+        }
 
         /// <summary>
-        /// Initializes a new instance of the ImageEncoder class.
+        /// Initializes a new instance of the ImageEncoder class, overloaded to accept a bitmap.
         /// </summary>
         /// <param name="raw">The raw Bitmap</param>
         /// <param name="encoded">The PictureBox that displays the encoded image</param>
-        public ImageEncoder(Bitmap raw, PictureBox encoded)
+        public BitmapEncoder(Bitmap raw)
         {
             this.rawImage = raw;
-            this.pictureBoxEncoded = encoded;
             this.bytesString = new StringBuilder();
-            this.mode = 1; // By default.
             this.initializationVector = new byte[0]; // Initialize at 0.
         }
 
@@ -70,26 +76,41 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         /// <param name="raw">The raw Bitmap</param>
         /// <param name="encoded">The PictureBox that displays the encoded image</param>
-        public ImageEncoder(Bitmap raw, PictureBox encoded, byte[] initVect)
+        public BitmapEncoder(Bitmap raw, byte[] initVect)
         {
             this.rawImage = raw;
-            this.pictureBoxEncoded = encoded;
             this.bytesString = new StringBuilder();
-            this.mode = 1; // By default.
             this.initializationVector = initVect;
         }
 
         /// <summary>
         /// Finalizes an instance of the ImageEncoder class.
         /// </summary>
-        ~ImageEncoder()
+        ~BitmapEncoder()
         {
+            Console.WriteLine("!!!! DESTRUCTOR RUNNING !!!!");
             // Cleanup Statements.
             this.encodedImage.Dispose();
             this.rawImage.Dispose();
-            this.bytesString = new StringBuilder();
-
+            this.bytesString.Clear();
+     
             GC.ReRegisterForFinalize(this);
+        }
+
+        /// <summary>
+        /// Gets or sets the testImage property.
+        /// </summary>
+        public Bitmap TestImage
+        {
+            get
+            {
+                return this.testImage;
+            }
+
+            set
+            {
+                this.testImage = value;
+            }
         }
 
         /// <summary>
@@ -99,20 +120,60 @@ namespace Steganography_with_AES_Encryption
         /// <returns>Bitmap with message hidden in LSB.</returns>
         public Bitmap Encoder(string rawText)
         {
-            // Declare a bitmap for encoding the image. Make it the same width and height as the original.
-            this.encodedImage = new Bitmap(this.rawImage.Width, this.rawImage.Height);
+            // Get the length of the rawText and convert the int to a byte array.
+            // NOTE: an int takes 4 bytes.
+            string messageLengthBinaryString = string.Empty;
 
-            // If we're using encryption, then prepend the rawText string with the Initialization Vector.
-            if (initializationVector.Length != 0)
+            // Create a byte array from the rawText.Length, which is an int.
+            // Since an int takes 4 bytes, the byte array will be 4 long.
+            byte[] rtb = BitConverter.GetBytes(rawText.Length);
+
+            // If the program is running on a LittleEndian machine, reverse the array.
+            if (BitConverter.IsLittleEndian)
             {
-                rawText = PrependIV(rawText);
+                Array.Reverse(rtb);
             }
 
-            // Convert the entire rawText into one long string of binary.
-            StringBuilder forEncoding = this.StringToBytesString(rawText);
+            // Loop through the array, convert the byte into a binary string, and append onto messageLengthBinaryString.
+            for (int i = 0; i < 4; i++)
+            {
+                messageLengthBinaryString += Convert.ToString(rtb[i], 2).PadLeft(8, '0');
+            }
 
-            // Append an empty byte to mark the end of the message.
-            forEncoding.Append("00000000");
+            Console.WriteLine("Encoder says the message length, as binary is: " + messageLengthBinaryString);
+
+            // Append the rawTextLength as a binary string (messageLengthBinaryString) to the message to be encoded.
+            // Convert the entire rawText into one long string of binary.
+            StringBuilder forEncoding = new StringBuilder();
+            forEncoding.Append(messageLengthBinaryString);
+
+            // If we're using encryption, then prepend the Initialization Vector before the forEncoding string.
+            if (initializationVector.Length != 0)
+            {
+                foreach (byte b in initializationVector)
+                {
+                    forEncoding.Append(Convert.ToString(b, 2).PadLeft(8, '0'));
+                }
+
+                // Now append the message.
+                forEncoding.Append(rawText);
+
+                // Prepend the Initialization Vector.
+               // rawText = PrependIV(forEncoding.ToString());
+               // forEncoding.Clear();
+              //  forEncoding.Append(rawText);                
+            }
+            else
+            {
+                forEncoding.Append(this.StringToBytesString(rawText));
+            }
+
+            Console.WriteLine("Encoding " + forEncoding);
+
+            this.bytesString = forEncoding;
+
+            // Declare a bitmap for encoding the image. Make it the same width and height as the original.
+            this.encodedImage = new Bitmap(this.rawImage.Width, this.rawImage.Height);
 
             // Declare a counter.
             int counter = 0;
@@ -129,6 +190,10 @@ namespace Steganography_with_AES_Encryption
                     // elements to zero out as well, if they're as low as 1 or 0. But when the Alpha channel
                     // has a value, the the RGB are retained.
 
+                    // Disallow any pixel color channel values from being a true 0 at this point. 
+                    Color tempColor = NoZerosAllowed(pixelColor);
+                    pixelColor = tempColor;
+
                     // Now create a copy of the pixelColor, but with the Least Significant Bit of each color cleared out.
                     Color sanitizedColor = Color.FromArgb(
                         pixelColor.A - (pixelColor.A % 2),
@@ -136,24 +201,26 @@ namespace Steganography_with_AES_Encryption
                         pixelColor.G - (pixelColor.G % 2),
                         pixelColor.B - (pixelColor.B % 2));
 
-                    // Now, in the new bitmap image, let's set the pixel value to be the same as the original pixelColor, plus
+                    //Console.WriteLine("Sanitized pixel color: " + sanitizedColor);
+
+                    // Now, in the new bitmap image, set the pixel value to be the same as the original pixelColor, plus
                     // a bit from our long string of bytes, for each color channel.
                     if (counter + 3 < this.bytesString.Length)
                     {
                         // Next, declare a newR, newG, and newB consisting of the sanitized value, plus a bit from the byteString.
-                        int newA = sanitizedColor.A + int.Parse(forEncoding[counter].ToString());
-                        int newR = sanitizedColor.R + int.Parse(forEncoding[counter + 1].ToString());
-                        int newG = sanitizedColor.G + int.Parse(forEncoding[counter + 2].ToString());
-                        int newB = sanitizedColor.B + int.Parse(forEncoding[counter + 3].ToString());
+                        int newA = sanitizedColor.A + int.Parse(this.bytesString[counter].ToString());
+                        int newR = sanitizedColor.R + int.Parse(this.bytesString[counter + 1].ToString());
+                        int newG = sanitizedColor.G + int.Parse(this.bytesString[counter + 2].ToString());
+                        int newB = sanitizedColor.B + int.Parse(this.bytesString[counter + 3].ToString());
 
                         this.encodedImage.SetPixel(column, row, Color.FromArgb(newA, newR, newG, newB));
+                        // Console.WriteLine(this.encodedImage.GetPixel(column,row));
 
-                        // Console.WriteLine("Encoder | Pixel color: " + this.encodedImage.GetPixel(column, row));
                     }
                     else
                     {
-                        // Otherwise just give the image a pixel equal to the original pixel value.
-                        this.encodedImage.SetPixel(column, row, pixelColor);
+                        // Otherwise give the image a pixel equal to the sanitized pixel value.
+                        this.encodedImage.SetPixel(column, row, sanitizedColor);
                     }
 
                     counter = counter + 4;
@@ -161,6 +228,56 @@ namespace Steganography_with_AES_Encryption
             }
 
             return this.encodedImage;
+        }
+
+        // Don't allow any color channel to have a 0 in its pixel. Instead give it a 2.
+        private Color NoZerosAllowed(Color inputColor)
+        {
+            Color newColor;
+            int newA;
+            int newR;
+            int newG;
+            int newB;
+
+            if (inputColor.A == 0)
+            {
+                newA = 2;
+            }
+            else
+            {
+                newA = inputColor.A;
+            }
+
+            if (inputColor.R == 0)
+            {
+                newR = 2;
+            }
+            else
+            {
+                newR = inputColor.R;
+            }
+
+            if (inputColor.G == 0)
+            {
+                newG = 2;
+            }
+            else
+            {
+                newG = inputColor.G;
+            }
+
+            if (inputColor.B == 0)
+            {
+                newB = 2;
+            }
+            else
+            {
+                newB = inputColor.B;
+            }
+
+            newColor = Color.FromArgb(newA, newR, newG, newB);
+
+            return newColor;
         }
 
         /// <summary>
@@ -182,26 +299,9 @@ namespace Steganography_with_AES_Encryption
         /// Accept an input string and add them to the byteStrings queue.
         /// </summary>
         /// <param name="input">The string that's passed in.</param>
-        private StringBuilder StringToBytesString(string input)
+        public StringBuilder StringToBytesString(string input)
         {
             Console.WriteLine("Input string is " + input.Length + " chars long");
-
-            // Force string to be ASCII in case there is other encoding (UTF-8, etc) contained therein.
-            // Non-ASCII chars may be more than one byte long, but this method can only handle one byte at this time.
-            Encoding ascii = Encoding.ASCII;
-            Encoding unicode = Encoding.Unicode;
-
-            // Convert the string into a byte array.
-            byte[] unicodeBytes = unicode.GetBytes(input);
-
-            // Perform the conversion from one encoding to the other.
-            byte[] asciiBytes = Encoding.Convert(unicode, ascii, unicodeBytes);
-
-            // Convert the new byte[] into a char[] and then into a string.
-            char[] asciiChars = new char[ascii.GetCharCount(asciiBytes, 0, asciiBytes.Length)];
-            ascii.GetChars(asciiBytes, 0, asciiBytes.Length, asciiChars, 0);
-            string asciiString = new string(asciiChars);
-            input = asciiString;
 
             this.bytesString.Clear();
             foreach (char c in input)
@@ -211,7 +311,6 @@ namespace Steganography_with_AES_Encryption
                 StringBuilder charAsBinaryString = new StringBuilder();
 
                 charAsBinaryString.Append(Convert.ToString(charByte, 2).PadLeft(8, '0'));
-                    
 
                 // Add it to the bytes list.
                 this.bytesString.Append(charAsBinaryString);
@@ -221,47 +320,22 @@ namespace Steganography_with_AES_Encryption
         }
 
         private string PrependIV(string input)
-        { 
+        {
             // Decalre a temp stringbuilder.
             StringBuilder sb = new StringBuilder();
 
-            // Append each byte of the intialization vector to the new stringbuilder.
             foreach (byte b in initializationVector)
             {
-                // Ensure that the byte is encoded as a string of exactly eight 1s and 0s.
-                sb.Append(StringToBytesString(b.ToString()));
+                sb.Append(Convert.ToString(b, 2).PadLeft(8, '0'));
             }
 
             // Append the rawText onto the stringbuilder.
             sb.Append(input);
+
+            this.bytesString.Append(sb);
 
             // Assign the stringbuilder's contents to the rawString.
             return sb.ToString();
         }
     }
 }
-
-/*
- *                                                                                                 
- *                                                            ,,                                   
- *    `7MMF'                                                `7MM                                   
- *      MM                                                    MM                                   
- *      MM         .gP"Ya   .P"Ybmmm .gP"Ya `7MMpMMMb.   ,M""bMM   ,6"Yb.  `7Mb,od8 `7M'   `MF'    
- *      MM        ,M'   Yb :MI  I8  ,M'   Yb  MM    MM ,AP    MM  8)   MM    MM' "'   VA   ,V      
- *      MM      , 8M""""""  WmmmP"  8M""""""  MM    MM 8MI    MM   ,pm9MM    MM        VA ,V       
- *      MM     ,M YM.    , 8M       YM.    ,  MM    MM `Mb    MM  8M   MM    MM         VVV        
- *    .JMMmmmmMMM  `Mbmmd'  YMMMMMb  `Mbmmd'.JMML  JMML.`Wbmd"MML.`Moo9^Yo..JMML.       ,V         
- *                         6'     dP                                                   ,V          
- *                         Ybmmmd'                                                  OOb"           
- *                                                                                                 
- *                  ,,          ,,                                                                 
- *    `7MMF'        db        `7MM                                                                 
- *      MM                      MM                                                                 
- *      MM        `7MM  ,p6"bo  MMpMMMb.  .gP"Ya `7MMpMMMb.  ,pP"Ybd                               
- *      MM          MM 6M'  OO  MM    MM ,M'   Yb  MM    MM  8I   `"                               
- *      MM      ,   MM 8M       MM    MM 8M""""""  MM    MM  `YMMMa.                               
- *      MM     ,M   MM YM.    , MM    MM YM.    ,  MM    MM  L.   I8                               
- *    .JMMmmmmMMM .JMML.YMbmd'.JMML  JMML.`Mbmmd'.JMML  JMML.M9mmmP'                               
- *                                                                                                 
- *                                                                                                 
- */
