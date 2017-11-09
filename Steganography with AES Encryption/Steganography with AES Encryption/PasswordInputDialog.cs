@@ -18,6 +18,8 @@ namespace Steganography_with_AES_Encryption
         {
             this.main = mainform;
             InitializeComponent();
+
+            this.CenterToParent();
         }
 
 

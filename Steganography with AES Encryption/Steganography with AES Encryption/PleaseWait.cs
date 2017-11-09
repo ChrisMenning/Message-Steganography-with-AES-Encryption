@@ -18,6 +18,8 @@ namespace Steganography_with_AES_Encryption
             InitializeComponent();
 
             labelWaitMessage.Text = input;
+
+            this.CenterToParent();
         }
 
         private void labelWaitMessage_Click(object sender, EventArgs e)

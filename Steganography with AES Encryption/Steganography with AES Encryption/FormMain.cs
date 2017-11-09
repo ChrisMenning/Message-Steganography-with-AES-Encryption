@@ -67,6 +67,7 @@ namespace Steganography_with_AES_Encryption
             this.InitializeComponent();
             this.aesBlockSize = 16;
             pngCompressor = new PNGCompressor();
+            this.CenterToScreen();
         }
 
         /// <summary>
@@ -164,8 +165,7 @@ namespace Steganography_with_AES_Encryption
                 this.rawImage.Save(Path.GetFullPath(@"temp1.png"), ImageFormat.Png);
                 File.SetAttributes((@"temp1.png"), FileAttributes.Hidden);
 
-                PleaseWait pw = new PleaseWait("Ensuring Lossless Compression. Please Wait.");
-
+                PleaseWait pw = new PleaseWait("Ensuring Lossless Compression. \n This may take a minute or three.");
                 pw.Show();
 
                 // Save a temporary lossless copy of the the just-opened image. Hide it.
@@ -177,6 +177,7 @@ namespace Steganography_with_AES_Encryption
 
                 // Draw the picturebox using the lossless copy.
                 this.pictureBoxRaw.Image = lossless;
+                this.rawImage = (Bitmap)lossless;
 
                 pw.Close();
 
@@ -222,7 +223,6 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         private void DoEncoding()
         {
-
             // First, make sure whatever unicode has been entered into the input box is forced into ASCII.
             string ascii = this.UnicodeToAscii(this.textBoxInputMessage.Text);
 
@@ -420,21 +420,25 @@ namespace Steganography_with_AES_Encryption
             Bitmap fractal = mb.DrawMandelbrot(1000, 1000);
             pictureBoxRaw.Image = fractal;
 
+            PleaseWait pw = new PleaseWait("Ensuring Lossless Compression. \n This may take a minute or three.");
+            pw.Show();
+
             fractal.Save(Path.GetFullPath(@"temp1.png"), ImageFormat.Png);
             File.SetAttributes(@"temp1.png", FileAttributes.Hidden);
 
             pngCompressor.CompressImageLossLess(Path.GetFullPath(@"temp1.png"), Path.GetFullPath(@"temp2.png"));
             File.SetAttributes(@"temp2.png", FileAttributes.Hidden);
 
+            pw.Close();
+
             // Declare a new image and assign it a reference to the lossless copy.
             lossless = Image.FromFile(Path.GetFullPath(@"temp2.png"));
 
             // Draw the picturebox using the lossless copy.
             this.pictureBoxRaw.Image = lossless;
-
             fractal = (Bitmap)lossless;
 
-            this.rawImage = fractal;
+            this.rawImage = (Bitmap)lossless;
             btnEncodeImage.Enabled = true;
 
             File.Delete(Path.GetFullPath(@"temp1.png"));
