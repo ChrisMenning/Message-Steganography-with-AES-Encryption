@@ -125,6 +125,7 @@ namespace Steganography_with_AES_Encryption
             // Get the length of the rawText and convert the int to a byte array.
             // NOTE: an int takes 4 bytes.
             string messageLengthBinaryString = string.Empty;
+            Console.WriteLine("Encoder | First four bytes: " + messageLengthBinaryString);
 
             // Create a byte array from the rawText.Length, which is an int.
             // Since an int takes 4 bytes, the byte array will be 4 long.

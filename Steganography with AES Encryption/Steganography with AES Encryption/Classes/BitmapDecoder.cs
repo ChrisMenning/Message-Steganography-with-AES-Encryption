@@ -159,6 +159,8 @@ namespace Steganography_with_AES_Encryption
                 messageLengthByteAsString += this.bitsFromImage[i].ToString();
             }
 
+            Console.WriteLine("Decoder | First four bytes: " + messageLengthByteAsString);
+
             // Convert string of binary back into an int.
             messageLength = Convert.ToInt32(messageLengthByteAsString, 2);
 

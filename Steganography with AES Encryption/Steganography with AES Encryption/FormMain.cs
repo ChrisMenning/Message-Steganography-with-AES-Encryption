@@ -155,7 +155,7 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         private void OpenRawImage()
         {
-            this.dialogOpenRawImage.Filter = "PNG Image| *.png";
+            this.dialogOpenRawImage.Filter = "PNG Image|*.png|JPG Image|*.jpg|BMP Image|*.bmp";
             this.dialogOpenRawImage.ShowHelp = true;
             this.dialogOpenRawImage.FileName = string.Empty;
             if (this.dialogOpenRawImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
