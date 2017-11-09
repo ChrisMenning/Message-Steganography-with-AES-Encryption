@@ -537,6 +537,7 @@ namespace Steganography_with_AES_Encryption
             // 
             // advancedOptionsToolStripMenuItem
             // 
+            this.advancedOptionsToolStripMenuItem.Enabled = false;
             this.advancedOptionsToolStripMenuItem.Name = "advancedOptionsToolStripMenuItem";
             this.advancedOptionsToolStripMenuItem.Size = new System.Drawing.Size(353, 26);
             this.advancedOptionsToolStripMenuItem.Text = "Advanced Options";

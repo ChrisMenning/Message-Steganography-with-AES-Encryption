@@ -29,11 +29,14 @@ namespace Steganography_with_AES_Encryption
     /// </summary>
     public class AESDecrypt
     {
+        FormMain main;
+
         /// <summary>
         /// Initializes a new instance of the AESDecrypt class.
         /// </summary>
-        public AESDecrypt()
+        public AESDecrypt(FormMain main)
         {
+            this.main = main;
         }
 
         /// <summary>
@@ -68,6 +71,7 @@ namespace Steganography_with_AES_Encryption
             // Create an Aes object with the specified key and IV.
             using (Aes aesAlg = Aes.Create("AES"))
             {
+                // aesAlg.BlockSize = main.AesBlockSize;
                 aesAlg.Key = key;
                 aesAlg.IV = IV;
 

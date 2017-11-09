@@ -321,6 +321,7 @@ namespace Steganography_with_AES_Encryption
                 Console.WriteLine("BytesList is " + this.imgDec.BytesList.Count + " long.");
 
                 // 32 for 256 bits, 24 for 192 bits, and 16 for 128 bits
+                Console.WriteLine("Using AES block size: " + this.aesBlockSize);
                 byte[] derivedIV = new byte[this.aesBlockSize];
                 for (int i = 0; i < this.aesBlockSize; i++)
                 {
@@ -331,7 +332,7 @@ namespace Steganography_with_AES_Encryption
 
                 this.Update();
 
-                AESDecrypt aes = new AESDecrypt();
+                AESDecrypt aes = new AESDecrypt(this);
 
                 // Confirm that the derivedIV is the same length as the aesBlockSize.
                 if (derivedIV.Length != this.aesBlockSize)

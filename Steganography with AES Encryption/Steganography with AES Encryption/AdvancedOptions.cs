@@ -44,6 +44,13 @@ namespace Steganography_with_AES_Encryption
             {
                 main.AesBlockSize = 32;
             }
+
+            this.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
