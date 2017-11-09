@@ -63,7 +63,7 @@
             this.Controls.Add(this.labelStaticWait);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "PleaseWait";
-            this.Text = "PleaseWait";
+            this.Text = "Processing...";
             this.ResumeLayout(false);
             this.PerformLayout();
 

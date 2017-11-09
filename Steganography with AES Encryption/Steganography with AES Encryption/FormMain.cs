@@ -360,7 +360,11 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event arguments</param>
         private void btnEncodeImage_Click(object sender, EventArgs e)
         {
+            PleaseWait pw = new PleaseWait("Encoding...");
+            pw.Show();
+            pw.Update();
             this.DoEncoding();
+            pw.Close();
         }
 
         /// <summary>
@@ -388,7 +392,11 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event arguments</param>
         private void btnDecode_Click(object sender, EventArgs e)
         {
+            PleaseWait pw = new PleaseWait("Decoding.");
+            pw.Show();
+            pw.Update();
             this.DoDecoding();
+            pw.Close();
         }
 
         private void btnAboutPageTest_Click(object sender, EventArgs e)
