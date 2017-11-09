@@ -14,6 +14,7 @@ namespace Steganography_with_AES_Encryption
     using System.Data;
     using System.Drawing;
     using System.Drawing.Imaging;
+    using System.IO;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
@@ -28,6 +29,8 @@ namespace Steganography_with_AES_Encryption
         /// Declare a bitmap for the raw image.
         /// </summary>
         private Bitmap rawImage;
+
+        private Image lossless;
 
         /// <summary>
         /// Declare a bitmap for the encoded image
@@ -148,16 +151,35 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         private void OpenRawImage()
         {
-            this.dialogOpenRawImage.Filter = "PNG Image|*.png|Bitmap Image|*.bmp|JPG Image|*.jpg";
+            this.dialogOpenRawImage.Filter = "PNG Image| *.png";
             this.dialogOpenRawImage.ShowHelp = true;
             this.dialogOpenRawImage.FileName = string.Empty;
             if (this.dialogOpenRawImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 this.rawImage = new Bitmap(Bitmap.FromFile(this.dialogOpenRawImage.FileName));
 
-                PNGCompressor pc = new PNGCompressor();
+                PleaseWait pw = new PleaseWait("Ensuring Lossless Compression. Please Wait.");
+                PNGCompressor pngCompressor = new PNGCompressor();
 
-                this.pictureBoxRaw.Image = this.rawImage;
+                pw.Show();
+
+                // Save a temporary lossless copy of the the just-opened image. Hide it.
+                pngCompressor.CompressImageLossLess(dialogOpenRawImage.FileName, dialogOpenRawImage.FileName + "_temp");
+                File.SetAttributes(dialogOpenRawImage.FileName + "_temp", FileAttributes.Hidden);
+                
+                // Declare a new image and assign it a reference to the lossless copy.
+                lossless = Image.FromFile(dialogOpenRawImage.FileName + "_temp");
+
+                Image losslessVirtualCopy = lossless;
+
+                // Draw the picturebox using the lossless copy.
+                this.pictureBoxRaw.Image = losslessVirtualCopy;
+
+                pw.Close();
+
+                // Delete the lossless copy.
+                lossless = null;
+                // File.Delete(dialogOpenRawImage.FileName + "_temp");
 
                 // Turn on encode button.
                 this.btnEncodeImage.Enabled = true;
@@ -202,6 +224,7 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         private void DoEncoding()
         {
+
             // First, make sure whatever unicode has been entered into the input box is forced into ASCII.
             string ascii = this.UnicodeToAscii(this.textBoxInputMessage.Text);
 
@@ -240,6 +263,10 @@ namespace Steganography_with_AES_Encryption
 
             // Save the image.
             this.SaveEncodedImage();
+
+            // lossless = null;
+            // pictureBoxRaw.Image = pictureBoxEncoded.Image;
+            // File.Delete(dialogOpenRawImage.FileName + "_temp");
         }
 
         /// <summary>
@@ -396,8 +423,17 @@ namespace Steganography_with_AES_Encryption
             Mandelbrot mb = new Mandelbrot();
             Bitmap fractal = mb.DrawMandelbrot(1000, 1000);
             pictureBoxRaw.Image = fractal;
+
+            fractal.Save(Path.GetFullPath(@"temp1.png"), ImageFormat.Png);
+
+            PNGCompressor pngCompressor = new PNGCompressor();
+            pngCompressor.CompressImageLossLess(Path.GetFullPath(@"temp1.png"), Path.GetFullPath(@"temp2.png"));
+            fractal = new Bitmap(Bitmap.FromFile(Path.GetFullPath(@"temp2.png")));
+
             this.rawImage = fractal;
             btnEncodeImage.Enabled = true;
+
+            File.Delete("@temp1.png");
         }
 
         /// <summary>

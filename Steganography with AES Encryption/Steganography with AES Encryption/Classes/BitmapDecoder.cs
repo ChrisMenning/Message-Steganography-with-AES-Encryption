@@ -147,8 +147,8 @@ namespace Steganography_with_AES_Encryption
                 }
             }
 
-            Console.WriteLine("Decoder finished pulling bits from pixels. Found " + this.bitsFromImage.Count + " bits.");
-            Console.WriteLine("Turning bits to bytes");
+            // Console.WriteLine("Decoder finished pulling bits from pixels. Found " + this.bitsFromImage.Count + " bits.");
+            // Console.WriteLine("Turning bits to bytes");
 
             string messageLengthByteAsString = string.Empty;
             int messageLength = 0;
@@ -159,12 +159,9 @@ namespace Steganography_with_AES_Encryption
                 messageLengthByteAsString += this.bitsFromImage[i].ToString();
             }
 
-            Console.WriteLine("Decoder says messageLengthByteAsString: " + messageLengthByteAsString);
-
             // Convert string of binary back into an int.
             messageLength = Convert.ToInt32(messageLengthByteAsString, 2);
 
-            Console.WriteLine("Decoder says message should be " + messageLength + "characters long.");
 
             int eightCounter = 1;
             string eightDigitByte = string.Empty;
@@ -179,11 +176,11 @@ namespace Steganography_with_AES_Encryption
 
             // Console.WriteLine("bitsFromImage is now " + this.bitsFromImage.Count + " long.");
 
-            if (messageLength * 8 != this.bitsFromImage.Count)
-            {
-                Console.WriteLine("MessageLength * 8 = " + messageLength * 8);
-                Console.WriteLine("bitsFromImage Length is " + this.bitsFromImage.Count);
-            }
+            // if (messageLength * 8 != this.bitsFromImage.Count)
+            // {
+            //     Console.WriteLine("MessageLength * 8 = " + messageLength * 8);
+            //     Console.WriteLine("bitsFromImage Length is " + this.bitsFromImage.Count);
+            // }
             
             // Loop through each digit of the bytesFromImage list.
             for (int i = 1; i <= (messageLength * 8); i++)
@@ -203,11 +200,11 @@ namespace Steganography_with_AES_Encryption
                 }
             }
 
-            Console.WriteLine("Finished turning bits to bytes. Found " + bytesList.Count + " bytes.");
+            // Console.WriteLine("Finished turning bits to bytes. Found " + bytesList.Count + " bytes.");
             this.decodedText = new StringBuilder();
             for (int i = 0; i < bytesList.Count; i++)
             {
-                Console.WriteLine(bytesList[i]);
+                // Console.WriteLine(bytesList[i]);
                 this.decodedText.Append((char)Convert.ToByte(bytesList[i], 2));
             }
 

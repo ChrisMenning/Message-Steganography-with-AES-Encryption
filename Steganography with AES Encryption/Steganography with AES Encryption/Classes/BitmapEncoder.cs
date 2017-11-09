@@ -140,7 +140,7 @@ namespace Steganography_with_AES_Encryption
                 messageLengthBinaryString += Convert.ToString(rtb[i], 2).PadLeft(8, '0');
             }
 
-            Console.WriteLine("Encoder says the message length, as binary is: " + messageLengthBinaryString);
+            // Console.WriteLine("Encoder says the message length, as binary is: " + messageLengthBinaryString);
 
             // Append the rawTextLength as a binary string (messageLengthBinaryString) to the message to be encoded.
             // Convert the entire rawText into one long string of binary.
@@ -163,7 +163,7 @@ namespace Steganography_with_AES_Encryption
                 forEncoding.Append(this.StringToBytesString(rawText));
             }
 
-            Console.WriteLine("Encoding " + forEncoding);
+            // Console.WriteLine("Encoding " + forEncoding);
 
             this.bytesString = forEncoding;
 
@@ -196,7 +196,7 @@ namespace Steganography_with_AES_Encryption
                         pixelColor.G - (pixelColor.G % 2),
                         pixelColor.B - (pixelColor.B % 2));
 
-                    //Console.WriteLine("Sanitized pixel color: " + sanitizedColor);
+                    // Console.WriteLine("Sanitized pixel color: " + sanitizedColor);
 
                     // Now, in the new bitmap image, set the pixel value to be the same as the original pixelColor, plus
                     // a bit from our long string of bytes, for each color channel.
@@ -296,7 +296,7 @@ namespace Steganography_with_AES_Encryption
         /// <param name="input">The string that's passed in.</param>
         public StringBuilder StringToBytesString(string input)
         {
-            Console.WriteLine("Input string is " + input.Length + " chars long");
+            // Console.WriteLine("Input string is " + input.Length + " chars long");
 
             this.bytesString.Clear();
             foreach (char c in input)
