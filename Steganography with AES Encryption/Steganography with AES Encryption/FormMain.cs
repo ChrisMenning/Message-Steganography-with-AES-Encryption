@@ -178,7 +178,7 @@ namespace Steganography_with_AES_Encryption
                 pw.Close();
 
                 // Delete the lossless copy.
-                lossless = null;
+                // lossless = null;
                 // File.Delete(dialogOpenRawImage.FileName + "_temp");
 
                 // Turn on encode button.
