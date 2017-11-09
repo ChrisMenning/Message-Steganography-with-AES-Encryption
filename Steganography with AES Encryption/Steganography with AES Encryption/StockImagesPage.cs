@@ -18,62 +18,159 @@ namespace Steganography_with_AES_Encryption
             InitializeComponent();
         }
 
-        private void rdbTiger_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdbTiger.Checked)
-            {
-                String message = "Image Description:\n";
-                message += "Picture of a Tiger\n";
-                rtbStockImages.Text = message;
-                
-            }
-        }
-
         private void btnSaveStockImage_Click(object sender, EventArgs e)
         {
             Bitmap image;
 
             if (rdbTiger.Checked)
             {
-                image = Resources.Tiger;
-                sfdStockImage.Filter = "PNG Image|*.png|Bitmap Image|*.bmp|JPEG Image|*.jpg";
-                sfdStockImage.Title = "Save an Image File";
-                sfdStockImage.ShowDialog();
-
-                if (sfdStockImage.FileName != string.Empty)
+                if (cboTiger.SelectedIndex == 0)
                 {
-                    image.Save(sfdStockImage.FileName);
+                    image = Resources.Tiger;
+                    sfdStockImage.Filter = "PNG Image|*.png|Bitmap Image|*.bmp|JPEG Image|*.jpg";
+                    sfdStockImage.Title = "Save an Image File";
+                    sfdStockImage.ShowDialog();
+
+                    if (sfdStockImage.FileName != string.Empty)
+                    {
+                        image.Save(sfdStockImage.FileName);
+                    }
                 }
+                else if(cboTiger.SelectedIndex == 1)
+                {
+                    image = Resources.Tiger;
+                    sfdStockImage.Filter = "PNG Image|*.png|Bitmap Image|*.bmp|JPEG Image|*.jpg";
+                    sfdStockImage.Title = "Save an Image File";
+                    sfdStockImage.ShowDialog();
+
+                    if (sfdStockImage.FileName != string.Empty)
+                    {
+                        image.Save(sfdStockImage.FileName);
+                    }
+                }
+                else if(cboTiger.SelectedIndex == 2)
+                {
+                    image = Resources.Tiger;
+                    sfdStockImage.Filter = "PNG Image|*.png|Bitmap Image|*.bmp|JPEG Image|*.jpg";
+                    sfdStockImage.Title = "Save an Image File";
+                    sfdStockImage.ShowDialog();
+
+                    if (sfdStockImage.FileName != string.Empty)
+                    {
+                        image.Save(sfdStockImage.FileName);
+                    }
+                }
+                
             }
-            else if (rdbCrab.Checked)
+            else if (rdbRocks.Checked)
             {
-                image = Resources._32x32_crab;
-                sfdStockImage.Filter = "PNG Image|*.png|Bitmap Image|*.bmp|JPEG Image|*.jpg";
-                sfdStockImage.Title = "Save an Image File";
-                sfdStockImage.ShowDialog();
-
-                if (sfdStockImage.FileName != string.Empty)
+                if (cboRocks.SelectedIndex == 0)
                 {
-                    image.Save(sfdStockImage.FileName);
+                    image = Resources.IMG_1650;
+                    sfdStockImage.Filter = "PNG Image|*.png|Bitmap Image|*.bmp|JPEG Image|*.jpg";
+                    sfdStockImage.Title = "Save an Image File";
+                    sfdStockImage.ShowDialog();
+                    if (sfdStockImage.FileName != string.Empty)
+                    {
+                        image.Save(sfdStockImage.FileName);
+                    }
                 }
+                else if(cboRocks.SelectedIndex == 1)
+                {
+                    image = Resources.IMG_1650;
+                    sfdStockImage.Filter = "PNG Image|*.png|Bitmap Image|*.bmp|JPEG Image|*.jpg";
+                    sfdStockImage.Title = "Save an Image File";
+                    sfdStockImage.ShowDialog();
+                    if (sfdStockImage.FileName != string.Empty)
+                    {
+                        image.Save(sfdStockImage.FileName);
+                    }
+                }
+                else if(cboRocks.SelectedIndex == 2)
+                {
+                    image = Resources.IMG_1650;
+                    sfdStockImage.Filter = "PNG Image|*.png|Bitmap Image|*.bmp|JPEG Image|*.jpg";
+                    sfdStockImage.Title = "Save an Image File";
+                    sfdStockImage.ShowDialog();
+                    if (sfdStockImage.FileName != string.Empty)
+                    {
+                        image.Save(sfdStockImage.FileName);
+                    }
+                }
+                
             }
 
             
         }
 
-        private void rdbCrab_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdbCrab.Checked)
-            {
-                String message = "Image Description:\n";
-                message += "Picture of the Pokemon Krabby";
-                rtbStockImages.Text = message;
-            }
-        }
-
         private void btnCloseStockImagePage_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void rdbTiger_CheckedChanged(object sender, EventArgs e)
+        {
+            String message = "Picture Description:\n";
+            message += "A close up of a tiger's face";
+            Bitmap image = Resources.Tiger;
+            ptbStockImages.Image = image;
+        }
+
+        private void cboTiger_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rdbTiger.Checked)
+            {
+                if (cboTiger.SelectedIndex == 0)
+                {
+                    String message = rtbStockImages.Text;
+                    message += "\nSize:\n1600 x 1200";
+                    rtbStockImages.Text = message;
+                }
+                else if(cboTiger.SelectedIndex == 1)
+                {
+                    String message = rtbStockImages.Text;
+                    message += "\nSize:\n800 x 600";
+                    rtbStockImages.Text = message;
+                }
+                else if (cboRocks.SelectedIndex == 2){
+                    String message = rtbStockImages.Text;
+                    message += "\nSize:\n400 x 300";
+                    rtbStockImages.Text = message;
+                }
+            }
+        }
+
+        private void rdbRocks_CheckedChanged(object sender, EventArgs e)
+        {
+            String message = "Picture Description:\n";
+            message += "A picture of some shiny rocks";
+            Bitmap image = Resources.IMG_1650;
+            ptbStockImages.Image = image;
+        }
+
+        private void cboRocks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rdbRocks.Checked)
+            {
+                if (cboRocks.SelectedIndex == 0)
+                {
+                    String message = rtbStockImages.Text;
+                    message += "\nSize:\n4000 x 2248";
+                    rtbStockImages.Text = message;
+                }
+                else if (cboTiger.SelectedIndex == 1)
+                {
+                    String message = rtbStockImages.Text;
+                    message += "\nSize:\n2000 x 1124";
+                    rtbStockImages.Text = message;
+                }
+                else
+                {
+                    String message = rtbStockImages.Text;
+                    message += "\nSize:\n1000 x 562";
+                    rtbStockImages.Text = message;
+                }
+            }
         }
     }
 }

@@ -60,10 +60,10 @@ namespace Steganography_with_AES_Encryption
             this.password = inputPassword;
 
             // Instantiate a new PasswordHandler.
-            PasswordHandler passwordHandler = new PasswordHandler(this.password);
+            //PasswordHandler passwordHandler = new PasswordHandler(this.password);
 
             // Set up the AESkey to be used later, using the PasswordHandler.
-            this.AESkey = passwordHandler.CreateKey(this.password);
+            //this.AESkey = passwordHandler.CreateKey(this.password);
         }
 
         /// <summary>
