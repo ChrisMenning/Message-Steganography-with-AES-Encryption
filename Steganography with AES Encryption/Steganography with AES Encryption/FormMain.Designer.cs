@@ -379,7 +379,7 @@ namespace Steganography_with_AES_Encryption
             this.buttonOpenImage2.TabIndex = 1;
             this.buttonOpenImage2.Text = "Open Image";
             this.buttonOpenImage2.UseVisualStyleBackColor = true;
-            this.buttonOpenImage2.Click += new System.EventHandler(this.btnOpenImage2_Click);
+            this.buttonOpenImage2.Click += new System.EventHandler(this.btnOpenEncodedImage);
             // 
             // dialogOpenRawImage
             // 

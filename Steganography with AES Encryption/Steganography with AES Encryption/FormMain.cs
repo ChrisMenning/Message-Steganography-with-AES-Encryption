@@ -57,6 +57,8 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         private int aesBlockSize;
 
+        private PNGCompressor pngCompressor;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="FormMain"/> class 
         /// </summary>
@@ -64,6 +66,7 @@ namespace Steganography_with_AES_Encryption
         {
             this.InitializeComponent();
             this.aesBlockSize = 16;
+            pngCompressor = new PNGCompressor();
         }
 
         /// <summary>
@@ -158,28 +161,28 @@ namespace Steganography_with_AES_Encryption
             {
                 this.rawImage = new Bitmap(Bitmap.FromFile(this.dialogOpenRawImage.FileName));
 
+                this.rawImage.Save(Path.GetFullPath(@"temp1.png"), ImageFormat.Png);
+                File.SetAttributes((@"temp1.png"), FileAttributes.Hidden);
+
                 PleaseWait pw = new PleaseWait("Ensuring Lossless Compression. Please Wait.");
-                PNGCompressor pngCompressor = new PNGCompressor();
 
                 pw.Show();
 
                 // Save a temporary lossless copy of the the just-opened image. Hide it.
-                pngCompressor.CompressImageLossLess(dialogOpenRawImage.FileName, dialogOpenRawImage.FileName + "_temp");
-                File.SetAttributes(dialogOpenRawImage.FileName + "_temp", FileAttributes.Hidden);
+                pngCompressor.CompressImageLossLess(Path.GetFullPath(@"temp1.png"), Path.GetFullPath(@"temp2.png"));
+                File.SetAttributes(Path.GetFullPath(@"temp2.png"), FileAttributes.Hidden);
                 
                 // Declare a new image and assign it a reference to the lossless copy.
-                lossless = Image.FromFile(dialogOpenRawImage.FileName + "_temp");
-
-                Image losslessVirtualCopy = lossless;
+                lossless = Image.FromFile(Path.GetFullPath(@"temp2.png"));
 
                 // Draw the picturebox using the lossless copy.
-                this.pictureBoxRaw.Image = losslessVirtualCopy;
+                this.pictureBoxRaw.Image = lossless;
 
                 pw.Close();
 
                 // Delete the lossless copy.
                 // lossless = null;
-                // File.Delete(dialogOpenRawImage.FileName + "_temp");
+                File.Delete(Path.GetFullPath(@"temp1.png"));
 
                 // Turn on encode button.
                 this.btnEncodeImage.Enabled = true;
@@ -190,20 +193,7 @@ namespace Steganography_with_AES_Encryption
         /// Save the new image.
         /// </summary>
         private void SaveEncodedImage()
-        {
-            ImageCodecInfo myImageCodecInfo;
-            System.Drawing.Imaging.Encoder myEncoder;
-
-            // Get an ImageCodecInfo object that represents the PNG codec.
-            myImageCodecInfo = GetEncoderInfo("image/png");
-
-            // for the Quality parameter category.
-            myEncoder = System.Drawing.Imaging.Encoder.Quality;
-
-            EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, 100L);
-            EncoderParameters myEncoderParameters = new EncoderParameters();
-            myEncoderParameters.Param[0] = myEncoderParameter;
-
+        {            
             // Save the image.
             dialogSaveImage.Filter = "PNG Image|*.png";
             dialogSaveImage.Title = "Save an Image File";
@@ -213,9 +203,17 @@ namespace Steganography_with_AES_Encryption
 
             if (dialogSaveImage.FileName != string.Empty)
             {
-                this.encodedImage.Save(dialogSaveImage.FileName, myImageCodecInfo, myEncoderParameters);
+                this.encodedImage.Save(dialogSaveImage.FileName);
                 this.pictureBoxEncoded.Image = this.encodedImage;
             }
+
+            // Clean up.
+            lossless.Dispose();
+            // pictureBoxEncoded.Image = Bitmap.FromFile(dialogSaveImage.FileName);
+            // pictureBoxRaw.Image = Bitmap.FromFile(dialogSaveImage.FileName);
+            // this.encodedImage.Dispose();
+            // this.rawImage.Dispose();
+            File.Delete(Path.GetFullPath(@"temp2.png"));
         }
 
         /// <summary>
@@ -264,9 +262,7 @@ namespace Steganography_with_AES_Encryption
             // Save the image.
             this.SaveEncodedImage();
 
-            // lossless = null;
-            // pictureBoxRaw.Image = pictureBoxEncoded.Image;
-            // File.Delete(dialogOpenRawImage.FileName + "_temp");
+            pictureBoxRaw.Image.Dispose();
         }
 
         /// <summary>
@@ -372,9 +368,9 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         /// <param name="sender">The object that initiated the event</param>
         /// <param name="e">The event arguments</param>
-        private void btnOpenImage2_Click(object sender, EventArgs e)
+        private void btnOpenEncodedImage(object sender, EventArgs e)
         {
-            this.dialogOpenRawImage.Filter = "PNG Image|*.png|Bitmap Image|*.bmp";
+            this.dialogOpenRawImage.Filter = "PNG Image|*.png";
             this.dialogOpenRawImage.ShowHelp = true;
             this.dialogOpenRawImage.FileName = "*.png";
             if (this.dialogOpenRawImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -425,15 +421,23 @@ namespace Steganography_with_AES_Encryption
             pictureBoxRaw.Image = fractal;
 
             fractal.Save(Path.GetFullPath(@"temp1.png"), ImageFormat.Png);
+            File.SetAttributes(@"temp1.png", FileAttributes.Hidden);
 
-            PNGCompressor pngCompressor = new PNGCompressor();
             pngCompressor.CompressImageLossLess(Path.GetFullPath(@"temp1.png"), Path.GetFullPath(@"temp2.png"));
-            fractal = new Bitmap(Bitmap.FromFile(Path.GetFullPath(@"temp2.png")));
+            File.SetAttributes(@"temp2.png", FileAttributes.Hidden);
+
+            // Declare a new image and assign it a reference to the lossless copy.
+            lossless = Image.FromFile(Path.GetFullPath(@"temp2.png"));
+
+            // Draw the picturebox using the lossless copy.
+            this.pictureBoxRaw.Image = lossless;
+
+            fractal = (Bitmap)lossless;
 
             this.rawImage = fractal;
             btnEncodeImage.Enabled = true;
 
-            File.Delete("@temp1.png");
+            File.Delete(Path.GetFullPath(@"temp1.png"));
         }
 
         /// <summary>

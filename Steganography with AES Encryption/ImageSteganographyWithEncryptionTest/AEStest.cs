@@ -37,7 +37,7 @@ namespace ImageSteganographyWithEncryptionTest
             /// <summary>
             /// arrange
             /// </summary>
-            ImageDecoder id = new ImageDecoder();
+            BitmapDecoder id = new BitmapDecoder();
 
             /// <summary>
             /// act

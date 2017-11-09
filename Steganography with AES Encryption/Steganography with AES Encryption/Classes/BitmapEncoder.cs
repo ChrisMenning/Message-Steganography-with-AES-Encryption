@@ -120,6 +120,8 @@ namespace Steganography_with_AES_Encryption
         /// <returns>Bitmap with message hidden in LSB.</returns>
         public Bitmap Encoder(string rawText)
         {
+            Console.WriteLine("Encoders's input string is " + rawText.Length + " long.");
+
             // Get the length of the rawText and convert the int to a byte array.
             // NOTE: an int takes 4 bytes.
             string messageLengthBinaryString = string.Empty;
@@ -139,8 +141,6 @@ namespace Steganography_with_AES_Encryption
             {
                 messageLengthBinaryString += Convert.ToString(rtb[i], 2).PadLeft(8, '0');
             }
-
-            // Console.WriteLine("Encoder says the message length, as binary is: " + messageLengthBinaryString);
 
             // Append the rawTextLength as a binary string (messageLengthBinaryString) to the message to be encoded.
             // Convert the entire rawText into one long string of binary.
