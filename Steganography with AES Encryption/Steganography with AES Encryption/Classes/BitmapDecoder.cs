@@ -109,15 +109,16 @@ namespace Steganography_with_AES_Encryption
         /// <returns>The last bit of any byte.</returns>
         public int LastBitFromColorChannel(byte colorChannel)
         {
-          // Console.WriteLine("Byte from Color Channel: " + colorChannel);
-            if (colorChannel % 2 == 0)
-            {
-                return 0;
-            }
-            else
-            {
-                return 1;
-            }
+            // Console.WriteLine("Byte from Color Channel: " + colorChannel);
+            //  if (colorChannel % 2 == 0)
+            //  {
+            //      return 0;
+            //  }
+            //  else
+            //  {
+            //      return 1;
+            //  }
+            return colorChannel % 2;
         }
 
         /// <summary>

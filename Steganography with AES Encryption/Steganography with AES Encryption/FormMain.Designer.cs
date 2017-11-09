@@ -85,7 +85,7 @@ namespace Steganography_with_AES_Encryption
         /// <summary>
         /// Field identified
         /// </summary>
-        private System.Windows.Forms.TextBox textBoxOutput;
+        private System.Windows.Forms.TextBox textBoxOutputMessage;
 
         /// <summary>
         /// Field identified
@@ -144,7 +144,7 @@ namespace Steganography_with_AES_Encryption
             this.labelDecodedMessage = new System.Windows.Forms.Label();
             this.labelEncodedImage2 = new System.Windows.Forms.Label();
             this.btnDecode = new System.Windows.Forms.Button();
-            this.textBoxOutput = new System.Windows.Forms.TextBox();
+            this.textBoxOutputMessage = new System.Windows.Forms.TextBox();
             this.pictureBoxEncoded2 = new System.Windows.Forms.PictureBox();
             this.buttonOpenImage2 = new System.Windows.Forms.Button();
             this.dialogOpenRawImage = new System.Windows.Forms.OpenFileDialog();
@@ -172,6 +172,7 @@ namespace Steganography_with_AES_Encryption
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnReset = new System.Windows.Forms.Button();
             this.groupBoxEncode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEncoded)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRaw)).BeginInit();
@@ -307,7 +308,7 @@ namespace Steganography_with_AES_Encryption
             this.groupBoxDecode.Controls.Add(this.labelDecodedMessage);
             this.groupBoxDecode.Controls.Add(this.labelEncodedImage2);
             this.groupBoxDecode.Controls.Add(this.btnDecode);
-            this.groupBoxDecode.Controls.Add(this.textBoxOutput);
+            this.groupBoxDecode.Controls.Add(this.textBoxOutputMessage);
             this.groupBoxDecode.Controls.Add(this.pictureBoxEncoded2);
             this.groupBoxDecode.Controls.Add(this.buttonOpenImage2);
             this.groupBoxDecode.Location = new System.Drawing.Point(629, 57);
@@ -351,13 +352,13 @@ namespace Steganography_with_AES_Encryption
             // 
             // textBoxOutput
             // 
-            this.textBoxOutput.Location = new System.Drawing.Point(6, 303);
-            this.textBoxOutput.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBoxOutput.Multiline = true;
-            this.textBoxOutput.Name = "textBoxOutput";
-            this.textBoxOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxOutput.Size = new System.Drawing.Size(599, 116);
-            this.textBoxOutput.TabIndex = 4;
+            this.textBoxOutputMessage.Location = new System.Drawing.Point(6, 303);
+            this.textBoxOutputMessage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxOutputMessage.Multiline = true;
+            this.textBoxOutputMessage.Name = "textBoxOutput";
+            this.textBoxOutputMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxOutputMessage.Size = new System.Drawing.Size(599, 116);
+            this.textBoxOutputMessage.TabIndex = 4;
             // 
             // pictureBoxEncoded2
             // 
@@ -398,7 +399,7 @@ namespace Steganography_with_AES_Encryption
             // 
             // btnHelpPageTest
             // 
-            this.btnHelpPageTest.Location = new System.Drawing.Point(194, 493);
+            this.btnHelpPageTest.Location = new System.Drawing.Point(178, 493);
             this.btnHelpPageTest.Margin = new System.Windows.Forms.Padding(4);
             this.btnHelpPageTest.Name = "btnHelpPageTest";
             this.btnHelpPageTest.Size = new System.Drawing.Size(147, 28);
@@ -409,7 +410,7 @@ namespace Steganography_with_AES_Encryption
             // 
             // btnFractalGeneratorTest
             // 
-            this.btnFractalGeneratorTest.Location = new System.Drawing.Point(349, 493);
+            this.btnFractalGeneratorTest.Location = new System.Drawing.Point(333, 493);
             this.btnFractalGeneratorTest.Margin = new System.Windows.Forms.Padding(4);
             this.btnFractalGeneratorTest.Name = "btnFractalGeneratorTest";
             this.btnFractalGeneratorTest.Size = new System.Drawing.Size(185, 28);
@@ -574,11 +575,23 @@ namespace Steganography_with_AES_Encryption
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(526, 493);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(185, 28);
+            this.btnReset.TabIndex = 6;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1266, 531);
+            this.Controls.Add(this.btnReset);
             this.Controls.Add(this.checkBoxEncryption);
             this.Controls.Add(this.btnFractalGeneratorTest);
             this.Controls.Add(this.btnHelpPageTest);
@@ -630,5 +643,6 @@ namespace Steganography_with_AES_Encryption
         private System.Windows.Forms.ToolStripMenuItem openEncodedImageToolStripMenuItem;
         private System.Windows.Forms.Label labelCharLimit;
         private System.Windows.Forms.ToolStripMenuItem useEncryptionslowerButMoreSecureToolStripMenuItem;
+        private System.Windows.Forms.Button btnReset;
     }
 }

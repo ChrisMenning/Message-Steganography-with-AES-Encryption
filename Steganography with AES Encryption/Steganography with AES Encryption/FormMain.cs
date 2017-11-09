@@ -155,7 +155,9 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         private void OpenRawImage()
         {
-            this.dialogOpenRawImage.Filter = "PNG Image|*.png|JPG Image|*.jpg|BMP Image|*.bmp";
+            this.dialogOpenRawImage.Filter = "All Graphics Types|*.bmp;*.jpg;*.jpeg;*.png;*.tif;*.tiff" 
+                + "BMP|*.bmp|GIF|*.gif|JPG|*.jpg;*.jpeg|PNG|*.png|TIFF|*.tif;*.tiff|";
+
             this.dialogOpenRawImage.ShowHelp = true;
             this.dialogOpenRawImage.FileName = string.Empty;
             if (this.dialogOpenRawImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -362,12 +364,12 @@ namespace Steganography_with_AES_Encryption
                 Console.WriteLine("The message to be decrypted is " + messageLength);
 
                 // Pass the byteStringsToBytes byte array, encryption key, and derived IV to the decrypter.
-                textBoxOutput.Text = aes.DecryptStringFromBytes_Aes(byteStringsToBytes, passwordHandler.EncryptionKey, derivedIV);
+                textBoxOutputMessage.Text = aes.DecryptStringFromBytes_Aes(byteStringsToBytes, passwordHandler.EncryptionKey, derivedIV);
             }
             else
             {
                 this.imgDec = new BitmapDecoder();
-                this.textBoxOutput.Text = this.imgDec.Decoder(this.encodedImage);
+                this.textBoxOutputMessage.Text = this.imgDec.Decoder(this.encodedImage);
             }
         }
 
@@ -538,6 +540,29 @@ namespace Steganography_with_AES_Encryption
             {
                 checkBoxEncryption.Checked = true;
             }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            resetEverything();
+        }
+
+        private void resetEverything()
+        {
+            this.lossless = new Bitmap(1, 1);
+            this.rawImage = new Bitmap(1, 1);
+            this.encodedImage = new Bitmap(1, 1);
+            textBoxInputMessage.Clear();
+            textBoxOutputMessage.Clear();
+
+            pictureBoxRaw.Image = null;
+            pictureBoxEncoded.Image = null;
+            pictureBoxEncoded2.Image = null;
+            imgEnc = null;
+            imgDec = null;
+
+            btnEncodeImage.Enabled = false;
+            btnDecode.Enabled = false;
         }
     }
 }
