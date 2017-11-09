@@ -21,7 +21,7 @@ namespace Steganography_with_AES_Encryption
     public class ImageEncoder
     {
         /// <summary>
-        /// The rawImage bitmap.
+        /// The rawImage bitmap..
         /// </summary>
         private Bitmap rawImage;
 
