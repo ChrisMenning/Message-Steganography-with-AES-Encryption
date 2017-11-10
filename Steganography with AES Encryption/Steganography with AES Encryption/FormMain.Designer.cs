@@ -173,6 +173,7 @@ namespace Steganography_with_AES_Encryption
             this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnReset = new System.Windows.Forms.Button();
+            this.btnStockImagesTest = new System.Windows.Forms.Button();
             this.groupBoxEncode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEncoded)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRaw)).BeginInit();
@@ -350,12 +351,12 @@ namespace Steganography_with_AES_Encryption
             this.btnDecode.UseVisualStyleBackColor = true;
             this.btnDecode.Click += new System.EventHandler(this.btnDecode_Click);
             // 
-            // textBoxOutput
+            // textBoxOutputMessage
             // 
             this.textBoxOutputMessage.Location = new System.Drawing.Point(6, 303);
             this.textBoxOutputMessage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxOutputMessage.Multiline = true;
-            this.textBoxOutputMessage.Name = "textBoxOutput";
+            this.textBoxOutputMessage.Name = "textBoxOutputMessage";
             this.textBoxOutputMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxOutputMessage.Size = new System.Drawing.Size(599, 116);
             this.textBoxOutputMessage.TabIndex = 4;
@@ -577,7 +578,7 @@ namespace Steganography_with_AES_Encryption
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(526, 493);
+            this.btnReset.Location = new System.Drawing.Point(1055, 493);
             this.btnReset.Margin = new System.Windows.Forms.Padding(4);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(185, 28);
@@ -586,11 +587,22 @@ namespace Steganography_with_AES_Encryption
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
+            // btnStockImagesTest
+            // 
+            this.btnStockImagesTest.Location = new System.Drawing.Point(526, 493);
+            this.btnStockImagesTest.Margin = new System.Windows.Forms.Padding(4);
+            this.btnStockImagesTest.Name = "btnStockImagesTest";
+            this.btnStockImagesTest.Size = new System.Drawing.Size(185, 28);
+            this.btnStockImagesTest.TabIndex = 7;
+            this.btnStockImagesTest.Text = "Stock Images Test";
+            this.btnStockImagesTest.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1266, 531);
+            this.Controls.Add(this.btnStockImagesTest);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.checkBoxEncryption);
             this.Controls.Add(this.btnFractalGeneratorTest);
@@ -644,5 +656,6 @@ namespace Steganography_with_AES_Encryption
         private System.Windows.Forms.Label labelCharLimit;
         private System.Windows.Forms.ToolStripMenuItem useEncryptionslowerButMoreSecureToolStripMenuItem;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnStockImagesTest;
     }
 }
