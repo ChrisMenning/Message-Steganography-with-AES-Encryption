@@ -19,7 +19,7 @@ namespace Steganography_with_AES_Encryption
     /// <summary>
     /// The ImageDecoder Class.
     /// </summary>
-    public class ImageDecoder
+    public class BitmapDecoder
     {
         /// <summary>
         /// The encodedImage Bitmap.
@@ -34,20 +34,24 @@ namespace Steganography_with_AES_Encryption
         /// <summary>
         /// The bytesFromImage List of integers.
         /// </summary>
-        private List<int> bytesFromImage;
+        private List<int> bitsFromImage;
 
         /// <summary>
         /// The decodedText string.
         /// </summary>
-        private string decodedText;
+        private StringBuilder decodedText;
+
+        List<string> bytesList;
 
         /// <summary>
         /// Initializes a new instance of the ImageDecoder class.
         /// </summary>
-        public ImageDecoder()
+        public BitmapDecoder()
         {
-            this.bytesFromImage = new List<int>();
-            this.TestImage = Properties.Resources.Tiger;
+            this.bitsFromImage = new List<int>();
+            this.testImage = Properties.Resources.Tiger;
+            this.decodedText = new StringBuilder();
+            this.bytesList = new List<string>();
         }
 
         /// <summary>
@@ -82,6 +86,22 @@ namespace Steganography_with_AES_Encryption
             }
         }
 
+        public List<int> BitsFromImage
+        {
+            get
+            {
+                return bitsFromImage;
+            }
+        }
+
+        public List<string> BytesList
+        {
+            get
+            {
+                return bytesList;
+            }
+        }
+
         /// <summary>
         /// Accepts a byte, determines if it is even or odd, and adds either a 1 or 0 to the bytesFromImage list.
         /// </summary>
@@ -89,15 +109,16 @@ namespace Steganography_with_AES_Encryption
         /// <returns>The last bit of any byte.</returns>
         public int LastBitFromColorChannel(byte colorChannel)
         {
-          // Console.WriteLine("Byte from Color Channel: " + colorChannel);
-            if (colorChannel % 2 == 0)
-            {
-                return 0;
-            }
-            else
-            {
-                return 1;
-            }
+            // Console.WriteLine("Byte from Color Channel: " + colorChannel);
+            //  if (colorChannel % 2 == 0)
+            //  {
+            //      return 0;
+            //  }
+            //  else
+            //  {
+            //      return 1;
+            //  }
+            return colorChannel % 2;
         }
 
         /// <summary>
@@ -120,58 +141,70 @@ namespace Steganography_with_AES_Encryption
                     // Console.WriteLine("Decoder | Pixel color: " + pixelColor);
 
                     // Pull the last bit out of each color channel and concatenate them onto the bytesFromImage list.
-                    this.bytesFromImage.Add(this.LastBitFromColorChannel(pixelColor.A));
-                    this.bytesFromImage.Add(this.LastBitFromColorChannel(pixelColor.R));
-                    this.bytesFromImage.Add(this.LastBitFromColorChannel(pixelColor.G));
-                    this.bytesFromImage.Add(this.LastBitFromColorChannel(pixelColor.B));
+                    this.bitsFromImage.Add(this.LastBitFromColorChannel(pixelColor.A));
+                    this.bitsFromImage.Add(this.LastBitFromColorChannel(pixelColor.R));
+                    this.bitsFromImage.Add(this.LastBitFromColorChannel(pixelColor.G));
+                    this.bitsFromImage.Add(this.LastBitFromColorChannel(pixelColor.B));
                 }
             }
+
+            Console.WriteLine("Decoder finished pulling bits from pixels. Found " + this.bitsFromImage.Count + " bits.");
+            Console.WriteLine("Turning bits to bytes");
+
+            string messageLengthByteAsString = string.Empty;
+            int messageLength = 0;
+
+            // Get the first 4 bytes (32 bits). This represents the length of the message.
+            for (int i = 0; i < 32; i++)
+            {
+                messageLengthByteAsString += this.bitsFromImage[i].ToString();
+            }
+
+            Console.WriteLine("Decoder | First four bytes: " + messageLengthByteAsString);
+
+            // Convert string of binary back into an int.
+            messageLength = Convert.ToInt32(messageLengthByteAsString, 2);
+
 
             int eightCounter = 1;
             string eightDigitByte = string.Empty;
 
-            Queue<string> bytesList = new Queue<string>();
+            Console.WriteLine("Trimming first 32 bits from " + this.bitsFromImage.Count + " bits.");
+         
+            // Remove first 4 bits from bitsFromImage list.
+            for (int i = 0; i < 32; i++)
+            {
+                this.bitsFromImage.RemoveAt(0);
+            }
+
+            Console.WriteLine("bitsFromImage is now " + this.bitsFromImage.Count + " long.");
+            Console.WriteLine("Decoder says message should be " + messageLength + " chars long.");
 
             // Loop through each digit of the bytesFromImage list.
-            for (int i = 1; i < this.bytesFromImage.Count; i++)
+            for (int i = 1; i <= (messageLength * 8); i++)
             {
                 // Create new 8-digit groups.
                 if (eightCounter <= 8)
                 {
-                    eightDigitByte += this.bytesFromImage[i - 1].ToString();
+                    eightDigitByte += this.bitsFromImage[i -1].ToString();
                     eightCounter++;
                 }
 
-                if (i % 8 == 0)
+                if (i % 8 == 0 && i !=0)
                 {
-                    if (eightDigitByte != "00000000")
-                    {
-                        bytesList.Enqueue(eightDigitByte);
-                        eightCounter = 1;
-                        eightDigitByte = string.Empty;
-                    }
-                    else
-                    {
-                        Console.WriteLine("FOUND THE END OF THE MESSAGE!");
-                        bytesList.Enqueue(eightDigitByte);
-                        break;
-                    }
+                    bytesList.Add(eightDigitByte);
+                    eightCounter = 1;
+                    eightDigitByte = string.Empty;
                 }
             }
 
-            // Loop through the list of eight-digit numbers
-            foreach (string d in bytesList)
+            Console.WriteLine("Finished turning bits to bytes. Found " + bytesList.Count + " bytes.");
+
+            this.decodedText = new StringBuilder();
+            for (int i = 0; i < bytesList.Count; i++)
             {
-                if (d != "00000000")
-                {
-                    // Convert the byte string into a char.
-                    this.decodedText += (char)Convert.ToByte(d, 2);
-                }
-                else
-                {
-                    // Stop appending bytes to the output string.
-                    break;
-                }
+                // Console.WriteLine(bytesList[i]);
+                this.decodedText.Append((char)Convert.ToByte(bytesList[i], 2));
             }
 
             // Update the output textbox's text.
@@ -179,28 +212,3 @@ namespace Steganography_with_AES_Encryption
         }
     }
 }
-
-/*
- *                                                                                                 
- *                                                            ,,                                   
- *    `7MMF'                                                `7MM                                   
- *      MM                                                    MM                                   
- *      MM         .gP"Ya   .P"Ybmmm .gP"Ya `7MMpMMMb.   ,M""bMM   ,6"Yb.  `7Mb,od8 `7M'   `MF'    
- *      MM        ,M'   Yb :MI  I8  ,M'   Yb  MM    MM ,AP    MM  8)   MM    MM' "'   VA   ,V      
- *      MM      , 8M""""""  WmmmP"  8M""""""  MM    MM 8MI    MM   ,pm9MM    MM        VA ,V       
- *      MM     ,M YM.    , 8M       YM.    ,  MM    MM `Mb    MM  8M   MM    MM         VVV        
- *    .JMMmmmmMMM  `Mbmmd'  YMMMMMb  `Mbmmd'.JMML  JMML.`Wbmd"MML.`Moo9^Yo..JMML.       ,V         
- *                         6'     dP                                                   ,V          
- *                         Ybmmmd'                                                  OOb"           
- *                                                                                                 
- *                  ,,          ,,                                                                 
- *    `7MMF'        db        `7MM                                                                 
- *      MM                      MM                                                                 
- *      MM        `7MM  ,p6"bo  MMpMMMb.  .gP"Ya `7MMpMMMb.  ,pP"Ybd                               
- *      MM          MM 6M'  OO  MM    MM ,M'   Yb  MM    MM  8I   `"                               
- *      MM      ,   MM 8M       MM    MM 8M""""""  MM    MM  `YMMMa.                               
- *      MM     ,M   MM YM.    , MM    MM YM.    ,  MM    MM  L.   I8                               
- *    .JMMmmmmMMM .JMML.YMbmd'.JMML  JMML.`Mbmmd'.JMML  JMML.M9mmmP'                               
- *                                                                                                 
- *                                                                                                 
- */

@@ -14,6 +14,7 @@ namespace Steganography_with_AES_Encryption
     using System.Security.Cryptography;
     using System.Text;
     using System.Threading.Tasks;
+    using System.Windows.Forms;
 
     /*
      * About:
@@ -29,6 +30,7 @@ namespace Steganography_with_AES_Encryption
     /// </summary>
     public class AESEncrypt
     {
+        private FormMain main;
         /// <summary>
         /// The rawMessage string.
         /// </summary>
@@ -42,7 +44,9 @@ namespace Steganography_with_AES_Encryption
         /// <summary>
         /// The key used for the AES encryption.
         /// </summary>
-        private byte[] AESkey;
+        private byte[] aesKey;
+
+        private static byte[] initializationVector;
 
         /// <summary>
         /// The encryptedMessage bytes array.
@@ -54,16 +58,17 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         /// <param name="inputMessage">The raw message.</param>
         /// <param name="inputPassword">The password.</param>
-        public AESEncrypt(string inputMessage, string inputPassword)
+        public AESEncrypt(string inputMessage, string inputPassword, FormMain mainForm)
         {
+            main = mainForm;
             this.rawMessage = inputMessage;
             this.password = inputPassword;
 
             // Instantiate a new PasswordHandler.
-            PasswordHandler passwordHandler = new PasswordHandler(this.password);
+            PasswordHandler passwordHandler = new PasswordHandler(this.password, main);
 
             // Set up the AESkey to be used later, using the PasswordHandler.
-            this.AESkey = passwordHandler.CreateKey(this.password);
+            this.AesKey = passwordHandler.CreateKey(this.password);
         }
 
         /// <summary>
@@ -79,6 +84,27 @@ namespace Steganography_with_AES_Encryption
             set
             {
                 this.encryptedMessage = value;
+            }
+        }
+
+        public byte[] AesKey
+        {
+            get
+            {
+                return aesKey;
+            }
+
+            set
+            {
+                aesKey = value;
+            }
+        }
+
+        public byte[] InitializationVector
+        {
+            get
+            {
+                return initializationVector;
             }
         }
 
@@ -107,13 +133,18 @@ namespace Steganography_with_AES_Encryption
                 throw new ArgumentNullException("IV");
             }
 
+            initializationVector = IV;
+
             byte[] encrypted;
 
             // Create an Aes object with the specified key and IV.
             using (Aes aesAlg = Aes.Create())
             {
+                //aesAlg.BlockSize = IV.Length;
                 aesAlg.Key = key;
                 aesAlg.IV = IV;
+                // aesAlg.Mode = CipherMode.CBC;
+                aesAlg.Padding = PaddingMode.Zeros;
 
                 // Create a decrytor to perform the stream transform.
                 ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
@@ -141,7 +172,7 @@ namespace Steganography_with_AES_Encryption
         /// <summary>
         /// Accepts the message string and the AES key and encrypts the message.
         /// </summary>
-        private void EncryptMessage()
+        public void EncryptMessage()
         {
             try
             {
@@ -149,8 +180,11 @@ namespace Steganography_with_AES_Encryption
                 // This generates a new key and initialization vector (IV).
                 using (Aes myAes = Aes.Create())
                 {
+                    // myAes.BlockSize = initializationVector.Length;
+                    // Console.WriteLine("Encrypter is using block size: " + initializationVector.Length);
+
                     // Encrypt the string to an array of bytes.
-                    this.EncryptedMessage = EncryptStringToBytes_Aes(this.rawMessage, this.AESkey, myAes.IV);
+                    this.encryptedMessage = EncryptStringToBytes_Aes(this.rawMessage, this.AesKey, myAes.IV);
                 }
             }
             catch (Exception e)
@@ -158,30 +192,29 @@ namespace Steganography_with_AES_Encryption
                 Console.WriteLine("Error: {0}", e.Message);
             }
         }
+
+        public string EncryptedMessageString()
+        {
+            string str = string.Empty;
+
+            if (this.encryptedMessage.Length != 0)
+            {
+                foreach (byte b in this.encryptedMessage)
+                {
+                    str += Convert.ToString(b, 2).PadLeft(8, '0');
+                }
+
+                if (str != string.Empty)
+                {
+                    Console.WriteLine("Good news. The Encrypted Message coming from the encrypter is not empty.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bad news. Encryption failed.");
+            }
+            
+            return str;
+        }
     }
 }
-
-/***
- *                                                                                                 
- *                                                            ,,                                   
- *    `7MMF'                                                `7MM                                   
- *      MM                                                    MM                                   
- *      MM         .gP"Ya   .P"Ybmmm .gP"Ya `7MMpMMMb.   ,M""bMM   ,6"Yb.  `7Mb,od8 `7M'   `MF'    
- *      MM        ,M'   Yb :MI  I8  ,M'   Yb  MM    MM ,AP    MM  8)   MM    MM' "'   VA   ,V      
- *      MM      , 8M""""""  WmmmP"  8M""""""  MM    MM 8MI    MM   ,pm9MM    MM        VA ,V       
- *      MM     ,M YM.    , 8M       YM.    ,  MM    MM `Mb    MM  8M   MM    MM         VVV        
- *    .JMMmmmmMMM  `Mbmmd'  YMMMMMb  `Mbmmd'.JMML  JMML.`Wbmd"MML.`Moo9^Yo..JMML.       ,V         
- *                         6'     dP                                                   ,V          
- *                         Ybmmmd'                                                  OOb"           
- *                                                                                                 
- *                  ,,          ,,                                                                 
- *    `7MMF'        db        `7MM                                                                 
- *      MM                      MM                                                                 
- *      MM        `7MM  ,p6"bo  MMpMMMb.  .gP"Ya `7MMpMMMb.  ,pP"Ybd                               
- *      MM          MM 6M'  OO  MM    MM ,M'   Yb  MM    MM  8I   `"                               
- *      MM      ,   MM 8M       MM    MM 8M""""""  MM    MM  `YMMMa.                               
- *      MM     ,M   MM YM.    , MM    MM YM.    ,  MM    MM  L.   I8                               
- *    .JMMmmmmMMM .JMML.YMbmd'.JMML  JMML.`Mbmmd'.JMML  JMML.M9mmmP'                               
- *                                                                                                 
- *                                                                                                 
- */

@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PNGCompressor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PNGCompressor.1.0.5\lib\net45\PNGCompressor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -65,6 +69,7 @@
     <Compile Include="Classes\BitmapDecoder.cs">
     </Compile>
     <Compile Include="Classes\JpegEncoder.cs" />
+    <Compile Include="Classes\Mandelbrot.cs" />
     <Compile Include="Classes\PasswordHandler.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -85,6 +90,18 @@
     <Compile Include="HelpPage.Designer.cs">
       <DependentUpon>HelpPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="PasswordInputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PasswordInputDialog.Designer.cs">
+      <DependentUpon>PasswordInputDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PleaseWait.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PleaseWait.Designer.cs">
+      <DependentUpon>PleaseWait.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutPage.resx">
@@ -102,6 +119,12 @@
     <EmbeddedResource Include="HelpPage.resx">
       <DependentUpon>HelpPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PasswordInputDialog.resx">
+      <DependentUpon>PasswordInputDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PleaseWait.resx">
+      <DependentUpon>PleaseWait.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -112,6 +135,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

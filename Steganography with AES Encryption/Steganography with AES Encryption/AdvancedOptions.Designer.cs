@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBoxAESBlock = new System.Windows.Forms.GroupBox();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton256 = new System.Windows.Forms.RadioButton();
+            this.radioButton192 = new System.Windows.Forms.RadioButton();
+            this.radioButton128 = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -41,9 +41,9 @@
             // 
             // groupBoxAESBlock
             // 
-            this.groupBoxAESBlock.Controls.Add(this.radioButton3);
-            this.groupBoxAESBlock.Controls.Add(this.radioButton2);
-            this.groupBoxAESBlock.Controls.Add(this.radioButton1);
+            this.groupBoxAESBlock.Controls.Add(this.radioButton256);
+            this.groupBoxAESBlock.Controls.Add(this.radioButton192);
+            this.groupBoxAESBlock.Controls.Add(this.radioButton128);
             this.groupBoxAESBlock.Location = new System.Drawing.Point(12, 12);
             this.groupBoxAESBlock.Name = "groupBoxAESBlock";
             this.groupBoxAESBlock.Size = new System.Drawing.Size(330, 100);
@@ -51,38 +51,38 @@
             this.groupBoxAESBlock.TabStop = false;
             this.groupBoxAESBlock.Text = "AES block size";
             // 
-            // radioButton3
+            // radioButton256
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(238, 48);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(79, 21);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "256 bits";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton256.AutoSize = true;
+            this.radioButton256.Location = new System.Drawing.Point(238, 48);
+            this.radioButton256.Name = "radioButton256";
+            this.radioButton256.Size = new System.Drawing.Size(79, 21);
+            this.radioButton256.TabIndex = 2;
+            this.radioButton256.TabStop = true;
+            this.radioButton256.Text = "256 bits";
+            this.radioButton256.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // radioButton192
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(128, 48);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(79, 21);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "192 bits";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton192.AutoSize = true;
+            this.radioButton192.Location = new System.Drawing.Point(128, 48);
+            this.radioButton192.Name = "radioButton192";
+            this.radioButton192.Size = new System.Drawing.Size(79, 21);
+            this.radioButton192.TabIndex = 1;
+            this.radioButton192.TabStop = true;
+            this.radioButton192.Text = "192 bits";
+            this.radioButton192.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // radioButton128
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(20, 48);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(79, 21);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "128 bits";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton128.AutoSize = true;
+            this.radioButton128.Location = new System.Drawing.Point(20, 48);
+            this.radioButton128.Name = "radioButton128";
+            this.radioButton128.Size = new System.Drawing.Size(79, 21);
+            this.radioButton128.TabIndex = 0;
+            this.radioButton128.TabStop = true;
+            this.radioButton128.Text = "128 bits";
+            this.radioButton128.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -113,6 +113,7 @@
             this.button2.TabIndex = 5;
             this.button2.Text = "OK";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -122,6 +123,7 @@
             this.button3.TabIndex = 6;
             this.button3.Text = "Cancel";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // AdvancedOptions
             // 
@@ -144,9 +146,9 @@
 
         #endregion
         private System.Windows.Forms.GroupBox groupBoxAESBlock;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton256;
+        private System.Windows.Forms.RadioButton radioButton192;
+        private System.Windows.Forms.RadioButton radioButton128;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button2;

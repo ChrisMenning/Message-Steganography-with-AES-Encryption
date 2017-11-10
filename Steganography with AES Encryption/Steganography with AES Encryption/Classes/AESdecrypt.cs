@@ -29,11 +29,14 @@ namespace Steganography_with_AES_Encryption
     /// </summary>
     public class AESDecrypt
     {
+        FormMain main;
+
         /// <summary>
         /// Initializes a new instance of the AESDecrypt class.
         /// </summary>
-        public AESDecrypt()
+        public AESDecrypt(FormMain main)
         {
+            this.main = main;
         }
 
         /// <summary>
@@ -43,7 +46,7 @@ namespace Steganography_with_AES_Encryption
         /// <param name="key">The Key</param>
         /// <param name="IV">The initialization vector.</param>
         /// <returns>The decrypted string.</returns>
-        public static string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] key, byte[] IV)
+        public string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] key, byte[] IV)
         {
             // Check arguments.
             if (cipherText == null || cipherText.Length <= 0)
@@ -63,16 +66,20 @@ namespace Steganography_with_AES_Encryption
 
             // Declare the string used to hold
             // the decrypted text.
-            string plaintext = null;
+            string plaintext = string.Empty;
 
             // Create an Aes object with the specified key and IV.
-            using (Aes aesAlg = Aes.Create())
+            using (Aes aesAlg = Aes.Create("AES"))
             {
+                // aesAlg.BlockSize = main.AesBlockSize;
                 aesAlg.Key = key;
                 aesAlg.IV = IV;
 
+                // aesAlg.Mode = CipherMode.CBC;
+                aesAlg.Padding = PaddingMode.Zeros;
+
                 // Create a decryptor to perform the stream transform.
-                ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+                ICryptoTransform decryptor = aesAlg.CreateDecryptor(key, IV);
 
                 // Create the streams used for decryption.
                 using (MemoryStream memoryStreamDecrypt = new MemoryStream(cipherText))
@@ -92,28 +99,3 @@ namespace Steganography_with_AES_Encryption
         }
     }
 }
-
-/*
- *                                                                                                 
- *                                                            ,,                                   
- *    `7MMF'                                                `7MM                                   
- *      MM                                                    MM                                   
- *      MM         .gP"Ya   .P"Ybmmm .gP"Ya `7MMpMMMb.   ,M""bMM   ,6"Yb.  `7Mb,od8 `7M'   `MF'    
- *      MM        ,M'   Yb :MI  I8  ,M'   Yb  MM    MM ,AP    MM  8)   MM    MM' "'   VA   ,V      
- *      MM      , 8M""""""  WmmmP"  8M""""""  MM    MM 8MI    MM   ,pm9MM    MM        VA ,V       
- *      MM     ,M YM.    , 8M       YM.    ,  MM    MM `Mb    MM  8M   MM    MM         VVV        
- *    .JMMmmmmMMM  `Mbmmd'  YMMMMMb  `Mbmmd'.JMML  JMML.`Wbmd"MML.`Moo9^Yo..JMML.       ,V         
- *                         6'     dP                                                   ,V          
- *                         Ybmmmd'                                                  OOb"           
- *                                                                                                 
- *                  ,,          ,,                                                                 
- *    `7MMF'        db        `7MM                                                                 
- *      MM                      MM                                                                 
- *      MM        `7MM  ,p6"bo  MMpMMMb.  .gP"Ya `7MMpMMMb.  ,pP"Ybd                               
- *      MM          MM 6M'  OO  MM    MM ,M'   Yb  MM    MM  8I   `"                               
- *      MM      ,   MM 8M       MM    MM 8M""""""  MM    MM  `YMMMa.                               
- *      MM     ,M   MM YM.    , MM    MM YM.    ,  MM    MM  L.   I8                               
- *    .JMMmmmmMMM .JMML.YMbmd'.JMML  JMML.`Mbmmd'.JMML  JMML.M9mmmP'                               
- *                                                                                                 
- *                                                                                                 
- */
