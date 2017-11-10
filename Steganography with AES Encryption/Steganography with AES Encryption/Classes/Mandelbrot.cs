@@ -58,7 +58,7 @@ namespace Steganography_with_AES_Encryption
             const int MAX_MAG_SQUARED = 4;
             
             // Make a Bitmap to draw on.
-            m_Bm = new Bitmap(width, height);
+            m_Bm = new Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             Graphics gr = Graphics.FromImage(m_Bm);
 
             // Adjust the coordinate bounds to fit.

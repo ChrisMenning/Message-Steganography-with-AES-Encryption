@@ -122,32 +122,13 @@ namespace Steganography_with_AES_Encryption
         {
             Console.WriteLine("Encoders's input string is " + rawText.Length + " long.");
 
-            // Get the length of the rawText and convert the int to a byte array.
-            // NOTE: an int takes 4 bytes.
-            string messageLengthBinaryString = string.Empty;
-
-            // Create a byte array from the rawText.Length, which is an int.
-            // Since an int takes 4 bytes, the byte array will be 4 long.
-            byte[] rtb = BitConverter.GetBytes(rawText.Length);
-
-            // If the program is running on a LittleEndian machine, reverse the array.
-            if (BitConverter.IsLittleEndian)
-            {
-                Array.Reverse(rtb);
-            }
-
-            // Loop through the array, convert the byte into a binary string, and append onto messageLengthBinaryString.
-            for (int i = 0; i < 4; i++)
-            {
-                messageLengthBinaryString += Convert.ToString(rtb[i], 2).PadLeft(8, '0');
-            }
-
-            Console.WriteLine("Encoder | First four bytes: " + messageLengthBinaryString);
-
             // Append the rawTextLength as a binary string (messageLengthBinaryString) to the message to be encoded.
             // Convert the entire rawText into one long string of binary.
             StringBuilder forEncoding = new StringBuilder();
-            forEncoding.Append(messageLengthBinaryString);
+
+            // Get the length of the string, turn the length into a 4-byte-long binary string, and include
+            // it with the message so the decoder will now how long the message is and when to stop.
+            forEncoding.Append(LengthAsFourBytesOfBinary(rawText));
 
             // If we're using encryption, then prepend the Initialization Vector before the forEncoding string.
             if (initializationVector.Length != 0)
@@ -170,7 +151,7 @@ namespace Steganography_with_AES_Encryption
             this.bytesString = forEncoding;
 
             // Declare a bitmap for encoding the image. Make it the same width and height as the original.
-            this.encodedImage = new Bitmap(this.rawImage.Width, this.rawImage.Height);
+            this.encodedImage = new Bitmap(this.rawImage.Width, this.rawImage.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
             // Declare a counter.
             int counter = 0;
@@ -290,6 +271,39 @@ namespace Steganography_with_AES_Encryption
                     Console.WriteLine(this.encodedImage.GetPixel(col, row));
                 }
             }
+        }
+
+        /// <summary>
+        /// Convert the length of the message into a 4-byte long binary string representation.
+        /// </summary>
+        /// <param name="rawText"></param>
+        /// <returns></returns>
+        private string LengthAsFourBytesOfBinary(string rawText)
+        {
+
+            // Get the length of the rawText and convert the int to a byte array.
+            // NOTE: an int takes 4 bytes.
+            string messageLengthBinaryString = string.Empty;
+
+            // Create a byte array from the rawText.Length, which is an int.
+            // Since an int takes 4 bytes, the byte array will be 4 long.
+            byte[] rtb = BitConverter.GetBytes(rawText.Length);
+
+            // If the program is running on a LittleEndian machine, reverse the array.
+            if (BitConverter.IsLittleEndian)
+            {
+                Array.Reverse(rtb);
+            }
+
+            // Loop through the array, convert the byte into a binary string, and append onto messageLengthBinaryString.
+            for (int i = 0; i < 4; i++)
+            {
+                messageLengthBinaryString += Convert.ToString(rtb[i], 2).PadLeft(8, '0');
+            }
+
+            Console.WriteLine("Encoder | First four bytes: " + messageLengthBinaryString);
+
+            return messageLengthBinaryString;
         }
 
         /// <summary>

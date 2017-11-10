@@ -409,7 +409,7 @@ namespace Steganography_with_AES_Encryption
             this.dialogOpenRawImage.FileName = "*.png";
             if (this.dialogOpenRawImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                this.encodedImage = new Bitmap(Bitmap.FromFile(this.dialogOpenRawImage.FileName));
+                this.encodedImage = new Bitmap(this.dialogOpenRawImage.FileName);
                 this.pictureBoxEncoded2.Image = this.encodedImage;
                 this.btnDecode.Enabled = true;
             }
