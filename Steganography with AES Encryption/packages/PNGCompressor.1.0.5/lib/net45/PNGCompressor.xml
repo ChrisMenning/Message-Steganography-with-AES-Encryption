@@ -1,0 +1,321 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PNGCompressor</name>
+    </assembly>
+    <members>
+        <member name="T:PNGCompression.CompressionType">
+            <summary>
+            CompressionType to be lossless or lossy .
+            </summary>
+        </member>
+        <member name="F:PNGCompression.CompressionType.Lossy">
+            <summary>
+            Image loses its quality .
+            </summary>
+        </member>
+        <member name="F:PNGCompression.CompressionType.LossLess">
+            <summary>
+            Image does not lose its quality .
+            </summary>
+        </member>
+        <member name="T:PNGCompression.PNGCompressor">
+            <summary>
+            Wrapper for OptiPNG and PNGQuant 
+            </summary>
+        </member>
+        <member name="F:PNGCompression.PNGCompressor.PNGProcess">
+            <summary>
+            process 
+            </summary>
+        </member>
+        <member name="M:PNGCompression.PNGCompressor.#ctor">
+            <summary>
+            Initializes a new instance of the ImageCompressor class.
+            </summary>
+            <remarks>
+            ImageCompressor is NOT thread-safe. Separate instance should be used for each thread.
+            </remarks>
+        </member>
+        <member name="M:PNGCompression.PNGCompressor.CompressImageLossLess(System.String,System.String)">
+            <summary>
+            Compress PNG image with lossless algorithm.
+            </summary>
+            <param name="inputFile">png file with .png extension</param>
+            <param name="outputFile">output file name with .png extension.</param>
+        </member>
+        <member name="M:PNGCompression.PNGCompressor.CompressImageLossy(System.String,System.String)">
+            <summary>
+            Compress PNG image with lossy algorithm.
+            </summary>
+            <param name="inputFile"></param>
+            <param name="outputFile"></param>
+        </member>
+        <member name="M:PNGCompression.PNGCompressor.CompressImageLossLess(System.String,System.String,PNGCompression.LosslessInputSettings)">
+            <summary>
+            
+            </summary>
+            <param name="inputFile"></param>
+            <param name="outputFile"></param>
+            <param name="inputSettings"></param>
+        </member>
+        <member name="M:PNGCompression.PNGCompressor.CompressImageLossy(System.String,System.String,PNGCompression.LossyInputSettings)">
+            <summary>
+            
+            </summary>
+            <param name="inputFile"></param>
+            <param name="outputFile"></param>
+            <param name="inputSettings"></param>
+        </member>
+        <member name="M:PNGCompression.PNGCompressor.CompressImageLossLess(System.String,System.String,PNGCompression.LosslessInputSettings,PNGCompression.InputFormat)">
+            <summary>
+            
+            </summary>
+            <param name="inputFile"></param>
+            <param name="outputFile"></param>
+            <param name="inputSettings"></param>
+            <param name="inputFormat">Not implemented yet</param>
+        </member>
+        <member name="M:PNGCompression.PNGCompressor.CompressImageLossy(System.String,System.String,PNGCompression.LossyInputSettings,PNGCompression.InputFormat)">
+            <summary>
+            
+            </summary>
+            <param name="inputFile"></param>
+            <param name="outputFile"></param>
+            <param name="inputSettings"></param>
+            <param name="inputFormat">Not implemented yet</param>
+        </member>
+        <member name="M:PNGCompression.PNGCompressor.CompressImage(System.String,System.String,System.String,PNGCompression.LossyInputSettings,PNGCompression.LosslessInputSettings,PNGCompression.InputFormat)">
+            <summary>
+            Compress PNG image with lossless algorithm.
+            </summary>
+            <param name="inputFile"></param>
+            <param name="outputFile"></param>
+            <param name="compressionType">Use CompressionType enum </param>
+            <param name="lossyInputSettings"></param>
+            <param name="losslessInputSettings"></param>
+            <param name="inputFormat"></param>
+        </member>
+        <member name="M:PNGCompression.PNGCompressor.WaitPNGProcessForExit">
+            <summary>
+            waiting for the process to complete
+            </summary>
+        </member>
+        <member name="M:PNGCompression.PNGCompressor.AppendArguments(System.String,System.String,System.String,PNGCompression.LossyInputSettings,PNGCompression.LosslessInputSettings)">
+            <summary>
+            Append all the arguments in a single string.
+            </summary>
+            <param name="inputFile"></param>
+            <param name="outputFile"></param>
+            <param name="lossyInputSettings"></param>
+            <param name="losslessInputSettings"></param>
+            <param name="compressionType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PNGCompression.PNGCompressor.EnsurePNGProcessStopped">
+            <summary>
+            Ensure whether process is running or stopped.
+            </summary>
+        </member>
+        <member name="M:PNGCompression.PNGCompressor.GetPNGExePath">
+            <summary>
+            Get full path of Exe to be executed.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PNGCompression.PNGCompressor.InitStartInfo(System.Diagnostics.ProcessStartInfo)">
+            <summary>
+            Initialize process
+            </summary>
+            <param name="startInfo"></param>
+        </member>
+        <member name="M:PNGCompression.PNGCompressor.EnsureExeExists">
+            <summary>
+            to copy exes embedded as resources in DLL.
+            </summary>
+        </member>
+        <member name="P:PNGCompression.PNGCompressor.PNGToolPath">
+            <summary>Gets or sets path where PNG tool is located</summary>
+            <remarks>
+            By default this property points to the folder where application assemblies are located.
+            </remarks>
+        </member>
+        <member name="P:PNGCompression.PNGCompressor.PNGExeName">
+            <summary>
+            Gets or sets PNG tool EXE file name
+            </summary>
+        </member>
+        <member name="P:PNGCompression.PNGCompressor.ExecutionTimeout">
+            <summary>
+            Gets or sets maximum execution time for conversion process (null is by default - means no timeout)
+            </summary>
+        </member>
+        <member name="P:PNGCompression.PNGCompressor.PNGProcessUser">
+            <summary>
+            Gets or sets user credential used for starting PNG process.
+            </summary>
+            <remarks>By default this property is null and PNG process uses credential of parent process (application pool in case of ASP.NET).</remarks>
+        </member>
+        <member name="T:PNGCompression.InputFormat">
+            <summary>
+            InputFormat
+            </summary>
+        </member>
+        <member name="F:PNGCompression.InputFormat.PNG">
+            <summary>
+            PNG
+            </summary>
+        </member>
+        <member name="F:PNGCompression.InputFormat.BMP">
+            <summary>
+            BMP
+            </summary>
+        </member>
+        <member name="F:PNGCompression.InputFormat.GIF">
+            <summary>
+            GIF
+            </summary>
+        </member>
+        <member name="F:PNGCompression.InputFormat.PNM">
+            <summary>
+            PNM
+            </summary>
+        </member>
+        <member name="F:PNGCompression.InputFormat.TIFF">
+            <summary>
+            TIFF
+            </summary>
+        </member>
+        <member name="T:PNGCompression.LosslessInputSettings">
+            <summary>
+            LosslessInputSettings
+            </summary>
+        </member>
+        <member name="M:PNGCompression.LosslessInputSettings.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="CustomInputArgs"></param>
+            <param name="OptimizationLevel"></param>
+        </member>
+        <member name="M:PNGCompression.LosslessInputSettings.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:PNGCompression.LosslessInputSettings.CustomInputArgs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:PNGCompression.LosslessInputSettings.OptimizationLevel">
+            <summary>
+            Use OptimizationLevel enum 
+            </summary>
+        </member>
+        <member name="T:PNGCompression.LossyInputSettings">
+            <summary>
+            lossy
+            </summary>
+        </member>
+        <member name="M:PNGCompression.LossyInputSettings.#ctor(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="CustomInputArgs"></param>
+            <param name="qualityMin"></param>
+            <param name="qualityMax"></param>
+            <param name="speed"></param>
+        </member>
+        <member name="M:PNGCompression.LossyInputSettings.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:PNGCompression.LossyInputSettings.CustomInputArgs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:PNGCompression.LossyInputSettings.MinQuality">
+            <summary>
+            MinQuality from 0
+            </summary>
+        </member>
+        <member name="P:PNGCompression.LossyInputSettings.MaxQuality">
+            <summary>
+            MaxQuality upto 100
+            </summary>
+        </member>
+        <member name="P:PNGCompression.LossyInputSettings.Speed">
+            <summary>
+            speed to choose between 1 to 10 i.e. default is 3 and Speed/quality trade-off from 1 (brute-force) to 10 (fastest). The default is 3. Speed 10 has 5% lower quality, but is 8 times faster than the default.
+            </summary>
+        </member>
+        <member name="T:PNGCompression.OptimizationLevel">
+            <summary>
+            Greater the number of level greater will be the optimization and time taken.
+            </summary>
+        </member>
+        <member name="F:PNGCompression.OptimizationLevel.Level0">
+            <summary>
+            Level0
+            </summary>
+        </member>
+        <member name="F:PNGCompression.OptimizationLevel.Level1">
+            <summary>
+            Level1
+            </summary>
+        </member>
+        <member name="F:PNGCompression.OptimizationLevel.Level2">
+            <summary>
+            Level2
+            </summary>
+        </member>
+        <member name="F:PNGCompression.OptimizationLevel.Level3">
+            <summary>
+            Level3
+            </summary>
+        </member>
+        <member name="F:PNGCompression.OptimizationLevel.Level4">
+            <summary>
+            Level4
+            </summary>
+        </member>
+        <member name="F:PNGCompression.OptimizationLevel.Level5">
+            <summary>
+            Level5
+            </summary>
+        </member>
+        <member name="F:PNGCompression.OptimizationLevel.Level6">
+            <summary>
+            Level6
+            </summary>
+        </member>
+        <member name="F:PNGCompression.OptimizationLevel.Level7">
+            <summary>
+            Level7
+            </summary>
+        </member>
+        <member name="T:PNGCompression.PNGUserCredential">
+            <summary>
+            PNGUserCredential
+            </summary>
+        </member>
+        <member name="P:PNGCompression.PNGUserCredential.UserName">
+            <summary>
+            Gets the user name to be used when starting OptiPNG process.
+            </summary>
+        </member>
+        <member name="P:PNGCompression.PNGUserCredential.Password">
+            <summary>
+            Gets a secure string that contains the user password to use when starting OptiPNG process.
+            </summary>
+        </member>
+        <member name="P:PNGCompression.PNGUserCredential.Domain">
+            <summary>
+            Gets a value that identifies the domain to use when starting optiPNG process.
+            </summary>
+        </member>
+    </members>
+</doc>
