@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Steganography_with_AES_Encryption.Properties;
 
 namespace Steganography_with_AES_Encryption
 {
@@ -17,12 +18,5 @@ namespace Steganography_with_AES_Encryption
             InitializeComponent();
         }
 
-        private void rdbDog_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdbDog.Checked)
-            {
-                
-            }
-        }
     }
 }

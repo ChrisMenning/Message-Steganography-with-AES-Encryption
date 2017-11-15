@@ -98,7 +98,6 @@
             this.rdbDog.TabStop = true;
             this.rdbDog.Text = "Dog";
             this.rdbDog.UseVisualStyleBackColor = true;
-            this.rdbDog.CheckedChanged += new System.EventHandler(this.rdbDog_CheckedChanged);
             // 
             // rdbPenguin
             // 
