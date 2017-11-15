@@ -104,6 +104,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StockImagesPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockImagesPage.Designer.cs">
+      <DependentUpon>StockImagesPage.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AboutPage.resx">
       <DependentUpon>AboutPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -135,6 +141,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="StockImagesPage.resx">
+      <DependentUpon>StockImagesPage.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
