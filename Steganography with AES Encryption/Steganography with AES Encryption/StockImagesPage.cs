@@ -18,6 +18,7 @@ namespace Steganography_with_AES_Encryption
         {
             InitializeComponent();
         }
-        
+
+         
     }
 }
