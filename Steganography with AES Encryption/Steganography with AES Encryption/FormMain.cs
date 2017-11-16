@@ -564,5 +564,11 @@ namespace Steganography_with_AES_Encryption
             btnEncodeImage.Enabled = false;
             btnDecode.Enabled = false;
         }
+
+        private void btnStockImagesTest_Click(object sender, EventArgs e)
+        {
+            frmStockImagesPage stockImagesPage = new frmStockImagesPage();
+            stockImagesPage.ShowDialog();
+        }
     }
 }
