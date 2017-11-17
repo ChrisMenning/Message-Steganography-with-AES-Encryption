@@ -155,7 +155,7 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         private void OpenRawImage()
         {
-            this.dialogOpenRawImage.Filter = "All Graphics Types|*.bmp;*.jpg;*.jpeg;*.png;*.tif;*.tiff" 
+            this.dialogOpenRawImage.Filter = "All Graphics Types|*.bmp;*.jpg;*.jpeg;*.png;*.tif;*.tiff"
                 + "BMP|*.bmp|GIF|*.gif|JPG|*.jpg;*.jpeg|PNG|*.png|TIFF|*.tif;*.tiff|";
 
             this.dialogOpenRawImage.ShowHelp = true;
@@ -167,18 +167,20 @@ namespace Steganography_with_AES_Encryption
                 this.rawImage.Save(Path.GetFullPath(@"temp1.png"), ImageFormat.Png);
                 File.SetAttributes((@"temp1.png"), FileAttributes.Hidden);
 
-                PleaseWait pw = new PleaseWait("Ensuring Lossless Compression." + "\n" + "This may take a minute or three.");
+                Cursor.Current = Cursors.WaitCursor;
+
+                PleaseWait pw = new PleaseWait("Ensuring Lossless Compression." + "\n" + "Depending on your image, this process could take awhile." + "\n" + "Thank you for your patience.");
                 pw.Show();
 
                 // Save a temporary lossless copy of the the just-opened image. Hide it.
                 pngCompressor.CompressImageLossLess(Path.GetFullPath(@"temp1.png"), Path.GetFullPath(@"temp2.png"));
                 File.SetAttributes(Path.GetFullPath(@"temp2.png"), FileAttributes.Hidden);
-                
+
                 // Declare a new image and assign it a reference to the lossless copy.
                 lossless = Image.FromFile(Path.GetFullPath(@"temp2.png"));
 
                 // Draw the picturebox using the lossless copy.
-                this.pictureBoxRaw.Image = lossless;
+                this.pcbImage.Image = lossless;
                 this.rawImage = (Bitmap)lossless;
 
                 pw.Close();
@@ -196,7 +198,7 @@ namespace Steganography_with_AES_Encryption
         /// Save the new image.
         /// </summary>
         private void SaveEncodedImage()
-        {            
+        {
             // Save the image.
             dialogSaveImage.Filter = "PNG Image|*.png";
             dialogSaveImage.Title = "Save an Image File";
@@ -456,7 +458,7 @@ namespace Steganography_with_AES_Encryption
         {
             Mandelbrot mb = new Mandelbrot();
             Bitmap fractal = mb.DrawMandelbrot(1000, 1000);
-            pictureBoxRaw.Image = fractal;
+            this.pcbImage.Image = fractal;
 
             PleaseWait pw = new PleaseWait("Ensuring Lossless Compression. \n This may take a minute or three.");
             pw.Show();
@@ -564,5 +566,45 @@ namespace Steganography_with_AES_Encryption
             btnEncodeImage.Enabled = false;
             btnDecode.Enabled = false;
         }
+
+        private void cmbImageEncode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void getActionList(object sender, EventArgs e)
+        {
+            if (cmbFunction.SelectedIndex == 0)
+            {
+                this.checkBoxEncryption.Visible = true;
+                this.chbNoEncrypt.Visible = true;
+                cmbImage.Items.Clear();
+                cmbImage.Items.Add(cmbImage.SelectedItem = "Upload My Image");
+                cmbImage.Items.Add(cmbImage.SelectedItem = "Use Stock Image");
+                cmbImage.Items.Add(cmbImage.SelectedItem = "Create Fractal Image");
+                cmbImage.Items.Add(cmbImage.SelectedItem = "Create Gradient Image");
+            }
+
+            else if (cmbFunction.SelectedIndex == 1)
+            {
+                cmbImage.Items.Clear();
+                cmbImage.Items.Add(cmbImage.SelectedItem = "Download Image - Decode");
+
+            }
+            else
+            {
+                cmbImage.Items.Clear();
+            }
+        }
+   
+        private void cmbImage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbImage.SelectedIndex == 0)
+            {
+                this.OpenRawImage();
+            }
+        }
     }
 }
+
+
+    
