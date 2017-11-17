@@ -586,6 +586,8 @@ namespace Steganography_with_AES_Encryption
 
             else if (cmbFunction.SelectedIndex == 1)
             {
+                this.checkBoxEncryption.Visible = false;
+                this.chbNoEncrypt.Visible = false;
                 cmbImage.Items.Clear();
                 cmbImage.Items.Add(cmbImage.SelectedItem = "Download Image - Decode");
 
@@ -595,16 +597,66 @@ namespace Steganography_with_AES_Encryption
                 cmbImage.Items.Clear();
             }
         }
-   
+
+        private void getMessageActionList(object sender, EventArgs e)
+        {
+            if (cmbFunction.SelectedIndex == 0)
+            {
+
+                cmbMessage.Items.Clear();
+                cmbMessage.Items.Add(cmbMessage.SelectedItem = "Encode (Hide) Message");
+
+            }
+
+            else if (cmbFunction.SelectedIndex == 1)
+            {
+                cmbMessage.Items.Clear();
+                cmbMessage.Items.Add(cmbImage.SelectedItem = "Decode (Retrieve) Message");
+
+            }
+            else
+            {
+                cmbMessage.Items.Clear();
+            }
+        }
+
         private void cmbImage_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbImage.SelectedIndex == 0)
             {
                 this.OpenRawImage();
             }
+
+            if (cmbImage.SelectedIndex == 1)
+            {
+                //Stock Image Choice;
+            }
+
+            if (cmbImage.SelectedIndex == 2)
+            {
+                Mandelbrot mb = new Mandelbrot();
+                Bitmap fractal = mb.DrawMandelbrot(1000, 1000);
+                this.pcbImage.Image = fractal;
+            }
+            if (cmbImage.SelectedIndex == 3)
+            {
+                //FractalGenerator generator = new FractalGenerator();
+                // Bitmap pic = generator.generateFractal(1000, 1000, 34, 23, 12, 13);
+                //Gradient gd = new Gradient();
+                //Bitmap gradient = gd.DrawGradient(1000, 1000);
+                //this.pcbImage.Image = gradient;
+                {
+
+
+
+
+                }
+            }
         }
     }
 }
+
+
 
 
     

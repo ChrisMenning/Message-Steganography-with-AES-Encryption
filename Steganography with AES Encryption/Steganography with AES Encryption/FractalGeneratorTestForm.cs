@@ -25,7 +25,7 @@ namespace Steganography_with_AES_Encryption
             Bitmap pic = generator.generateFractal(1000, 1000, 34, 23, 12, 13);
 
             ptbTest.Image = pic;
-            pic.Save("C:\\Users\\nate\\Downloads\\test.png");
+            //pic.Save("C:\\Users\\nate\\Downloads\\test.png");
         }
     }
 }

@@ -34,18 +34,20 @@
             // 
             // rtbAboutSection
             // 
-            this.rtbAboutSection.Enabled = false;
-            this.rtbAboutSection.Location = new System.Drawing.Point(30, 23);
+            this.rtbAboutSection.Location = new System.Drawing.Point(40, 28);
+            this.rtbAboutSection.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rtbAboutSection.Name = "rtbAboutSection";
-            this.rtbAboutSection.Size = new System.Drawing.Size(369, 345);
+            this.rtbAboutSection.ReadOnly = true;
+            this.rtbAboutSection.Size = new System.Drawing.Size(491, 424);
             this.rtbAboutSection.TabIndex = 0;
             this.rtbAboutSection.Text = "";
             // 
             // btnCloseAboutPage
             // 
-            this.btnCloseAboutPage.Location = new System.Drawing.Point(167, 393);
+            this.btnCloseAboutPage.Location = new System.Drawing.Point(223, 484);
+            this.btnCloseAboutPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCloseAboutPage.Name = "btnCloseAboutPage";
-            this.btnCloseAboutPage.Size = new System.Drawing.Size(75, 23);
+            this.btnCloseAboutPage.Size = new System.Drawing.Size(100, 28);
             this.btnCloseAboutPage.TabIndex = 1;
             this.btnCloseAboutPage.Text = "Close";
             this.btnCloseAboutPage.UseVisualStyleBackColor = true;
@@ -53,11 +55,12 @@
             // 
             // frmAboutPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(433, 428);
+            this.ClientSize = new System.Drawing.Size(577, 527);
             this.Controls.Add(this.btnCloseAboutPage);
             this.Controls.Add(this.rtbAboutSection);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmAboutPage";
             this.Text = "About";
             this.Load += new System.EventHandler(this.frmAboutPage_Load);

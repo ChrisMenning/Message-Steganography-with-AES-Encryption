@@ -11,24 +11,28 @@ namespace Steganography_with_AES_Encryption.Classes
 {
     public class Gradient
     {
-
-        public Bitmap generateFractal(int height, int width, double xMax, double xMin, double yMax, double yMin)
+       // public double Zr, Zim, Z2r, Z2im;
+        public Bitmap generateGradient(int height, int width, double xMax, double xMin, double yMax, double yMin)
         {
             double pXmax = xMax;
             double pXmin = xMin;
             double pYmax = yMax;
             double pYmin = yMin;
-            Bitmap fractal = new Bitmap(height, width);
-            Graphics gr = Graphics.FromImage(fractal);
+            Bitmap gradient = new Bitmap(height, width);
+            Graphics gr = Graphics.FromImage(gradient);
+            Gradient gd = new Gradient();
 
+            Bitmap pic = gd.generateGradient(1000, 1000, 34, 23, 12, 13);
             double zx = 0;
             double zy = 0;
             double cx = 0;
             double cy = 0;
-            double xzoom = ((xMax - xMin) / Convert.ToDouble(fractal.Width) - 1);
-            double yzoom = ((yMax - yMin) / Convert.ToDouble(fractal.Height) - 1);
+            double xzoom = ((xMax - xMin) / Convert.ToDouble(gradient.Width) - 1);
+            double yzoom = ((yMax - yMin) / Convert.ToDouble(gradient.Height) - 1);
             double tempzx = 0;
+           
 
+          
             /* ResetColors();
 
              Random rnd = new Random();
@@ -46,12 +50,12 @@ namespace Steganography_with_AES_Encryption.Classes
              */
             int loopgo = 0;
 
-            for (int x = 0; x < fractal.Width; x++)
+            for (int x = 0; x < gradient.Width; x++)
             {
                 cx = (xzoom * x) - Math.Abs(xMin);
                 loopgo = 0;
 
-                for (int y = 0; y < fractal.Height; y++)
+                for (int y = 0; y < gradient.Height; y++)
                 {
                     zx = 0;
                     zy = 0;
@@ -69,7 +73,7 @@ namespace Steganography_with_AES_Encryption.Classes
                     }
                     //if (loopgo != 1000)
 
-                    fractal.SetPixel(x, y, Color.FromArgb(loopgo % 128 * 2, loopgo % 32 * 7, loopgo % 16 * 14));
+                    gradient.SetPixel(x, y, Color.FromArgb(loopgo % 128 * 2, loopgo % 32 * 7, loopgo % 16 * 14));
 
                     //else
 
@@ -80,7 +84,7 @@ namespace Steganography_with_AES_Encryption.Classes
 
                 cx += xzoom;
             }
-            return fractal;
+            return gradient;
 
         }
 

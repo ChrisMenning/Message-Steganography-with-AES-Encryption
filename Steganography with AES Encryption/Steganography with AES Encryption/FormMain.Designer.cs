@@ -61,31 +61,15 @@ namespace Steganography_with_AES_Encryption
             this.lblLichens = new System.Windows.Forms.Label();
             this.lblOffering = new System.Windows.Forms.Label();
             this.gpbLichens = new System.Windows.Forms.GroupBox();
-            this.pcbLichens = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.cmbImageE = new System.Windows.Forms.ComboBox();
-            this.cmbTextEncode = new System.Windows.Forms.ComboBox();
-            this.cmbImageDecode = new System.Windows.Forms.ComboBox();
-            this.cmbTextDecode = new System.Windows.Forms.ComboBox();
-            this.tbcTab = new System.Windows.Forms.TabControl();
-            this.tbpEncode = new System.Windows.Forms.TabPage();
-            this.tbpDecode = new System.Windows.Forms.TabPage();
-            this.cmbImage = new System.Windows.Forms.ComboBox();
-            this.cmbImageD = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.cmbFunction = new System.Windows.Forms.ComboBox();
-            this.rtbTextMessage = new System.Windows.Forms.RichTextBox();
-            this.pcbImage = new System.Windows.Forms.PictureBox();
-            this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
-            this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
-            this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
-            this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
-            this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openUnencodedImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unencodedImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.encodedImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generateFractalImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fractalImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gradientImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stockImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveEncodedImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.openEncodedImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,54 +83,70 @@ namespace Steganography_with_AES_Encryption
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advancedOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useEncryptionslowerButMoreSecureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useEncryptionRecommendedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.noEncryptionLessSecureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.whatIsAFractalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pcbLichens = new System.Windows.Forms.PictureBox();
+            this.lblMenu = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.cmbImageE = new System.Windows.Forms.ComboBox();
+            this.cmbMessage = new System.Windows.Forms.ComboBox();
+            this.cmbImageDecode = new System.Windows.Forms.ComboBox();
+            this.cmbTextDecode = new System.Windows.Forms.ComboBox();
+            this.tbcTab = new System.Windows.Forms.TabControl();
+            this.tbpEncode = new System.Windows.Forms.TabPage();
+            this.tbpDecode = new System.Windows.Forms.TabPage();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.cmbImageD = new System.Windows.Forms.ComboBox();
+            this.cmbImage = new System.Windows.Forms.ComboBox();
+            this.cmbFunction = new System.Windows.Forms.ComboBox();
+            this.rtbTextMessage = new System.Windows.Forms.RichTextBox();
+            this.pcbImage = new System.Windows.Forms.PictureBox();
+            this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
             this.lblImageOptions = new System.Windows.Forms.Label();
             this.lblMessageOptions = new System.Windows.Forms.Label();
             this.lblFunctionOptions = new System.Windows.Forms.Label();
             this.chbNoEncrypt = new System.Windows.Forms.CheckBox();
-            this.useEncryptionRecommendedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.noEncryptionLessSecureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.unencodedImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.encodedImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fractalImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gradientImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stockImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblMenu = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.whatIsAFractalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxDecode = new System.Windows.Forms.GroupBox();
             this.labelDecodedMessage = new System.Windows.Forms.Label();
             this.labelEncodedImage2 = new System.Windows.Forms.Label();
             this.btnDecode = new System.Windows.Forms.Button();
-            this.textBoxOutputMessage = new System.Windows.Forms.TextBox();
             this.pictureBoxEncoded2 = new System.Windows.Forms.PictureBox();
             this.buttonOpenImage2 = new System.Windows.Forms.Button();
+            this.pictureBoxEncoded = new System.Windows.Forms.PictureBox();
+            this.textBoxOutputMessage = new System.Windows.Forms.TextBox();
             this.groupBoxEncode = new System.Windows.Forms.GroupBox();
-            this.labelCharLimit = new System.Windows.Forms.Label();
             this.btnEncodeImage = new System.Windows.Forms.Button();
             this.labelInput = new System.Windows.Forms.Label();
             this.textBoxInputMessage = new System.Windows.Forms.TextBox();
             this.labelEncodedImage = new System.Windows.Forms.Label();
             this.labelRawImage = new System.Windows.Forms.Label();
-            this.pictureBoxEncoded = new System.Windows.Forms.PictureBox();
             this.pictureBoxRaw = new System.Windows.Forms.PictureBox();
             this.buttonOpenImage = new System.Windows.Forms.Button();
+            this.labelCharLimit = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.gpbLichens.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbLichens)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tbcTab.SuspendLayout();
             this.tbpEncode.SuspendLayout();
             this.tbpDecode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbImage)).BeginInit();
-            this.menuStrip1.SuspendLayout();
             this.groupBoxDecode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEncoded2)).BeginInit();
-            this.groupBoxEncode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEncoded)).BeginInit();
+            this.groupBoxEncode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRaw)).BeginInit();
             this.SuspendLayout();
             // 
@@ -161,6 +161,7 @@ namespace Steganography_with_AES_Encryption
             this.checkBoxEncryption.TabIndex = 5;
             this.checkBoxEncryption.Text = "Use Encryption (Recommended)";
             this.checkBoxEncryption.UseVisualStyleBackColor = true;
+            this.checkBoxEncryption.Visible = false;
             // 
             // dialogOpenRawImage
             // 
@@ -174,29 +175,31 @@ namespace Steganography_with_AES_Encryption
             this.btnAboutPageTest.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(238)))));
             this.btnAboutPageTest.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(102)))), ((int)(((byte)(51)))));
             this.btnAboutPageTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAboutPageTest.Location = new System.Drawing.Point(1044, 334);
+            this.btnAboutPageTest.Location = new System.Drawing.Point(1035, 351);
             this.btnAboutPageTest.Margin = new System.Windows.Forms.Padding(4);
             this.btnAboutPageTest.Name = "btnAboutPageTest";
             this.btnAboutPageTest.Size = new System.Drawing.Size(160, 28);
             this.btnAboutPageTest.TabIndex = 2;
             this.btnAboutPageTest.Text = "About Page Test";
             this.btnAboutPageTest.UseVisualStyleBackColor = false;
+            this.btnAboutPageTest.Visible = false;
             this.btnAboutPageTest.Click += new System.EventHandler(this.btnAboutPageTest_Click);
             // 
             // btnHelpPageTest
             // 
-            this.btnHelpPageTest.Location = new System.Drawing.Point(1044, 378);
+            this.btnHelpPageTest.Location = new System.Drawing.Point(1048, 387);
             this.btnHelpPageTest.Margin = new System.Windows.Forms.Padding(4);
             this.btnHelpPageTest.Name = "btnHelpPageTest";
             this.btnHelpPageTest.Size = new System.Drawing.Size(147, 28);
             this.btnHelpPageTest.TabIndex = 3;
             this.btnHelpPageTest.Text = "Help Page Test";
             this.btnHelpPageTest.UseVisualStyleBackColor = true;
+            this.btnHelpPageTest.Visible = false;
             this.btnHelpPageTest.Click += new System.EventHandler(this.btnHelpPageTest_Click);
             // 
             // btnFractalGeneratorTest
             // 
-            this.btnFractalGeneratorTest.Location = new System.Drawing.Point(1006, 307);
+            this.btnFractalGeneratorTest.Location = new System.Drawing.Point(1019, 279);
             this.btnFractalGeneratorTest.Margin = new System.Windows.Forms.Padding(4);
             this.btnFractalGeneratorTest.Name = "btnFractalGeneratorTest";
             this.btnFractalGeneratorTest.Size = new System.Drawing.Size(185, 28);
@@ -210,7 +213,7 @@ namespace Steganography_with_AES_Encryption
             this.btnReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnReset.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.Location = new System.Drawing.Point(198, 794);
+            this.btnReset.Location = new System.Drawing.Point(883, 794);
             this.btnReset.Margin = new System.Windows.Forms.Padding(4);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(128, 28);
@@ -221,7 +224,7 @@ namespace Steganography_with_AES_Encryption
             // 
             // btnStockImagesTest
             // 
-            this.btnStockImagesTest.Location = new System.Drawing.Point(1033, 357);
+            this.btnStockImagesTest.Location = new System.Drawing.Point(1019, 315);
             this.btnStockImagesTest.Margin = new System.Windows.Forms.Padding(4);
             this.btnStockImagesTest.Name = "btnStockImagesTest";
             this.btnStockImagesTest.Size = new System.Drawing.Size(185, 28);
@@ -261,235 +264,6 @@ namespace Steganography_with_AES_Encryption
             this.gpbLichens.Size = new System.Drawing.Size(1192, 240);
             this.gpbLichens.TabIndex = 12;
             this.gpbLichens.TabStop = false;
-            // 
-            // pcbLichens
-            // 
-            this.pcbLichens.BackgroundImage = global::Steganography_with_AES_Encryption.Properties.Resources.Lichens;
-            this.pcbLichens.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pcbLichens.Location = new System.Drawing.Point(25, 21);
-            this.pcbLichens.Name = "pcbLichens";
-            this.pcbLichens.Size = new System.Drawing.Size(241, 210);
-            this.pcbLichens.TabIndex = 11;
-            this.pcbLichens.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(267, 212);
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
-            // 
-            // cmbImageE
-            // 
-            this.cmbImageE.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(239)))), ((int)(((byte)(251)))));
-            this.cmbImageE.FormattingEnabled = true;
-            this.cmbImageE.Items.AddRange(new object[] {
-            "Upload My Image",
-            "Use Stock Image",
-            "Create Fractal Image",
-            "Create Gradient Image",
-            "Download Image - Decode"});
-            this.cmbImageE.Location = new System.Drawing.Point(25, 67);
-            this.cmbImageE.Name = "cmbImageE";
-            this.cmbImageE.Size = new System.Drawing.Size(175, 24);
-            this.cmbImageE.TabIndex = 13;
-            this.cmbImageE.Text = "Choose Your Image";
-            this.cmbImageE.SelectedIndexChanged += new System.EventHandler(this.cmbImageEncode_SelectedIndexChanged);
-            this.cmbImageE.Enter += new System.EventHandler(this.getActionList);
-            // 
-            // cmbTextEncode
-            // 
-            this.cmbTextEncode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
-            this.cmbTextEncode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTextEncode.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbTextEncode.FormattingEnabled = true;
-            this.cmbTextEncode.Location = new System.Drawing.Point(646, 379);
-            this.cmbTextEncode.Name = "cmbTextEncode";
-            this.cmbTextEncode.Size = new System.Drawing.Size(203, 31);
-            this.cmbTextEncode.TabIndex = 14;
-            // 
-            // cmbImageDecode
-            // 
-            this.cmbImageDecode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(239)))), ((int)(((byte)(251)))));
-            this.cmbImageDecode.FormattingEnabled = true;
-            this.cmbImageDecode.Items.AddRange(new object[] {
-            "Upload Image"});
-            this.cmbImageDecode.Location = new System.Drawing.Point(470, 87);
-            this.cmbImageDecode.Name = "cmbImageDecode";
-            this.cmbImageDecode.Size = new System.Drawing.Size(175, 24);
-            this.cmbImageDecode.TabIndex = 15;
-            this.cmbImageDecode.Text = "Choose Your Image";
-            // 
-            // cmbTextDecode
-            // 
-            this.cmbTextDecode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(239)))), ((int)(((byte)(251)))));
-            this.cmbTextDecode.FormattingEnabled = true;
-            this.cmbTextDecode.Location = new System.Drawing.Point(149, 62);
-            this.cmbTextDecode.Name = "cmbTextDecode";
-            this.cmbTextDecode.Size = new System.Drawing.Size(175, 24);
-            this.cmbTextDecode.TabIndex = 16;
-            this.cmbTextDecode.Text = "Retrieve Message";
-            // 
-            // tbcTab
-            // 
-            this.tbcTab.Appearance = System.Windows.Forms.TabAppearance.Buttons;
-            this.tbcTab.Controls.Add(this.tbpEncode);
-            this.tbcTab.Controls.Add(this.tbpDecode);
-            this.tbcTab.Location = new System.Drawing.Point(366, 885);
-            this.tbcTab.Name = "tbcTab";
-            this.tbcTab.SelectedIndex = 0;
-            this.tbcTab.Size = new System.Drawing.Size(910, 314);
-            this.tbcTab.TabIndex = 17;
-            this.tbcTab.Enter += new System.EventHandler(this.getActionList);
-            // 
-            // tbpEncode
-            // 
-            this.tbpEncode.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.tbpEncode.Controls.Add(this.cmbImageE);
-            this.tbpEncode.Location = new System.Drawing.Point(4, 28);
-            this.tbpEncode.Name = "tbpEncode";
-            this.tbpEncode.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpEncode.Size = new System.Drawing.Size(902, 282);
-            this.tbpEncode.TabIndex = 0;
-            this.tbpEncode.Text = "Encode - Hide Message";
-            this.tbpEncode.UseVisualStyleBackColor = true;
-            // 
-            // tbpDecode
-            // 
-            this.tbpDecode.Controls.Add(this.checkBox1);
-            this.tbpDecode.Controls.Add(this.cmbImageD);
-            this.tbpDecode.Location = new System.Drawing.Point(4, 28);
-            this.tbpDecode.Name = "tbpDecode";
-            this.tbpDecode.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpDecode.Size = new System.Drawing.Size(902, 282);
-            this.tbpDecode.TabIndex = 1;
-            this.tbpDecode.Text = "Decode - Retrieve Message";
-            this.tbpDecode.UseVisualStyleBackColor = true;
-            // 
-            // cmbImage
-            // 
-            this.cmbImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
-            this.cmbImage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbImage.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbImage.FormattingEnabled = true;
-            this.cmbImage.Items.AddRange(new object[] {
-            "Upload My Image",
-            "Use Stock Image",
-            "Create Fractal Image",
-            "Create Gradient Image",
-            "Download Image - Decode"});
-            this.cmbImage.Location = new System.Drawing.Point(23, 377);
-            this.cmbImage.Name = "cmbImage";
-            this.cmbImage.Size = new System.Drawing.Size(224, 31);
-            this.cmbImage.TabIndex = 14;
-            this.cmbImage.SelectedIndexChanged += new System.EventHandler(this.cmbImage_SelectedIndexChanged);
-            this.cmbImage.Enter += new System.EventHandler(this.getActionList);
-            // 
-            // cmbImageD
-            // 
-            this.cmbImageD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(239)))), ((int)(((byte)(251)))));
-            this.cmbImageD.FormattingEnabled = true;
-            this.cmbImageD.Items.AddRange(new object[] {
-            "Upload My Image",
-            "Use Stock Image",
-            "Create Fractal Image",
-            "Create Gradient Image",
-            "Download Image - Decode"});
-            this.cmbImageD.Location = new System.Drawing.Point(38, 24);
-            this.cmbImageD.Name = "cmbImageD";
-            this.cmbImageD.Size = new System.Drawing.Size(175, 24);
-            this.cmbImageD.TabIndex = 14;
-            this.cmbImageD.Text = "Choose Your Image";
-            this.cmbImageD.Enter += new System.EventHandler(this.getActionList);
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(63, 80);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(291, 21);
-            this.checkBox1.TabIndex = 15;
-            this.checkBox1.Text = "Use Encryption (slower, but more secure)";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(648, 307);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(100, 23);
-            this.progressBar1.TabIndex = 18;
-            // 
-            // cmbFunction
-            // 
-            this.cmbFunction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
-            this.cmbFunction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbFunction.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbFunction.FormattingEnabled = true;
-            this.cmbFunction.ItemHeight = 23;
-            this.cmbFunction.Items.AddRange(new object[] {
-            "Encode - Conceal a message in an image",
-            "Decode - Retrieve a message from an image"});
-            this.cmbFunction.Location = new System.Drawing.Point(26, 277);
-            this.cmbFunction.Name = "cmbFunction";
-            this.cmbFunction.Size = new System.Drawing.Size(495, 31);
-            this.cmbFunction.TabIndex = 19;
-            // 
-            // rtbTextMessage
-            // 
-            this.rtbTextMessage.Location = new System.Drawing.Point(14, 437);
-            this.rtbTextMessage.Name = "rtbTextMessage";
-            this.rtbTextMessage.Size = new System.Drawing.Size(580, 350);
-            this.rtbTextMessage.TabIndex = 20;
-            this.rtbTextMessage.Text = "";
-            // 
-            // pcbImage
-            // 
-            this.pcbImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pcbImage.Location = new System.Drawing.Point(648, 438);
-            this.pcbImage.Margin = new System.Windows.Forms.Padding(1);
-            this.pcbImage.Name = "pcbImage";
-            this.pcbImage.Size = new System.Drawing.Size(570, 350);
-            this.pcbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcbImage.TabIndex = 21;
-            this.pcbImage.TabStop = false;
-            // 
-            // BottomToolStripPanel
-            // 
-            this.BottomToolStripPanel.Location = new System.Drawing.Point(0, 0);
-            this.BottomToolStripPanel.Name = "BottomToolStripPanel";
-            this.BottomToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this.BottomToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.BottomToolStripPanel.Size = new System.Drawing.Size(0, 0);
-            // 
-            // TopToolStripPanel
-            // 
-            this.TopToolStripPanel.Location = new System.Drawing.Point(0, 0);
-            this.TopToolStripPanel.Name = "TopToolStripPanel";
-            this.TopToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this.TopToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.TopToolStripPanel.Size = new System.Drawing.Size(0, 0);
-            // 
-            // RightToolStripPanel
-            // 
-            this.RightToolStripPanel.Location = new System.Drawing.Point(0, 0);
-            this.RightToolStripPanel.Name = "RightToolStripPanel";
-            this.RightToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this.RightToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.RightToolStripPanel.Size = new System.Drawing.Size(0, 0);
-            // 
-            // LeftToolStripPanel
-            // 
-            this.LeftToolStripPanel.Location = new System.Drawing.Point(0, 0);
-            this.LeftToolStripPanel.Name = "LeftToolStripPanel";
-            this.LeftToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this.LeftToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.LeftToolStripPanel.Size = new System.Drawing.Size(0, 0);
-            // 
-            // ContentPanel
-            // 
-            this.ContentPanel.Size = new System.Drawing.Size(477, 125);
             // 
             // menuStrip1
             // 
@@ -536,6 +310,18 @@ namespace Steganography_with_AES_Encryption
             this.openUnencodedImageToolStripMenuItem.Text = "Upload Image";
             this.openUnencodedImageToolStripMenuItem.Click += new System.EventHandler(this.openUnencodedImageToolStripMenuItem_Click);
             // 
+            // unencodedImageToolStripMenuItem
+            // 
+            this.unencodedImageToolStripMenuItem.Name = "unencodedImageToolStripMenuItem";
+            this.unencodedImageToolStripMenuItem.Size = new System.Drawing.Size(234, 28);
+            this.unencodedImageToolStripMenuItem.Text = "Un-encoded Image";
+            // 
+            // encodedImageToolStripMenuItem
+            // 
+            this.encodedImageToolStripMenuItem.Name = "encodedImageToolStripMenuItem";
+            this.encodedImageToolStripMenuItem.Size = new System.Drawing.Size(234, 28);
+            this.encodedImageToolStripMenuItem.Text = "Encoded Image";
+            // 
             // generateFractalImageToolStripMenuItem
             // 
             this.generateFractalImageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -546,6 +332,24 @@ namespace Steganography_with_AES_Encryption
             this.generateFractalImageToolStripMenuItem.Size = new System.Drawing.Size(267, 28);
             this.generateFractalImageToolStripMenuItem.Text = "Generate Image";
             this.generateFractalImageToolStripMenuItem.Click += new System.EventHandler(this.generateFractalImageToolStripMenuItem_Click);
+            // 
+            // fractalImageToolStripMenuItem
+            // 
+            this.fractalImageToolStripMenuItem.Name = "fractalImageToolStripMenuItem";
+            this.fractalImageToolStripMenuItem.Size = new System.Drawing.Size(205, 28);
+            this.fractalImageToolStripMenuItem.Text = "Fractal Image";
+            // 
+            // gradientImageToolStripMenuItem
+            // 
+            this.gradientImageToolStripMenuItem.Name = "gradientImageToolStripMenuItem";
+            this.gradientImageToolStripMenuItem.Size = new System.Drawing.Size(205, 28);
+            this.gradientImageToolStripMenuItem.Text = "Gradient Image";
+            // 
+            // stockImageToolStripMenuItem
+            // 
+            this.stockImageToolStripMenuItem.Name = "stockImageToolStripMenuItem";
+            this.stockImageToolStripMenuItem.Size = new System.Drawing.Size(205, 28);
+            this.stockImageToolStripMenuItem.Text = "Stock Image";
             // 
             // saveEncodedImageToolStripMenuItem
             // 
@@ -588,31 +392,31 @@ namespace Steganography_with_AES_Encryption
             // cutToolStripMenuItem
             // 
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(157, 28);
             this.cutToolStripMenuItem.Text = "Cut";
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(157, 28);
             this.copyToolStripMenuItem.Text = "Copy";
             // 
             // pasteToolStripMenuItem
             // 
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(157, 28);
             this.pasteToolStripMenuItem.Text = "Paste";
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(157, 28);
             this.deleteToolStripMenuItem.Text = "Delete";
             // 
             // selectAllToolStripMenuItem
             // 
             this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
+            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(157, 28);
             this.selectAllToolStripMenuItem.Text = "Select-All";
             // 
             // preferencesToolStripMenuItem
@@ -644,6 +448,18 @@ namespace Steganography_with_AES_Encryption
             this.useEncryptionslowerButMoreSecureToolStripMenuItem.Text = "Encryption Options";
             this.useEncryptionslowerButMoreSecureToolStripMenuItem.Click += new System.EventHandler(this.useEncryptionToolStripMenuItem_Click);
             // 
+            // useEncryptionRecommendedToolStripMenuItem
+            // 
+            this.useEncryptionRecommendedToolStripMenuItem.Name = "useEncryptionRecommendedToolStripMenuItem";
+            this.useEncryptionRecommendedToolStripMenuItem.Size = new System.Drawing.Size(334, 28);
+            this.useEncryptionRecommendedToolStripMenuItem.Text = "Use Encryption (Recommended)";
+            // 
+            // noEncryptionLessSecureToolStripMenuItem
+            // 
+            this.noEncryptionLessSecureToolStripMenuItem.Name = "noEncryptionLessSecureToolStripMenuItem";
+            this.noEncryptionLessSecureToolStripMenuItem.Size = new System.Drawing.Size(334, 28);
+            this.noEncryptionLessSecureToolStripMenuItem.Text = "No Encryption (Less Secure)";
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -669,6 +485,252 @@ namespace Steganography_with_AES_Encryption
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // whatIsAFractalToolStripMenuItem
+            // 
+            this.whatIsAFractalToolStripMenuItem.Name = "whatIsAFractalToolStripMenuItem";
+            this.whatIsAFractalToolStripMenuItem.Size = new System.Drawing.Size(221, 28);
+            this.whatIsAFractalToolStripMenuItem.Text = "What is a Fractal?";
+            // 
+            // pcbLichens
+            // 
+            this.pcbLichens.BackgroundImage = global::Steganography_with_AES_Encryption.Properties.Resources.Lichens;
+            this.pcbLichens.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pcbLichens.Location = new System.Drawing.Point(25, 21);
+            this.pcbLichens.Name = "pcbLichens";
+            this.pcbLichens.Size = new System.Drawing.Size(241, 210);
+            this.pcbLichens.TabIndex = 11;
+            this.pcbLichens.TabStop = false;
+            // 
+            // lblMenu
+            // 
+            this.lblMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(238)))));
+            this.lblMenu.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.lblMenu.Location = new System.Drawing.Point(402, 172);
+            this.lblMenu.Name = "lblMenu";
+            this.lblMenu.Size = new System.Drawing.Size(521, 44);
+            this.lblMenu.TabIndex = 12;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(267, 212);
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            // 
+            // cmbImageE
+            // 
+            this.cmbImageE.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(239)))), ((int)(((byte)(251)))));
+            this.cmbImageE.FormattingEnabled = true;
+            this.cmbImageE.Items.AddRange(new object[] {
+            "Upload My Image",
+            "Use Stock Image",
+            "Create Fractal Image",
+            "Create Gradient Image",
+            "Download Image - Decode"});
+            this.cmbImageE.Location = new System.Drawing.Point(25, 67);
+            this.cmbImageE.Name = "cmbImageE";
+            this.cmbImageE.Size = new System.Drawing.Size(175, 24);
+            this.cmbImageE.TabIndex = 13;
+            this.cmbImageE.Text = "Choose Your Image";
+            this.cmbImageE.SelectedIndexChanged += new System.EventHandler(this.cmbImageEncode_SelectedIndexChanged);
+            this.cmbImageE.Enter += new System.EventHandler(this.getActionList);
+            // 
+            // cmbMessage
+            // 
+            this.cmbMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
+            this.cmbMessage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMessage.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbMessage.FormattingEnabled = true;
+            this.cmbMessage.Items.AddRange(new object[] {
+            "Encode (Hide) Message",
+            "Decode (Retrieve) Message"});
+            this.cmbMessage.Location = new System.Drawing.Point(646, 379);
+            this.cmbMessage.Name = "cmbMessage";
+            this.cmbMessage.Size = new System.Drawing.Size(216, 31);
+            this.cmbMessage.TabIndex = 14;
+            this.cmbMessage.Enter += new System.EventHandler(this.getMessageActionList);
+            // 
+            // cmbImageDecode
+            // 
+            this.cmbImageDecode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(239)))), ((int)(((byte)(251)))));
+            this.cmbImageDecode.FormattingEnabled = true;
+            this.cmbImageDecode.Items.AddRange(new object[] {
+            "Upload Image"});
+            this.cmbImageDecode.Location = new System.Drawing.Point(470, 87);
+            this.cmbImageDecode.Name = "cmbImageDecode";
+            this.cmbImageDecode.Size = new System.Drawing.Size(175, 24);
+            this.cmbImageDecode.TabIndex = 15;
+            this.cmbImageDecode.Text = "Choose Your Image";
+            // 
+            // cmbTextDecode
+            // 
+            this.cmbTextDecode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(239)))), ((int)(((byte)(251)))));
+            this.cmbTextDecode.FormattingEnabled = true;
+            this.cmbTextDecode.Location = new System.Drawing.Point(149, 62);
+            this.cmbTextDecode.Name = "cmbTextDecode";
+            this.cmbTextDecode.Size = new System.Drawing.Size(175, 24);
+            this.cmbTextDecode.TabIndex = 16;
+            this.cmbTextDecode.Text = "Retrieve Message";
+            // 
+            // tbcTab
+            // 
+            this.tbcTab.Appearance = System.Windows.Forms.TabAppearance.Buttons;
+            this.tbcTab.Controls.Add(this.tbpEncode);
+            this.tbcTab.Controls.Add(this.tbpDecode);
+            this.tbcTab.Location = new System.Drawing.Point(366, 885);
+            this.tbcTab.Name = "tbcTab";
+            this.tbcTab.SelectedIndex = 0;
+            this.tbcTab.Size = new System.Drawing.Size(910, 314);
+            this.tbcTab.TabIndex = 17;
+            this.tbcTab.Visible = false;
+            this.tbcTab.Enter += new System.EventHandler(this.getActionList);
+            // 
+            // tbpEncode
+            // 
+            this.tbpEncode.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tbpEncode.Controls.Add(this.cmbImageE);
+            this.tbpEncode.Location = new System.Drawing.Point(4, 28);
+            this.tbpEncode.Name = "tbpEncode";
+            this.tbpEncode.Padding = new System.Windows.Forms.Padding(3);
+            this.tbpEncode.Size = new System.Drawing.Size(902, 282);
+            this.tbpEncode.TabIndex = 0;
+            this.tbpEncode.Text = "Encode - Hide Message";
+            this.tbpEncode.UseVisualStyleBackColor = true;
+            // 
+            // tbpDecode
+            // 
+            this.tbpDecode.Controls.Add(this.checkBox1);
+            this.tbpDecode.Controls.Add(this.cmbImageD);
+            this.tbpDecode.Location = new System.Drawing.Point(4, 28);
+            this.tbpDecode.Name = "tbpDecode";
+            this.tbpDecode.Padding = new System.Windows.Forms.Padding(3);
+            this.tbpDecode.Size = new System.Drawing.Size(902, 282);
+            this.tbpDecode.TabIndex = 1;
+            this.tbpDecode.Text = "Decode - Retrieve Message";
+            this.tbpDecode.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(63, 80);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(291, 21);
+            this.checkBox1.TabIndex = 15;
+            this.checkBox1.Text = "Use Encryption (slower, but more secure)";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // cmbImageD
+            // 
+            this.cmbImageD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(239)))), ((int)(((byte)(251)))));
+            this.cmbImageD.FormattingEnabled = true;
+            this.cmbImageD.Items.AddRange(new object[] {
+            "Upload My Image",
+            "Use Stock Image",
+            "Create Fractal Image",
+            "Create Gradient Image",
+            "Download Image - Decode"});
+            this.cmbImageD.Location = new System.Drawing.Point(38, 24);
+            this.cmbImageD.Name = "cmbImageD";
+            this.cmbImageD.Size = new System.Drawing.Size(175, 24);
+            this.cmbImageD.TabIndex = 14;
+            this.cmbImageD.Text = "Choose Your Image";
+            this.cmbImageD.Enter += new System.EventHandler(this.getActionList);
+            // 
+            // cmbImage
+            // 
+            this.cmbImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
+            this.cmbImage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbImage.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbImage.FormattingEnabled = true;
+            this.cmbImage.Items.AddRange(new object[] {
+            "Upload My Image",
+            "Use Stock Image",
+            "Create Fractal Image",
+            "Create Gradient Image",
+            "Download Image - Decode"});
+            this.cmbImage.Location = new System.Drawing.Point(23, 377);
+            this.cmbImage.Name = "cmbImage";
+            this.cmbImage.Size = new System.Drawing.Size(235, 31);
+            this.cmbImage.TabIndex = 14;
+            this.cmbImage.SelectedIndexChanged += new System.EventHandler(this.cmbImage_SelectedIndexChanged);
+            this.cmbImage.Enter += new System.EventHandler(this.getActionList);
+            // 
+            // cmbFunction
+            // 
+            this.cmbFunction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
+            this.cmbFunction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFunction.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbFunction.FormattingEnabled = true;
+            this.cmbFunction.ItemHeight = 23;
+            this.cmbFunction.Items.AddRange(new object[] {
+            "Encode - Conceal a message in an image",
+            "Decode - Retrieve a message from an image"});
+            this.cmbFunction.Location = new System.Drawing.Point(26, 277);
+            this.cmbFunction.Name = "cmbFunction";
+            this.cmbFunction.Size = new System.Drawing.Size(495, 31);
+            this.cmbFunction.TabIndex = 19;
+            // 
+            // rtbTextMessage
+            // 
+            this.rtbTextMessage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.rtbTextMessage.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.rtbTextMessage.Location = new System.Drawing.Point(14, 437);
+            this.rtbTextMessage.Name = "rtbTextMessage";
+            this.rtbTextMessage.Size = new System.Drawing.Size(580, 350);
+            this.rtbTextMessage.TabIndex = 20;
+            this.rtbTextMessage.Text = "";
+            // 
+            // pcbImage
+            // 
+            this.pcbImage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.pcbImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pcbImage.Location = new System.Drawing.Point(648, 438);
+            this.pcbImage.Margin = new System.Windows.Forms.Padding(1);
+            this.pcbImage.Name = "pcbImage";
+            this.pcbImage.Size = new System.Drawing.Size(570, 350);
+            this.pcbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcbImage.TabIndex = 21;
+            this.pcbImage.TabStop = false;
+            // 
+            // BottomToolStripPanel
+            // 
+            this.BottomToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.BottomToolStripPanel.Name = "BottomToolStripPanel";
+            this.BottomToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.BottomToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.BottomToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // TopToolStripPanel
+            // 
+            this.TopToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.TopToolStripPanel.Name = "TopToolStripPanel";
+            this.TopToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.TopToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.TopToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // RightToolStripPanel
+            // 
+            this.RightToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.RightToolStripPanel.Name = "RightToolStripPanel";
+            this.RightToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.RightToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.RightToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // LeftToolStripPanel
+            // 
+            this.LeftToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.LeftToolStripPanel.Name = "LeftToolStripPanel";
+            this.LeftToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.LeftToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.LeftToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // ContentPanel
+            // 
+            this.ContentPanel.Size = new System.Drawing.Size(477, 125);
+            // 
             // lblImageOptions
             // 
             this.lblImageOptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
@@ -677,7 +739,7 @@ namespace Steganography_with_AES_Encryption
             this.lblImageOptions.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblImageOptions.Location = new System.Drawing.Point(26, 379);
             this.lblImageOptions.Name = "lblImageOptions";
-            this.lblImageOptions.Size = new System.Drawing.Size(191, 27);
+            this.lblImageOptions.Size = new System.Drawing.Size(202, 27);
             this.lblImageOptions.TabIndex = 22;
             this.lblImageOptions.Text = "Choose Your Image";
             this.lblImageOptions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -690,7 +752,7 @@ namespace Steganography_with_AES_Encryption
             this.lblMessageOptions.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessageOptions.Location = new System.Drawing.Point(648, 381);
             this.lblMessageOptions.Name = "lblMessageOptions";
-            this.lblMessageOptions.Size = new System.Drawing.Size(170, 27);
+            this.lblMessageOptions.Size = new System.Drawing.Size(183, 27);
             this.lblMessageOptions.TabIndex = 23;
             this.lblMessageOptions.Text = "Message Options";
             this.lblMessageOptions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -717,58 +779,7 @@ namespace Steganography_with_AES_Encryption
             this.chbNoEncrypt.TabIndex = 26;
             this.chbNoEncrypt.Text = "No Encryption (Less secure)";
             this.chbNoEncrypt.UseVisualStyleBackColor = true;
-            // 
-            // useEncryptionRecommendedToolStripMenuItem
-            // 
-            this.useEncryptionRecommendedToolStripMenuItem.Name = "useEncryptionRecommendedToolStripMenuItem";
-            this.useEncryptionRecommendedToolStripMenuItem.Size = new System.Drawing.Size(329, 28);
-            this.useEncryptionRecommendedToolStripMenuItem.Text = "Use Encryption(Recommended)";
-            // 
-            // noEncryptionLessSecureToolStripMenuItem
-            // 
-            this.noEncryptionLessSecureToolStripMenuItem.Name = "noEncryptionLessSecureToolStripMenuItem";
-            this.noEncryptionLessSecureToolStripMenuItem.Size = new System.Drawing.Size(329, 28);
-            this.noEncryptionLessSecureToolStripMenuItem.Text = "No Encryption (Less Secure)";
-            // 
-            // unencodedImageToolStripMenuItem
-            // 
-            this.unencodedImageToolStripMenuItem.Name = "unencodedImageToolStripMenuItem";
-            this.unencodedImageToolStripMenuItem.Size = new System.Drawing.Size(234, 28);
-            this.unencodedImageToolStripMenuItem.Text = "Un-encoded Image";
-            // 
-            // encodedImageToolStripMenuItem
-            // 
-            this.encodedImageToolStripMenuItem.Name = "encodedImageToolStripMenuItem";
-            this.encodedImageToolStripMenuItem.Size = new System.Drawing.Size(234, 28);
-            this.encodedImageToolStripMenuItem.Text = "Encoded Image";
-            // 
-            // fractalImageToolStripMenuItem
-            // 
-            this.fractalImageToolStripMenuItem.Name = "fractalImageToolStripMenuItem";
-            this.fractalImageToolStripMenuItem.Size = new System.Drawing.Size(205, 28);
-            this.fractalImageToolStripMenuItem.Text = "Fractal Image";
-            // 
-            // gradientImageToolStripMenuItem
-            // 
-            this.gradientImageToolStripMenuItem.Name = "gradientImageToolStripMenuItem";
-            this.gradientImageToolStripMenuItem.Size = new System.Drawing.Size(205, 28);
-            this.gradientImageToolStripMenuItem.Text = "Gradient Image";
-            // 
-            // stockImageToolStripMenuItem
-            // 
-            this.stockImageToolStripMenuItem.Name = "stockImageToolStripMenuItem";
-            this.stockImageToolStripMenuItem.Size = new System.Drawing.Size(205, 28);
-            this.stockImageToolStripMenuItem.Text = "Stock Image";
-            // 
-            // lblMenu
-            // 
-            this.lblMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(238)))));
-            this.lblMenu.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.lblMenu.Location = new System.Drawing.Point(402, 172);
-            this.lblMenu.Name = "lblMenu";
-            this.lblMenu.Size = new System.Drawing.Size(521, 44);
-            this.lblMenu.TabIndex = 12;
+            this.chbNoEncrypt.Visible = false;
             // 
             // label1
             // 
@@ -787,7 +798,7 @@ namespace Steganography_with_AES_Encryption
             this.label2.Font = new System.Drawing.Font("Segoe UI", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(22, 840);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 17);
+            this.label2.Size = new System.Drawing.Size(53, 15);
             this.label2.TabIndex = 28;
             this.label2.Text = "(©) 2017";
             // 
@@ -797,15 +808,9 @@ namespace Steganography_with_AES_Encryption
             this.label3.Font = new System.Drawing.Font("Segoe UI", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(1131, 842);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 17);
+            this.label3.Size = new System.Drawing.Size(64, 15);
             this.label3.TabIndex = 29;
             this.label3.Text = "Version 1.0";
-            // 
-            // whatIsAFractalToolStripMenuItem
-            // 
-            this.whatIsAFractalToolStripMenuItem.Name = "whatIsAFractalToolStripMenuItem";
-            this.whatIsAFractalToolStripMenuItem.Size = new System.Drawing.Size(221, 28);
-            this.whatIsAFractalToolStripMenuItem.Text = "What is a Fractal?";
             // 
             // groupBoxDecode
             // 
@@ -824,6 +829,7 @@ namespace Steganography_with_AES_Encryption
             this.groupBoxDecode.TabIndex = 31;
             this.groupBoxDecode.TabStop = false;
             this.groupBoxDecode.Text = "Retrieve Text from Image";
+            this.groupBoxDecode.Visible = false;
             // 
             // labelDecodedMessage
             // 
@@ -854,16 +860,6 @@ namespace Steganography_with_AES_Encryption
             this.btnDecode.Text = "Decode Image";
             this.btnDecode.UseVisualStyleBackColor = true;
             // 
-            // textBoxOutputMessage
-            // 
-            this.textBoxOutputMessage.Location = new System.Drawing.Point(100, 36);
-            this.textBoxOutputMessage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBoxOutputMessage.Multiline = true;
-            this.textBoxOutputMessage.Name = "textBoxOutputMessage";
-            this.textBoxOutputMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxOutputMessage.Size = new System.Drawing.Size(599, 116);
-            this.textBoxOutputMessage.TabIndex = 4;
-            // 
             // pictureBoxEncoded2
             // 
             this.pictureBoxEncoded2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -885,6 +881,27 @@ namespace Steganography_with_AES_Encryption
             this.buttonOpenImage2.Text = "Open Image";
             this.buttonOpenImage2.UseVisualStyleBackColor = true;
             // 
+            // pictureBoxEncoded
+            // 
+            this.pictureBoxEncoded.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxEncoded.Location = new System.Drawing.Point(47, 0);
+            this.pictureBoxEncoded.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBoxEncoded.Name = "pictureBoxEncoded";
+            this.pictureBoxEncoded.Size = new System.Drawing.Size(214, 203);
+            this.pictureBoxEncoded.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxEncoded.TabIndex = 3;
+            this.pictureBoxEncoded.TabStop = false;
+            // 
+            // textBoxOutputMessage
+            // 
+            this.textBoxOutputMessage.Location = new System.Drawing.Point(100, 36);
+            this.textBoxOutputMessage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxOutputMessage.Multiline = true;
+            this.textBoxOutputMessage.Name = "textBoxOutputMessage";
+            this.textBoxOutputMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxOutputMessage.Size = new System.Drawing.Size(599, 116);
+            this.textBoxOutputMessage.TabIndex = 4;
+            // 
             // groupBoxEncode
             // 
             this.groupBoxEncode.Controls.Add(this.btnEncodeImage);
@@ -904,16 +921,7 @@ namespace Steganography_with_AES_Encryption
             this.groupBoxEncode.TabIndex = 30;
             this.groupBoxEncode.TabStop = false;
             this.groupBoxEncode.Text = "Hide Text in Image";
-            // 
-            // labelCharLimit
-            // 
-            this.labelCharLimit.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCharLimit.Location = new System.Drawing.Point(253, 408);
-            this.labelCharLimit.Name = "labelCharLimit";
-            this.labelCharLimit.Size = new System.Drawing.Size(341, 17);
-            this.labelCharLimit.TabIndex = 9;
-            this.labelCharLimit.Text = "Character Limit: n";
-            this.labelCharLimit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.groupBoxEncode.Visible = false;
             // 
             // btnEncodeImage
             // 
@@ -964,17 +972,6 @@ namespace Steganography_with_AES_Encryption
             this.labelRawImage.TabIndex = 4;
             this.labelRawImage.Text = "Raw Image";
             // 
-            // pictureBoxEncoded
-            // 
-            this.pictureBoxEncoded.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxEncoded.Location = new System.Drawing.Point(47, 0);
-            this.pictureBoxEncoded.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBoxEncoded.Name = "pictureBoxEncoded";
-            this.pictureBoxEncoded.Size = new System.Drawing.Size(214, 203);
-            this.pictureBoxEncoded.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxEncoded.TabIndex = 3;
-            this.pictureBoxEncoded.TabStop = false;
-            // 
             // pictureBoxRaw
             // 
             this.pictureBoxRaw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -996,16 +993,44 @@ namespace Steganography_with_AES_Encryption
             this.buttonOpenImage.Text = "Open Image";
             this.buttonOpenImage.UseVisualStyleBackColor = true;
             // 
+            // labelCharLimit
+            // 
+            this.labelCharLimit.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCharLimit.Location = new System.Drawing.Point(253, 408);
+            this.labelCharLimit.Name = "labelCharLimit";
+            this.labelCharLimit.Size = new System.Drawing.Size(341, 17);
+            this.labelCharLimit.TabIndex = 9;
+            this.labelCharLimit.Text = "Character Limit: n";
+            this.labelCharLimit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCancel.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Location = new System.Drawing.Point(201, 794);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(128, 28);
+            this.btnCancel.TabIndex = 32;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(162)))), ((int)(((byte)(115)))));
             this.ClientSize = new System.Drawing.Size(1256, 1019);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.labelCharLimit);
             this.Controls.Add(this.groupBoxDecode);
             this.Controls.Add(this.groupBoxEncode);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnHelpPageTest);
+            this.Controls.Add(this.btnAboutPageTest);
+            this.Controls.Add(this.btnStockImagesTest);
+            this.Controls.Add(this.btnFractalGeneratorTest);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.chbNoEncrypt);
@@ -1015,16 +1040,11 @@ namespace Steganography_with_AES_Encryption
             this.Controls.Add(this.pcbImage);
             this.Controls.Add(this.rtbTextMessage);
             this.Controls.Add(this.cmbFunction);
-            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.cmbImage);
             this.Controls.Add(this.tbcTab);
-            this.Controls.Add(this.cmbTextEncode);
-            this.Controls.Add(this.btnStockImagesTest);
+            this.Controls.Add(this.cmbMessage);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.checkBoxEncryption);
-            this.Controls.Add(this.btnFractalGeneratorTest);
-            this.Controls.Add(this.btnHelpPageTest);
-            this.Controls.Add(this.btnAboutPageTest);
             this.Controls.Add(this.gpbLichens);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1032,6 +1052,8 @@ namespace Steganography_with_AES_Encryption
             this.Text = "Steganography with AES Encryption";
             this.gpbLichens.ResumeLayout(false);
             this.gpbLichens.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbLichens)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tbcTab.ResumeLayout(false);
@@ -1039,14 +1061,12 @@ namespace Steganography_with_AES_Encryption
             this.tbpDecode.ResumeLayout(false);
             this.tbpDecode.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbImage)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.groupBoxDecode.ResumeLayout(false);
             this.groupBoxDecode.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEncoded2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEncoded)).EndInit();
             this.groupBoxEncode.ResumeLayout(false);
             this.groupBoxEncode.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEncoded)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRaw)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1066,7 +1086,7 @@ namespace Steganography_with_AES_Encryption
         private System.Windows.Forms.PictureBox pcbLichens;
         private System.Windows.Forms.GroupBox gpbLichens;
         private System.Windows.Forms.ComboBox cmbImageE;
-        private System.Windows.Forms.ComboBox cmbTextEncode;
+        private System.Windows.Forms.ComboBox cmbMessage;
         private System.Windows.Forms.ComboBox cmbImageDecode;
         private System.Windows.Forms.ComboBox cmbTextDecode;
         private System.Windows.Forms.TabControl tbcTab;
@@ -1075,7 +1095,6 @@ namespace Steganography_with_AES_Encryption
         private System.Windows.Forms.TabPage tbpDecode;
         private System.Windows.Forms.ComboBox cmbImageD;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.ComboBox cmbFunction;
         private System.Windows.Forms.RichTextBox rtbTextMessage;
         private System.Windows.Forms.PictureBox pcbImage;
@@ -1137,5 +1156,6 @@ namespace Steganography_with_AES_Encryption
         private System.Windows.Forms.PictureBox pictureBoxRaw;
         private System.Windows.Forms.Button buttonOpenImage;
         private System.Windows.Forms.Label labelCharLimit;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
