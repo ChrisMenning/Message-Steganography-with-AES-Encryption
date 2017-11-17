@@ -83,6 +83,16 @@ namespace Steganography_with_AES_Encryption.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Lichens {
+            get {
+                object obj = ResourceManager.GetObject("Lichens", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pnggradHDrgba {
             get {
                 object obj = ResourceManager.GetObject("pnggradHDrgba", resourceCulture);

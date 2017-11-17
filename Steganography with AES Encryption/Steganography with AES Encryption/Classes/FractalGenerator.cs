@@ -9,8 +9,8 @@ namespace Steganography_with_AES_Encryption.Classes
 {
     public class FractalGenerator
     {
-
-        public Bitmap generateFractal(int height, int width, double xMax, double xMin, double yMax, double yMin)
+       
+       public Bitmap generateFractal(int height, int width, double xMax, double xMin, double yMax, double yMin)
         {
             double pXmax = xMax;
             double pXmin = xMin;
@@ -30,13 +30,14 @@ namespace Steganography_with_AES_Encryption.Classes
             for (int x = 0; x < fractal.Width; x++)
             {
                 cx = (xzoom * x) - Math.Abs(xMin);
+                loopgo = 0; //added for gradient
                 for (int y = 0; y < fractal.Height; y++)
                 {
                     zx = 0;
                     zy = 0;
                     cy = (yzoom * y) - Math.Abs(yMin);
-                    loopgo = 0;
-
+                    //loopgo = 0; Changed for gradient
+                    loopgo++;
                     while (zx * zx + zy * zy <= 4 && loopgo < 1000)
                     {
                         loopgo++;
@@ -45,16 +46,13 @@ namespace Steganography_with_AES_Encryption.Classes
                         zy = (2 * tempzx * zy) + cy;
                     }
 
-                    if (loopgo != 1000)
+                   //if (loopgo != 1000)Removed for gradient
                         fractal.SetPixel(x, y, Color.FromArgb(loopgo % 128 * 2, loopgo % 32 * 7, loopgo % 16 * 14));
-                    else
-                        fractal.SetPixel(x, y, Color.Black);
-
+                  // else
+                     //  fractal.SetPixel(x, y, Color.Black);
                 }
-            }
-
+    }
             return fractal;
-
         }
 
     }
