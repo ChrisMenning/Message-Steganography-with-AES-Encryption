@@ -68,6 +68,7 @@
     <Compile Include="Classes\FractalGenerator.cs" />
     <Compile Include="Classes\BitmapDecoder.cs">
     </Compile>
+    <Compile Include="Classes\Gradient.cs" />
     <Compile Include="Classes\JpegEncoder.cs" />
     <Compile Include="Classes\Mandelbrot.cs" />
     <Compile Include="Classes\PasswordHandler.cs" />
@@ -145,6 +146,7 @@
       <DependentUpon>StockImagesPage.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Steganography_with_AES_Encryption.Classes.Gradient.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -186,6 +188,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Dog_Large.jpg" />
+    <None Include="Resources\Lichens.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

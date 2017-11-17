@@ -34,18 +34,20 @@
             // 
             // rtbHelpPage
             // 
-            this.rtbHelpPage.Enabled = false;
-            this.rtbHelpPage.Location = new System.Drawing.Point(70, 30);
+            this.rtbHelpPage.Location = new System.Drawing.Point(93, 37);
+            this.rtbHelpPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rtbHelpPage.Name = "rtbHelpPage";
-            this.rtbHelpPage.Size = new System.Drawing.Size(386, 317);
+            this.rtbHelpPage.ReadOnly = true;
+            this.rtbHelpPage.Size = new System.Drawing.Size(513, 389);
             this.rtbHelpPage.TabIndex = 0;
             this.rtbHelpPage.Text = "";
             // 
             // btnCloseHelpPage
             // 
-            this.btnCloseHelpPage.Location = new System.Drawing.Point(204, 392);
+            this.btnCloseHelpPage.Location = new System.Drawing.Point(272, 482);
+            this.btnCloseHelpPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCloseHelpPage.Name = "btnCloseHelpPage";
-            this.btnCloseHelpPage.Size = new System.Drawing.Size(75, 23);
+            this.btnCloseHelpPage.Size = new System.Drawing.Size(100, 28);
             this.btnCloseHelpPage.TabIndex = 1;
             this.btnCloseHelpPage.Text = "Close";
             this.btnCloseHelpPage.UseVisualStyleBackColor = true;
@@ -53,11 +55,13 @@
             // 
             // frmHelpPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(511, 445);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(681, 548);
             this.Controls.Add(this.btnCloseHelpPage);
             this.Controls.Add(this.rtbHelpPage);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmHelpPage";
             this.Text = "Help";
             this.Load += new System.EventHandler(this.frmHelpPage_Load);
