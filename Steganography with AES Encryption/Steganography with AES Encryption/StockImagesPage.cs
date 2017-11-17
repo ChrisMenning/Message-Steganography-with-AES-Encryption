@@ -14,8 +14,10 @@ namespace Steganography_with_AES_Encryption
 {
     public partial class frmStockImagesPage : Form
     {
-        public frmStockImagesPage()
+        FormMain main;
+        public frmStockImagesPage(FormMain main)
         {
+            this.main = main;
             InitializeComponent();
         }
 
@@ -885,163 +887,67 @@ namespace Steganography_with_AES_Encryption
         private void btnSaveStockImage_Click(object sender, EventArgs e)
         {
             Bitmap image;
-
+            
             try
             {
                 if (rdbDog.Checked)
                 {
                     if (rdbLarge.Checked)
                     {
-                        image = Properties.Resources.Dog_Large;
-                        sfdStockImages.Filter = "PNG Image|*.png";
-                        sfdStockImages.Title = "Save Image File";
-                        sfdStockImages.ShowDialog();
-
-                        if (sfdStockImages.FileName != String.Empty)
-                        {
-                            image.Save(sfdStockImages.FileName);
-                        }
+                        main.Pubpicture.Image = Resources.Dog_Large;
                     }
                     else if (rdbMedium.Checked)
                     {
-                        image = Properties.Resources.Dog_Medium;
-                        sfdStockImages.Filter = "PNG Image|*.png";
-                        sfdStockImages.Title = "Save Image File";
-                        sfdStockImages.ShowDialog();
-
-                        if (sfdStockImages.FileName != String.Empty)
-                        {
-                            image.Save(sfdStockImages.FileName);
-                        }
+                        main.Pubpicture.Image = Resources.Dog_Medium;
                     }
                     else if (rdbSmall.Checked)
                     {
-                        image = Properties.Resources.Dog_Small;
-                        sfdStockImages.Filter = "PNG Image|*.png";
-                        sfdStockImages.Title = "Save Image File";
-                        sfdStockImages.ShowDialog();
-
-                        if (sfdStockImages.FileName != String.Empty)
-                        {
-                            image.Save(sfdStockImages.FileName);
-                        }
+                        main.Pubpicture.Image = Resources.Dog_Small;
                     }
                 }
                 else if (rdbPenguin.Checked)
                 {
                     if (rdbLarge.Checked)
                     {
-                        image = Properties.Resources.Penguin_Large;
-                        sfdStockImages.Filter = "PNG Image|*.png";
-                        sfdStockImages.Title = "Save Image File";
-                        sfdStockImages.ShowDialog();
-
-                        if (sfdStockImages.FileName != String.Empty)
-                        {
-                            image.Save(sfdStockImages.FileName);
-                        }
+                        main.Pubpicture.Image = Resources.Penguin_Large;
                     }
                     else if (rdbMedium.Checked)
                     {
-                        image = Properties.Resources.Penguin_Medium;
-                        sfdStockImages.Filter = "PNG Image|*.png";
-                        sfdStockImages.Title = "Save Image File";
-                        sfdStockImages.ShowDialog();
-
-                        if (sfdStockImages.FileName != String.Empty)
-                        {
-                            image.Save(sfdStockImages.FileName);
-                        }
+                        main.Pubpicture.Image = Resources.Penguin_Medium;
                     }
                     else if (rdbSmall.Checked)
                     {
-                        image = Properties.Resources.Penguin_Small;
-                        sfdStockImages.Filter = "PNG Image|*.png";
-                        sfdStockImages.Title = "Save Image File";
-                        sfdStockImages.ShowDialog();
-
-                        if (sfdStockImages.FileName != String.Empty)
-                        {
-                            image.Save(sfdStockImages.FileName);
-                        }
+                        main.Pubpicture.Image = Resources.Penguin_Small;
                     }
                 }
                 else if (rdbRocks.Checked)
                 {
                     if (rdbLarge.Checked)
                     {
-                        image = Properties.Resources.Rocks_Large;
-                        sfdStockImages.Filter = "PNG Image|*.png";
-                        sfdStockImages.Title = "Save Image File";
-                        sfdStockImages.ShowDialog();
-
-                        if (sfdStockImages.FileName != String.Empty)
-                        {
-                            image.Save(sfdStockImages.FileName);
-                        }
+                        main.Pubpicture.Image = Resources.Rocks_Large;
                     }
                     else if (rdbMedium.Checked)
                     {
-                        image = Properties.Resources.Rocks_Medium;
-                        sfdStockImages.Filter = "PNG Image|*.png";
-                        sfdStockImages.Title = "Save Image File";
-                        sfdStockImages.ShowDialog();
-
-                        if (sfdStockImages.FileName != String.Empty)
-                        {
-                            image.Save(sfdStockImages.FileName);
-                        }
+                        main.Pubpicture.Image = Resources.Rocks_Medium;
                     }
                     else if (rdbSmall.Checked)
                     {
-                        image = Properties.Resources.Rocks_Small;
-                        sfdStockImages.Filter = "PNG Image|*.png";
-                        sfdStockImages.Title = "Save Image File";
-                        sfdStockImages.ShowDialog();
-
-                        if (sfdStockImages.FileName != String.Empty)
-                        {
-                            image.Save(sfdStockImages.FileName);
-                        }
+                        main.Pubpicture.Image = Resources.Rocks_Small;
                     }
                 }
                 else if (rdbTiger.Checked)
                 {
                     if (rdbLarge.Checked)
                     {
-                        image = Properties.Resources.Tiger_Large;
-                        sfdStockImages.Filter = "PNG Image|*.png";
-                        sfdStockImages.Title = "Save Image File";
-                        sfdStockImages.ShowDialog();
-
-                        if (sfdStockImages.FileName != String.Empty)
-                        {
-                            image.Save(sfdStockImages.FileName);
-                        }
+                        main.Pubpicture.Image = Resources.Tiger_Large;
                     }
                     else if (rdbMedium.Checked)
                     {
-                        image = Properties.Resources.Tiger_Medium;
-                        sfdStockImages.Filter = "PNG Image|*.png";
-                        sfdStockImages.Title = "Save Image File";
-                        sfdStockImages.ShowDialog();
-
-                        if (sfdStockImages.FileName != String.Empty)
-                        {
-                            image.Save(sfdStockImages.FileName);
-                        }
+                        main.Pubpicture.Image = Resources.Tiger_Medium;
                     }
                     else if (rdbSmall.Checked)
                     {
-                        image = Properties.Resources.Tiger_Small;
-                        sfdStockImages.Filter = "PNG Image|*.png";
-                        sfdStockImages.Title = "Save Image File";
-                        sfdStockImages.ShowDialog();
-
-                        if (sfdStockImages.FileName != String.Empty)
-                        {
-                            image.Save(sfdStockImages.FileName);
-                        }
+                        main.Pubpicture.Image = Resources.Tiger_Small;
                     }
                 }
             }

@@ -59,12 +59,16 @@ namespace Steganography_with_AES_Encryption
 
         private PNGCompressor pngCompressor;
 
+        private PictureBox pubpicture;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="FormMain"/> class 
         /// </summary>
         public FormMain()
         {
+            
             this.InitializeComponent();
+            this.pubpicture = pcbImage;
             this.aesBlockSize = 16;
             pngCompressor = new PNGCompressor();
             this.CenterToScreen();
@@ -99,6 +103,19 @@ namespace Steganography_with_AES_Encryption
             set
             {
                 this.aesBlockSize = value;
+            }
+        }
+
+        public PictureBox Pubpicture
+        {
+            get
+            {
+                return pubpicture;
+            }
+
+            set
+            {
+                pubpicture = value;
             }
         }
 
@@ -653,6 +670,12 @@ namespace Steganography_with_AES_Encryption
 
                 }
             }
+        }
+
+        private void btnStockImagesTest_Click(object sender, EventArgs e)
+        {
+            frmStockImagesPage stockImage = new frmStockImagesPage(this);
+            stockImage.ShowDialog();
         }
     }
 }
