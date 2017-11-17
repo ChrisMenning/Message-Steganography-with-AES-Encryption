@@ -567,6 +567,7 @@ namespace Steganography_with_AES_Encryption
             btnDecode.Enabled = false;
         }
 
+
         private void cmbImageEncode_SelectedIndexChanged(object sender, EventArgs e)
         {
 

@@ -1,4 +1,4 @@
-﻿//----------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------
 // <copyright file="FormMain.Designer.cs" company="Legendary Lichens">
 //    © Legendary Lichens. All rights reserved. 
 //    2017 - Nathan Beyer / Chris Hoegger / Chris Menning / Leilani Ray
@@ -157,7 +157,7 @@ namespace Steganography_with_AES_Encryption
             this.checkBoxEncryption.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxEncryption.Location = new System.Drawing.Point(23, 334);
             this.checkBoxEncryption.Name = "checkBoxEncryption";
-            this.checkBoxEncryption.Size = new System.Drawing.Size(235, 21);
+            this.checkBoxEncryption.Size = new System.Drawing.Size(235, 21);  
             this.checkBoxEncryption.TabIndex = 5;
             this.checkBoxEncryption.Text = "Use Encryption (Recommended)";
             this.checkBoxEncryption.UseVisualStyleBackColor = true;
@@ -178,7 +178,7 @@ namespace Steganography_with_AES_Encryption
             this.btnAboutPageTest.Location = new System.Drawing.Point(1035, 351);
             this.btnAboutPageTest.Margin = new System.Windows.Forms.Padding(4);
             this.btnAboutPageTest.Name = "btnAboutPageTest";
-            this.btnAboutPageTest.Size = new System.Drawing.Size(160, 28);
+            this.btnAboutPageTest.Size = new System.Drawing.Size(120, 23);
             this.btnAboutPageTest.TabIndex = 2;
             this.btnAboutPageTest.Text = "About Page Test";
             this.btnAboutPageTest.UseVisualStyleBackColor = false;
@@ -190,7 +190,7 @@ namespace Steganography_with_AES_Encryption
             this.btnHelpPageTest.Location = new System.Drawing.Point(1048, 387);
             this.btnHelpPageTest.Margin = new System.Windows.Forms.Padding(4);
             this.btnHelpPageTest.Name = "btnHelpPageTest";
-            this.btnHelpPageTest.Size = new System.Drawing.Size(147, 28);
+            this.btnHelpPageTest.Size = new System.Drawing.Size(110, 23);
             this.btnHelpPageTest.TabIndex = 3;
             this.btnHelpPageTest.Text = "Help Page Test";
             this.btnHelpPageTest.UseVisualStyleBackColor = true;
@@ -199,6 +199,7 @@ namespace Steganography_with_AES_Encryption
             // 
             // btnFractalGeneratorTest
             // 
+
             this.btnFractalGeneratorTest.Location = new System.Drawing.Point(1019, 279);
             this.btnFractalGeneratorTest.Margin = new System.Windows.Forms.Padding(4);
             this.btnFractalGeneratorTest.Name = "btnFractalGeneratorTest";
@@ -1018,7 +1019,7 @@ namespace Steganography_with_AES_Encryption
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(162)))), ((int)(((byte)(115)))));
             this.ClientSize = new System.Drawing.Size(1256, 1019);
@@ -1047,7 +1048,7 @@ namespace Steganography_with_AES_Encryption
             this.Controls.Add(this.checkBoxEncryption);
             this.Controls.Add(this.gpbLichens);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormMain";
             this.Text = "Steganography with AES Encryption";
             this.gpbLichens.ResumeLayout(false);

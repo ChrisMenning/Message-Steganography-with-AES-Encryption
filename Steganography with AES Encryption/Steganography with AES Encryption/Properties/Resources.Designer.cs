@@ -73,6 +73,36 @@ namespace Steganography_with_AES_Encryption.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Dog_Large {
+            get {
+                object obj = ResourceManager.GetObject("Dog_Large", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Dog_Medium {
+            get {
+                object obj = ResourceManager.GetObject("Dog_Medium", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Dog_Small {
+            get {
+                object obj = ResourceManager.GetObject("Dog_Small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap IMG_1650 {
             get {
                 object obj = ResourceManager.GetObject("IMG_1650", resourceCulture);
@@ -83,6 +113,33 @@ namespace Steganography_with_AES_Encryption.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+
+        internal static System.Drawing.Bitmap Penguin_Large {
+            get {
+                object obj = ResourceManager.GetObject("Penguin_Large", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Penguin_Medium {
+            get {
+                object obj = ResourceManager.GetObject("Penguin_Medium", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Penguin_Small {
+            get {
+                object obj = ResourceManager.GetObject("Penguin_Small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+                 }
+         }
         internal static System.Drawing.Bitmap Lichens {
             get {
                 object obj = ResourceManager.GetObject("Lichens", resourceCulture);
@@ -113,9 +170,69 @@ namespace Steganography_with_AES_Encryption.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Rocks_Large {
+            get {
+                object obj = ResourceManager.GetObject("Rocks_Large", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Rocks_Medium {
+            get {
+                object obj = ResourceManager.GetObject("Rocks_Medium", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Rocks_Small {
+            get {
+                object obj = ResourceManager.GetObject("Rocks_Small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Tiger {
             get {
                 object obj = ResourceManager.GetObject("Tiger", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tiger_Large {
+            get {
+                object obj = ResourceManager.GetObject("Tiger_Large", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tiger_Medium {
+            get {
+                object obj = ResourceManager.GetObject("Tiger_Medium", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tiger_Small {
+            get {
+                object obj = ResourceManager.GetObject("Tiger_Small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

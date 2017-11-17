@@ -105,6 +105,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StockImagesPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockImagesPage.Designer.cs">
+      <DependentUpon>StockImagesPage.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AboutPage.resx">
       <DependentUpon>AboutPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -136,6 +142,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="StockImagesPage.resx">
+      <DependentUpon>StockImagesPage.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Steganography_with_AES_Encryption.Classes.Gradient.datasource" />
     <None Include="Properties\Settings.settings">
@@ -165,6 +174,20 @@
     <None Include="Resources\IMG_1650.JPG" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Tiger_Small.png" />
+    <None Include="Resources\Dog_Medium.jpg" />
+    <None Include="Resources\Dog_Small.jpg" />
+    <None Include="Resources\Penguin_Large.jpg" />
+    <None Include="Resources\Penguin_Medium.jpg" />
+    <None Include="Resources\Penguin_Small.jpg" />
+    <None Include="Resources\Rocks_Large.JPG" />
+    <None Include="Resources\Rocks_Medium.JPG" />
+    <None Include="Resources\Rocks_Small.JPG" />
+    <None Include="Resources\Tiger_Large.png" />
+    <None Include="Resources\Tiger_Medium.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Dog_Large.jpg" />
     <None Include="Resources\Lichens.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
