@@ -39,7 +39,7 @@
             this.rdbLarge = new System.Windows.Forms.RadioButton();
             this.rtbStockImage = new System.Windows.Forms.RichTextBox();
             this.sfdStockImages = new System.Windows.Forms.SaveFileDialog();
-            this.btnSaveStockImage = new System.Windows.Forms.Button();
+            this.btnOpenStockImage = new System.Windows.Forms.Button();
             this.btnStockImagesClose = new System.Windows.Forms.Button();
             this.ptbStockImage = new System.Windows.Forms.PictureBox();
             this.grbImages.SuspendLayout();
@@ -164,15 +164,15 @@
             this.rtbStockImage.TabIndex = 3;
             this.rtbStockImage.Text = "";
             // 
-            // btnSaveStockImage
+            // btnOpenStockImage
             // 
-            this.btnSaveStockImage.Location = new System.Drawing.Point(34, 408);
-            this.btnSaveStockImage.Name = "btnSaveStockImage";
-            this.btnSaveStockImage.Size = new System.Drawing.Size(91, 23);
-            this.btnSaveStockImage.TabIndex = 4;
-            this.btnSaveStockImage.Text = "Save Image";
-            this.btnSaveStockImage.UseVisualStyleBackColor = true;
-            this.btnSaveStockImage.Click += new System.EventHandler(this.btnSaveStockImage_Click);
+            this.btnOpenStockImage.Location = new System.Drawing.Point(34, 408);
+            this.btnOpenStockImage.Name = "btnOpenStockImage";
+            this.btnOpenStockImage.Size = new System.Drawing.Size(91, 23);
+            this.btnOpenStockImage.TabIndex = 4;
+            this.btnOpenStockImage.Text = "Open Image";
+            this.btnOpenStockImage.UseVisualStyleBackColor = true;
+            this.btnOpenStockImage.Click += new System.EventHandler(this.btnSaveStockImage_Click);
             // 
             // btnStockImagesClose
             // 
@@ -189,7 +189,7 @@
             this.ptbStockImage.Location = new System.Drawing.Point(278, 49);
             this.ptbStockImage.Name = "ptbStockImage";
             this.ptbStockImage.Size = new System.Drawing.Size(558, 382);
-            this.ptbStockImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ptbStockImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ptbStockImage.TabIndex = 2;
             this.ptbStockImage.TabStop = false;
             // 
@@ -199,7 +199,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(870, 459);
             this.Controls.Add(this.btnStockImagesClose);
-            this.Controls.Add(this.btnSaveStockImage);
+            this.Controls.Add(this.btnOpenStockImage);
             this.Controls.Add(this.rtbStockImage);
             this.Controls.Add(this.ptbStockImage);
             this.Controls.Add(this.grbSize);
@@ -230,7 +230,7 @@
         private System.Windows.Forms.PictureBox ptbStockImage;
         private System.Windows.Forms.RichTextBox rtbStockImage;
         private System.Windows.Forms.SaveFileDialog sfdStockImages;
-        private System.Windows.Forms.Button btnSaveStockImage;
+        private System.Windows.Forms.Button btnOpenStockImage;
         private System.Windows.Forms.Button btnStockImagesClose;
     }
 }
