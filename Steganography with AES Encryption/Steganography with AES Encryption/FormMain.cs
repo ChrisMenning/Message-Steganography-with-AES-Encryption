@@ -594,7 +594,7 @@ namespace Steganography_with_AES_Encryption
             if (cmbFunction.SelectedIndex == 0)
             {
                 this.checkBoxEncryption.Visible = true;
-                this.chbNoEncrypt.Visible = true;
+               // this.chbNoEncrypt.Visible = true;
                 cmbImage.Items.Clear();
                 cmbImage.Items.Add(cmbImage.SelectedItem = "Upload My Image");
                 cmbImage.Items.Add(cmbImage.SelectedItem = "Use Stock Image");
@@ -605,7 +605,7 @@ namespace Steganography_with_AES_Encryption
             else if (cmbFunction.SelectedIndex == 1)
             {
                 this.checkBoxEncryption.Visible = false;
-                this.chbNoEncrypt.Visible = false;
+               // this.chbNoEncrypt.Visible = false;
                 cmbImage.Items.Clear();
                 cmbImage.Items.Add(cmbImage.SelectedItem = "Download Image - Decode");
 
