@@ -471,7 +471,7 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         /// <param name="sender"> sender </param>
         /// <param name="e"> e </param>
-        private void generateFractalImageToolStripMenuItem_Click(object sender, EventArgs e)
+        private void generateFractalImage_Click(object sender, EventArgs e)
         {
             Mandelbrot mb = new Mandelbrot();
             Bitmap fractal = mb.DrawMandelbrot(1000, 1000);
@@ -506,7 +506,7 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         /// <param name="sender"> sender </param>
         /// <param name="e"> e </param>
-        private void openUnencodedImageToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openImageEncode_Click(object sender, EventArgs e)
         {
             this.OpenRawImage();
         }
@@ -516,7 +516,7 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         /// <param name="sender"> sender </param>
         /// <param name="e"> e </param>
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openViewAbout_Click(object sender, EventArgs e)
         {
             frmAboutPage aboutPage = new frmAboutPage();
             aboutPage.Show();
@@ -527,7 +527,7 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         /// <param name="sender"> sender </param>
         /// <param name="e"> e </param>
-        private void viewHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openViewHelp_Click(object sender, EventArgs e)
         {
             frmHelpPage helpPage = new frmHelpPage();
             helpPage.Show();
@@ -538,7 +538,7 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         /// <param name="sender"> sender </param>
         /// <param name="e"> e </param>
-        private void advancedOptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openAdvancedOptions_Click(object sender, EventArgs e)
         {
             AdvancedOptions ao = new AdvancedOptions(this);
             ao.ShowDialog();
@@ -549,7 +549,7 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         /// <param name="sender"> sender </param>
         /// <param name="e"> e </param>
-        private void useEncryptionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void useEncryption_Click(object sender, EventArgs e)
         {
             if (checkBoxEncryption.Checked)
             {
@@ -558,6 +558,7 @@ namespace Steganography_with_AES_Encryption
             else
             {
                 checkBoxEncryption.Checked = true;
+                checkBoxEncryption.Visible = true;
             }
         }
 
@@ -571,8 +572,8 @@ namespace Steganography_with_AES_Encryption
             this.lossless = new Bitmap(1, 1);
             this.rawImage = new Bitmap(1, 1);
             this.encodedImage = new Bitmap(1, 1);
-            textBoxInputMessage.Clear();
-            textBoxOutputMessage.Clear();
+            txtMessage.Clear();
+            txtMessage.Clear();
 
             pictureBoxRaw.Image = null;
             pictureBoxEncoded.Image = null;
@@ -647,7 +648,8 @@ namespace Steganography_with_AES_Encryption
 
             if (cmbImage.SelectedIndex == 1)
             {
-                //Stock Image Choice;
+                frmStockImagesPage stockImage = new frmStockImagesPage(this);
+                stockImage.ShowDialog();
             }
 
             if (cmbImage.SelectedIndex == 2)
@@ -665,17 +667,49 @@ namespace Steganography_with_AES_Encryption
                 //this.pcbImage.Image = gradient;
                 {
 
-
-
+                    
 
                 }
+                
+
             }
         }
+        private void cmbImage_SelectedValueChanged(object sender, EventArgs e)
+        {
+            lblImageChoice.Text = cmbImage.Text;
+            lblImageChoice.Visible = true;
+        }
+       
+        private void cmbFunction_SelectedValueChanged(object sender, EventArgs e)
+        {
+            lblFunction.Text = cmbFunction.Text;
+            lblFunction.Visible = true;
+             
+            lblImageChoice.Visible = false;
+        }
 
-        private void btnStockImagesTest_Click(object sender, EventArgs e)
+        private void tsmiStockImage_Click(object sender, EventArgs e)
         {
             frmStockImagesPage stockImage = new frmStockImagesPage(this);
             stockImage.ShowDialog();
+        }
+
+        private void tsmiCut_Click(object sender, EventArgs e)
+        {
+            //Clipboard.SetText(txtMessage.SelectedText);
+            txtMessage.Cut();
+        }
+
+        private void tsmiCopy_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(txtMessage.SelectedText);
+            //txtMessage.Copy();
+        }
+
+        private void tsmiPaste_Click(object sender, EventArgs e)
+        {
+            Clipboard.GetText();
+            txtMessage.Paste();
         }
     }
 }

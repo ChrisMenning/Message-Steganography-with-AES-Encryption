@@ -53,42 +53,36 @@ namespace Steganography_with_AES_Encryption
             this.checkBoxEncryption = new System.Windows.Forms.CheckBox();
             this.dialogOpenRawImage = new System.Windows.Forms.OpenFileDialog();
             this.dialogSaveImage = new System.Windows.Forms.SaveFileDialog();
-            this.btnAboutPageTest = new System.Windows.Forms.Button();
-            this.btnHelpPageTest = new System.Windows.Forms.Button();
             this.btnFractalGeneratorTest = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
-            this.btnStockImagesTest = new System.Windows.Forms.Button();
             this.lblLichens = new System.Windows.Forms.Label();
             this.lblOffering = new System.Windows.Forms.Label();
             this.gpbLichens = new System.Windows.Forms.GroupBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openUnencodedImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.unencodedImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.encodedImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.generateFractalImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fractalImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gradientImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stockImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveEncodedImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.openEncodedImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveDecodedMessageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.advancedOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.useEncryptionslowerButMoreSecureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.useEncryptionRecommendedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.noEncryptionLessSecureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.whatIsAFractalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.msMain = new System.Windows.Forms.MenuStrip();
+            this.tsmiFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiOpenImage = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiOpenImageEncode = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiOpenImageDecode = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiGenerateImage = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFractalImage = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiGradientImage = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiStockImage = new System.Windows.Forms.ToolStripMenuItem();
+            this.tssMainFile = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmiOpenEncodedImage = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSaveDecodedMessage = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCut = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiPaste = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSelectAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiPreferences = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiAdvancedOptions = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiUseEncryption = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiViewHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiWhatIsAFractal = new System.Windows.Forms.ToolStripMenuItem();
             this.pcbLichens = new System.Windows.Forms.PictureBox();
             this.lblMenu = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -117,7 +111,7 @@ namespace Steganography_with_AES_Encryption
             this.pictureBoxEncoded = new System.Windows.Forms.PictureBox();
             this.lblCharLimit = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtMessage = new System.Windows.Forms.TextBox();
             this.cmbImageDecode = new System.Windows.Forms.ComboBox();
             this.buttonOpenImage = new System.Windows.Forms.Button();
             this.pictureBoxRaw = new System.Windows.Forms.PictureBox();
@@ -128,8 +122,10 @@ namespace Steganography_with_AES_Encryption
             this.labelInput = new System.Windows.Forms.Label();
             this.btnEncodeImage = new System.Windows.Forms.Button();
             this.groupBoxEncode = new System.Windows.Forms.GroupBox();
+            this.lblFunction = new System.Windows.Forms.Label();
+            this.lblImageChoice = new System.Windows.Forms.Label();
             this.gpbLichens.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.msMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbLichens)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbImage)).BeginInit();
@@ -144,12 +140,12 @@ namespace Steganography_with_AES_Encryption
             // 
             this.checkBoxEncryption.AutoSize = true;
             this.checkBoxEncryption.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxEncryption.Location = new System.Drawing.Point(39, 410);
-            this.checkBoxEncryption.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxEncryption.Location = new System.Drawing.Point(39, 432);
+            this.checkBoxEncryption.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxEncryption.Name = "checkBoxEncryption";
-            this.checkBoxEncryption.Size = new System.Drawing.Size(244, 24);
+            this.checkBoxEncryption.Size = new System.Drawing.Size(405, 24);
             this.checkBoxEncryption.TabIndex = 5;
-            this.checkBoxEncryption.Text = "Use Encryption (Recommended)";
+            this.checkBoxEncryption.Text = "Use Encryption (Recommended, slower but more secure)";
             this.checkBoxEncryption.UseVisualStyleBackColor = true;
             this.checkBoxEncryption.Visible = false;
             // 
@@ -157,40 +153,10 @@ namespace Steganography_with_AES_Encryption
             // 
             this.dialogOpenRawImage.FileName = "openFileDialog1";
             // 
-            // btnAboutPageTest
-            // 
-            this.btnAboutPageTest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
-            this.btnAboutPageTest.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnAboutPageTest.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(162)))), ((int)(((byte)(115)))));
-            this.btnAboutPageTest.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(238)))));
-            this.btnAboutPageTest.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(102)))), ((int)(((byte)(51)))));
-            this.btnAboutPageTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAboutPageTest.Location = new System.Drawing.Point(1380, 432);
-            this.btnAboutPageTest.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.btnAboutPageTest.Name = "btnAboutPageTest";
-            this.btnAboutPageTest.Size = new System.Drawing.Size(160, 28);
-            this.btnAboutPageTest.TabIndex = 2;
-            this.btnAboutPageTest.Text = "About Page Test";
-            this.btnAboutPageTest.UseVisualStyleBackColor = false;
-            this.btnAboutPageTest.Visible = false;
-            this.btnAboutPageTest.Click += new System.EventHandler(this.btnAboutPageTest_Click);
-            // 
-            // btnHelpPageTest
-            // 
-            this.btnHelpPageTest.Location = new System.Drawing.Point(1397, 476);
-            this.btnHelpPageTest.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.btnHelpPageTest.Name = "btnHelpPageTest";
-            this.btnHelpPageTest.Size = new System.Drawing.Size(147, 28);
-            this.btnHelpPageTest.TabIndex = 3;
-            this.btnHelpPageTest.Text = "Help Page Test";
-            this.btnHelpPageTest.UseVisualStyleBackColor = true;
-            this.btnHelpPageTest.Visible = false;
-            this.btnHelpPageTest.Click += new System.EventHandler(this.btnHelpPageTest_Click);
-            // 
             // btnFractalGeneratorTest
             // 
             this.btnFractalGeneratorTest.Location = new System.Drawing.Point(1359, 343);
-            this.btnFractalGeneratorTest.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnFractalGeneratorTest.Margin = new System.Windows.Forms.Padding(5);
             this.btnFractalGeneratorTest.Name = "btnFractalGeneratorTest";
             this.btnFractalGeneratorTest.Size = new System.Drawing.Size(247, 34);
             this.btnFractalGeneratorTest.TabIndex = 4;
@@ -203,25 +169,14 @@ namespace Steganography_with_AES_Encryption
             this.btnReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnReset.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.Location = new System.Drawing.Point(1177, 977);
-            this.btnReset.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnReset.Location = new System.Drawing.Point(267, 977);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(5);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(171, 34);
             this.btnReset.TabIndex = 6;
             this.btnReset.Text = "Reset Image";
             this.btnReset.UseVisualStyleBackColor = false;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
-            // 
-            // btnStockImagesTest
-            // 
-            this.btnStockImagesTest.Location = new System.Drawing.Point(1359, 388);
-            this.btnStockImagesTest.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.btnStockImagesTest.Name = "btnStockImagesTest";
-            this.btnStockImagesTest.Size = new System.Drawing.Size(247, 34);
-            this.btnStockImagesTest.TabIndex = 7;
-            this.btnStockImagesTest.Text = "Stock Images Test";
-            this.btnStockImagesTest.UseVisualStyleBackColor = true;
-            this.btnStockImagesTest.Click += new System.EventHandler(this.btnStockImagesTest_Click);
             // 
             // lblLichens
             // 
@@ -247,251 +202,232 @@ namespace Steganography_with_AES_Encryption
             // 
             // gpbLichens
             // 
-            this.gpbLichens.Controls.Add(this.menuStrip1);
+            this.gpbLichens.Controls.Add(this.msMain);
             this.gpbLichens.Controls.Add(this.pcbLichens);
             this.gpbLichens.Controls.Add(this.lblLichens);
             this.gpbLichens.Controls.Add(this.lblOffering);
             this.gpbLichens.Controls.Add(this.lblMenu);
             this.gpbLichens.Location = new System.Drawing.Point(35, 15);
-            this.gpbLichens.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpbLichens.Margin = new System.Windows.Forms.Padding(4);
             this.gpbLichens.Name = "gpbLichens";
-            this.gpbLichens.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpbLichens.Padding = new System.Windows.Forms.Padding(4);
             this.gpbLichens.Size = new System.Drawing.Size(1589, 295);
             this.gpbLichens.TabIndex = 12;
             this.gpbLichens.TabStop = false;
             // 
-            // menuStrip1
+            // msMain
             // 
-            this.menuStrip1.AutoSize = false;
-            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(238)))));
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.editToolStripMenuItem,
-            this.preferencesToolStripMenuItem,
-            this.helpToolStripMenuItem});
-            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(685, 227);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
-            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.menuStrip1.Size = new System.Drawing.Size(387, 39);
-            this.menuStrip1.Stretch = false;
-            this.menuStrip1.TabIndex = 5;
+            this.msMain.AutoSize = false;
+            this.msMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(238)))));
+            this.msMain.Dock = System.Windows.Forms.DockStyle.None;
+            this.msMain.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.msMain.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.msMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiFile,
+            this.tsmiEdit,
+            this.tsmiPreferences,
+            this.tsmiHelp});
+            this.msMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.msMain.Location = new System.Drawing.Point(685, 227);
+            this.msMain.Name = "msMain";
+            this.msMain.Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
+            this.msMain.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.msMain.Size = new System.Drawing.Size(387, 39);
+            this.msMain.Stretch = false;
+            this.msMain.TabIndex = 5;
             // 
-            // fileToolStripMenuItem
+            // tsmiFile
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openUnencodedImageToolStripMenuItem,
-            this.generateFractalImageToolStripMenuItem,
-            this.saveEncodedImageToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.openEncodedImageToolStripMenuItem,
-            this.saveDecodedMessageToolStripMenuItem});
-            this.fileToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(48, 35);
-            this.fileToolStripMenuItem.Text = "File";
+            this.tsmiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiOpenImage,
+            this.tsmiGenerateImage,
+            this.tssMainFile,
+            this.tsmiOpenEncodedImage,
+            this.tsmiSaveDecodedMessage});
+            this.tsmiFile.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmiFile.Name = "tsmiFile";
+            this.tsmiFile.Size = new System.Drawing.Size(54, 35);
+            this.tsmiFile.Text = "File";
             // 
-            // openUnencodedImageToolStripMenuItem
+            // tsmiOpenImage
             // 
-            this.openUnencodedImageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.unencodedImageToolStripMenuItem,
-            this.encodedImageToolStripMenuItem});
-            this.openUnencodedImageToolStripMenuItem.Name = "openUnencodedImageToolStripMenuItem";
-            this.openUnencodedImageToolStripMenuItem.Size = new System.Drawing.Size(267, 28);
-            this.openUnencodedImageToolStripMenuItem.Text = "My Image";
-            this.openUnencodedImageToolStripMenuItem.Click += new System.EventHandler(this.openUnencodedImageToolStripMenuItem_Click);
+            this.tsmiOpenImage.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiOpenImageEncode,
+            this.tsmiOpenImageDecode});
+            this.tsmiOpenImage.Name = "tsmiOpenImage";
+            this.tsmiOpenImage.Size = new System.Drawing.Size(296, 30);
+            this.tsmiOpenImage.Text = "My Image";
             // 
-            // unencodedImageToolStripMenuItem
+            // tsmiOpenImageEncode
             // 
-            this.unencodedImageToolStripMenuItem.Name = "unencodedImageToolStripMenuItem";
-            this.unencodedImageToolStripMenuItem.Size = new System.Drawing.Size(234, 28);
-            this.unencodedImageToolStripMenuItem.Text = "Un-encoded Image";
+            this.tsmiOpenImageEncode.Name = "tsmiOpenImageEncode";
+            this.tsmiOpenImageEncode.Size = new System.Drawing.Size(354, 30);
+            this.tsmiOpenImageEncode.Text = "Upload Image To Encode";
+            this.tsmiOpenImageEncode.Click += new System.EventHandler(this.openImageEncode_Click);
             // 
-            // encodedImageToolStripMenuItem
+            // tsmiOpenImageDecode
             // 
-            this.encodedImageToolStripMenuItem.Name = "encodedImageToolStripMenuItem";
-            this.encodedImageToolStripMenuItem.Size = new System.Drawing.Size(234, 28);
-            this.encodedImageToolStripMenuItem.Text = "Encoded Image";
+            this.tsmiOpenImageDecode.Name = "tsmiOpenImageDecode";
+            this.tsmiOpenImageDecode.Size = new System.Drawing.Size(354, 30);
+            this.tsmiOpenImageDecode.Text = "Download Image To Decoded";
             // 
-            // generateFractalImageToolStripMenuItem
+            // tsmiGenerateImage
             // 
-            this.generateFractalImageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fractalImageToolStripMenuItem,
-            this.gradientImageToolStripMenuItem,
-            this.stockImageToolStripMenuItem});
-            this.generateFractalImageToolStripMenuItem.Name = "generateFractalImageToolStripMenuItem";
-            this.generateFractalImageToolStripMenuItem.Size = new System.Drawing.Size(267, 28);
-            this.generateFractalImageToolStripMenuItem.Text = "Generate Image";
-            this.generateFractalImageToolStripMenuItem.Click += new System.EventHandler(this.generateFractalImageToolStripMenuItem_Click);
+            this.tsmiGenerateImage.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiStockImage,
+            this.tsmiFractalImage,
+            this.tsmiGradientImage});
+            this.tsmiGenerateImage.Name = "tsmiGenerateImage";
+            this.tsmiGenerateImage.Size = new System.Drawing.Size(296, 30);
+            this.tsmiGenerateImage.Text = "Generate Image";
             // 
-            // fractalImageToolStripMenuItem
+            // tsmiFractalImage
             // 
-            this.fractalImageToolStripMenuItem.Name = "fractalImageToolStripMenuItem";
-            this.fractalImageToolStripMenuItem.Size = new System.Drawing.Size(205, 28);
-            this.fractalImageToolStripMenuItem.Text = "Fractal Image";
+            this.tsmiFractalImage.Name = "tsmiFractalImage";
+            this.tsmiFractalImage.Size = new System.Drawing.Size(228, 30);
+            this.tsmiFractalImage.Text = "Fractal Image";
+            this.tsmiFractalImage.Click += new System.EventHandler(this.generateFractalImage_Click);
             // 
-            // gradientImageToolStripMenuItem
+            // tsmiGradientImage
             // 
-            this.gradientImageToolStripMenuItem.Name = "gradientImageToolStripMenuItem";
-            this.gradientImageToolStripMenuItem.Size = new System.Drawing.Size(205, 28);
-            this.gradientImageToolStripMenuItem.Text = "Gradient Image";
+            this.tsmiGradientImage.Name = "tsmiGradientImage";
+            this.tsmiGradientImage.Size = new System.Drawing.Size(228, 30);
+            this.tsmiGradientImage.Text = "Gradient Image";
             // 
-            // stockImageToolStripMenuItem
+            // tsmiStockImage
             // 
-            this.stockImageToolStripMenuItem.Name = "stockImageToolStripMenuItem";
-            this.stockImageToolStripMenuItem.Size = new System.Drawing.Size(205, 28);
-            this.stockImageToolStripMenuItem.Text = "Stock Image";
+            this.tsmiStockImage.Name = "tsmiStockImage";
+            this.tsmiStockImage.Size = new System.Drawing.Size(228, 30);
+            this.tsmiStockImage.Text = "Stock Image";
+            this.tsmiStockImage.Click += new System.EventHandler(this.tsmiStockImage_Click);
             // 
-            // saveEncodedImageToolStripMenuItem
+            // tssMainFile
             // 
-            this.saveEncodedImageToolStripMenuItem.Enabled = false;
-            this.saveEncodedImageToolStripMenuItem.Name = "saveEncodedImageToolStripMenuItem";
-            this.saveEncodedImageToolStripMenuItem.Size = new System.Drawing.Size(267, 28);
-            this.saveEncodedImageToolStripMenuItem.Text = "Save Encoded Image";
+            this.tssMainFile.Name = "tssMainFile";
+            this.tssMainFile.Size = new System.Drawing.Size(293, 6);
             // 
-            // toolStripSeparator1
+            // tsmiOpenEncodedImage
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(264, 6);
+            this.tsmiOpenEncodedImage.Name = "tsmiOpenEncodedImage";
+            this.tsmiOpenEncodedImage.Size = new System.Drawing.Size(296, 30);
+            this.tsmiOpenEncodedImage.Text = "Save Encoded Image";
             // 
-            // openEncodedImageToolStripMenuItem
+            // tsmiSaveDecodedMessage
             // 
-            this.openEncodedImageToolStripMenuItem.Name = "openEncodedImageToolStripMenuItem";
-            this.openEncodedImageToolStripMenuItem.Size = new System.Drawing.Size(267, 28);
-            this.openEncodedImageToolStripMenuItem.Text = "Save Encoded Image";
+            this.tsmiSaveDecodedMessage.Enabled = false;
+            this.tsmiSaveDecodedMessage.Name = "tsmiSaveDecodedMessage";
+            this.tsmiSaveDecodedMessage.Size = new System.Drawing.Size(296, 30);
+            this.tsmiSaveDecodedMessage.Text = "Save Decoded Message";
             // 
-            // saveDecodedMessageToolStripMenuItem
+            // tsmiEdit
             // 
-            this.saveDecodedMessageToolStripMenuItem.Enabled = false;
-            this.saveDecodedMessageToolStripMenuItem.Name = "saveDecodedMessageToolStripMenuItem";
-            this.saveDecodedMessageToolStripMenuItem.Size = new System.Drawing.Size(267, 28);
-            this.saveDecodedMessageToolStripMenuItem.Text = "Save Decoded Message";
+            this.tsmiEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCut,
+            this.tsmiCopy,
+            this.tsmiPaste,
+            this.tsmiDelete,
+            this.tsmiSelectAll});
+            this.tsmiEdit.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmiEdit.Name = "tsmiEdit";
+            this.tsmiEdit.Size = new System.Drawing.Size(58, 35);
+            this.tsmiEdit.Text = "Edit";
             // 
-            // editToolStripMenuItem
+            // tsmiCut
             // 
-            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cutToolStripMenuItem,
-            this.copyToolStripMenuItem,
-            this.pasteToolStripMenuItem,
-            this.deleteToolStripMenuItem,
-            this.selectAllToolStripMenuItem});
-            this.editToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(51, 35);
-            this.editToolStripMenuItem.Text = "Edit";
+            this.tsmiCut.Name = "tsmiCut";
+            this.tsmiCut.Size = new System.Drawing.Size(181, 30);
+            this.tsmiCut.Text = "Cut";
+            this.tsmiCut.Click += new System.EventHandler(this.tsmiCut_Click);
             // 
-            // cutToolStripMenuItem
+            // tsmiCopy
             // 
-            this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
-            this.cutToolStripMenuItem.Text = "Cut";
+            this.tsmiCopy.Name = "tsmiCopy";
+            this.tsmiCopy.Size = new System.Drawing.Size(181, 30);
+            this.tsmiCopy.Text = "Copy";
+            this.tsmiCopy.Click += new System.EventHandler(this.tsmiCopy_Click);
             // 
-            // copyToolStripMenuItem
+            // tsmiPaste
             // 
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
-            this.copyToolStripMenuItem.Text = "Copy";
+            this.tsmiPaste.Name = "tsmiPaste";
+            this.tsmiPaste.Size = new System.Drawing.Size(181, 30);
+            this.tsmiPaste.Text = "Paste";
+            this.tsmiPaste.Click += new System.EventHandler(this.tsmiPaste_Click);
             // 
-            // pasteToolStripMenuItem
+            // tsmiDelete
             // 
-            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
-            this.pasteToolStripMenuItem.Text = "Paste";
+            this.tsmiDelete.Name = "tsmiDelete";
+            this.tsmiDelete.Size = new System.Drawing.Size(181, 30);
+            this.tsmiDelete.Text = "Delete";
             // 
-            // deleteToolStripMenuItem
+            // tsmiSelectAll
             // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
-            this.deleteToolStripMenuItem.Text = "Delete";
+            this.tsmiSelectAll.Name = "tsmiSelectAll";
+            this.tsmiSelectAll.Size = new System.Drawing.Size(181, 30);
+            this.tsmiSelectAll.Text = "Select-All";
             // 
-            // selectAllToolStripMenuItem
+            // tsmiPreferences
             // 
-            this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
-            this.selectAllToolStripMenuItem.Text = "Select-All";
+            this.tsmiPreferences.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiAdvancedOptions,
+            this.tsmiUseEncryption});
+            this.tsmiPreferences.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmiPreferences.Name = "tsmiPreferences";
+            this.tsmiPreferences.Size = new System.Drawing.Size(96, 35);
+            this.tsmiPreferences.Text = "Settings";
             // 
-            // preferencesToolStripMenuItem
+            // tsmiAdvancedOptions
             // 
-            this.preferencesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.advancedOptionsToolStripMenuItem,
-            this.useEncryptionslowerButMoreSecureToolStripMenuItem});
-            this.preferencesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(83, 35);
-            this.preferencesToolStripMenuItem.Text = "Settings";
+            this.tsmiAdvancedOptions.Enabled = false;
+            this.tsmiAdvancedOptions.Name = "tsmiAdvancedOptions";
+            this.tsmiAdvancedOptions.Size = new System.Drawing.Size(456, 30);
+            this.tsmiAdvancedOptions.Text = "Advanced Options";
+            this.tsmiAdvancedOptions.Click += new System.EventHandler(this.openAdvancedOptions_Click);
             // 
-            // advancedOptionsToolStripMenuItem
+            // tsmiUseEncryption
             // 
-            this.advancedOptionsToolStripMenuItem.Enabled = false;
-            this.advancedOptionsToolStripMenuItem.Name = "advancedOptionsToolStripMenuItem";
-            this.advancedOptionsToolStripMenuItem.Size = new System.Drawing.Size(233, 28);
-            this.advancedOptionsToolStripMenuItem.Text = "Advanced Options";
-            this.advancedOptionsToolStripMenuItem.Click += new System.EventHandler(this.advancedOptionsToolStripMenuItem_Click);
+            this.tsmiUseEncryption.CheckOnClick = true;
+            this.tsmiUseEncryption.Name = "tsmiUseEncryption";
+            this.tsmiUseEncryption.Size = new System.Drawing.Size(456, 30);
+            this.tsmiUseEncryption.Text = "Use Encryption (slower, but more secure)";
+            this.tsmiUseEncryption.Click += new System.EventHandler(this.useEncryption_Click);
             // 
-            // useEncryptionslowerButMoreSecureToolStripMenuItem
+            // tsmiHelp
             // 
-            this.useEncryptionslowerButMoreSecureToolStripMenuItem.CheckOnClick = true;
-            this.useEncryptionslowerButMoreSecureToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.useEncryptionRecommendedToolStripMenuItem,
-            this.noEncryptionLessSecureToolStripMenuItem});
-            this.useEncryptionslowerButMoreSecureToolStripMenuItem.Name = "useEncryptionslowerButMoreSecureToolStripMenuItem";
-            this.useEncryptionslowerButMoreSecureToolStripMenuItem.Size = new System.Drawing.Size(233, 28);
-            this.useEncryptionslowerButMoreSecureToolStripMenuItem.Text = "Encryption Options";
-            this.useEncryptionslowerButMoreSecureToolStripMenuItem.Click += new System.EventHandler(this.useEncryptionToolStripMenuItem_Click);
+            this.tsmiHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiViewHelp,
+            this.tsmiAbout,
+            this.tsmiWhatIsAFractal});
+            this.tsmiHelp.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmiHelp.Name = "tsmiHelp";
+            this.tsmiHelp.Size = new System.Drawing.Size(66, 35);
+            this.tsmiHelp.Text = "Help";
             // 
-            // useEncryptionRecommendedToolStripMenuItem
+            // tsmiViewHelp
             // 
-            this.useEncryptionRecommendedToolStripMenuItem.Name = "useEncryptionRecommendedToolStripMenuItem";
-            this.useEncryptionRecommendedToolStripMenuItem.Size = new System.Drawing.Size(334, 28);
-            this.useEncryptionRecommendedToolStripMenuItem.Text = "Use Encryption (Recommended)";
+            this.tsmiViewHelp.Name = "tsmiViewHelp";
+            this.tsmiViewHelp.Size = new System.Drawing.Size(242, 30);
+            this.tsmiViewHelp.Text = "View Help";
+            this.tsmiViewHelp.Click += new System.EventHandler(this.openViewHelp_Click);
             // 
-            // noEncryptionLessSecureToolStripMenuItem
+            // tsmiAbout
             // 
-            this.noEncryptionLessSecureToolStripMenuItem.Name = "noEncryptionLessSecureToolStripMenuItem";
-            this.noEncryptionLessSecureToolStripMenuItem.Size = new System.Drawing.Size(334, 28);
-            this.noEncryptionLessSecureToolStripMenuItem.Text = "No Encryption (Less Secure)";
+            this.tsmiAbout.Name = "tsmiAbout";
+            this.tsmiAbout.Size = new System.Drawing.Size(242, 30);
+            this.tsmiAbout.Text = "View About";
+            this.tsmiAbout.Click += new System.EventHandler(this.openViewAbout_Click);
             // 
-            // helpToolStripMenuItem
+            // tsmiWhatIsAFractal
             // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.viewHelpToolStripMenuItem,
-            this.aboutToolStripMenuItem,
-            this.whatIsAFractalToolStripMenuItem});
-            this.helpToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(58, 35);
-            this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // viewHelpToolStripMenuItem
-            // 
-            this.viewHelpToolStripMenuItem.Name = "viewHelpToolStripMenuItem";
-            this.viewHelpToolStripMenuItem.Size = new System.Drawing.Size(221, 28);
-            this.viewHelpToolStripMenuItem.Text = "View Help";
-            this.viewHelpToolStripMenuItem.Click += new System.EventHandler(this.viewHelpToolStripMenuItem_Click);
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(221, 28);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // whatIsAFractalToolStripMenuItem
-            // 
-            this.whatIsAFractalToolStripMenuItem.Name = "whatIsAFractalToolStripMenuItem";
-            this.whatIsAFractalToolStripMenuItem.Size = new System.Drawing.Size(221, 28);
-            this.whatIsAFractalToolStripMenuItem.Text = "What is a Fractal?";
+            this.tsmiWhatIsAFractal.Name = "tsmiWhatIsAFractal";
+            this.tsmiWhatIsAFractal.Size = new System.Drawing.Size(242, 30);
+            this.tsmiWhatIsAFractal.Text = "What is a Fractal?";
             // 
             // pcbLichens
             // 
             this.pcbLichens.BackgroundImage = global::Steganography_with_AES_Encryption.Properties.Resources.Lichens;
             this.pcbLichens.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pcbLichens.Location = new System.Drawing.Point(33, 26);
-            this.pcbLichens.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pcbLichens.Margin = new System.Windows.Forms.Padding(4);
             this.pcbLichens.Name = "pcbLichens";
             this.pcbLichens.Size = new System.Drawing.Size(321, 258);
             this.pcbLichens.TabIndex = 11;
@@ -527,7 +463,7 @@ namespace Steganography_with_AES_Encryption
             "Encode (Hide) Message",
             "Decode (Retrieve) Message"});
             this.cmbMessage.Location = new System.Drawing.Point(861, 466);
-            this.cmbMessage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbMessage.Margin = new System.Windows.Forms.Padding(4);
             this.cmbMessage.Name = "cmbMessage";
             this.cmbMessage.Size = new System.Drawing.Size(287, 33);
             this.cmbMessage.TabIndex = 14;
@@ -538,7 +474,7 @@ namespace Steganography_with_AES_Encryption
             this.cmbTextDecode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(239)))), ((int)(((byte)(251)))));
             this.cmbTextDecode.FormattingEnabled = true;
             this.cmbTextDecode.Location = new System.Drawing.Point(199, 76);
-            this.cmbTextDecode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbTextDecode.Margin = new System.Windows.Forms.Padding(4);
             this.cmbTextDecode.Name = "cmbTextDecode";
             this.cmbTextDecode.Size = new System.Drawing.Size(232, 24);
             this.cmbTextDecode.TabIndex = 16;
@@ -550,6 +486,7 @@ namespace Steganography_with_AES_Encryption
             this.cmbImage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbImage.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbImage.FormattingEnabled = true;
+            this.cmbImage.ImeMode = System.Windows.Forms.ImeMode.On;
             this.cmbImage.Items.AddRange(new object[] {
             "Upload My Image",
             "Use Stock Image",
@@ -557,16 +494,18 @@ namespace Steganography_with_AES_Encryption
             "Create Gradient Image",
             "Download Image - Decode"});
             this.cmbImage.Location = new System.Drawing.Point(31, 464);
-            this.cmbImage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbImage.Margin = new System.Windows.Forms.Padding(4);
             this.cmbImage.Name = "cmbImage";
             this.cmbImage.Size = new System.Drawing.Size(312, 33);
-            this.cmbImage.TabIndex = 14;
+            this.cmbImage.TabIndex = 2;
             this.cmbImage.SelectedIndexChanged += new System.EventHandler(this.cmbImage_SelectedIndexChanged);
+            this.cmbImage.SelectedValueChanged += new System.EventHandler(this.cmbImage_SelectedValueChanged);
             this.cmbImage.Enter += new System.EventHandler(this.getActionList);
             // 
             // cmbFunction
             // 
             this.cmbFunction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
+            this.cmbFunction.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbFunction.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbFunction.FormattingEnabled = true;
             this.cmbFunction.ItemHeight = 25;
@@ -574,10 +513,11 @@ namespace Steganography_with_AES_Encryption
             "Encode - Conceal a message in an image",
             "Decode - Retrieve a message from an image"});
             this.cmbFunction.Location = new System.Drawing.Point(35, 341);
-            this.cmbFunction.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbFunction.Margin = new System.Windows.Forms.Padding(4);
             this.cmbFunction.Name = "cmbFunction";
             this.cmbFunction.Size = new System.Drawing.Size(644, 33);
-            this.cmbFunction.TabIndex = 19;
+            this.cmbFunction.TabIndex = 1;
+            this.cmbFunction.SelectedValueChanged += new System.EventHandler(this.cmbFunction_SelectedValueChanged);
             // 
             // pcbImage
             // 
@@ -802,24 +742,24 @@ namespace Steganography_with_AES_Encryption
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(268, 977);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnCancel.Location = new System.Drawing.Point(1183, 977);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(171, 34);
             this.btnCancel.TabIndex = 32;
             this.btnCancel.Text = "Clear Message";
             this.btnCancel.UseVisualStyleBackColor = false;
             // 
-            // textBox1
+            // txtMessage
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.textBox1.Font = new System.Drawing.Font("Segoe Print", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(861, 539);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(772, 430);
-            this.textBox1.TabIndex = 33;
+            this.txtMessage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.txtMessage.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMessage.Location = new System.Drawing.Point(861, 539);
+            this.txtMessage.Multiline = true;
+            this.txtMessage.Name = "txtMessage";
+            this.txtMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtMessage.Size = new System.Drawing.Size(772, 430);
+            this.txtMessage.TabIndex = 33;
             // 
             // cmbImageDecode
             // 
@@ -938,6 +878,25 @@ namespace Steganography_with_AES_Encryption
             this.groupBoxEncode.Text = "Hide Text in Image";
             this.groupBoxEncode.Visible = false;
             // 
+            // lblFunction
+            // 
+            this.lblFunction.CausesValidation = false;
+            this.lblFunction.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFunction.Location = new System.Drawing.Point(38, 378);
+            this.lblFunction.Name = "lblFunction";
+            this.lblFunction.Size = new System.Drawing.Size(618, 28);
+            this.lblFunction.TabIndex = 34;
+            this.lblFunction.Visible = false;
+            // 
+            // lblImageChoice
+            // 
+            this.lblImageChoice.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblImageChoice.Location = new System.Drawing.Point(33, 501);
+            this.lblImageChoice.Name = "lblImageChoice";
+            this.lblImageChoice.Size = new System.Drawing.Size(284, 39);
+            this.lblImageChoice.TabIndex = 35;
+            this.lblImageChoice.Visible = false;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -946,15 +905,14 @@ namespace Steganography_with_AES_Encryption
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(162)))), ((int)(((byte)(115)))));
             this.ClientSize = new System.Drawing.Size(1679, 1019);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.lblImageChoice);
+            this.Controls.Add(this.lblFunction);
+            this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblCharLimit);
             this.Controls.Add(this.groupBoxDecode);
             this.Controls.Add(this.groupBoxEncode);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnHelpPageTest);
-            this.Controls.Add(this.btnAboutPageTest);
-            this.Controls.Add(this.btnStockImagesTest);
             this.Controls.Add(this.btnFractalGeneratorTest);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -968,14 +926,14 @@ namespace Steganography_with_AES_Encryption
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.checkBoxEncryption);
             this.Controls.Add(this.gpbLichens);
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.msMain;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormMain";
             this.Text = "Steganography with AES Encryption";
             this.gpbLichens.ResumeLayout(false);
             this.gpbLichens.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.msMain.ResumeLayout(false);
+            this.msMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbLichens)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbImage)).EndInit();
@@ -991,13 +949,9 @@ namespace Steganography_with_AES_Encryption
 
         }
         #endregion
-
-        private System.Windows.Forms.Button btnAboutPageTest;
-        private System.Windows.Forms.Button btnHelpPageTest;
         private System.Windows.Forms.Button btnFractalGeneratorTest;
         private System.Windows.Forms.CheckBox checkBoxEncryption;
         private System.Windows.Forms.Button btnReset;
-        private System.Windows.Forms.Button btnStockImagesTest;
         private System.Windows.Forms.Label lblLichens;
         private System.Windows.Forms.Label lblOffering;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -1008,33 +962,30 @@ namespace Steganography_with_AES_Encryption
         private System.Windows.Forms.ComboBox cmbImage;
         private System.Windows.Forms.ComboBox cmbFunction;
         private System.Windows.Forms.PictureBox pcbImage;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openUnencodedImageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem generateFractalImageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveEncodedImageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem openEncodedImageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveDecodedMessageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem advancedOptionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem useEncryptionslowerButMoreSecureToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewHelpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem unencodedImageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem encodedImageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem fractalImageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gradientImageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem stockImageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem useEncryptionRecommendedToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem noEncryptionLessSecureToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip msMain;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFile;
+        private System.Windows.Forms.ToolStripMenuItem tsmiOpenImage;
+        private System.Windows.Forms.ToolStripMenuItem tsmiGenerateImage;
+        private System.Windows.Forms.ToolStripSeparator tssMainFile;
+        private System.Windows.Forms.ToolStripMenuItem tsmiOpenEncodedImage;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSaveDecodedMessage;
+        private System.Windows.Forms.ToolStripMenuItem tsmiEdit;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCut;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCopy;
+        private System.Windows.Forms.ToolStripMenuItem tsmiPaste;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDelete;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSelectAll;
+        private System.Windows.Forms.ToolStripMenuItem tsmiPreferences;
+        private System.Windows.Forms.ToolStripMenuItem tsmiAdvancedOptions;
+        private System.Windows.Forms.ToolStripMenuItem tsmiUseEncryption;
+        private System.Windows.Forms.ToolStripMenuItem tsmiHelp;
+        private System.Windows.Forms.ToolStripMenuItem tsmiViewHelp;
+        private System.Windows.Forms.ToolStripMenuItem tsmiAbout;
+        private System.Windows.Forms.ToolStripMenuItem tsmiOpenImageEncode;
+        private System.Windows.Forms.ToolStripMenuItem tsmiOpenImageDecode;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFractalImage;
+        private System.Windows.Forms.ToolStripMenuItem tsmiGradientImage;
+        private System.Windows.Forms.ToolStripMenuItem tsmiStockImage;
         private System.Windows.Forms.Label lblMenu;
         private System.Windows.Forms.ToolStripPanel BottomToolStripPanel;
         private System.Windows.Forms.ToolStripPanel TopToolStripPanel;
@@ -1047,7 +998,7 @@ namespace Steganography_with_AES_Encryption
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ToolStripMenuItem whatIsAFractalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiWhatIsAFractal;
         private System.Windows.Forms.GroupBox groupBoxDecode;
         private System.Windows.Forms.Label labelDecodedMessage;
         private System.Windows.Forms.Label labelEncodedImage2;
@@ -1057,7 +1008,7 @@ namespace Steganography_with_AES_Encryption
         private System.Windows.Forms.PictureBox pictureBoxEncoded;
         private System.Windows.Forms.Label lblCharLimit;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtMessage;
         private System.Windows.Forms.ComboBox cmbImageDecode;
         private System.Windows.Forms.Button buttonOpenImage;
         private System.Windows.Forms.PictureBox pictureBoxRaw;
@@ -1068,5 +1019,7 @@ namespace Steganography_with_AES_Encryption
         private System.Windows.Forms.Label labelInput;
         private System.Windows.Forms.Button btnEncodeImage;
         private System.Windows.Forms.GroupBox groupBoxEncode;
+        private System.Windows.Forms.Label lblFunction;
+        private System.Windows.Forms.Label lblImageChoice;
     }
 }
