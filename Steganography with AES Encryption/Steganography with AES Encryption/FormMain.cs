@@ -272,7 +272,7 @@ namespace Steganography_with_AES_Encryption
         private void DoEncoding()
         {
             // First, make sure whatever unicode has been entered into the input box is forced into ASCII.
-            string ascii = this.UnicodeToAscii(this.textBoxInputMessage.Text);
+            string ascii = this.UnicodeToAscii(this.txtMessage.Text);
 
             // Call the image encoder's main encoder method, passing in the text from the input box,
             // return the encoded bitmap, and assign the encoded bitmap to this.encodedImage for later saving.
@@ -304,13 +304,13 @@ namespace Steganography_with_AES_Encryption
             {
                 this.imgEnc = new BitmapEncoder(this.rawImage);
                 this.encodedImage = this.imgEnc.Encoder(ascii);
-                this.pictureBoxEncoded.Image = this.encodedImage;
+                this.pcbImage.Image = this.encodedImage;
             }
 
             // Save the image.
             this.SaveEncodedImage();
-
-            pictureBoxRaw.Image.Dispose();
+            pcbImage.Image.Dispose();
+            //pictureBoxRaw.Image.Dispose();
         }
 
         /// <summary>
@@ -401,7 +401,26 @@ namespace Steganography_with_AES_Encryption
         {
             this.OpenRawImage();
         }
-
+        /// <summary>
+        /// Method to encode image
+        /// </summary>
+        /// <param name="sender">The object that initiated the event</param>
+        /// <param name="e">The event arguments</param>
+        private void btnCoding_Click(object sender, EventArgs e)
+        {
+            if (cmbFunction.SelectedIndex == 0 && cmbImage.SelectedIndex != 3)
+            {
+                if (txtMessage.TextLength > 0)
+                {
+                    Cursor.Current = Cursors.WaitCursor;
+                    PleaseWait pw = new PleaseWait("Encoding...");
+                    pw.Show();
+                    pw.Update();
+                    this.DoEncoding();
+                    pw.Close();
+                }
+            }
+        }
         /// <summary>
         /// Method to encode image
         /// </summary>
@@ -595,7 +614,10 @@ namespace Steganography_with_AES_Encryption
             if (cmbFunction.SelectedIndex == 0)
             {
                 this.checkBoxEncryption.Visible = true;
-               // this.chbNoEncrypt.Visible = true;
+
+                btnCoding.Text = "Encode";
+                btnCoding.Visible = true;
+
                 cmbImage.Items.Clear();
                 cmbImage.Items.Add(cmbImage.SelectedItem = "Upload My Image");
                 cmbImage.Items.Add(cmbImage.SelectedItem = "Use Stock Image");
@@ -606,10 +628,13 @@ namespace Steganography_with_AES_Encryption
             else if (cmbFunction.SelectedIndex == 1)
             {
                 this.checkBoxEncryption.Visible = false;
-               // this.chbNoEncrypt.Visible = false;
+
+                btnCoding.Text = "Decode";
+                btnCoding.Visible = true;
+               
                 cmbImage.Items.Clear();
                 cmbImage.Items.Add(cmbImage.SelectedItem = "Download Image - Decode");
-
+               
             }
             else
             {
@@ -624,18 +649,21 @@ namespace Steganography_with_AES_Encryption
 
                 cmbMessage.Items.Clear();
                 cmbMessage.Items.Add(cmbMessage.SelectedItem = "Encode (Hide) Message");
-
+                btnCoding.Text = "Encode";
+                btnCoding.Visible = true;
             }
 
             else if (cmbFunction.SelectedIndex == 1)
             {
                 cmbMessage.Items.Clear();
                 cmbMessage.Items.Add(cmbImage.SelectedItem = "Decode (Retrieve) Message");
-
+                btnCoding.Text = "Decode";
+                btnCoding.Visible = true;
             }
             else
             {
                 cmbMessage.Items.Clear();
+                btnCoding.Visible = false;
             }
         }
 
@@ -712,12 +740,15 @@ namespace Steganography_with_AES_Encryption
             txtMessage.Paste();
         }
 
-        private void lblLichens_Click(object sender, EventArgs e)
+        private void cmbFunction_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
+
+  
+        }
     }
-}
+
 
 
 

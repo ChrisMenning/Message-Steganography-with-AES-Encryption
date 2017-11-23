@@ -124,6 +124,7 @@ namespace Steganography_with_AES_Encryption
             this.groupBoxEncode = new System.Windows.Forms.GroupBox();
             this.lblFunction = new System.Windows.Forms.Label();
             this.lblImageChoice = new System.Windows.Forms.Label();
+            this.btnCoding = new System.Windows.Forms.Button();
             this.gpbLichens.SuspendLayout();
             this.msMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbLichens)).BeginInit();
@@ -188,7 +189,6 @@ namespace Steganography_with_AES_Encryption
             this.lblLichens.Size = new System.Drawing.Size(514, 69);
             this.lblLichens.TabIndex = 9;
             this.lblLichens.Text = "Legendary Lichens - 2017";
-            this.lblLichens.Click += new System.EventHandler(this.lblLichens_Click);
             // 
             // lblOffering
             // 
@@ -218,7 +218,6 @@ namespace Steganography_with_AES_Encryption
             // 
             // msMain
             // 
-            this.msMain.AutoSize = false;
             this.msMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(238)))));
             this.msMain.Dock = System.Windows.Forms.DockStyle.None;
             this.msMain.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -233,7 +232,7 @@ namespace Steganography_with_AES_Encryption
             this.msMain.Name = "msMain";
             this.msMain.Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
             this.msMain.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.msMain.Size = new System.Drawing.Size(387, 39);
+            this.msMain.Size = new System.Drawing.Size(292, 33);
             this.msMain.Stretch = false;
             this.msMain.TabIndex = 5;
             // 
@@ -247,7 +246,7 @@ namespace Steganography_with_AES_Encryption
             this.tsmiSaveDecodedMessage});
             this.tsmiFile.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmiFile.Name = "tsmiFile";
-            this.tsmiFile.Size = new System.Drawing.Size(54, 35);
+            this.tsmiFile.Size = new System.Drawing.Size(54, 29);
             this.tsmiFile.Text = "File";
             // 
             // tsmiOpenImage
@@ -330,7 +329,7 @@ namespace Steganography_with_AES_Encryption
             this.tsmiSelectAll});
             this.tsmiEdit.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmiEdit.Name = "tsmiEdit";
-            this.tsmiEdit.Size = new System.Drawing.Size(58, 35);
+            this.tsmiEdit.Size = new System.Drawing.Size(58, 29);
             this.tsmiEdit.Text = "Edit";
             // 
             // tsmiCut
@@ -373,7 +372,7 @@ namespace Steganography_with_AES_Encryption
             this.tsmiUseEncryption});
             this.tsmiPreferences.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmiPreferences.Name = "tsmiPreferences";
-            this.tsmiPreferences.Size = new System.Drawing.Size(96, 35);
+            this.tsmiPreferences.Size = new System.Drawing.Size(96, 29);
             this.tsmiPreferences.Text = "Settings";
             // 
             // tsmiAdvancedOptions
@@ -400,7 +399,7 @@ namespace Steganography_with_AES_Encryption
             this.tsmiWhatIsAFractal});
             this.tsmiHelp.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmiHelp.Name = "tsmiHelp";
-            this.tsmiHelp.Size = new System.Drawing.Size(66, 35);
+            this.tsmiHelp.Size = new System.Drawing.Size(66, 29);
             this.tsmiHelp.Text = "Help";
             // 
             // tsmiViewHelp
@@ -518,6 +517,7 @@ namespace Steganography_with_AES_Encryption
             this.cmbFunction.Name = "cmbFunction";
             this.cmbFunction.Size = new System.Drawing.Size(644, 33);
             this.cmbFunction.TabIndex = 1;
+            this.cmbFunction.SelectedIndexChanged += new System.EventHandler(this.cmbFunction_SelectedIndexChanged);
             this.cmbFunction.SelectedValueChanged += new System.EventHandler(this.cmbFunction_SelectedValueChanged);
             // 
             // pcbImage
@@ -643,7 +643,7 @@ namespace Steganography_with_AES_Encryption
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 15);
             this.label3.TabIndex = 29;
-            this.label3.Text = "Version 6.0";
+            this.label3.Text = "Version 7.0";
             // 
             // groupBoxDecode
             // 
@@ -898,14 +898,27 @@ namespace Steganography_with_AES_Encryption
             this.lblImageChoice.TabIndex = 35;
             this.lblImageChoice.Visible = false;
             // 
+            // btnCoding
+            // 
+            this.btnCoding.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
+            this.btnCoding.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCoding.Location = new System.Drawing.Point(1203, 469);
+            this.btnCoding.Name = "btnCoding";
+            this.btnCoding.Size = new System.Drawing.Size(131, 30);
+            this.btnCoding.TabIndex = 36;
+            this.btnCoding.UseVisualStyleBackColor = false;
+            this.btnCoding.Visible = false;
+            this.btnCoding.Click += new System.EventHandler(this.btnCoding_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(162)))), ((int)(((byte)(115)))));
-            this.ClientSize = new System.Drawing.Size(1679, 1019);
+            this.ClientSize = new System.Drawing.Size(1482, 947);
+            this.Controls.Add(this.btnCoding);
             this.Controls.Add(this.lblImageChoice);
             this.Controls.Add(this.lblFunction);
             this.Controls.Add(this.txtMessage);
@@ -1022,5 +1035,6 @@ namespace Steganography_with_AES_Encryption
         private System.Windows.Forms.GroupBox groupBoxEncode;
         private System.Windows.Forms.Label lblFunction;
         private System.Windows.Forms.Label lblImageChoice;
+        private System.Windows.Forms.Button btnCoding;
     }
 }
