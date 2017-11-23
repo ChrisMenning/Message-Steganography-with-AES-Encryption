@@ -64,9 +64,9 @@ namespace Steganography_with_AES_Encryption
             this.tsmiOpenImageEncode = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpenImageDecode = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiGenerateImage = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiStockImage = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFractalImage = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiGradientImage = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiStockImage = new System.Windows.Forms.ToolStripMenuItem();
             this.tssMainFile = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiOpenEncodedImage = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSaveDecodedMessage = new System.Windows.Forms.ToolStripMenuItem();
@@ -188,6 +188,7 @@ namespace Steganography_with_AES_Encryption
             this.lblLichens.Size = new System.Drawing.Size(514, 69);
             this.lblLichens.TabIndex = 9;
             this.lblLichens.Text = "Legendary Lichens - 2017";
+            this.lblLichens.Click += new System.EventHandler(this.lblLichens_Click);
             // 
             // lblOffering
             // 
@@ -281,6 +282,13 @@ namespace Steganography_with_AES_Encryption
             this.tsmiGenerateImage.Size = new System.Drawing.Size(296, 30);
             this.tsmiGenerateImage.Text = "Generate Image";
             // 
+            // tsmiStockImage
+            // 
+            this.tsmiStockImage.Name = "tsmiStockImage";
+            this.tsmiStockImage.Size = new System.Drawing.Size(228, 30);
+            this.tsmiStockImage.Text = "Stock Image";
+            this.tsmiStockImage.Click += new System.EventHandler(this.tsmiStockImage_Click);
+            // 
             // tsmiFractalImage
             // 
             this.tsmiFractalImage.Name = "tsmiFractalImage";
@@ -293,13 +301,6 @@ namespace Steganography_with_AES_Encryption
             this.tsmiGradientImage.Name = "tsmiGradientImage";
             this.tsmiGradientImage.Size = new System.Drawing.Size(228, 30);
             this.tsmiGradientImage.Text = "Gradient Image";
-            // 
-            // tsmiStockImage
-            // 
-            this.tsmiStockImage.Name = "tsmiStockImage";
-            this.tsmiStockImage.Size = new System.Drawing.Size(228, 30);
-            this.tsmiStockImage.Text = "Stock Image";
-            this.tsmiStockImage.Click += new System.EventHandler(this.tsmiStockImage_Click);
             // 
             // tssMainFile
             // 
@@ -335,34 +336,34 @@ namespace Steganography_with_AES_Encryption
             // tsmiCut
             // 
             this.tsmiCut.Name = "tsmiCut";
-            this.tsmiCut.Size = new System.Drawing.Size(181, 30);
+            this.tsmiCut.Size = new System.Drawing.Size(173, 30);
             this.tsmiCut.Text = "Cut";
             this.tsmiCut.Click += new System.EventHandler(this.tsmiCut_Click);
             // 
             // tsmiCopy
             // 
             this.tsmiCopy.Name = "tsmiCopy";
-            this.tsmiCopy.Size = new System.Drawing.Size(181, 30);
+            this.tsmiCopy.Size = new System.Drawing.Size(173, 30);
             this.tsmiCopy.Text = "Copy";
             this.tsmiCopy.Click += new System.EventHandler(this.tsmiCopy_Click);
             // 
             // tsmiPaste
             // 
             this.tsmiPaste.Name = "tsmiPaste";
-            this.tsmiPaste.Size = new System.Drawing.Size(181, 30);
+            this.tsmiPaste.Size = new System.Drawing.Size(173, 30);
             this.tsmiPaste.Text = "Paste";
             this.tsmiPaste.Click += new System.EventHandler(this.tsmiPaste_Click);
             // 
             // tsmiDelete
             // 
             this.tsmiDelete.Name = "tsmiDelete";
-            this.tsmiDelete.Size = new System.Drawing.Size(181, 30);
+            this.tsmiDelete.Size = new System.Drawing.Size(173, 30);
             this.tsmiDelete.Text = "Delete";
             // 
             // tsmiSelectAll
             // 
             this.tsmiSelectAll.Name = "tsmiSelectAll";
-            this.tsmiSelectAll.Size = new System.Drawing.Size(181, 30);
+            this.tsmiSelectAll.Size = new System.Drawing.Size(173, 30);
             this.tsmiSelectAll.Text = "Select-All";
             // 
             // tsmiPreferences

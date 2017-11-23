@@ -711,6 +711,11 @@ namespace Steganography_with_AES_Encryption
             Clipboard.GetText();
             txtMessage.Paste();
         }
+
+        private void lblLichens_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
