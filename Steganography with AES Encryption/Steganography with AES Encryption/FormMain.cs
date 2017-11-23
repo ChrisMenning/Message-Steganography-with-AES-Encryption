@@ -745,8 +745,11 @@ namespace Steganography_with_AES_Encryption
 
         }
 
-  
+        private void lblLichens_Click(object sender, EventArgs e)
+        {
+
         }
+    }
     }
 
 

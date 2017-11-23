@@ -182,13 +182,14 @@ namespace Steganography_with_AES_Encryption
             // lblLichens
             // 
             this.lblLichens.AutoSize = true;
-            this.lblLichens.Font = new System.Drawing.Font("Chiller", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLichens.Font = new System.Drawing.Font("Chiller", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLichens.Location = new System.Drawing.Point(587, 38);
             this.lblLichens.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLichens.Name = "lblLichens";
-            this.lblLichens.Size = new System.Drawing.Size(514, 69);
+            this.lblLichens.Size = new System.Drawing.Size(406, 56);
             this.lblLichens.TabIndex = 9;
             this.lblLichens.Text = "Legendary Lichens - 2017";
+            this.lblLichens.Click += new System.EventHandler(this.lblLichens_Click);
             // 
             // lblOffering
             // 
@@ -917,7 +918,7 @@ namespace Steganography_with_AES_Encryption
             this.AutoScroll = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(162)))), ((int)(((byte)(115)))));
-            this.ClientSize = new System.Drawing.Size(1482, 947);
+            this.ClientSize = new System.Drawing.Size(1503, 968);
             this.Controls.Add(this.btnCoding);
             this.Controls.Add(this.lblImageChoice);
             this.Controls.Add(this.lblFunction);
