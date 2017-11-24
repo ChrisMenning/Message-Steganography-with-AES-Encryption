@@ -19,6 +19,7 @@ namespace Steganography_with_AES_Encryption
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Forms;
+    using Classes;
 
     /// <summary>
     /// Main form for user entry
@@ -220,7 +221,7 @@ namespace Steganography_with_AES_Encryption
             dialogSaveImage.Filter = "PNG Image|*.png";
             dialogSaveImage.Title = "Save an Image File";
             this.dialogSaveImage.ShowHelp = true;
-            this.dialogSaveImage.FileName = "encoded";
+            this.dialogSaveImage.FileName = "";
             dialogSaveImage.ShowDialog();
 
             ImageCodecInfo myImageCodecInfo;
@@ -394,15 +395,6 @@ namespace Steganography_with_AES_Encryption
         }
 
         /// <summary>
-        /// Method to open image
-        /// </summary>
-        /// <param name="sender">The object that initiates this event</param>
-        /// <param name="e">The event arguments</param>
-        private void btnOpenImage_Click(object sender, EventArgs e)
-        {
-            this.OpenRawImage();
-        }
-        /// <summary>
         /// Method to encode and decode image
         /// </summary>
         /// <param name="sender">The object that initiated the event</param>
@@ -411,10 +403,6 @@ namespace Steganography_with_AES_Encryption
         {
             if ((this.cmbFunction.SelectedIndex == 0) && (this.cmbImage.SelectedIndex != 3) && (this.btnCoding.Text == "Encode (Hide) Message") && (this.txtMessage.TextLength > 0))
             {
-                //if (this.txtMessage.TextLength > 0)
-                // { 
-                // if( this.btnCoding.Text == "Encode (Hide) Message")
-                // {
                 Cursor.Current = Cursors.WaitCursor;
                 PleaseWait pw = new PleaseWait("Encoding...");
                 pw.Show();
@@ -425,6 +413,15 @@ namespace Steganography_with_AES_Encryption
 
             if ((this.cmbFunction.SelectedIndex == 1) && (this.cmbImage.SelectedIndex == 3) && (this.btnCoding.Text == "Decode (Retrieve) Message"))
             {
+                this.dialogOpenRawImage.Filter = "PNG Image|*.png";
+                this.dialogOpenRawImage.ShowHelp = true;
+                this.dialogOpenRawImage.FileName = "*.png";
+                if (this.dialogOpenRawImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    this.encodedImage = new Bitmap(this.dialogOpenRawImage.FileName);
+                    this.pictureBoxEncoded2.Image = this.encodedImage;
+                    this.btnDecode.Enabled = true;
+                }
                 Cursor.Current = Cursors.WaitCursor;
                 PleaseWait pw = new PleaseWait("Decoding.");
                 pw.Show();
@@ -481,36 +478,14 @@ namespace Steganography_with_AES_Encryption
                     pw.Close();
                 }
         */
-        private void btnAboutPageTest_Click(object sender, EventArgs e)
-        {
-            frmAboutPage aboutPage = new frmAboutPage();
-            aboutPage.Show();
-        }
 
-        private void btnHelpPageTest_Click(object sender, EventArgs e)
-        {
-            frmHelpPage helpPage = new frmHelpPage();
-            helpPage.Show();
-        }
-
-        private void btnFractalGeneratorTest_Click(object sender, EventArgs e)
-        {
-            frmFractalGeneratorTestForm fractalTestForm = new frmFractalGeneratorTestForm();
-            fractalTestForm.Show();
-        }
-
-        /// <summary>
-        /// Toolstrip Menu Item for Generating a fractal.
-        /// </summary>
-        /// <param name="sender"> sender </param>
-        /// <param name="e"> e </param>
-        private void generateFractalImage_Click(object sender, EventArgs e)
+        private void generateFractal()
         {
             Mandelbrot mb = new Mandelbrot();
             Bitmap fractal = mb.DrawMandelbrot(1000, 1000);
             this.pcbImage.Image = fractal;
             Cursor.Current = Cursors.WaitCursor;
-            PleaseWait pw = new PleaseWait("Ensuring Lossless Compression. \n This may take a minute or three.");
+            PleaseWait pw = new PleaseWait("Ensuring Lossless Compression." + "\n" + "Depending on your image, this process could take awhile." + "\n" + "Thank you for your patience.");
             pw.Show();
 
             fractal.Save(Path.GetFullPath(@"temp1.png"), ImageFormat.Png);
@@ -529,42 +504,183 @@ namespace Steganography_with_AES_Encryption
             fractal = (Bitmap)lossless;
 
             this.rawImage = (Bitmap)lossless;
-            btnEncodeImage.Enabled = true;
+            //btnEncodeImage.Enabled = true;
+
+            File.Delete(Path.GetFullPath(@"temp1.png"));
+        }
+
+        private void generateGradient()
+        {
+
+            Gradient gd = new Gradient();
+            Bitmap gradient = gd.generateGradient(1000, 1000, 34, 23, 12, 13);
+            Bitmap pic = new Bitmap(1000, 1000);
+            this.pcbImage.Image = gradient;
+            Cursor.Current = Cursors.WaitCursor;
+            PleaseWait pw = new PleaseWait("Ensuring Lossless Compression." + "\n" + "Depending on your image, this process could take awhile." + "\n" + "Thank you for your patience.");
+            pw.Show();
+
+            gradient.Save(Path.GetFullPath(@"temp1.png"), ImageFormat.Png);
+            File.SetAttributes(@"temp1.png", FileAttributes.Hidden);
+
+            pngCompressor.CompressImageLossLess(Path.GetFullPath(@"temp1.png"), Path.GetFullPath(@"temp2.png"));
+            File.SetAttributes(@"temp2.png", FileAttributes.Hidden);
+
+            pw.Close();
+
+            // Declare a new image and assign it a reference to the lossless copy.
+            lossless = Image.FromFile(Path.GetFullPath(@"temp2.png"));
+
+            // Draw the picturebox using the lossless copy.
+            this.pictureBoxRaw.Image = lossless;
+            gradient = (Bitmap)lossless;
+
+            this.rawImage = (Bitmap)lossless;
+            //btnEncodeImage.Enabled = true;
 
             File.Delete(Path.GetFullPath(@"temp1.png"));
         }
 
         /// <summary>
-        /// The ToolStrip Menu Item for opening an unencoded image.
+        /// The ToolStrip Menu Item for opening an unencoded image - Encode.
         /// </summary>
         /// <param name="sender"> sender </param>
         /// <param name="e"> e </param>
-        private void openImageEncode_Click(object sender, EventArgs e)
+        private void tsmiOpenImageEncode_Click(object sender, EventArgs e)
         {
-            this.OpenRawImage();
+            this.resetImage();
+            this.cmbFunction.SelectedIndex = 0;
             this.cmbImage.SelectedIndex = 0;
+            this.OpenRawImage();
         }
 
         /// <summary>
-        /// The ToolStrip Menu Item for viewing the About menu.
+        /// The ToolStrip Menu Item for opening an encoded image - Decode.
         /// </summary>
         /// <param name="sender"> sender </param>
         /// <param name="e"> e </param>
-        private void openViewAbout_Click(object sender, EventArgs e)
+        private void tsmiOpenImageDecode_Click(object sender, EventArgs e)
         {
-            frmAboutPage aboutPage = new frmAboutPage();
-            aboutPage.Show();
+            this.resetImage();
+            this.cmbFunction.SelectedIndex = 1;
+            this.cmbImage.SelectedIndex = 4;
+            this.OpenRawImage();
+
         }
 
         /// <summary>
-        /// The Toolstrip Menu Item for viewing Help.
+        /// The ToolStrip Menu Item for generating a stock image.
         /// </summary>
         /// <param name="sender"> sender </param>
         /// <param name="e"> e </param>
-        private void openViewHelp_Click(object sender, EventArgs e)
+        private void tsmiStockImage_Click(object sender, EventArgs e)
         {
-            frmHelpPage helpPage = new frmHelpPage();
-            helpPage.Show();
+            this.resetImage();
+            this.cmbFunction.SelectedIndex = 0;
+            this.cmbImage.SelectedIndex = 1;
+            frmStockImagesPage stockImage = new frmStockImagesPage(this);
+            stockImage.ShowDialog();
+        }
+
+        /// <summary>
+        /// Toolstrip Menu Item for Generating a fractal.
+        /// </summary>
+        /// <param name="sender"> sender </param>
+        /// <param name="e"> e </param>
+        private void tsmiFractalImage_Click(object sender, EventArgs e)
+        {
+            this.resetImage();
+            this.cmbFunction.SelectedIndex = 0;
+            this.cmbImage.SelectedIndex = 2;
+            this.generateFractal();
+        }
+
+        /// <summary>
+        /// The ToolStrip Menu Item for generating a gradient image.
+        /// </summary>
+        /// <param name="sender"> sender </param>
+        /// <param name="e"> e </param>
+        private void tsmiGradientImage_Click(object sender, EventArgs e)
+        {
+            this.resetImage();
+            this.cmbFunction.SelectedIndex = 0;
+            this.cmbImage.SelectedIndex = 2;
+            this.generateGradient();
+        }
+
+        /// <summary>
+        /// The ToolStrip Menu Item for cutting text from textbox
+        /// </summary>
+        /// <param name="sender"> sender </param>
+        /// <param name="e"> e </param>
+        private void tsmiCut_Click(object sender, EventArgs e)
+        {
+            if (this.txtMessage.SelectedText != " ")
+            {
+                MessageBox.Show("You must select and highlight the text you wish to cut before continuing.  Please try again.", "Please Try Again");
+            }
+            else
+            {
+                Clipboard.SetText(this.txtMessage.SelectedText);
+                this.txtMessage.Cut();
+            }
+        }
+
+        /// <summary>
+        /// The ToolStrip Menu Item for copying text from textbox
+        /// </summary>
+        /// <param name="sender"> sender </param>
+        /// <param name="e"> e </param>
+        private void tsmiCopy_Click(object sender, EventArgs e)
+        {
+            if (this.txtMessage.SelectedText != " ")
+            {
+                MessageBox.Show("You must select and highlight the text you wish to copy before continuing.  Please try again.", "Please Try Again");
+            }
+            else
+            {
+                Clipboard.SetText(this.txtMessage.SelectedText);
+                this.txtMessage.Copy();
+            }
+        }
+
+        /// <summary>
+        /// The ToolStrip Menu Item for pasting text
+        /// </summary>
+        /// <param name="sender"> sender </param>
+        /// <param name="e"> e </param>
+        private void tsmiPaste_Click(object sender, EventArgs e)
+        {
+            Clipboard.GetText();
+            this.txtMessage.Paste();
+        }
+
+        /// <summary>
+        /// The ToolStrip Menu Item for deleting text from the textbox
+        /// </summary>
+        /// <param name="sender"> sender </param>
+        /// <param name="e"> e </param>
+        private void tsmiDelete_Click(object sender, EventArgs e)
+        {
+            if (this.txtMessage.SelectedText != " ")
+            {
+                MessageBox.Show("You must select and highlight the text you wish to delete before continuing.  Please try again.", "Please Try Again");
+            }
+            else
+            {
+                this.txtMessage.Clear();
+            }
+        }
+
+        /// <summary>
+        /// The ToolStrip Menu Item for selecting all text from textbox for further action
+        /// </summary>
+        /// <param name="sender"> sender </param>
+        /// <param name="e"> e </param>
+        private void tsmiSelectAll_Click(object sender, EventArgs e)
+        {
+            txtMessage.SelectAll();
+
         }
 
         /// <summary>
@@ -572,7 +688,7 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         /// <param name="sender"> sender </param>
         /// <param name="e"> e </param>
-        private void openAdvancedOptions_Click(object sender, EventArgs e)
+        private void tsmiAO_Click(object sender, EventArgs e)
         {
             AdvancedOptions ao = new AdvancedOptions(this);
             ao.ShowDialog();
@@ -583,7 +699,7 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         /// <param name="sender"> sender </param>
         /// <param name="e"> e </param>
-        private void useEncryption_Click(object sender, EventArgs e)
+        private void tsmiUseEncrypt_Click(object sender, EventArgs e)
         {
             if (checkBoxEncryption.Checked)
             {
@@ -595,27 +711,95 @@ namespace Steganography_with_AES_Encryption
                 checkBoxEncryption.Visible = true;
             }
         }
-
-        private void btnReset_Click(object sender, EventArgs e)
+        /// <summary>
+        /// The Toolstrip Menu Item for viewing Help.
+        /// </summary>
+        /// <param name="sender"> sender </param>
+        /// <param name="e"> e </param>
+        private void tsmiViewHelp_Click(object sender, EventArgs e)
         {
-            resetEverything();
+            frmHelpPage helpPage = new frmHelpPage();
+            helpPage.Show();
         }
 
-        private void resetEverything()
+        /// <summary>
+        /// The ToolStrip Menu Item for viewing the About menu.
+        /// </summary>
+        /// <param name="sender"> sender </param>
+        /// <param name="e"> e </param>
+        private void tsmiAbout_Click(object sender, EventArgs e)
         {
+            frmAboutPage aboutPage = new frmAboutPage();
+            aboutPage.Show();
+        }
+
+        /// <summary>
+        /// The ToolStrip Menu Item for viewing the Website Wikepedia for Fractal.
+        /// </summary>
+        /// <param name="sender"> sender </param>
+        /// <param name="e"> e </param>
+        private void tsmiWhatIsAFractal_Click(object sender, EventArgs e)
+        {
+            const string message =
+            "You will be directed to an external website, Wikipedia, in a moment.  If you wish to cancel and return to this application, please select 'Cancel', otherwise select 'Ok'.";
+            const string caption = "External Website";
+            var result = MessageBox.Show(message, caption,
+                                         MessageBoxButtons.OKCancel,
+                                         MessageBoxIcon.Question);
+
+            // If the cancel button was pressed 
+            if (result == DialogResult.Cancel)
+            {
+                // return to the form
+                this.Focus();
+            }
+            else
+            {
+                //continue to website
+                System.Diagnostics.Process.Start("https://en.wikipedia.org/wiki/Fractal");
+            }
+        }
+
+         private void resetEverything()
+        {
+            this.lblFunction.Text = "";
+            this.lblImageChoice.Text = "";
+            this.txtMessage.Clear();
+            this.resetImage();
+            this.Refresh();
+        }
+
+        private void btnResetAll_Click(object sender, EventArgs e)
+        {
+            this.resetEverything();
+        }
+
+        private void resetImage()
+        {
+            this.btnCoding.Visible = false;
+            this.cmbMessage.Visible = false;
             this.lossless = new Bitmap(1, 1);
             this.rawImage = new Bitmap(1, 1);
             this.encodedImage = new Bitmap(1, 1);
-            this.txtMessage.Clear();
-            this.pcbImage = null;
-            pictureBoxRaw.Image = null;
-            pictureBoxEncoded.Image = null;
-            pictureBoxEncoded2.Image = null;
+            this.pcbImage.Image = null;
             imgEnc = null;
             imgDec = null;
+            File.Delete(Path.GetFullPath(@"temp1.png"));
+            this.Refresh();
 
-            this.btnEncodeImage.Enabled = false;
-            this.btnDecode.Enabled = false;
+            //pictureBoxRaw.Image = null;
+            //pictureBoxEncoded.Image = null;
+            //pictureBoxEncoded2.Image = null;
+        }
+        private void btnResetImage_Click(object sender, EventArgs e)
+        {
+            this.resetImage();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(this.txtMessage.Text);
+            this.txtMessage.Cut();
         }
 
         private void getActionList(object sender, EventArgs e)
@@ -627,7 +811,7 @@ namespace Steganography_with_AES_Encryption
                 this.txtMessage.Enabled = true;
 
                 this.cmbImage.Items.Clear();
-                this.cmbImage.Items.Add(cmbImage.SelectedItem = "Upload My Image");
+                this.cmbImage.Items.Add(cmbImage.SelectedItem = "Upload My Image - Encode");
                 this.cmbImage.Items.Add(cmbImage.SelectedItem = "Use Stock Image");
                 this.cmbImage.Items.Add(cmbImage.SelectedItem = "Create Fractal Image");
                 this.cmbImage.Items.Add(cmbImage.SelectedItem = "Create Gradient Image");
@@ -637,7 +821,7 @@ namespace Steganography_with_AES_Encryption
             {
                 this.checkBoxEncryption.Visible = false;
                 this.cmbImage.Items.Clear();
-                this.cmbImage.Items.Add(cmbImage.SelectedItem = "Download Image - Decode");
+                this.cmbImage.Items.Add(cmbImage.SelectedItem = "Download My Image - Decode");
 
             }
             else
@@ -680,24 +864,12 @@ namespace Steganography_with_AES_Encryption
 
             if (this.cmbImage.SelectedIndex == 2)
             {
-                Mandelbrot mb = new Mandelbrot();
-                Bitmap fractal = mb.DrawMandelbrot(1000, 1000);
-                this.pcbImage.Image = fractal;
+                this.generateFractal();
+
             }
             if (this.cmbImage.SelectedIndex == 3)
             {
-                //FractalGenerator generator = new FractalGenerator();
-                // Bitmap pic = generator.generateFractal(1000, 1000, 34, 23, 12, 13);
-                //Gradient gd = new Gradient();
-                //Bitmap gradient = gd.DrawGradient(1000, 1000);
-                //this.pcbImage.Image = gradient;
-                {
-
-
-
-                }
-
-
+                this.generateGradient();
             }
         }
         private void cmbImage_SelectedValueChanged(object sender, EventArgs e)
@@ -718,91 +890,10 @@ namespace Steganography_with_AES_Encryption
             this.lblFunction.Focus();
         }
 
-        private void tsmiStockImage_Click(object sender, EventArgs e)
-        {
-            frmStockImagesPage stockImage = new frmStockImagesPage(this);
-            stockImage.ShowDialog();
-        }
-
-        private void tsmiCut_Click(object sender, EventArgs e)
-        {
-            if (this.txtMessage.SelectedText != " ")
-            {
-                MessageBox.Show("You must select and highlight the text you wish to cut before continuing.  Please try again.", "Please Try Again");
-            }
-            else
-            {
-                Clipboard.SetText(this.txtMessage.SelectedText);
-                this.txtMessage.Cut();
-            }
-        }
-
-        private void tsmiCopy_Click(object sender, EventArgs e)
-        {
-            if (this.txtMessage.SelectedText != "")
-            {
-                MessageBox.Show("You must select and highlight the text you wish to copy before continuing.  Please try again.", "Please Try Again");
-            }
-            else
-            {
-                Clipboard.SetText(this.txtMessage.SelectedText);
-                this.txtMessage.Copy();
-            }
-        }
-
-        private void tsmiPaste_Click(object sender, EventArgs e)
-        {
-            Clipboard.GetText();
-            this.txtMessage.Paste();
-        }
-
-        private void tsmiDelete_Click(object sender, EventArgs e)
-        {
-            if (this.txtMessage.SelectedText != " ")
-            {
-                MessageBox.Show("You must select and highlight the text you wish to delete before continuing.  Please try again.", "Please Try Again");
-            }
-            else
-            {
-                this.txtMessage.Clear();
-            }
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetText(this.txtMessage.Text);
-            this.txtMessage.Cut();
-        }
-
-        private void tsmiWhatIsAFractal_Click(object sender, EventArgs e)
-        {
-            const string message =
-            "You will be directed to an external website, Wikipedia, in a moment.  If you wish to cancel and return to this application, please select 'Cancel', otherwise select 'Ok'.";
-            const string caption = "External Website";
-            var result = MessageBox.Show(message, caption,
-                                         MessageBoxButtons.OKCancel,
-                                         MessageBoxIcon.Question);
-
-            // If the cancel button was pressed 
-            if (result == DialogResult.Cancel)
-            {
-                // return to the form
-                this.Focus();
-            }
-            else
-            {
-                //continue to website
-                System.Diagnostics.Process.Start("https://en.wikipedia.org/wiki/Fractal");
-            }
-        }
-
-        private void tsmiSelectAll_Click(object sender, EventArgs e)
-        {
-            txtMessage.SelectAll();
-          
-            }
-        }
+ 
     }
+}
+
 
 
 

@@ -53,8 +53,7 @@ namespace Steganography_with_AES_Encryption
             this.checkBoxEncryption = new System.Windows.Forms.CheckBox();
             this.dialogOpenRawImage = new System.Windows.Forms.OpenFileDialog();
             this.dialogSaveImage = new System.Windows.Forms.SaveFileDialog();
-            this.btnFractalGeneratorTest = new System.Windows.Forms.Button();
-            this.btnReset = new System.Windows.Forms.Button();
+            this.btnResetImage = new System.Windows.Forms.Button();
             this.lblLichens = new System.Windows.Forms.Label();
             this.lblOffering = new System.Windows.Forms.Label();
             this.gpbLichens = new System.Windows.Forms.GroupBox();
@@ -77,8 +76,8 @@ namespace Steganography_with_AES_Encryption
             this.tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSelectAll = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiPreferences = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiAdvancedOptions = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiUseEncryption = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiAO = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiUseEncrypt = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiViewHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
@@ -124,6 +123,7 @@ namespace Steganography_with_AES_Encryption
             this.lblFunction = new System.Windows.Forms.Label();
             this.lblImageChoice = new System.Windows.Forms.Label();
             this.btnCoding = new System.Windows.Forms.Button();
+            this.btnResetAll = new System.Windows.Forms.Button();
             this.gpbLichens.SuspendLayout();
             this.msMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbLichens)).BeginInit();
@@ -153,30 +153,19 @@ namespace Steganography_with_AES_Encryption
             // 
             this.dialogOpenRawImage.FileName = "openFileDialog1";
             // 
-            // btnFractalGeneratorTest
+            // btnResetImage
             // 
-            this.btnFractalGeneratorTest.Location = new System.Drawing.Point(1359, 343);
-            this.btnFractalGeneratorTest.Margin = new System.Windows.Forms.Padding(5);
-            this.btnFractalGeneratorTest.Name = "btnFractalGeneratorTest";
-            this.btnFractalGeneratorTest.Size = new System.Drawing.Size(247, 34);
-            this.btnFractalGeneratorTest.TabIndex = 4;
-            this.btnFractalGeneratorTest.Text = "Fractal Generator Test";
-            this.btnFractalGeneratorTest.UseVisualStyleBackColor = true;
-            this.btnFractalGeneratorTest.Click += new System.EventHandler(this.btnFractalGeneratorTest_Click);
-            // 
-            // btnReset
-            // 
-            this.btnReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
-            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnReset.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.Location = new System.Drawing.Point(267, 977);
-            this.btnReset.Margin = new System.Windows.Forms.Padding(5);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(171, 34);
-            this.btnReset.TabIndex = 6;
-            this.btnReset.Text = "Reset Image";
-            this.btnReset.UseVisualStyleBackColor = false;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            this.btnResetImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
+            this.btnResetImage.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnResetImage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetImage.Location = new System.Drawing.Point(267, 977);
+            this.btnResetImage.Margin = new System.Windows.Forms.Padding(5);
+            this.btnResetImage.Name = "btnResetImage";
+            this.btnResetImage.Size = new System.Drawing.Size(171, 34);
+            this.btnResetImage.TabIndex = 6;
+            this.btnResetImage.Text = "Reset Image";
+            this.btnResetImage.UseVisualStyleBackColor = false;
+            this.btnResetImage.Click += new System.EventHandler(this.btnResetImage_Click);
             // 
             // lblLichens
             // 
@@ -231,7 +220,7 @@ namespace Steganography_with_AES_Encryption
             this.msMain.Name = "msMain";
             this.msMain.Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
             this.msMain.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.msMain.Size = new System.Drawing.Size(407, 33);
+            this.msMain.Size = new System.Drawing.Size(292, 33);
             this.msMain.Stretch = false;
             this.msMain.TabIndex = 5;
             // 
@@ -262,13 +251,14 @@ namespace Steganography_with_AES_Encryption
             this.tsmiOpenImageEncode.Name = "tsmiOpenImageEncode";
             this.tsmiOpenImageEncode.Size = new System.Drawing.Size(354, 30);
             this.tsmiOpenImageEncode.Text = "Upload Image To Encode";
-            this.tsmiOpenImageEncode.Click += new System.EventHandler(this.openImageEncode_Click);
+            this.tsmiOpenImageEncode.Click += new System.EventHandler(this.tsmiOpenImageEncode_Click);
             // 
             // tsmiOpenImageDecode
             // 
             this.tsmiOpenImageDecode.Name = "tsmiOpenImageDecode";
             this.tsmiOpenImageDecode.Size = new System.Drawing.Size(354, 30);
             this.tsmiOpenImageDecode.Text = "Download Image To Decoded";
+            this.tsmiOpenImageDecode.Click += new System.EventHandler(this.tsmiOpenImageDecode_Click);
             // 
             // tsmiGenerateImage
             // 
@@ -292,13 +282,14 @@ namespace Steganography_with_AES_Encryption
             this.tsmiFractalImage.Name = "tsmiFractalImage";
             this.tsmiFractalImage.Size = new System.Drawing.Size(228, 30);
             this.tsmiFractalImage.Text = "Fractal Image";
-            this.tsmiFractalImage.Click += new System.EventHandler(this.generateFractalImage_Click);
+            this.tsmiFractalImage.Click += new System.EventHandler(this.tsmiFractalImage_Click);
             // 
             // tsmiGradientImage
             // 
             this.tsmiGradientImage.Name = "tsmiGradientImage";
             this.tsmiGradientImage.Size = new System.Drawing.Size(228, 30);
             this.tsmiGradientImage.Text = "Gradient Image";
+            this.tsmiGradientImage.Click += new System.EventHandler(this.tsmiGradientImage_Click);
             // 
             // tssMainFile
             // 
@@ -355,42 +346,41 @@ namespace Steganography_with_AES_Encryption
             // tsmiDelete
             // 
             this.tsmiDelete.Name = "tsmiDelete";
-            this.tsmiDelete.Size = new System.Drawing.Size(181, 30);
+            this.tsmiDelete.Size = new System.Drawing.Size(173, 30);
             this.tsmiDelete.Text = "Delete";
             this.tsmiDelete.Click += new System.EventHandler(this.tsmiDelete_Click);
             // 
             // tsmiSelectAll
             // 
             this.tsmiSelectAll.Name = "tsmiSelectAll";
-            this.tsmiSelectAll.Size = new System.Drawing.Size(181, 30);
+            this.tsmiSelectAll.Size = new System.Drawing.Size(173, 30);
             this.tsmiSelectAll.Text = "Select-All";
             this.tsmiSelectAll.Click += new System.EventHandler(this.tsmiSelectAll_Click);
             // 
             // tsmiPreferences
             // 
             this.tsmiPreferences.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiAdvancedOptions,
-            this.tsmiUseEncryption});
+            this.tsmiAO,
+            this.tsmiUseEncrypt});
             this.tsmiPreferences.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmiPreferences.Name = "tsmiPreferences";
             this.tsmiPreferences.Size = new System.Drawing.Size(96, 29);
             this.tsmiPreferences.Text = "Settings";
             // 
-            // tsmiAdvancedOptions
+            // tsmiAO
             // 
-            this.tsmiAdvancedOptions.Enabled = false;
-            this.tsmiAdvancedOptions.Name = "tsmiAdvancedOptions";
-            this.tsmiAdvancedOptions.Size = new System.Drawing.Size(456, 30);
-            this.tsmiAdvancedOptions.Text = "Advanced Options";
-            this.tsmiAdvancedOptions.Click += new System.EventHandler(this.openAdvancedOptions_Click);
+            this.tsmiAO.Name = "tsmiAO";
+            this.tsmiAO.Size = new System.Drawing.Size(456, 30);
+            this.tsmiAO.Text = "Advanced Options";
+            this.tsmiAO.Click += new System.EventHandler(this.tsmiAO_Click);
             // 
-            // tsmiUseEncryption
+            // tsmiUseEncrypt
             // 
-            this.tsmiUseEncryption.CheckOnClick = true;
-            this.tsmiUseEncryption.Name = "tsmiUseEncryption";
-            this.tsmiUseEncryption.Size = new System.Drawing.Size(456, 30);
-            this.tsmiUseEncryption.Text = "Use Encryption (slower, but more secure)";
-            this.tsmiUseEncryption.Click += new System.EventHandler(this.useEncryption_Click);
+            this.tsmiUseEncrypt.CheckOnClick = true;
+            this.tsmiUseEncrypt.Name = "tsmiUseEncrypt";
+            this.tsmiUseEncrypt.Size = new System.Drawing.Size(456, 30);
+            this.tsmiUseEncrypt.Text = "Use Encryption (slower, but more secure)";
+            this.tsmiUseEncrypt.Click += new System.EventHandler(this.tsmiUseEncrypt_Click);
             // 
             // tsmiHelp
             // 
@@ -408,14 +398,14 @@ namespace Steganography_with_AES_Encryption
             this.tsmiViewHelp.Name = "tsmiViewHelp";
             this.tsmiViewHelp.Size = new System.Drawing.Size(242, 30);
             this.tsmiViewHelp.Text = "View Help";
-            this.tsmiViewHelp.Click += new System.EventHandler(this.openViewHelp_Click);
+            this.tsmiViewHelp.Click += new System.EventHandler(this.tsmiViewHelp_Click);
             // 
             // tsmiAbout
             // 
             this.tsmiAbout.Name = "tsmiAbout";
             this.tsmiAbout.Size = new System.Drawing.Size(242, 30);
             this.tsmiAbout.Text = "View About";
-            this.tsmiAbout.Click += new System.EventHandler(this.openViewAbout_Click);
+            this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
             // 
             // tsmiWhatIsAFractal
             // 
@@ -492,7 +482,11 @@ namespace Steganography_with_AES_Encryption
             this.cmbImage.FormattingEnabled = true;
             this.cmbImage.ImeMode = System.Windows.Forms.ImeMode.On;
             this.cmbImage.Items.AddRange(new object[] {
-            "vvcvvc"});
+            "Upload My Image - Encode",
+            "Use Stock Image",
+            "Create Fractal Image",
+            "Create Gradient Image",
+            "Download My Image - Decode"});
             this.cmbImage.Location = new System.Drawing.Point(31, 464);
             this.cmbImage.Margin = new System.Windows.Forms.Padding(4);
             this.cmbImage.Name = "cmbImage";
@@ -901,6 +895,20 @@ namespace Steganography_with_AES_Encryption
             this.btnCoding.Visible = false;
             this.btnCoding.Click += new System.EventHandler(this.btnCoding_Click);
             // 
+            // btnResetAll
+            // 
+            this.btnResetAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
+            this.btnResetAll.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnResetAll.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetAll.Location = new System.Drawing.Point(1086, 372);
+            this.btnResetAll.Margin = new System.Windows.Forms.Padding(5);
+            this.btnResetAll.Name = "btnResetAll";
+            this.btnResetAll.Size = new System.Drawing.Size(171, 34);
+            this.btnResetAll.TabIndex = 37;
+            this.btnResetAll.Text = "New / Reset All ";
+            this.btnResetAll.UseVisualStyleBackColor = false;
+            this.btnResetAll.Click += new System.EventHandler(this.btnResetAll_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -908,7 +916,8 @@ namespace Steganography_with_AES_Encryption
             this.AutoScroll = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(162)))), ((int)(((byte)(115)))));
-            this.ClientSize = new System.Drawing.Size(1482, 947);
+            this.ClientSize = new System.Drawing.Size(1524, 989);
+            this.Controls.Add(this.btnResetAll);
             this.Controls.Add(this.btnCoding);
             this.Controls.Add(this.lblImageChoice);
             this.Controls.Add(this.lblFunction);
@@ -918,7 +927,6 @@ namespace Steganography_with_AES_Encryption
             this.Controls.Add(this.groupBoxDecode);
             this.Controls.Add(this.groupBoxEncode);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnFractalGeneratorTest);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblFunctionOptions);
@@ -927,7 +935,7 @@ namespace Steganography_with_AES_Encryption
             this.Controls.Add(this.cmbFunction);
             this.Controls.Add(this.cmbImage);
             this.Controls.Add(this.cmbMessage);
-            this.Controls.Add(this.btnReset);
+            this.Controls.Add(this.btnResetImage);
             this.Controls.Add(this.checkBoxEncryption);
             this.Controls.Add(this.gpbLichens);
             this.MainMenuStrip = this.msMain;
@@ -953,9 +961,8 @@ namespace Steganography_with_AES_Encryption
 
         }
         #endregion
-        private System.Windows.Forms.Button btnFractalGeneratorTest;
         private System.Windows.Forms.CheckBox checkBoxEncryption;
-        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnResetImage;
         private System.Windows.Forms.Label lblLichens;
         private System.Windows.Forms.Label lblOffering;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -980,8 +987,8 @@ namespace Steganography_with_AES_Encryption
         private System.Windows.Forms.ToolStripMenuItem tsmiDelete;
         private System.Windows.Forms.ToolStripMenuItem tsmiSelectAll;
         private System.Windows.Forms.ToolStripMenuItem tsmiPreferences;
-        private System.Windows.Forms.ToolStripMenuItem tsmiAdvancedOptions;
-        private System.Windows.Forms.ToolStripMenuItem tsmiUseEncryption;
+        private System.Windows.Forms.ToolStripMenuItem tsmiAO;
+        private System.Windows.Forms.ToolStripMenuItem tsmiUseEncrypt;
         private System.Windows.Forms.ToolStripMenuItem tsmiHelp;
         private System.Windows.Forms.ToolStripMenuItem tsmiViewHelp;
         private System.Windows.Forms.ToolStripMenuItem tsmiAbout;
@@ -1025,5 +1032,6 @@ namespace Steganography_with_AES_Encryption
         private System.Windows.Forms.Label lblFunction;
         private System.Windows.Forms.Label lblImageChoice;
         private System.Windows.Forms.Button btnCoding;
+        private System.Windows.Forms.Button btnResetAll;
     }
 }
