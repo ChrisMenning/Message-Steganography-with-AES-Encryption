@@ -66,12 +66,12 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         public FormMain()
         {
-            
+
             this.InitializeComponent();
             this.pubpicture = pcbImage;
             this.aesBlockSize = 16;
             pngCompressor = new PNGCompressor();
-            this.CenterToScreen();
+            //this.CenterToScreen();
         }
 
         /// <summary>
@@ -320,7 +320,7 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         private void DoDecoding()
         {
-            if (checkBoxEncryption.Checked)
+            if (this.checkBoxEncryption.Checked)
             {
                 // Prompt the user to enter a password.
                 PasswordInputDialog pwid = new PasswordInputDialog(this);
@@ -388,7 +388,8 @@ namespace Steganography_with_AES_Encryption
             else
             {
                 this.imgDec = new BitmapDecoder();
-                this.textBoxOutputMessage.Text = this.imgDec.Decoder(this.encodedImage);
+                //this.textBoxOutputMessage.Text = this.imgDec.Decoder(this.encodedImage);
+                this.txtMessage.Text = this.imgDec.Decoder(this.encodedImage);
             }
         }
 
@@ -402,71 +403,84 @@ namespace Steganography_with_AES_Encryption
             this.OpenRawImage();
         }
         /// <summary>
-        /// Method to encode image
+        /// Method to encode and decode image
         /// </summary>
         /// <param name="sender">The object that initiated the event</param>
         /// <param name="e">The event arguments</param>
         private void btnCoding_Click(object sender, EventArgs e)
         {
-            if (cmbFunction.SelectedIndex == 0 && cmbImage.SelectedIndex != 3)
+            if ((this.cmbFunction.SelectedIndex == 0) && (this.cmbImage.SelectedIndex != 3) && (this.btnCoding.Text == "Encode (Hide) Message") && (this.txtMessage.TextLength > 0))
             {
-                if (txtMessage.TextLength > 0)
+                //if (this.txtMessage.TextLength > 0)
+                // { 
+                // if( this.btnCoding.Text == "Encode (Hide) Message")
+                // {
+                Cursor.Current = Cursors.WaitCursor;
+                PleaseWait pw = new PleaseWait("Encoding...");
+                pw.Show();
+                pw.Update();
+                this.DoEncoding();
+                pw.Close();
+            }
+
+            if ((this.cmbFunction.SelectedIndex == 1) && (this.cmbImage.SelectedIndex == 3) && (this.btnCoding.Text == "Decode (Retrieve) Message"))
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                PleaseWait pw = new PleaseWait("Decoding.");
+                pw.Show();
+                pw.Update();
+                this.DoDecoding();
+                pw.Close();
+            }
+        }
+
+        /* Changed to single method
+                /// <summary>
+                /// Method to encode image
+                /// </summary>
+                /// <param name="sender">The object that initiated the event</param>
+                /// <param name="e">The event arguments</param>
+                private void btnEncodeImage_Click(object sender, EventArgs e)
                 {
-                    Cursor.Current = Cursors.WaitCursor;
                     PleaseWait pw = new PleaseWait("Encoding...");
                     pw.Show();
                     pw.Update();
                     this.DoEncoding();
                     pw.Close();
                 }
-            }
-        }
-        /// <summary>
-        /// Method to encode image
-        /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void btnEncodeImage_Click(object sender, EventArgs e)
-        {
-            PleaseWait pw = new PleaseWait("Encoding...");
-            pw.Show();
-            pw.Update();
-            this.DoEncoding();
-            pw.Close();
-        }
 
-        /// <summary>
-        /// Method used to open image
-        /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void btnOpenEncodedImage(object sender, EventArgs e)
-        {
-            this.dialogOpenRawImage.Filter = "PNG Image|*.png";
-            this.dialogOpenRawImage.ShowHelp = true;
-            this.dialogOpenRawImage.FileName = "*.png";
-            if (this.dialogOpenRawImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                this.encodedImage = new Bitmap(this.dialogOpenRawImage.FileName);
-                this.pictureBoxEncoded2.Image = this.encodedImage;
-                this.btnDecode.Enabled = true;
-            }
-        }
+                /// <summary>
+                /// Method used to open image
+                /// </summary>
+                /// <param name="sender">The object that initiated the event</param>
+                /// <param name="e">The event arguments</param>
+                private void btnOpenEncodedImage(object sender, EventArgs e)
+                {
+                    this.dialogOpenRawImage.Filter = "PNG Image|*.png";
+                    this.dialogOpenRawImage.ShowHelp = true;
+                    this.dialogOpenRawImage.FileName = "*.png";
+                    if (this.dialogOpenRawImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        this.encodedImage = new Bitmap(this.dialogOpenRawImage.FileName);
+                        this.pictureBoxEncoded2.Image = this.encodedImage;
+                        this.btnDecode.Enabled = true;
+                    }
+                }
 
-        /// <summary>
-        /// Method used to decode image
-        /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void btnDecode_Click(object sender, EventArgs e)
-        {
-            PleaseWait pw = new PleaseWait("Decoding.");
-            pw.Show();
-            pw.Update();
-            this.DoDecoding();
-            pw.Close();
-        }
-
+                /// <summary>
+                /// Method used to decode image
+                /// </summary>
+                /// <param name="sender">The object that initiated the event</param>
+                /// <param name="e">The event arguments</param>
+                private void btnDecode_Click(object sender, EventArgs e)
+                {
+                    PleaseWait pw = new PleaseWait("Decoding.");
+                    pw.Show();
+                    pw.Update();
+                    this.DoDecoding();
+                    pw.Close();
+                }
+        */
         private void btnAboutPageTest_Click(object sender, EventArgs e)
         {
             frmAboutPage aboutPage = new frmAboutPage();
@@ -495,7 +509,7 @@ namespace Steganography_with_AES_Encryption
             Mandelbrot mb = new Mandelbrot();
             Bitmap fractal = mb.DrawMandelbrot(1000, 1000);
             this.pcbImage.Image = fractal;
-
+            Cursor.Current = Cursors.WaitCursor;
             PleaseWait pw = new PleaseWait("Ensuring Lossless Compression. \n This may take a minute or three.");
             pw.Show();
 
@@ -528,6 +542,7 @@ namespace Steganography_with_AES_Encryption
         private void openImageEncode_Click(object sender, EventArgs e)
         {
             this.OpenRawImage();
+            this.cmbImage.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -591,102 +606,85 @@ namespace Steganography_with_AES_Encryption
             this.lossless = new Bitmap(1, 1);
             this.rawImage = new Bitmap(1, 1);
             this.encodedImage = new Bitmap(1, 1);
-            txtMessage.Clear();
-            txtMessage.Clear();
-
+            this.txtMessage.Clear();
+            this.pcbImage = null;
             pictureBoxRaw.Image = null;
             pictureBoxEncoded.Image = null;
             pictureBoxEncoded2.Image = null;
             imgEnc = null;
             imgDec = null;
 
-            btnEncodeImage.Enabled = false;
-            btnDecode.Enabled = false;
+            this.btnEncodeImage.Enabled = false;
+            this.btnDecode.Enabled = false;
         }
 
-
-        private void cmbImageEncode_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
         private void getActionList(object sender, EventArgs e)
         {
-            if (cmbFunction.SelectedIndex == 0)
+            if (this.cmbFunction.SelectedIndex == 0)
             {
                 this.checkBoxEncryption.Visible = true;
 
-                btnCoding.Text = "Encode";
-                btnCoding.Visible = true;
+                this.txtMessage.Enabled = true;
 
-                cmbImage.Items.Clear();
-                cmbImage.Items.Add(cmbImage.SelectedItem = "Upload My Image");
-                cmbImage.Items.Add(cmbImage.SelectedItem = "Use Stock Image");
-                cmbImage.Items.Add(cmbImage.SelectedItem = "Create Fractal Image");
-                cmbImage.Items.Add(cmbImage.SelectedItem = "Create Gradient Image");
+                this.cmbImage.Items.Clear();
+                this.cmbImage.Items.Add(cmbImage.SelectedItem = "Upload My Image");
+                this.cmbImage.Items.Add(cmbImage.SelectedItem = "Use Stock Image");
+                this.cmbImage.Items.Add(cmbImage.SelectedItem = "Create Fractal Image");
+                this.cmbImage.Items.Add(cmbImage.SelectedItem = "Create Gradient Image");
             }
 
-            else if (cmbFunction.SelectedIndex == 1)
+            else if (this.cmbFunction.SelectedIndex == 1)
             {
                 this.checkBoxEncryption.Visible = false;
+                this.cmbImage.Items.Clear();
+                this.cmbImage.Items.Add(cmbImage.SelectedItem = "Download Image - Decode");
 
-                btnCoding.Text = "Decode";
-                btnCoding.Visible = true;
-               
-                cmbImage.Items.Clear();
-                cmbImage.Items.Add(cmbImage.SelectedItem = "Download Image - Decode");
-               
             }
             else
             {
-                cmbImage.Items.Clear();
+                this.cmbImage.Items.Clear();
             }
         }
 
-        private void getMessageActionList(object sender, EventArgs e)
+        private void getMessageActionList()
         {
-            if (cmbFunction.SelectedIndex == 0)
+            if (this.cmbFunction.SelectedIndex == 0)
             {
+                this.btnCoding.Text = "Encode (Hide) Message";
 
-                cmbMessage.Items.Clear();
-                cmbMessage.Items.Add(cmbMessage.SelectedItem = "Encode (Hide) Message");
-                btnCoding.Text = "Encode";
-                btnCoding.Visible = true;
             }
 
-            else if (cmbFunction.SelectedIndex == 1)
+            else if (this.cmbFunction.SelectedIndex == 1)
             {
-                cmbMessage.Items.Clear();
-                cmbMessage.Items.Add(cmbImage.SelectedItem = "Decode (Retrieve) Message");
-                btnCoding.Text = "Decode";
-                btnCoding.Visible = true;
+                this.btnCoding.Text = "Decode (Retrieve) Message";
+
             }
-            else
-            {
-                cmbMessage.Items.Clear();
-                btnCoding.Visible = false;
-            }
+
+            this.btnCoding.Visible = true;
+            this.cmbMessage.Visible = true;
+
         }
 
         private void cmbImage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbImage.SelectedIndex == 0)
+            if (this.cmbImage.SelectedIndex == 0)
             {
                 this.OpenRawImage();
             }
 
-            if (cmbImage.SelectedIndex == 1)
+            if (this.cmbImage.SelectedIndex == 1)
             {
                 frmStockImagesPage stockImage = new frmStockImagesPage(this);
                 stockImage.ShowDialog();
             }
 
-            if (cmbImage.SelectedIndex == 2)
+            if (this.cmbImage.SelectedIndex == 2)
             {
                 Mandelbrot mb = new Mandelbrot();
                 Bitmap fractal = mb.DrawMandelbrot(1000, 1000);
                 this.pcbImage.Image = fractal;
             }
-            if (cmbImage.SelectedIndex == 3)
+            if (this.cmbImage.SelectedIndex == 3)
             {
                 //FractalGenerator generator = new FractalGenerator();
                 // Bitmap pic = generator.generateFractal(1000, 1000, 34, 23, 12, 13);
@@ -695,25 +693,29 @@ namespace Steganography_with_AES_Encryption
                 //this.pcbImage.Image = gradient;
                 {
 
-                    
+
 
                 }
-                
+
 
             }
         }
         private void cmbImage_SelectedValueChanged(object sender, EventArgs e)
         {
-            lblImageChoice.Text = cmbImage.Text;
-            lblImageChoice.Visible = true;
+            this.lblImageChoice.Text = this.cmbImage.Text;
+            this.lblImageChoice.Visible = true;
+            this.getMessageActionList();
+            this.lblImageChoice.Focus();
         }
-       
+
         private void cmbFunction_SelectedValueChanged(object sender, EventArgs e)
         {
-            lblFunction.Text = cmbFunction.Text;
-            lblFunction.Visible = true;
-             
-            lblImageChoice.Visible = false;
+            this.lblFunction.Text = this.cmbFunction.Text;
+            this.lblFunction.Visible = true;
+            this.lblImageChoice.Visible = false;
+            this.btnCoding.Visible = false;
+            this.cmbMessage.Visible = false;
+            this.lblFunction.Focus();
         }
 
         private void tsmiStockImage_Click(object sender, EventArgs e)
@@ -724,36 +726,87 @@ namespace Steganography_with_AES_Encryption
 
         private void tsmiCut_Click(object sender, EventArgs e)
         {
-            //Clipboard.SetText(txtMessage.SelectedText);
-            txtMessage.Cut();
+            if (this.txtMessage.SelectedText != " ")
+            {
+                MessageBox.Show("You must select and highlight the text you wish to cut before continuing.  Please try again.", "Please Try Again");
+            }
+            else
+            {
+                Clipboard.SetText(this.txtMessage.SelectedText);
+                this.txtMessage.Cut();
+            }
         }
 
         private void tsmiCopy_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(txtMessage.SelectedText);
-            //txtMessage.Copy();
+            if (this.txtMessage.SelectedText != "")
+            {
+                MessageBox.Show("You must select and highlight the text you wish to copy before continuing.  Please try again.", "Please Try Again");
+            }
+            else
+            {
+                Clipboard.SetText(this.txtMessage.SelectedText);
+                this.txtMessage.Copy();
+            }
         }
 
         private void tsmiPaste_Click(object sender, EventArgs e)
         {
             Clipboard.GetText();
-            txtMessage.Paste();
+            this.txtMessage.Paste();
         }
 
-        private void cmbFunction_SelectedIndexChanged(object sender, EventArgs e)
+        private void tsmiDelete_Click(object sender, EventArgs e)
         {
-
+            if (this.txtMessage.SelectedText != " ")
+            {
+                MessageBox.Show("You must select and highlight the text you wish to delete before continuing.  Please try again.", "Please Try Again");
+            }
+            else
+            {
+                this.txtMessage.Clear();
+            }
         }
 
-        private void lblLichens_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
+            Clipboard.SetText(this.txtMessage.Text);
+            this.txtMessage.Cut();
+        }
 
+        private void tsmiWhatIsAFractal_Click(object sender, EventArgs e)
+        {
+            const string message =
+            "You will be directed to an external website, Wikipedia, in a moment.  If you wish to cancel and return to this application, please select 'Cancel', otherwise select 'Ok'.";
+            const string caption = "External Website";
+            var result = MessageBox.Show(message, caption,
+                                         MessageBoxButtons.OKCancel,
+                                         MessageBoxIcon.Question);
+
+            // If the cancel button was pressed 
+            if (result == DialogResult.Cancel)
+            {
+                // return to the form
+                this.Focus();
+            }
+            else
+            {
+                //continue to website
+                System.Diagnostics.Process.Start("https://en.wikipedia.org/wiki/Fractal");
+            }
+        }
+
+        private void tsmiSelectAll_Click(object sender, EventArgs e)
+        {
+            txtMessage.SelectAll();
+          
+            }
         }
     }
-    }
 
 
 
 
 
-    
+
+

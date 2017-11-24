@@ -97,7 +97,6 @@ namespace Steganography_with_AES_Encryption
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
             this.lblImageOptions = new System.Windows.Forms.Label();
-            this.lblMessageOptions = new System.Windows.Forms.Label();
             this.lblFunctionOptions = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -182,22 +181,21 @@ namespace Steganography_with_AES_Encryption
             // lblLichens
             // 
             this.lblLichens.AutoSize = true;
-            this.lblLichens.Font = new System.Drawing.Font("Chiller", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLichens.Location = new System.Drawing.Point(587, 38);
+            this.lblLichens.Font = new System.Drawing.Font("Chiller", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLichens.Location = new System.Drawing.Point(520, 26);
             this.lblLichens.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLichens.Name = "lblLichens";
-            this.lblLichens.Size = new System.Drawing.Size(406, 56);
+            this.lblLichens.Size = new System.Drawing.Size(675, 92);
             this.lblLichens.TabIndex = 9;
             this.lblLichens.Text = "Legendary Lichens - 2017";
-            this.lblLichens.Click += new System.EventHandler(this.lblLichens_Click);
             // 
             // lblOffering
             // 
             this.lblOffering.Font = new System.Drawing.Font("Segoe Script", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOffering.Location = new System.Drawing.Point(530, 118);
+            this.lblOffering.Location = new System.Drawing.Point(536, 118);
             this.lblOffering.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOffering.Name = "lblOffering";
-            this.lblOffering.Size = new System.Drawing.Size(633, 44);
+            this.lblOffering.Size = new System.Drawing.Size(659, 44);
             this.lblOffering.TabIndex = 10;
             this.lblOffering.Text = "Offering Steganography with AES Encription";
             this.lblOffering.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -229,11 +227,11 @@ namespace Steganography_with_AES_Encryption
             this.tsmiPreferences,
             this.tsmiHelp});
             this.msMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.msMain.Location = new System.Drawing.Point(685, 227);
+            this.msMain.Location = new System.Drawing.Point(723, 217);
             this.msMain.Name = "msMain";
             this.msMain.Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
             this.msMain.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.msMain.Size = new System.Drawing.Size(292, 33);
+            this.msMain.Size = new System.Drawing.Size(407, 33);
             this.msMain.Stretch = false;
             this.msMain.TabIndex = 5;
             // 
@@ -357,14 +355,16 @@ namespace Steganography_with_AES_Encryption
             // tsmiDelete
             // 
             this.tsmiDelete.Name = "tsmiDelete";
-            this.tsmiDelete.Size = new System.Drawing.Size(173, 30);
+            this.tsmiDelete.Size = new System.Drawing.Size(181, 30);
             this.tsmiDelete.Text = "Delete";
+            this.tsmiDelete.Click += new System.EventHandler(this.tsmiDelete_Click);
             // 
             // tsmiSelectAll
             // 
             this.tsmiSelectAll.Name = "tsmiSelectAll";
-            this.tsmiSelectAll.Size = new System.Drawing.Size(173, 30);
+            this.tsmiSelectAll.Size = new System.Drawing.Size(181, 30);
             this.tsmiSelectAll.Text = "Select-All";
+            this.tsmiSelectAll.Click += new System.EventHandler(this.tsmiSelectAll_Click);
             // 
             // tsmiPreferences
             // 
@@ -422,6 +422,7 @@ namespace Steganography_with_AES_Encryption
             this.tsmiWhatIsAFractal.Name = "tsmiWhatIsAFractal";
             this.tsmiWhatIsAFractal.Size = new System.Drawing.Size(242, 30);
             this.tsmiWhatIsAFractal.Text = "What is a Fractal?";
+            this.tsmiWhatIsAFractal.Click += new System.EventHandler(this.tsmiWhatIsAFractal_Click);
             // 
             // pcbLichens
             // 
@@ -439,10 +440,10 @@ namespace Steganography_with_AES_Encryption
             this.lblMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(238)))));
             this.lblMenu.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.lblMenu.Location = new System.Drawing.Point(518, 219);
+            this.lblMenu.Location = new System.Drawing.Point(526, 207);
             this.lblMenu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMenu.Name = "lblMenu";
-            this.lblMenu.Size = new System.Drawing.Size(645, 55);
+            this.lblMenu.Size = new System.Drawing.Size(659, 55);
             this.lblMenu.TabIndex = 12;
             // 
             // pictureBox1
@@ -456,19 +457,21 @@ namespace Steganography_with_AES_Encryption
             // 
             // cmbMessage
             // 
-            this.cmbMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
-            this.cmbMessage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMessage.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.cmbMessage.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.cmbMessage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
+            this.cmbMessage.Enabled = false;
             this.cmbMessage.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbMessage.ForeColor = System.Drawing.SystemColors.InactiveCaption;
             this.cmbMessage.FormattingEnabled = true;
-            this.cmbMessage.Items.AddRange(new object[] {
-            "Encode (Hide) Message",
-            "Decode (Retrieve) Message"});
-            this.cmbMessage.Location = new System.Drawing.Point(861, 466);
+            this.cmbMessage.Location = new System.Drawing.Point(861, 464);
             this.cmbMessage.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbMessage.MaxDropDownItems = 1;
             this.cmbMessage.Name = "cmbMessage";
-            this.cmbMessage.Size = new System.Drawing.Size(287, 33);
+            this.cmbMessage.Size = new System.Drawing.Size(273, 33);
             this.cmbMessage.TabIndex = 14;
-            this.cmbMessage.Enter += new System.EventHandler(this.getMessageActionList);
+            this.cmbMessage.TabStop = false;
+            this.cmbMessage.Visible = false;
             // 
             // cmbTextDecode
             // 
@@ -489,11 +492,7 @@ namespace Steganography_with_AES_Encryption
             this.cmbImage.FormattingEnabled = true;
             this.cmbImage.ImeMode = System.Windows.Forms.ImeMode.On;
             this.cmbImage.Items.AddRange(new object[] {
-            "Upload My Image",
-            "Use Stock Image",
-            "Create Fractal Image",
-            "Create Gradient Image",
-            "Download Image - Decode"});
+            "vvcvvc"});
             this.cmbImage.Location = new System.Drawing.Point(31, 464);
             this.cmbImage.Margin = new System.Windows.Forms.Padding(4);
             this.cmbImage.Name = "cmbImage";
@@ -501,7 +500,6 @@ namespace Steganography_with_AES_Encryption
             this.cmbImage.TabIndex = 2;
             this.cmbImage.SelectedIndexChanged += new System.EventHandler(this.cmbImage_SelectedIndexChanged);
             this.cmbImage.SelectedValueChanged += new System.EventHandler(this.cmbImage_SelectedValueChanged);
-            this.cmbImage.Enter += new System.EventHandler(this.getActionList);
             // 
             // cmbFunction
             // 
@@ -518,7 +516,7 @@ namespace Steganography_with_AES_Encryption
             this.cmbFunction.Name = "cmbFunction";
             this.cmbFunction.Size = new System.Drawing.Size(644, 33);
             this.cmbFunction.TabIndex = 1;
-            this.cmbFunction.SelectedIndexChanged += new System.EventHandler(this.cmbFunction_SelectedIndexChanged);
+            this.cmbFunction.SelectionChangeCommitted += new System.EventHandler(this.getActionList);
             this.cmbFunction.SelectedValueChanged += new System.EventHandler(this.cmbFunction_SelectedValueChanged);
             // 
             // pcbImage
@@ -529,7 +527,7 @@ namespace Steganography_with_AES_Encryption
             this.pcbImage.Margin = new System.Windows.Forms.Padding(1);
             this.pcbImage.Name = "pcbImage";
             this.pcbImage.Size = new System.Drawing.Size(759, 430);
-            this.pcbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbImage.TabIndex = 21;
             this.pcbImage.TabStop = false;
             // 
@@ -582,20 +580,6 @@ namespace Steganography_with_AES_Encryption
             this.lblImageOptions.TabIndex = 22;
             this.lblImageOptions.Text = "Choose Your Image";
             this.lblImageOptions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblMessageOptions
-            // 
-            this.lblMessageOptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
-            this.lblMessageOptions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblMessageOptions.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.lblMessageOptions.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessageOptions.Location = new System.Drawing.Point(864, 469);
-            this.lblMessageOptions.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblMessageOptions.Name = "lblMessageOptions";
-            this.lblMessageOptions.Size = new System.Drawing.Size(243, 28);
-            this.lblMessageOptions.TabIndex = 23;
-            this.lblMessageOptions.Text = "Message Options";
-            this.lblMessageOptions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblFunctionOptions
             // 
@@ -751,10 +735,13 @@ namespace Steganography_with_AES_Encryption
             this.btnCancel.TabIndex = 32;
             this.btnCancel.Text = "Clear Message";
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // txtMessage
             // 
+            this.txtMessage.AllowDrop = true;
             this.txtMessage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.txtMessage.Enabled = false;
             this.txtMessage.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMessage.Location = new System.Drawing.Point(861, 539);
             this.txtMessage.Multiline = true;
@@ -903,10 +890,13 @@ namespace Steganography_with_AES_Encryption
             // 
             this.btnCoding.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
             this.btnCoding.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCoding.Location = new System.Drawing.Point(1203, 469);
+            this.btnCoding.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCoding.Location = new System.Drawing.Point(865, 466);
+            this.btnCoding.Margin = new System.Windows.Forms.Padding(4, 0, 4, 4);
             this.btnCoding.Name = "btnCoding";
-            this.btnCoding.Size = new System.Drawing.Size(131, 30);
+            this.btnCoding.Size = new System.Drawing.Size(243, 29);
             this.btnCoding.TabIndex = 36;
+            this.btnCoding.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnCoding.UseVisualStyleBackColor = false;
             this.btnCoding.Visible = false;
             this.btnCoding.Click += new System.EventHandler(this.btnCoding_Click);
@@ -918,7 +908,7 @@ namespace Steganography_with_AES_Encryption
             this.AutoScroll = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(162)))), ((int)(((byte)(115)))));
-            this.ClientSize = new System.Drawing.Size(1503, 968);
+            this.ClientSize = new System.Drawing.Size(1482, 947);
             this.Controls.Add(this.btnCoding);
             this.Controls.Add(this.lblImageChoice);
             this.Controls.Add(this.lblFunction);
@@ -932,7 +922,6 @@ namespace Steganography_with_AES_Encryption
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblFunctionOptions);
-            this.Controls.Add(this.lblMessageOptions);
             this.Controls.Add(this.lblImageOptions);
             this.Controls.Add(this.pcbImage);
             this.Controls.Add(this.cmbFunction);
@@ -1008,7 +997,6 @@ namespace Steganography_with_AES_Encryption
         private System.Windows.Forms.ToolStripPanel LeftToolStripPanel;
         private System.Windows.Forms.ToolStripContentPanel ContentPanel;
         private System.Windows.Forms.Label lblImageOptions;
-        private System.Windows.Forms.Label lblMessageOptions;
         private System.Windows.Forms.Label lblFunctionOptions;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
