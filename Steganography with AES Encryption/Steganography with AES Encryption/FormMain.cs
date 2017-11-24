@@ -778,6 +778,7 @@ namespace Steganography_with_AES_Encryption
         {
             this.btnCoding.Visible = false;
             this.cmbMessage.Visible = false;
+            this.cmbImage.Enabled = false;
             this.lossless = new Bitmap(1, 1);
             this.rawImage = new Bitmap(1, 1);
             this.encodedImage = new Bitmap(1, 1);
@@ -798,8 +799,15 @@ namespace Steganography_with_AES_Encryption
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(this.txtMessage.Text);
-            this.txtMessage.Cut();
+            if (this.txtMessage.TextLength > 0)
+            {
+                Clipboard.SetText(this.txtMessage.Text);
+                this.txtMessage.Clear();
+            }
+            else
+            {
+                MessageBox.Show("There are no characters in the textbox above to clear at this time.", "For Your Information");
+            }
         }
 
         private void getActionList(object sender, EventArgs e)
@@ -884,6 +892,7 @@ namespace Steganography_with_AES_Encryption
         {
             this.lblFunction.Text = this.cmbFunction.Text;
             this.lblFunction.Visible = true;
+            this.cmbImage.Enabled = true;
             this.lblImageChoice.Visible = false;
             this.btnCoding.Visible = false;
             this.cmbMessage.Visible = false;

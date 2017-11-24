@@ -478,6 +478,7 @@ namespace Steganography_with_AES_Encryption
             // 
             this.cmbImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
             this.cmbImage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbImage.Enabled = false;
             this.cmbImage.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbImage.FormattingEnabled = true;
             this.cmbImage.ImeMode = System.Windows.Forms.ImeMode.On;
