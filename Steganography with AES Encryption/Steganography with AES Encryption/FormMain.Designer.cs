@@ -165,7 +165,7 @@ namespace Steganography_with_AES_Encryption
             this.btnResetImage.TabIndex = 6;
             this.btnResetImage.Text = "Reset Image";
             this.btnResetImage.UseVisualStyleBackColor = false;
-            this.btnResetImage.Click += new System.EventHandler(this.btnResetImage_Click);
+            this.btnResetImage.Click += new System.EventHandler(this.BtnResetImage_Click);
             // 
             // lblLichens
             // 
@@ -251,14 +251,14 @@ namespace Steganography_with_AES_Encryption
             this.tsmiOpenImageEncode.Name = "tsmiOpenImageEncode";
             this.tsmiOpenImageEncode.Size = new System.Drawing.Size(354, 30);
             this.tsmiOpenImageEncode.Text = "Upload Image To Encode";
-            this.tsmiOpenImageEncode.Click += new System.EventHandler(this.tsmiOpenImageEncode_Click);
+            this.tsmiOpenImageEncode.Click += new System.EventHandler(this.TsmiOpenImageEncode_Click);
             // 
             // tsmiOpenImageDecode
             // 
             this.tsmiOpenImageDecode.Name = "tsmiOpenImageDecode";
             this.tsmiOpenImageDecode.Size = new System.Drawing.Size(354, 30);
             this.tsmiOpenImageDecode.Text = "Download Image To Decoded";
-            this.tsmiOpenImageDecode.Click += new System.EventHandler(this.tsmiOpenImageDecode_Click);
+            this.tsmiOpenImageDecode.Click += new System.EventHandler(this.TsmiOpenImageDecode_Click);
             // 
             // tsmiGenerateImage
             // 
@@ -275,21 +275,21 @@ namespace Steganography_with_AES_Encryption
             this.tsmiStockImage.Name = "tsmiStockImage";
             this.tsmiStockImage.Size = new System.Drawing.Size(228, 30);
             this.tsmiStockImage.Text = "Stock Image";
-            this.tsmiStockImage.Click += new System.EventHandler(this.tsmiStockImage_Click);
+            this.tsmiStockImage.Click += new System.EventHandler(this.TsmiStockImage_Click);
             // 
             // tsmiFractalImage
             // 
             this.tsmiFractalImage.Name = "tsmiFractalImage";
             this.tsmiFractalImage.Size = new System.Drawing.Size(228, 30);
             this.tsmiFractalImage.Text = "Fractal Image";
-            this.tsmiFractalImage.Click += new System.EventHandler(this.tsmiFractalImage_Click);
+            this.tsmiFractalImage.Click += new System.EventHandler(this.TsmiFractalImage_Click);
             // 
             // tsmiGradientImage
             // 
             this.tsmiGradientImage.Name = "tsmiGradientImage";
             this.tsmiGradientImage.Size = new System.Drawing.Size(228, 30);
             this.tsmiGradientImage.Text = "Gradient Image";
-            this.tsmiGradientImage.Click += new System.EventHandler(this.tsmiGradientImage_Click);
+            this.tsmiGradientImage.Click += new System.EventHandler(this.TsmiGradientImage_Click);
             // 
             // tssMainFile
             // 
@@ -325,37 +325,37 @@ namespace Steganography_with_AES_Encryption
             // tsmiCut
             // 
             this.tsmiCut.Name = "tsmiCut";
-            this.tsmiCut.Size = new System.Drawing.Size(173, 30);
+            this.tsmiCut.Size = new System.Drawing.Size(181, 30);
             this.tsmiCut.Text = "Cut";
-            this.tsmiCut.Click += new System.EventHandler(this.tsmiCut_Click);
+            this.tsmiCut.Click += new System.EventHandler(this.TsmiCut_Click);
             // 
             // tsmiCopy
             // 
             this.tsmiCopy.Name = "tsmiCopy";
-            this.tsmiCopy.Size = new System.Drawing.Size(173, 30);
+            this.tsmiCopy.Size = new System.Drawing.Size(181, 30);
             this.tsmiCopy.Text = "Copy";
-            this.tsmiCopy.Click += new System.EventHandler(this.tsmiCopy_Click);
+            this.tsmiCopy.Click += new System.EventHandler(this.TsmiCopy_Click);
             // 
             // tsmiPaste
             // 
             this.tsmiPaste.Name = "tsmiPaste";
-            this.tsmiPaste.Size = new System.Drawing.Size(173, 30);
+            this.tsmiPaste.Size = new System.Drawing.Size(181, 30);
             this.tsmiPaste.Text = "Paste";
-            this.tsmiPaste.Click += new System.EventHandler(this.tsmiPaste_Click);
+            this.tsmiPaste.Click += new System.EventHandler(this.TsmiPaste_Click);
             // 
             // tsmiDelete
             // 
             this.tsmiDelete.Name = "tsmiDelete";
-            this.tsmiDelete.Size = new System.Drawing.Size(173, 30);
+            this.tsmiDelete.Size = new System.Drawing.Size(181, 30);
             this.tsmiDelete.Text = "Delete";
-            this.tsmiDelete.Click += new System.EventHandler(this.tsmiDelete_Click);
+            this.tsmiDelete.Click += new System.EventHandler(this.TsmiDelete_Click);
             // 
             // tsmiSelectAll
             // 
             this.tsmiSelectAll.Name = "tsmiSelectAll";
-            this.tsmiSelectAll.Size = new System.Drawing.Size(173, 30);
+            this.tsmiSelectAll.Size = new System.Drawing.Size(181, 30);
             this.tsmiSelectAll.Text = "Select-All";
-            this.tsmiSelectAll.Click += new System.EventHandler(this.tsmiSelectAll_Click);
+            this.tsmiSelectAll.Click += new System.EventHandler(this.TsmiSelectAll_Click);
             // 
             // tsmiPreferences
             // 
@@ -372,7 +372,7 @@ namespace Steganography_with_AES_Encryption
             this.tsmiAO.Name = "tsmiAO";
             this.tsmiAO.Size = new System.Drawing.Size(456, 30);
             this.tsmiAO.Text = "Advanced Options";
-            this.tsmiAO.Click += new System.EventHandler(this.tsmiAO_Click);
+            this.tsmiAO.Click += new System.EventHandler(this.TsmiAO_Click);
             // 
             // tsmiUseEncrypt
             // 
@@ -380,7 +380,7 @@ namespace Steganography_with_AES_Encryption
             this.tsmiUseEncrypt.Name = "tsmiUseEncrypt";
             this.tsmiUseEncrypt.Size = new System.Drawing.Size(456, 30);
             this.tsmiUseEncrypt.Text = "Use Encryption (slower, but more secure)";
-            this.tsmiUseEncrypt.Click += new System.EventHandler(this.tsmiUseEncrypt_Click);
+            this.tsmiUseEncrypt.Click += new System.EventHandler(this.TsmiUseEncrypt_Click);
             // 
             // tsmiHelp
             // 
@@ -398,21 +398,21 @@ namespace Steganography_with_AES_Encryption
             this.tsmiViewHelp.Name = "tsmiViewHelp";
             this.tsmiViewHelp.Size = new System.Drawing.Size(242, 30);
             this.tsmiViewHelp.Text = "View Help";
-            this.tsmiViewHelp.Click += new System.EventHandler(this.tsmiViewHelp_Click);
+            this.tsmiViewHelp.Click += new System.EventHandler(this.TsmiViewHelp_Click);
             // 
             // tsmiAbout
             // 
             this.tsmiAbout.Name = "tsmiAbout";
             this.tsmiAbout.Size = new System.Drawing.Size(242, 30);
             this.tsmiAbout.Text = "View About";
-            this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
+            this.tsmiAbout.Click += new System.EventHandler(this.TsmiAbout_Click);
             // 
             // tsmiWhatIsAFractal
             // 
             this.tsmiWhatIsAFractal.Name = "tsmiWhatIsAFractal";
             this.tsmiWhatIsAFractal.Size = new System.Drawing.Size(242, 30);
             this.tsmiWhatIsAFractal.Text = "What is a Fractal?";
-            this.tsmiWhatIsAFractal.Click += new System.EventHandler(this.tsmiWhatIsAFractal_Click);
+            this.tsmiWhatIsAFractal.Click += new System.EventHandler(this.TsmiWhatIsAFractal_Click);
             // 
             // pcbLichens
             // 
@@ -493,8 +493,8 @@ namespace Steganography_with_AES_Encryption
             this.cmbImage.Name = "cmbImage";
             this.cmbImage.Size = new System.Drawing.Size(312, 33);
             this.cmbImage.TabIndex = 2;
-            this.cmbImage.SelectedIndexChanged += new System.EventHandler(this.cmbImage_SelectedIndexChanged);
-            this.cmbImage.SelectedValueChanged += new System.EventHandler(this.cmbImage_SelectedValueChanged);
+            this.cmbImage.SelectedIndexChanged += new System.EventHandler(this.CmbImage_SelectedIndexChanged);
+            this.cmbImage.SelectedValueChanged += new System.EventHandler(this.CmbImage_SelectedValueChanged);
             // 
             // cmbFunction
             // 
@@ -511,8 +511,8 @@ namespace Steganography_with_AES_Encryption
             this.cmbFunction.Name = "cmbFunction";
             this.cmbFunction.Size = new System.Drawing.Size(644, 33);
             this.cmbFunction.TabIndex = 1;
-            this.cmbFunction.SelectionChangeCommitted += new System.EventHandler(this.getActionList);
-            this.cmbFunction.SelectedValueChanged += new System.EventHandler(this.cmbFunction_SelectedValueChanged);
+            this.cmbFunction.SelectionChangeCommitted += new System.EventHandler(this.GetActionList);
+            this.cmbFunction.SelectedValueChanged += new System.EventHandler(this.CmbFunction_SelectedValueChanged);
             // 
             // pcbImage
             // 
@@ -573,7 +573,7 @@ namespace Steganography_with_AES_Encryption
             this.lblImageOptions.Name = "lblImageOptions";
             this.lblImageOptions.Size = new System.Drawing.Size(282, 29);
             this.lblImageOptions.TabIndex = 22;
-            this.lblImageOptions.Text = "Choose Your Image";
+            this.lblImageOptions.Text = "2.  Choose Your Image";
             this.lblImageOptions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblFunctionOptions
@@ -588,7 +588,7 @@ namespace Steganography_with_AES_Encryption
             this.lblFunctionOptions.Name = "lblFunctionOptions";
             this.lblFunctionOptions.Size = new System.Drawing.Size(617, 29);
             this.lblFunctionOptions.TabIndex = 24;
-            this.lblFunctionOptions.Text = "Choose What You Want To Do";
+            this.lblFunctionOptions.Text = "1.  Choose What You Want To Do";
             this.lblFunctionOptions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label1
@@ -730,7 +730,7 @@ namespace Steganography_with_AES_Encryption
             this.btnCancel.TabIndex = 32;
             this.btnCancel.Text = "Clear Message";
             this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // txtMessage
             // 
@@ -894,21 +894,21 @@ namespace Steganography_with_AES_Encryption
             this.btnCoding.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnCoding.UseVisualStyleBackColor = false;
             this.btnCoding.Visible = false;
-            this.btnCoding.Click += new System.EventHandler(this.btnCoding_Click);
+            this.btnCoding.Click += new System.EventHandler(this.BtnCoding_Click);
             // 
             // btnResetAll
             // 
             this.btnResetAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
             this.btnResetAll.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnResetAll.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnResetAll.Location = new System.Drawing.Point(1086, 372);
+            this.btnResetAll.Location = new System.Drawing.Point(1299, 338);
             this.btnResetAll.Margin = new System.Windows.Forms.Padding(5);
             this.btnResetAll.Name = "btnResetAll";
             this.btnResetAll.Size = new System.Drawing.Size(171, 34);
             this.btnResetAll.TabIndex = 37;
             this.btnResetAll.Text = "New / Reset All ";
             this.btnResetAll.UseVisualStyleBackColor = false;
-            this.btnResetAll.Click += new System.EventHandler(this.btnResetAll_Click);
+            this.btnResetAll.Click += new System.EventHandler(this.BtnResetAll_Click);
             // 
             // FormMain
             // 
@@ -917,7 +917,7 @@ namespace Steganography_with_AES_Encryption
             this.AutoScroll = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(162)))), ((int)(((byte)(115)))));
-            this.ClientSize = new System.Drawing.Size(1524, 989);
+            this.ClientSize = new System.Drawing.Size(1429, 989);
             this.Controls.Add(this.btnResetAll);
             this.Controls.Add(this.btnCoding);
             this.Controls.Add(this.lblImageChoice);
