@@ -755,6 +755,7 @@ namespace Steganography_with_AES_Encryption
         {
             this.btnCoding.Visible = false;
             this.cmbMessage.Visible = false;
+            this.lblType.Visible = false;
             this.cmbImage.Enabled = false;
             this.lossless = new Bitmap(1, 1);
             this.rawImage = new Bitmap(1, 1);
@@ -839,15 +840,16 @@ namespace Steganography_with_AES_Encryption
         {
             if (this.cmbFunction.SelectedIndex == 0)
             {
-                this.btnCoding.Text = "3.  Encode (Hide) Message";
+                this.btnCoding.Text = "Encode (Hide) Message";
             }
             else if (this.cmbFunction.SelectedIndex == 1)
             {
-                this.btnCoding.Text = "3.  Decode (Retrieve) Message";
+                this.btnCoding.Text = "Decode (Retrieve) Message";
             }
 
             this.btnCoding.Visible = true;
             this.cmbMessage.Visible = true;
+            this.lblType.Visible = true;
         }
 
         /// <summary>
@@ -907,8 +909,14 @@ namespace Steganography_with_AES_Encryption
             this.cmbImage.Enabled = true;
             this.lblImageChoice.Visible = false;
             this.btnCoding.Visible = false;
+            this.lblType.Visible = false;
             this.cmbMessage.Visible = false;
             this.lblFunction.Focus();
+        }
+
+        private void lblFunctionOptions_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

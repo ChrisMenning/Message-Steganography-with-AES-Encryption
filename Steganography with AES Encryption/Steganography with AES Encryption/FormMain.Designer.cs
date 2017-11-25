@@ -123,6 +123,7 @@ namespace Steganography_with_AES_Encryption
             this.lblImageChoice = new System.Windows.Forms.Label();
             this.btnCoding = new System.Windows.Forms.Button();
             this.btnResetAll = new System.Windows.Forms.Button();
+            this.lblType = new System.Windows.Forms.Label();
             this.gpbLichens.SuspendLayout();
             this.msMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbLichens)).BeginInit();
@@ -297,6 +298,7 @@ namespace Steganography_with_AES_Encryption
             // 
             // tsmiOpenEncodedImage
             // 
+            this.tsmiOpenEncodedImage.Enabled = false;
             this.tsmiOpenEncodedImage.Name = "tsmiOpenEncodedImage";
             this.tsmiOpenEncodedImage.Size = new System.Drawing.Size(296, 30);
             this.tsmiOpenEncodedImage.Text = "Save Encoded Image";
@@ -368,6 +370,7 @@ namespace Steganography_with_AES_Encryption
             // 
             // tsmiAO
             // 
+            this.tsmiAO.Enabled = false;
             this.tsmiAO.Name = "tsmiAO";
             this.tsmiAO.Size = new System.Drawing.Size(456, 30);
             this.tsmiAO.Text = "Advanced Options";
@@ -572,7 +575,7 @@ namespace Steganography_with_AES_Encryption
             this.lblImageOptions.Name = "lblImageOptions";
             this.lblImageOptions.Size = new System.Drawing.Size(282, 33);
             this.lblImageOptions.TabIndex = 22;
-            this.lblImageOptions.Text = "2.  Choose Your Image";
+            this.lblImageOptions.Text = "Choose Your Image";
             this.lblImageOptions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblFunctionOptions
@@ -587,8 +590,9 @@ namespace Steganography_with_AES_Encryption
             this.lblFunctionOptions.Name = "lblFunctionOptions";
             this.lblFunctionOptions.Size = new System.Drawing.Size(617, 29);
             this.lblFunctionOptions.TabIndex = 24;
-            this.lblFunctionOptions.Text = "1.  Choose What You Want To Do";
+            this.lblFunctionOptions.Text = "Choose What You Want To Do";
             this.lblFunctionOptions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblFunctionOptions.Click += new System.EventHandler(this.lblFunctionOptions_Click);
             // 
             // label1
             // 
@@ -898,6 +902,17 @@ namespace Steganography_with_AES_Encryption
             this.btnResetAll.UseVisualStyleBackColor = false;
             this.btnResetAll.Click += new System.EventHandler(this.BtnResetAll_Click);
             // 
+            // lblType
+            // 
+            this.lblType.AutoSize = true;
+            this.lblType.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblType.Location = new System.Drawing.Point(755, 470);
+            this.lblType.Name = "lblType";
+            this.lblType.Size = new System.Drawing.Size(184, 20);
+            this.lblType.TabIndex = 38;
+            this.lblType.Text = "Type your message below.";
+            this.lblType.Visible = false;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -906,6 +921,7 @@ namespace Steganography_with_AES_Encryption
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(162)))), ((int)(((byte)(115)))));
             this.ClientSize = new System.Drawing.Size(1382, 947);
+            this.Controls.Add(this.lblType);
             this.Controls.Add(this.btnResetAll);
             this.Controls.Add(this.btnCoding);
             this.Controls.Add(this.lblImageChoice);
@@ -1022,5 +1038,6 @@ namespace Steganography_with_AES_Encryption
         private System.Windows.Forms.Label lblImageChoice;
         private System.Windows.Forms.Button btnCoding;
         private System.Windows.Forms.Button btnResetAll;
+        private System.Windows.Forms.Label lblType;
     }
 }
