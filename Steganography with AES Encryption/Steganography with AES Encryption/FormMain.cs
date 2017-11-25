@@ -105,12 +105,12 @@ namespace Steganography_with_AES_Encryption
         {
             get
             {
-                return this.AesBlockSize;
+                return this.aesBlockSize;
             }
 
             set
             {
-                this.AesBlockSize = value;
+                this.aesBlockSize = value;
             }
         }
 
@@ -216,9 +216,6 @@ namespace Steganography_with_AES_Encryption
                 // Delete the lossless copy.
                 // lossless = null;
                 File.Delete(Path.GetFullPath(@"temp1.png"));
-
-                // Turn on encode button.
-                this.btnEncodeImage.Enabled = true;
             }
         }
 
@@ -264,7 +261,8 @@ namespace Steganography_with_AES_Encryption
             if (this.dialogSaveImage.FileName != string.Empty)
             {
                 this.encodedImage.Save(this.dialogSaveImage.FileName, myImageCodecInfo, myEncoderParameters);
-                this.pictureBoxEncoded.Image = this.encodedImage;
+                // this.pictureBoxEncoded.Image = this.encodedImage;
+                //this.pcbImage.Image = this.encodedImage;
             }
 
             // Clean up.
@@ -272,9 +270,10 @@ namespace Steganography_with_AES_Encryption
 
             // pictureBoxEncoded.Image = Bitmap.FromFile(dialogSaveImage.FileName);
             // pictureBoxRaw.Image = Bitmap.FromFile(dialogSaveImage.FileName);
-            // this.encodedImage.Dispose();
-            // this.rawImage.Dispose();
-            File.Delete(Path.GetFullPath(@"temp2.png"));
+            //pcbImage.Image = Bitmap.FromFile(dialogSaveImage.FileName);
+             //this.encodedImage.Dispose();
+             //this.rawImage.Dispose();
+            File.Delete(Path.GetFullPath(@"temp2.png")); //Erroring out at this point encoding stock image
         }
 
         /// <summary>
@@ -468,7 +467,8 @@ namespace Steganography_with_AES_Encryption
             this.lossless = Image.FromFile(Path.GetFullPath(@"temp2.png"));
 
             // Draw the picturebox using the lossless copy.
-            this.pictureBoxRaw.Image = this.lossless;
+            // this.pictureBoxRaw.Image = this.lossless;
+            this.pcbImage.Image = this.lossless;
             fractal = (Bitmap)this.lossless;
 
             this.rawImage = (Bitmap)this.lossless;
@@ -501,7 +501,8 @@ namespace Steganography_with_AES_Encryption
             this.lossless = Image.FromFile(Path.GetFullPath(@"temp2.png"));
 
             // Draw the picturebox using the lossless copy.
-            this.pictureBoxRaw.Image = this.lossless;
+            //this.pictureBoxRaw.Image = this.lossless;
+            this.pcbImage.Image = this.lossless;
             gradient = (Bitmap)this.lossless;
 
             this.rawImage = (Bitmap)this.lossless;
@@ -762,10 +763,6 @@ namespace Steganography_with_AES_Encryption
             this.imgDec = null;
             File.Delete(Path.GetFullPath(@"temp1.png"));
             this.Refresh();
-
-            // pictureBoxRaw.Image = null;
-            // pictureBoxEncoded.Image = null;
-            // pictureBoxEncoded2.Image = null;
         }
 
         /// <summary>
@@ -775,7 +772,16 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event arguments</param>
         private void BtnResetImage_Click(object sender, EventArgs e)
         {
-            this.ResetImage();
+            if (pcbImage.Image != null)
+            {
+                this.ResetImage();
+                this.lblImageChoice.Text = string.Empty;
+                File.Delete(Path.GetFullPath(@"temp1.png"));
+            }
+            else
+            {
+                MessageBox.Show("There is not a picture currently displayed to be able to reset at this time. Please either choose if you wish to encode or decode and then choose your image.", "For Your Information");
+            }
         }
 
         /// <summary>

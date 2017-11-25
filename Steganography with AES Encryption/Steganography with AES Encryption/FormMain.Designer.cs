@@ -116,7 +116,6 @@ namespace Steganography_with_AES_Encryption
             this.labelRawImage = new System.Windows.Forms.Label();
             this.labelEncodedImage = new System.Windows.Forms.Label();
             this.textBoxInputMessage = new System.Windows.Forms.TextBox();
-            this.textBoxOutputMessage = new System.Windows.Forms.TextBox();
             this.labelInput = new System.Windows.Forms.Label();
             this.btnEncodeImage = new System.Windows.Forms.Button();
             this.groupBoxEncode = new System.Windows.Forms.GroupBox();
@@ -325,35 +324,35 @@ namespace Steganography_with_AES_Encryption
             // tsmiCut
             // 
             this.tsmiCut.Name = "tsmiCut";
-            this.tsmiCut.Size = new System.Drawing.Size(181, 30);
+            this.tsmiCut.Size = new System.Drawing.Size(173, 30);
             this.tsmiCut.Text = "Cut";
             this.tsmiCut.Click += new System.EventHandler(this.TsmiCut_Click);
             // 
             // tsmiCopy
             // 
             this.tsmiCopy.Name = "tsmiCopy";
-            this.tsmiCopy.Size = new System.Drawing.Size(181, 30);
+            this.tsmiCopy.Size = new System.Drawing.Size(173, 30);
             this.tsmiCopy.Text = "Copy";
             this.tsmiCopy.Click += new System.EventHandler(this.TsmiCopy_Click);
             // 
             // tsmiPaste
             // 
             this.tsmiPaste.Name = "tsmiPaste";
-            this.tsmiPaste.Size = new System.Drawing.Size(181, 30);
+            this.tsmiPaste.Size = new System.Drawing.Size(173, 30);
             this.tsmiPaste.Text = "Paste";
             this.tsmiPaste.Click += new System.EventHandler(this.TsmiPaste_Click);
             // 
             // tsmiDelete
             // 
             this.tsmiDelete.Name = "tsmiDelete";
-            this.tsmiDelete.Size = new System.Drawing.Size(181, 30);
+            this.tsmiDelete.Size = new System.Drawing.Size(173, 30);
             this.tsmiDelete.Text = "Delete";
             this.tsmiDelete.Click += new System.EventHandler(this.TsmiDelete_Click);
             // 
             // tsmiSelectAll
             // 
             this.tsmiSelectAll.Name = "tsmiSelectAll";
-            this.tsmiSelectAll.Size = new System.Drawing.Size(181, 30);
+            this.tsmiSelectAll.Size = new System.Drawing.Size(173, 30);
             this.tsmiSelectAll.Text = "Select-All";
             this.tsmiSelectAll.Click += new System.EventHandler(this.TsmiSelectAll_Click);
             // 
@@ -810,16 +809,6 @@ namespace Steganography_with_AES_Encryption
             this.textBoxInputMessage.Size = new System.Drawing.Size(775, 142);
             this.textBoxInputMessage.TabIndex = 6;
             // 
-            // textBoxOutputMessage
-            // 
-            this.textBoxOutputMessage.Location = new System.Drawing.Point(133, 44);
-            this.textBoxOutputMessage.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.textBoxOutputMessage.Multiline = true;
-            this.textBoxOutputMessage.Name = "textBoxOutputMessage";
-            this.textBoxOutputMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxOutputMessage.Size = new System.Drawing.Size(797, 142);
-            this.textBoxOutputMessage.TabIndex = 4;
-            // 
             // labelInput
             // 
             this.labelInput.AutoSize = true;
@@ -845,7 +834,6 @@ namespace Steganography_with_AES_Encryption
             // 
             this.groupBoxEncode.Controls.Add(this.btnEncodeImage);
             this.groupBoxEncode.Controls.Add(this.labelInput);
-            this.groupBoxEncode.Controls.Add(this.textBoxOutputMessage);
             this.groupBoxEncode.Controls.Add(this.textBoxInputMessage);
             this.groupBoxEncode.Controls.Add(this.labelEncodedImage);
             this.groupBoxEncode.Controls.Add(this.labelRawImage);
@@ -1026,7 +1014,6 @@ namespace Steganography_with_AES_Encryption
         private System.Windows.Forms.Label labelRawImage;
         private System.Windows.Forms.Label labelEncodedImage;
         private System.Windows.Forms.TextBox textBoxInputMessage;
-        private System.Windows.Forms.TextBox textBoxOutputMessage;
         private System.Windows.Forms.Label labelInput;
         private System.Windows.Forms.Button btnEncodeImage;
         private System.Windows.Forms.GroupBox groupBoxEncode;
