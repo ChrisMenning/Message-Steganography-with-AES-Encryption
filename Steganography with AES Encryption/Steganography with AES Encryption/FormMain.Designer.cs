@@ -139,7 +139,7 @@ namespace Steganography_with_AES_Encryption
             // 
             this.checkBoxEncryption.AutoSize = true;
             this.checkBoxEncryption.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxEncryption.Location = new System.Drawing.Point(39, 432);
+            this.checkBoxEncryption.Location = new System.Drawing.Point(66, 389);
             this.checkBoxEncryption.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxEncryption.Name = "checkBoxEncryption";
             this.checkBoxEncryption.Size = new System.Drawing.Size(405, 24);
@@ -157,7 +157,7 @@ namespace Steganography_with_AES_Encryption
             this.btnResetImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
             this.btnResetImage.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnResetImage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnResetImage.Location = new System.Drawing.Point(267, 977);
+            this.btnResetImage.Location = new System.Drawing.Point(238, 912);
             this.btnResetImage.Margin = new System.Windows.Forms.Padding(5);
             this.btnResetImage.Name = "btnResetImage";
             this.btnResetImage.Size = new System.Drawing.Size(171, 34);
@@ -195,11 +195,11 @@ namespace Steganography_with_AES_Encryption
             this.gpbLichens.Controls.Add(this.lblLichens);
             this.gpbLichens.Controls.Add(this.lblOffering);
             this.gpbLichens.Controls.Add(this.lblMenu);
-            this.gpbLichens.Location = new System.Drawing.Point(35, 15);
+            this.gpbLichens.Location = new System.Drawing.Point(13, 13);
             this.gpbLichens.Margin = new System.Windows.Forms.Padding(4);
             this.gpbLichens.Name = "gpbLichens";
             this.gpbLichens.Padding = new System.Windows.Forms.Padding(4);
-            this.gpbLichens.Size = new System.Drawing.Size(1589, 295);
+            this.gpbLichens.Size = new System.Drawing.Size(1439, 295);
             this.gpbLichens.TabIndex = 12;
             this.gpbLichens.TabStop = false;
             // 
@@ -453,11 +453,11 @@ namespace Steganography_with_AES_Encryption
             this.cmbMessage.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbMessage.ForeColor = System.Drawing.SystemColors.InactiveCaption;
             this.cmbMessage.FormattingEnabled = true;
-            this.cmbMessage.Location = new System.Drawing.Point(861, 464);
+            this.cmbMessage.Location = new System.Drawing.Point(883, 418);
             this.cmbMessage.Margin = new System.Windows.Forms.Padding(4);
             this.cmbMessage.MaxDropDownItems = 1;
             this.cmbMessage.Name = "cmbMessage";
-            this.cmbMessage.Size = new System.Drawing.Size(273, 33);
+            this.cmbMessage.Size = new System.Drawing.Size(203, 33);
             this.cmbMessage.TabIndex = 14;
             this.cmbMessage.TabStop = false;
             this.cmbMessage.Visible = false;
@@ -487,7 +487,7 @@ namespace Steganography_with_AES_Encryption
             "Create Fractal Image",
             "Create Gradient Image",
             "Download My Image - Decode"});
-            this.cmbImage.Location = new System.Drawing.Point(31, 464);
+            this.cmbImage.Location = new System.Drawing.Point(63, 417);
             this.cmbImage.Margin = new System.Windows.Forms.Padding(4);
             this.cmbImage.Name = "cmbImage";
             this.cmbImage.Size = new System.Drawing.Size(312, 33);
@@ -505,7 +505,7 @@ namespace Steganography_with_AES_Encryption
             this.cmbFunction.Items.AddRange(new object[] {
             "Encode - Conceal a message in an image",
             "Decode - Retrieve a message from an image"});
-            this.cmbFunction.Location = new System.Drawing.Point(35, 341);
+            this.cmbFunction.Location = new System.Drawing.Point(63, 320);
             this.cmbFunction.Margin = new System.Windows.Forms.Padding(4);
             this.cmbFunction.Name = "cmbFunction";
             this.cmbFunction.Size = new System.Drawing.Size(644, 33);
@@ -517,10 +517,10 @@ namespace Steganography_with_AES_Encryption
             // 
             this.pcbImage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.pcbImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pcbImage.Location = new System.Drawing.Point(26, 541);
+            this.pcbImage.Location = new System.Drawing.Point(57, 497);
             this.pcbImage.Margin = new System.Windows.Forms.Padding(1);
             this.pcbImage.Name = "pcbImage";
-            this.pcbImage.Size = new System.Drawing.Size(759, 430);
+            this.pcbImage.Size = new System.Drawing.Size(650, 400);
             this.pcbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbImage.TabIndex = 21;
             this.pcbImage.TabStop = false;
@@ -567,10 +567,10 @@ namespace Steganography_with_AES_Encryption
             this.lblImageOptions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblImageOptions.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.lblImageOptions.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblImageOptions.Location = new System.Drawing.Point(35, 466);
+            this.lblImageOptions.Location = new System.Drawing.Point(63, 417);
             this.lblImageOptions.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblImageOptions.Name = "lblImageOptions";
-            this.lblImageOptions.Size = new System.Drawing.Size(282, 29);
+            this.lblImageOptions.Size = new System.Drawing.Size(282, 33);
             this.lblImageOptions.TabIndex = 22;
             this.lblImageOptions.Text = "2.  Choose Your Image";
             this.lblImageOptions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -582,7 +582,7 @@ namespace Steganography_with_AES_Encryption
             this.lblFunctionOptions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblFunctionOptions.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.lblFunctionOptions.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFunctionOptions.Location = new System.Drawing.Point(39, 343);
+            this.lblFunctionOptions.Location = new System.Drawing.Point(67, 322);
             this.lblFunctionOptions.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFunctionOptions.Name = "lblFunctionOptions";
             this.lblFunctionOptions.Size = new System.Drawing.Size(617, 29);
@@ -594,10 +594,10 @@ namespace Steganography_with_AES_Encryption
             // 
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(19, 1028);
+            this.label1.Location = new System.Drawing.Point(13, 962);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1611, 43);
+            this.label1.Size = new System.Drawing.Size(1438, 43);
             this.label1.TabIndex = 27;
             this.label1.Text = "Nathan Beyer | Chris Hoegger | Chris Menning | Leilani Ray";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -606,7 +606,7 @@ namespace Steganography_with_AES_Encryption
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(23, 1042);
+            this.label2.Location = new System.Drawing.Point(22, 976);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 15);
@@ -617,7 +617,7 @@ namespace Steganography_with_AES_Encryption
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(1549, 1042);
+            this.label3.Location = new System.Drawing.Point(1380, 976);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 15);
@@ -633,7 +633,7 @@ namespace Steganography_with_AES_Encryption
             this.groupBoxDecode.Controls.Add(this.buttonOpenImage2);
             this.groupBoxDecode.Controls.Add(this.pictureBoxEncoded);
             this.groupBoxDecode.Controls.Add(this.cmbTextDecode);
-            this.groupBoxDecode.Location = new System.Drawing.Point(936, 1130);
+            this.groupBoxDecode.Location = new System.Drawing.Point(459, 1087);
             this.groupBoxDecode.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.groupBoxDecode.Name = "groupBoxDecode";
             this.groupBoxDecode.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -709,7 +709,7 @@ namespace Steganography_with_AES_Encryption
             // lblCharLimit
             // 
             this.lblCharLimit.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCharLimit.Location = new System.Drawing.Point(1178, 498);
+            this.lblCharLimit.Location = new System.Drawing.Point(954, 470);
             this.lblCharLimit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCharLimit.Name = "lblCharLimit";
             this.lblCharLimit.Size = new System.Drawing.Size(455, 21);
@@ -722,7 +722,7 @@ namespace Steganography_with_AES_Encryption
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(1183, 977);
+            this.btnCancel.Location = new System.Drawing.Point(972, 912);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(171, 34);
@@ -737,11 +737,11 @@ namespace Steganography_with_AES_Encryption
             this.txtMessage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.txtMessage.Enabled = false;
             this.txtMessage.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMessage.Location = new System.Drawing.Point(861, 539);
+            this.txtMessage.Location = new System.Drawing.Point(759, 497);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMessage.Size = new System.Drawing.Size(772, 430);
+            this.txtMessage.Size = new System.Drawing.Size(650, 400);
             this.txtMessage.TabIndex = 33;
             // 
             // cmbImageDecode
@@ -854,7 +854,7 @@ namespace Steganography_with_AES_Encryption
             // 
             this.lblFunction.CausesValidation = false;
             this.lblFunction.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFunction.Location = new System.Drawing.Point(38, 378);
+            this.lblFunction.Location = new System.Drawing.Point(66, 357);
             this.lblFunction.Name = "lblFunction";
             this.lblFunction.Size = new System.Drawing.Size(618, 28);
             this.lblFunction.TabIndex = 34;
@@ -863,7 +863,7 @@ namespace Steganography_with_AES_Encryption
             // lblImageChoice
             // 
             this.lblImageChoice.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblImageChoice.Location = new System.Drawing.Point(33, 501);
+            this.lblImageChoice.Location = new System.Drawing.Point(62, 454);
             this.lblImageChoice.Name = "lblImageChoice";
             this.lblImageChoice.Size = new System.Drawing.Size(284, 39);
             this.lblImageChoice.TabIndex = 35;
@@ -874,10 +874,10 @@ namespace Steganography_with_AES_Encryption
             this.btnCoding.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
             this.btnCoding.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCoding.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCoding.Location = new System.Drawing.Point(865, 466);
+            this.btnCoding.Location = new System.Drawing.Point(759, 417);
             this.btnCoding.Margin = new System.Windows.Forms.Padding(4, 0, 4, 4);
             this.btnCoding.Name = "btnCoding";
-            this.btnCoding.Size = new System.Drawing.Size(243, 29);
+            this.btnCoding.Size = new System.Drawing.Size(301, 34);
             this.btnCoding.TabIndex = 36;
             this.btnCoding.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnCoding.UseVisualStyleBackColor = false;
@@ -889,7 +889,7 @@ namespace Steganography_with_AES_Encryption
             this.btnResetAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
             this.btnResetAll.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnResetAll.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnResetAll.Location = new System.Drawing.Point(1299, 338);
+            this.btnResetAll.Location = new System.Drawing.Point(1249, 322);
             this.btnResetAll.Margin = new System.Windows.Forms.Padding(5);
             this.btnResetAll.Name = "btnResetAll";
             this.btnResetAll.Size = new System.Drawing.Size(171, 34);
@@ -905,7 +905,7 @@ namespace Steganography_with_AES_Encryption
             this.AutoScroll = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(162)))), ((int)(((byte)(115)))));
-            this.ClientSize = new System.Drawing.Size(1429, 989);
+            this.ClientSize = new System.Drawing.Size(1382, 947);
             this.Controls.Add(this.btnResetAll);
             this.Controls.Add(this.btnCoding);
             this.Controls.Add(this.lblImageChoice);
@@ -931,6 +931,7 @@ namespace Steganography_with_AES_Encryption
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormMain";
             this.Text = "Steganography with AES Encryption";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.gpbLichens.ResumeLayout(false);
             this.gpbLichens.PerformLayout();
             this.msMain.ResumeLayout(false);

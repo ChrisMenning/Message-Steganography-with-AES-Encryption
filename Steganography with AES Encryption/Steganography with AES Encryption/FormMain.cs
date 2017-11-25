@@ -6,7 +6,7 @@
 //---------------------------------------------------------------------------------- 
 
 namespace Steganography_with_AES_Encryption
-{  
+{
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -271,8 +271,8 @@ namespace Steganography_with_AES_Encryption
             // pictureBoxEncoded.Image = Bitmap.FromFile(dialogSaveImage.FileName);
             // pictureBoxRaw.Image = Bitmap.FromFile(dialogSaveImage.FileName);
             //pcbImage.Image = Bitmap.FromFile(dialogSaveImage.FileName);
-             //this.encodedImage.Dispose();
-             //this.rawImage.Dispose();
+            //this.encodedImage.Dispose();
+            //this.rawImage.Dispose();
             File.Delete(Path.GetFullPath(@"temp2.png")); //Erroring out at this point encoding stock image
         }
 
@@ -395,12 +395,12 @@ namespace Steganography_with_AES_Encryption
                 Console.WriteLine("The message to be decrypted is " + messageLength);
 
                 // Pass the byteStringsToBytes byte array, encryption key, and derived IV to the decrypter.
-                this.textBoxOutputMessage.Text = aes.DecryptStringFromBytes_Aes(byteStringsToBytes, passwordHandler.EncryptionKey, derivedIV);
+                this.txtMessage.Text = aes.DecryptStringFromBytes_Aes(byteStringsToBytes, passwordHandler.EncryptionKey, derivedIV);
             }
             else
             {
                 this.imgDec = new BitmapDecoder();
-                
+
                 this.txtMessage.Text = this.imgDec.Decoder(this.encodedImage);
             }
         }
@@ -422,7 +422,7 @@ namespace Steganography_with_AES_Encryption
                 pw.Close();
             }
 
-            if ((this.cmbFunction.SelectedIndex == 1) && (this.cmbImage.SelectedIndex == 3) && (this.btnCoding.Text == "3.  Decode (Retrieve) Message"))
+            if ((this.cmbFunction.SelectedIndex == 1) && (this.cmbImage.SelectedIndex == 3))// && (this.btnCoding.Text == "3. Decode (Retrieve) Message"))
             {
                 this.dialogOpenRawImage.Filter = "PNG Image|*.png";
                 this.dialogOpenRawImage.ShowHelp = true;
@@ -430,10 +430,11 @@ namespace Steganography_with_AES_Encryption
                 if (this.dialogOpenRawImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     this.encodedImage = new Bitmap(this.dialogOpenRawImage.FileName);
-                    this.pictureBoxEncoded2.Image = this.encodedImage;
-                    this.btnDecode.Enabled = true;
+                    //this.pictureBoxEncoded2.Image = this.encodedImage;
+                    this.pcbImage.Image = this.encodedImage;
+                    //this.btnDecode.Enabled = true;
                 }
-            
+
                 Cursor.Current = Cursors.WaitCursor;
                 PleaseWait pw = new PleaseWait("Decoding.");
                 pw.Show();
