@@ -462,6 +462,7 @@ namespace Steganography_with_AES_Encryption
             Cursor.Current = Cursors.WaitCursor;
             this.pubpicture.Image = generator.GenerateGradient(1000, 1000, 34, 23, 12, 13);
             pw.Close();
+            Cursor.Current = Cursors.Default;
             this.btnEncodeImage.Enabled = true;
         }
 
@@ -764,10 +765,12 @@ namespace Steganography_with_AES_Encryption
         private void BtnEncodeImage_Click(object sender, EventArgs e)
         {
             PleaseWait pw = new PleaseWait("Encoding...");
+            Cursor.Current = Cursors.WaitCursor;
             pw.Show();
             pw.Update();
             this.DoEncoding();
             pw.Close();
+            Cursor.Current = Cursors.Default;
         }
 
         /// <summary>
@@ -787,11 +790,13 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event arguments</param>
         private void BtnDecode_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             PleaseWait pw = new PleaseWait("Decoding.");
             pw.Show();
             pw.Update();
             this.DoDecoding();
             pw.Close();
+            Cursor.Current = Cursors.Default;
         }
 
         /// <summary>
