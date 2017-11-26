@@ -93,7 +93,7 @@ namespace Steganography_with_AES_Encryption
             this.encodedImage.Dispose();
             this.rawImage.Dispose();
             this.bytesString.Clear();
-     
+
             GC.ReRegisterForFinalize(this);
         }
 
@@ -139,7 +139,7 @@ namespace Steganography_with_AES_Encryption
                 }
 
                 // Now append the message.
-                forEncoding.Append(rawText);          
+                forEncoding.Append(rawText);
             }
             else
             {

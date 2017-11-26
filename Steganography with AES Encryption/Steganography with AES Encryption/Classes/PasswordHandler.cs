@@ -78,7 +78,7 @@ namespace Steganography_with_AES_Encryption
         public byte[] CreateKey(string password)
         {
             const int Iterations = 300;
-            var keyGenerator =  new Rfc2898DeriveBytes(password, Salt, Iterations);
+            var keyGenerator = new Rfc2898DeriveBytes(password, Salt, Iterations);
             return keyGenerator.GetBytes(main.AesBlockSize);
         }
 

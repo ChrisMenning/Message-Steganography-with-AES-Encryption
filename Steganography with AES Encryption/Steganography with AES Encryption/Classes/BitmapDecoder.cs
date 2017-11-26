@@ -128,7 +128,7 @@ namespace Steganography_with_AES_Encryption
         /// <returns>A string of bits from the bitmap</returns>
         public string Decoder(Bitmap encoded)
         {
-          // Console.WriteLine("Trying to decode");
+            // Console.WriteLine("Trying to decode");
             this.EncodedImage = encoded;
 
             // Loop through each pixel of the encoded image.
@@ -170,7 +170,7 @@ namespace Steganography_with_AES_Encryption
             string eightDigitByte = string.Empty;
 
             Console.WriteLine("Trimming first 32 bits from " + this.bitsFromImage.Count + " bits.");
-         
+
             // Remove first 4 bits from bitsFromImage list.
             for (int i = 0; i < 32; i++)
             {
@@ -186,11 +186,11 @@ namespace Steganography_with_AES_Encryption
                 // Create new 8-digit groups.
                 if (eightCounter <= 8)
                 {
-                    eightDigitByte += this.bitsFromImage[i -1].ToString();
+                    eightDigitByte += this.bitsFromImage[i - 1].ToString();
                     eightCounter++;
                 }
 
-                if (i % 8 == 0 && i !=0)
+                if (i % 8 == 0 && i != 0)
                 {
                     bytesList.Add(eightDigitByte);
                     eightCounter = 1;

@@ -213,7 +213,7 @@ namespace Steganography_with_AES_Encryption
             {
                 MessageBox.Show("Bad news. Encryption failed.");
             }
-            
+
             return str;
         }
     }
