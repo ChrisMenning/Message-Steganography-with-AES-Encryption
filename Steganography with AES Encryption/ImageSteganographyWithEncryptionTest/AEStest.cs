@@ -40,6 +40,9 @@ namespace ImageSteganographyWithEncryptionTest
             Assert.IsNotNull(encodedImage);
         }
 
+        /// <summary>
+        /// Test that a message can be encoded into an image, and retrieved back again.
+        /// </summary>
         [TestMethod]
         public void thereAndBackAgain()
         {
