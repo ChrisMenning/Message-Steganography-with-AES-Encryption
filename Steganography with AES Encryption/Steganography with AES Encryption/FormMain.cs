@@ -455,6 +455,7 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         private void GenerateGradient()
         {
+            radioButtonEncode.Checked = true;
             Gradient generator = new Gradient();
             PleaseWait pw = new PleaseWait("Generating Gradient.");
             pw.Show();
