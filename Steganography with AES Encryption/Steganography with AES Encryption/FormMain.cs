@@ -576,6 +576,16 @@ namespace Steganography_with_AES_Encryption
         }
 
         /// <summary>
+        /// The click event for the Generate Gradient toolstrip menu item.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event.</param>
+        private void GradientImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.GenerateGradient();
+        }
+
+        /// <summary>
         /// The toolstrip for using Encryption.
         /// </summary>
         /// <param name="sender">The sender</param>
@@ -817,11 +827,6 @@ namespace Steganography_with_AES_Encryption
         private void BtnReset_Click(object sender, EventArgs e)
         {
             this.ResetEverything();
-        }
-
-        private void gradientImageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.GenerateGradient();
         }
     }
 }

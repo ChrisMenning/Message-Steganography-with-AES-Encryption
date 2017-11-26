@@ -361,7 +361,7 @@ namespace Steganography_with_AES_Encryption
             this.gradientImageToolStripMenuItem.Name = "gradientImageToolStripMenuItem";
             this.gradientImageToolStripMenuItem.Size = new System.Drawing.Size(205, 28);
             this.gradientImageToolStripMenuItem.Text = "Gradient Image";
-            this.gradientImageToolStripMenuItem.Click += new System.EventHandler(this.gradientImageToolStripMenuItem_Click);
+            this.gradientImageToolStripMenuItem.Click += new System.EventHandler(this.GradientImageToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
