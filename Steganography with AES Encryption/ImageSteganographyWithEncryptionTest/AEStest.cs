@@ -16,38 +16,51 @@ namespace ImageSteganographyWithEncryptionTest
     [TestClass]
     public class AEStest
     {
-        /// <summary> 
-        /// Tests will be built here. Behaviors to be tested include:
-        /// 1. Will we be testing here to makes sure standard characters are used in the message entered?
-        /// 2. I'm not actually sure what tests need to be done.
-        /// Ideas from Chris M:
-        /// There's a Queue<string> bytesList in the ImageDecoder class that should only ever contain strings of binary numbers.
-        /// The ImageEncoder has a Color sanitizedColor. The RGB values should always be even numbers, never odd.
-        /// Check that the alpha channel of every pixel on the rawImage is the same as on the encodedImage.
-        /// </summary>
-        /// 
         /// <summary>
-        // Test that the Decoder object can output a string when fed a bitmap.
-        // The Decoder has a built-in tiger image called TestImage.
+        /// Test that the encoder will output a bitmap when fed a message.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void DecoderOutputStringIsNotNull()
+        public void EncoderTest()
         {
             /// <summary>
             /// arrange
             /// </summary>
-            BitmapDecoder id = new BitmapDecoder();
+            string message = "This string is my test message";
+            BitmapEncoder be = new BitmapEncoder();
+            Bitmap encodedImage;
 
             /// <summary>
             /// act
             /// </summary>
-            string decodedMessage = id.Decoder(id.TestImage);
+            encodedImage = be.Encoder(message);
 
             /// <summary>
             /// assert
             /// </summary>
-            Assert.AreNotEqual(null, decodedMessage);
+            Assert.IsNotNull(encodedImage);
+        }
+
+        [TestMethod]
+        public void thereAndBackAgain()
+        {
+            /// <summary>
+            /// arrange
+            /// </summary>
+            string message = "This string is my test message";
+            BitmapEncoder be = new BitmapEncoder();
+            BitmapDecoder bd = new BitmapDecoder();
+            Bitmap encodedImage;
+
+            /// <summary>
+            /// act
+            /// </summary>
+            encodedImage = be.Encoder(message);
+            string decodedMessage = bd.Decoder(encodedImage);
+
+            /// <summary>
+            /// assert
+            /// </summary>
+            Assert.AreEqual(message, decodedMessage);
         }
     }
 }
