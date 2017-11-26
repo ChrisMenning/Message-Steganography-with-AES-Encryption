@@ -97,6 +97,8 @@
             // checkBoxRememberSettings
             // 
             this.checkBoxRememberSettings.AutoSize = true;
+            this.checkBoxRememberSettings.Checked = true;
+            this.checkBoxRememberSettings.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxRememberSettings.Location = new System.Drawing.Point(12, 124);
             this.checkBoxRememberSettings.Name = "checkBoxRememberSettings";
             this.checkBoxRememberSettings.Size = new System.Drawing.Size(160, 21);

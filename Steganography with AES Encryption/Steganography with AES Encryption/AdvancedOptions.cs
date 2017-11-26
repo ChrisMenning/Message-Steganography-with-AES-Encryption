@@ -12,6 +12,7 @@ namespace Steganography_with_AES_Encryption
     using System.ComponentModel;
     using System.Data;
     using System.Drawing;
+    using System.IO;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
@@ -28,13 +29,53 @@ namespace Steganography_with_AES_Encryption
         private FormMain main;
 
         /// <summary>
+        /// A string for storing the selected user preference(s).
+        /// </summary>
+        private string pref;
+
+        /// <summary>
+        /// The file path for saving the preference(s).
+        /// </summary>
+        private string filePath;
+
+        /// <summary>
         /// Initializes a new instance of the AdvancedOptions class.
         /// </summary>
         /// <param name="main">A reference to the main form.</param>
         public AdvancedOptions(FormMain main)
-        {
-            this.main = main;
+        { 
             this.InitializeComponent();
+            this.main = main;
+            this.filePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\AES settings.txt";
+
+            if (File.Exists(this.filePath))
+            {
+                this.pref = System.IO.File.ReadAllText(this.filePath);
+
+                if (this.pref == "16")
+                {
+                    radioButton128.Checked = true;
+                }
+                else if (this.pref == "24")
+                {
+                    radioButton192.Checked = true;
+                }
+                else if (this.pref == "32")
+                {
+                    radioButton256.Checked = true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Saves the preferences.
+        /// </summary>
+        private void SavePreferences()
+        {
+            File.Delete(this.filePath);
+            this.pref = this.main.AesBlockSize.ToString();
+            System.IO.File.WriteAllText(this.filePath, this.pref);
+            File.SetAttributes(this.filePath, FileAttributes.Hidden);
         }
 
         /// <summary>
@@ -45,6 +86,7 @@ namespace Steganography_with_AES_Encryption
         private void ButtonRestoreDefaults_Click(object sender, EventArgs e)
         {
             radioButton128.Checked = true;
+            this.main.AesBlockSize = 16;
             this.Update();
         }
 
@@ -55,7 +97,11 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event</param>
         private void CheckBoxRememberSettings_CheckedChanged(object sender, EventArgs e)
         {
-            // TODO: Persistence
+            if (checkBoxRememberSettings.Checked == false)
+            {
+                // Delete the preferences file.
+                File.Delete(this.filePath);
+            }
         }
 
         /// <summary>
@@ -79,6 +125,12 @@ namespace Steganography_with_AES_Encryption
             }
 
             Console.WriteLine("Setting AES encryption to " + this.main.AesBlockSize);
+
+            if (checkBoxRememberSettings.Checked == true)
+            {
+                this.SavePreferences();
+            }
+
             this.Close();
         }
 
