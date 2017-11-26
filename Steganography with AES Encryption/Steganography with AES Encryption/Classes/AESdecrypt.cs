@@ -71,7 +71,7 @@ namespace Steganography_with_AES_Encryption
             // Create an Aes object with the specified key and IV.
             using (Aes aesAlg = Aes.Create("AES"))
             {
-                // aesAlg.BlockSize = main.AesBlockSize;
+                aesAlg.BlockSize = main.AesBlockSize * 8;
                 aesAlg.Key = key;
                 aesAlg.IV = IV;
 

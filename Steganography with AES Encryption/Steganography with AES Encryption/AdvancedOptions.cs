@@ -44,7 +44,7 @@ namespace Steganography_with_AES_Encryption
             {
                 main.AesBlockSize = 32;
             }
-
+            Console.WriteLine("Setting AES encryption to " + main.AesBlockSize);
             this.Close();
         }
 

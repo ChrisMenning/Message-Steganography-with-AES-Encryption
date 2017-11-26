@@ -18,8 +18,8 @@ namespace Steganography_with_AES_Encryption
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Forms;
-    using Classes;
     using PNGCompression;
+    using Steganography_with_AES_Encryption.Classes;
 
     /// <summary>
     /// Main form for user entry
@@ -30,11 +30,6 @@ namespace Steganography_with_AES_Encryption
         /// Declare a bitmap for the raw image.
         /// </summary>
         private Bitmap rawImage;
-
-        /// <summary>
-        /// Declare an image for use in stripping color
-        /// </summary>
-        private Image lossless;
 
         /// <summary>
         /// Declare a bitmap for the encoded image
@@ -62,12 +57,12 @@ namespace Steganography_with_AES_Encryption
         private int aesBlockSize;
 
         /// <summary>
-        /// Declare compressor for PNG formats
+        /// The PNG Compressor object.
         /// </summary>
         private PNGCompressor pngCompressor;
 
         /// <summary>
-        /// Declare a picture box for the image
+        /// A private picture box.
         /// </summary>
         private PictureBox pubpicture;
 
@@ -77,9 +72,16 @@ namespace Steganography_with_AES_Encryption
         public FormMain()
         {
             this.InitializeComponent();
-            this.pubpicture = this.pcbImage;
+            this.pubpicture = this.pictureBoxRaw;
             this.aesBlockSize = 16;
             this.pngCompressor = new PNGCompressor();
+            this.Width = 1016;
+            this.Height = 768;
+            this.CenterToScreen();
+            this.textBoxOutputMessage.ReadOnly = true;
+
+            radioButtonEncode.Checked = true;
+            groupBoxEncode.Location = new Point(5, 208);
         }
 
         /// <summary>
@@ -99,7 +101,7 @@ namespace Steganography_with_AES_Encryption
         }
 
         /// <summary>
-        /// Gets or sets the AES Block Size field.
+        /// Gets or sets the AES BlockSize field.
         /// </summary>
         public int AesBlockSize
         {
@@ -131,7 +133,7 @@ namespace Steganography_with_AES_Encryption
         }
 
         /// <summary>
-        /// Accepts unicode and outputs ASCII.
+        /// Accepts unicode and outputs ascii.
         /// </summary>
         /// <param name="inputUnicode">A string.</param>
         /// <returns>Another string.</returns>
@@ -160,8 +162,8 @@ namespace Steganography_with_AES_Encryption
         /// <summary>
         /// Accepts a mimeType and returns ImageCodecInfo.
         /// </summary>
-        /// <param name="mimeType">mime Type</param>
-        /// <returns>Image Codec Info</returns>
+        /// <param name="mimeType">The mimeType</param>
+        /// <returns>The ImageCodecInfo</returns>
         private static ImageCodecInfo GetEncoderInfo(string mimeType)
         {
             int j;
@@ -179,6 +181,25 @@ namespace Steganography_with_AES_Encryption
         }
 
         /// <summary>
+        /// Resets Everything.
+        /// </summary>
+        private void ResetEverything()
+        {
+            this.rawImage = new Bitmap(1, 1);
+            this.encodedImage = new Bitmap(1, 1);
+            textBoxInputMessage.Clear();
+            textBoxOutputMessage.Clear();
+
+            this.pubpicture.Image = null;
+            this.pictureBoxEncoded.Image = null;
+            this.imgEnc = null;
+            this.imgDec = null;
+
+            btnEncodeImage.Enabled = false;
+            btnDecode.Enabled = false;
+        }
+
+        /// <summary>
         /// Opens an image
         /// </summary>
         private void OpenRawImage()
@@ -192,31 +213,32 @@ namespace Steganography_with_AES_Encryption
             {
                 this.rawImage = new Bitmap(Bitmap.FromFile(this.dialogOpenRawImage.FileName));
 
-                this.rawImage.Save(Path.GetFullPath(@"temp1.png"), ImageFormat.Png);
-                File.SetAttributes(@"temp1.png", FileAttributes.Hidden);
-
-                Cursor.Current = Cursors.WaitCursor;
-
-                PleaseWait pw = new PleaseWait("Ensuring Lossless Compression." + "\n" + "Depending on your image, this process could take awhile." + "\n" + "Thank you for your patience.");
-                pw.Show();
-
-                // Save a temporary lossless copy of the the just-opened image. Hide it.
-                this.pngCompressor.CompressImageLossLess(Path.GetFullPath(@"temp1.png"), Path.GetFullPath(@"temp2.png"));
-                File.SetAttributes(Path.GetFullPath(@"temp2.png"), FileAttributes.Hidden);
-
-                // Declare a new image and assign it a reference to the lossless copy.
-                this.lossless = Image.FromFile(Path.GetFullPath(@"temp2.png"));
-
                 // Draw the picturebox using the lossless copy.
-                this.pcbImage.Image = this.lossless;
-                this.rawImage = (Bitmap)this.lossless;
-
-                pw.Close();
-
-                // Delete the lossless copy.
-                // lossless = null;
-                File.Delete(Path.GetFullPath(@"temp1.png"));
+                this.pictureBoxRaw.Image = this.rawImage;
             }
+
+            saveEncodedImageToolStripMenuItem.Enabled = false;
+        }
+
+        /// <summary>
+        /// Opens an encoded image and gets it ready to be decoded.
+        /// </summary>
+        private void OpenEncodedImage()
+        {
+            saveDecodedMessageToolStripMenuItem.Enabled = false;
+            buttonSaveText.Enabled = false;
+
+            this.dialogOpenRawImage.Filter = "PNG Image|*.png";
+            this.dialogOpenRawImage.ShowHelp = true;
+            this.dialogOpenRawImage.FileName = "*.png";
+            if (this.dialogOpenRawImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.encodedImage = new Bitmap(this.dialogOpenRawImage.FileName);
+                this.pictureBoxEncoded.Image = this.encodedImage;
+                this.btnDecode.Enabled = true;
+            }
+
+            saveEncodedImageToolStripMenuItem.Enabled = false;
         }
 
         /// <summary>
@@ -225,11 +247,11 @@ namespace Steganography_with_AES_Encryption
         private void SaveEncodedImage()
         {
             // Save the image.
-            this.dialogSaveImage.Filter = "PNG Image|*.png";
-            this.dialogSaveImage.Title = "Save an Image File";
+            dialogSaveImage.Filter = "PNG Image|*.png";
+            dialogSaveImage.Title = "Save an Image File";
             this.dialogSaveImage.ShowHelp = true;
-            this.dialogSaveImage.FileName = string.Empty;
-            this.dialogSaveImage.ShowDialog();
+            this.dialogSaveImage.FileName = "encoded";
+            dialogSaveImage.ShowDialog();
 
             ImageCodecInfo myImageCodecInfo;
             System.Drawing.Imaging.Encoder myEncoder;
@@ -258,38 +280,43 @@ namespace Steganography_with_AES_Encryption
             myEncoderParameter = new EncoderParameter(myEncoder, 100L);
             myEncoderParameters.Param[0] = myEncoderParameter;
 
-            if (this.dialogSaveImage.FileName != string.Empty)
+            if (dialogSaveImage.FileName != string.Empty)
             {
-                this.encodedImage.Save(this.dialogSaveImage.FileName, myImageCodecInfo, myEncoderParameters);
-                // this.pictureBoxEncoded.Image = this.encodedImage;
-                //this.pcbImage.Image = this.encodedImage;
+                this.encodedImage.Save(dialogSaveImage.FileName, myImageCodecInfo, myEncoderParameters);
             }
-
-            // Clean up.
-            this.lossless.Dispose();
-
-            // pictureBoxEncoded.Image = Bitmap.FromFile(dialogSaveImage.FileName);
-            // pictureBoxRaw.Image = Bitmap.FromFile(dialogSaveImage.FileName);
-            //pcbImage.Image = Bitmap.FromFile(dialogSaveImage.FileName);
-            //this.encodedImage.Dispose();
-            //this.rawImage.Dispose();
-            File.Delete(Path.GetFullPath(@"temp2.png")); //Erroring out at this point encoding stock image
         }
 
         /// <summary>
-        /// Collects the text from the textbox and the image, passes them into the encoder, and if necessary
-        /// the Encryption, and then calls the Save method.
+        /// Saves the text decoded from an image to a text file.
+        /// </summary>
+        private void SaveTextFile()
+        {
+            this.dialogSaveText.Filter = "Text File|*.txt";
+            this.dialogSaveText.Title = "Save a Text File";
+            this.dialogSaveText.ShowHelp = true;
+            this.dialogSaveText.FileName = "decoded";
+            this.dialogSaveText.ShowDialog();
+
+            if (dialogSaveText.FileName != string.Empty)
+            {
+                System.IO.File.WriteAllText(dialogSaveText.FileName, this.textBoxOutputMessage.Text);
+            }
+        }
+
+        /// <summary>
+        /// Collects the text from the textbox and the image, passes them into the encoder, and if needed
+        /// the AESEncrypt object, and then calls the Save method.
         /// </summary>
         private void DoEncoding()
         {
             // First, make sure whatever unicode has been entered into the input box is forced into ASCII.
-            string ascii = this.UnicodeToAscii(this.txtMessage.Text);
+            string ascii = this.UnicodeToAscii(this.textBoxInputMessage.Text);
 
             // Call the image encoder's main encoder method, passing in the text from the input box,
             // return the encoded bitmap, and assign the encoded bitmap to this.encodedImage for later saving.
 
             // But if using encryption...
-            if (this.checkBoxEncryption.Checked)
+            if (checkBoxEncryption.Checked)
             {
                 // Prompt the user to enter a password.
                 PasswordInputDialog pwid = new PasswordInputDialog(this);
@@ -315,24 +342,22 @@ namespace Steganography_with_AES_Encryption
             {
                 this.imgEnc = new BitmapEncoder(this.rawImage);
                 this.encodedImage = this.imgEnc.Encoder(ascii);
-                this.pcbImage.Image = this.encodedImage;
             }
 
             // Save the image.
             this.SaveEncodedImage();
-            this.pcbImage.Image.Dispose();
 
-            // pictureBoxRaw.Image.Dispose();
+            saveEncodedImageToolStripMenuItem.Enabled = true;
         }
 
         /// <summary>
         /// If using encryption, this will go through many additional steps to parse out the Initialization Vector and 
         /// the message length from the encoded bytes, then trim the decoded bytes down to just the cipher, before
-        /// finally passing the cipher, the IV, and the Key into the Decryption.
+        /// finally passing the cipher, the IV, and the Key into the AESDecrypt object.
         /// </summary>
         private void DoDecoding()
         {
-            if (this.checkBoxEncryption.Checked)
+            if (checkBoxEncryption.Checked)
             {
                 // Prompt the user to enter a password.
                 PasswordInputDialog pwid = new PasswordInputDialog(this);
@@ -395,528 +420,403 @@ namespace Steganography_with_AES_Encryption
                 Console.WriteLine("The message to be decrypted is " + messageLength);
 
                 // Pass the byteStringsToBytes byte array, encryption key, and derived IV to the decrypter.
-                this.txtMessage.Text = aes.DecryptStringFromBytes_Aes(byteStringsToBytes, passwordHandler.EncryptionKey, derivedIV);
+                textBoxOutputMessage.Text = aes.DecryptStringFromBytes_Aes(byteStringsToBytes, passwordHandler.EncryptionKey, derivedIV);
             }
             else
             {
                 this.imgDec = new BitmapDecoder();
-
-                this.txtMessage.Text = this.imgDec.Decoder(this.encodedImage);
+                this.textBoxOutputMessage.Text = this.imgDec.Decoder(this.encodedImage);
             }
+
+            saveDecodedMessageToolStripMenuItem.Enabled = true;
+            buttonSaveText.Enabled = true;
         }
 
         /// <summary>
-        /// Method to encode and decode image
-        /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void BtnCoding_Click(object sender, EventArgs e)
-        {
-            if ((this.cmbFunction.SelectedIndex == 0) && (this.cmbImage.SelectedIndex != 3) && (this.btnCoding.Text == "3.  Encode (Hide) Message") && (this.txtMessage.TextLength > 0))
-            {
-                Cursor.Current = Cursors.WaitCursor;
-                PleaseWait pw = new PleaseWait("Encoding...");
-                pw.Show();
-                pw.Update();
-                this.DoEncoding();
-                pw.Close();
-            }
-
-            if ((this.cmbFunction.SelectedIndex == 1) && (this.cmbImage.SelectedIndex == 3))// && (this.btnCoding.Text == "3. Decode (Retrieve) Message"))
-            {
-                this.dialogOpenRawImage.Filter = "PNG Image|*.png";
-                this.dialogOpenRawImage.ShowHelp = true;
-                this.dialogOpenRawImage.FileName = "*.png";
-                if (this.dialogOpenRawImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    this.encodedImage = new Bitmap(this.dialogOpenRawImage.FileName);
-                    //this.pictureBoxEncoded2.Image = this.encodedImage;
-                    this.pcbImage.Image = this.encodedImage;
-                    //this.btnDecode.Enabled = true;
-                }
-
-                Cursor.Current = Cursors.WaitCursor;
-                PleaseWait pw = new PleaseWait("Decoding.");
-                pw.Show();
-                pw.Update();
-                this.DoDecoding();
-                pw.Close();
-            }
-        }
-
-        /// <summary>
-        /// Method used to create the mandelbrot fractal
+        /// Generates a fractal and places it into the picture box.
         /// </summary>
         private void GenerateFractal()
         {
+            PleaseWait pw = new PleaseWait("Generating Fractal.");
+            pw.Show();
+            pw.Update();
+            Cursor.Current = Cursors.WaitCursor;
             Mandelbrot mb = new Mandelbrot();
             Bitmap fractal = mb.DrawMandelbrot(1000, 1000);
-            this.pcbImage.Image = fractal;
-            Cursor.Current = Cursors.WaitCursor;
-            PleaseWait pw = new PleaseWait("Ensuring Lossless Compression." + "\n" + "Depending on your image, this process could take awhile." + "\n" + "Thank you for your patience.");
-            pw.Show();
-
-            fractal.Save(Path.GetFullPath(@"temp1.png"), ImageFormat.Png);
-            File.SetAttributes(@"temp1.png", FileAttributes.Hidden);
-
-            this.pngCompressor.CompressImageLossLess(Path.GetFullPath(@"temp1.png"), Path.GetFullPath(@"temp2.png"));
-            File.SetAttributes(@"temp2.png", FileAttributes.Hidden);
-
             pw.Close();
-
-            // Declare a new image and assign it a reference to the lossless copy.
-            this.lossless = Image.FromFile(Path.GetFullPath(@"temp2.png"));
-
-            // Draw the picturebox using the lossless copy.
-            // this.pictureBoxRaw.Image = this.lossless;
-            this.pcbImage.Image = this.lossless;
-            fractal = (Bitmap)this.lossless;
-
-            this.rawImage = (Bitmap)this.lossless;
-
-            File.Delete(Path.GetFullPath(@"temp1.png"));
+            Cursor.Current = Cursors.Default;
+            this.rawImage = fractal;
+            this.pubpicture.Image = this.rawImage;
+            this.btnEncodeImage.Enabled = true;
         }
 
         /// <summary>
-        /// Method used to create the Gradient Image
+        /// Generates a gradient pattern and places it into the picture box.
         /// </summary>
         private void GenerateGradient()
         {
-            Gradient gd = new Gradient();
-            Bitmap gradient = gd.GenerateGradient(1000, 1000, 34, 23, 12, 13);
-            Bitmap pic = new Bitmap(1000, 1000);
-            this.pcbImage.Image = gradient;
-            Cursor.Current = Cursors.WaitCursor;
-            PleaseWait pw = new PleaseWait("Ensuring Lossless Compression." + "\n" + "Depending on your image, this process could take awhile." + "\n" + "Thank you for your patience.");
+            Gradient generator = new Gradient();
+            PleaseWait pw = new PleaseWait("Generating Gradient.");
             pw.Show();
-
-            gradient.Save(Path.GetFullPath(@"temp1.png"), ImageFormat.Png);
-            File.SetAttributes(@"temp1.png", FileAttributes.Hidden);
-
-            this.pngCompressor.CompressImageLossLess(Path.GetFullPath(@"temp1.png"), Path.GetFullPath(@"temp2.png"));
-            File.SetAttributes(@"temp2.png", FileAttributes.Hidden);
-
+            pw.Update();
+            Cursor.Current = Cursors.WaitCursor;
+            this.pubpicture.Image = generator.GenerateGradient(1000, 1000, 34, 23, 12, 13);
             pw.Close();
-
-            // Declare a new image and assign it a reference to the lossless copy.
-            this.lossless = Image.FromFile(Path.GetFullPath(@"temp2.png"));
-
-            // Draw the picturebox using the lossless copy.
-            //this.pictureBoxRaw.Image = this.lossless;
-            this.pcbImage.Image = this.lossless;
-            gradient = (Bitmap)this.lossless;
-
-            this.rawImage = (Bitmap)this.lossless;
-
-            File.Delete(Path.GetFullPath(@"temp1.png"));
+            this.btnEncodeImage.Enabled = true;
         }
 
         /// <summary>
-        /// The Tool Strip Menu Item for opening an image to encode.
+        /// The ToolStrip Menu Item for viewing the About menu.
         /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void TsmiOpenImageEncode_Click(object sender, EventArgs e)
-        {
-            this.ResetImage();
-            this.cmbFunction.SelectedIndex = 0;
-            this.cmbImage.SelectedIndex = 0;
-            this.OpenRawImage();
-        }
-
-        /// <summary>
-        /// The Tool Strip Menu Item for opening an encoded image to decode.
-        /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void TsmiOpenImageDecode_Click(object sender, EventArgs e)
-        {
-            this.ResetImage();
-            this.cmbFunction.SelectedIndex = 1;
-            this.cmbImage.SelectedIndex = 4;
-            this.OpenRawImage();
-        }
-
-        /// <summary>
-        /// The Tool Strip Menu Item for generating a stock image.
-        /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void TsmiStockImage_Click(object sender, EventArgs e)
-        {
-            this.ResetImage();
-            this.cmbFunction.SelectedIndex = 0;
-            this.cmbImage.SelectedIndex = 1;
-            frmStockImagesPage stockImage = new frmStockImagesPage(this);
-            stockImage.ShowDialog();
-        }
-
-        /// <summary>
-        /// Tool Strip Menu Item for generating a fractal.
-        /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void TsmiFractalImage_Click(object sender, EventArgs e)
-        {
-            this.ResetImage();
-            this.cmbFunction.SelectedIndex = 0;
-            this.cmbImage.SelectedIndex = 2;
-            this.GenerateFractal();
-        }
-
-        /// <summary>
-        /// The Tool Strip Menu Item for generating a gradient image.
-        /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void TsmiGradientImage_Click(object sender, EventArgs e)
-        {
-            this.ResetImage();
-            this.cmbFunction.SelectedIndex = 0;
-            this.cmbImage.SelectedIndex = 2;
-            this.GenerateGradient();
-        }
-
-        /// <summary>
-        /// The Tool Strip Menu Item for cutting text from textbox.
-        /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void TsmiCut_Click(object sender, EventArgs e)
-        {
-            if (this.txtMessage.SelectedText != " ")
-            {
-                MessageBox.Show("You must select and highlight the text you wish to cut before continuing.  Please try again.", "Please Try Again");
-            }
-            else
-            {
-                Clipboard.SetText(this.txtMessage.SelectedText);
-                this.txtMessage.Cut();
-            }
-        }
-
-        /// <summary>
-        /// The Tool Strip Menu Item for copying text from textbox.
-        /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void TsmiCopy_Click(object sender, EventArgs e)
-        {
-            if (this.txtMessage.SelectedText != " ")
-            {
-                MessageBox.Show("You must select and highlight the text you wish to copy before continuing.  Please try again.", "Please Try Again");
-            }
-            else
-            {
-                Clipboard.SetText(this.txtMessage.SelectedText);
-                this.txtMessage.Copy();
-            }
-        }
-
-        /// <summary>
-        /// The Tool Strip Menu Item for pasting text.
-        /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void TsmiPaste_Click(object sender, EventArgs e)
-        {
-            Clipboard.GetText();
-            this.txtMessage.Paste();
-        }
-
-        /// <summary>
-        /// The Tool Strip Menu Item for deleting text from the textbox.
-        /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void TsmiDelete_Click(object sender, EventArgs e)
-        {
-            if (this.txtMessage.SelectedText != " ")
-            {
-                MessageBox.Show("You must select and highlight the text you wish to delete before continuing.  Please try again.", "Please Try Again");
-            }
-            else
-            {
-                this.txtMessage.Clear();
-            }
-        }
-
-        /// <summary>
-        /// The Tool Strip Menu Item for selecting all text from textbox for further action.
-        /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void TsmiSelectAll_Click(object sender, EventArgs e)
-        {
-            this.txtMessage.SelectAll();
-        }
-
-        /// <summary>
-        /// The Tool Strip Menu Item for viewing Advanced Options.
-        /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void TsmiAO_Click(object sender, EventArgs e)
-        {
-            AdvancedOptions ao = new AdvancedOptions(this);
-            ao.ShowDialog();
-        }
-
-        /// <summary>
-        /// The tool strip menu item for using encryption.
-        /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void TsmiUseEncrypt_Click(object sender, EventArgs e)
-        {
-            if (this.checkBoxEncryption.Checked)
-            {
-                this.checkBoxEncryption.Checked = false;
-            }
-            else
-            {
-                this.checkBoxEncryption.Checked = true;
-                this.checkBoxEncryption.Visible = true;
-            }
-        }
-
-        /// <summary>
-        /// The Tool Strip Menu Item for viewing Help.
-        /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void TsmiViewHelp_Click(object sender, EventArgs e)
-        {
-            frmHelpPage helpPage = new frmHelpPage();
-            helpPage.Show();
-        }
-
-        /// <summary>
-        /// The Tool Strip Menu Item for viewing the About menu.
-        /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void TsmiAbout_Click(object sender, EventArgs e)
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmAboutPage aboutPage = new frmAboutPage();
             aboutPage.Show();
         }
 
         /// <summary>
-        /// The Tool Strip Menu Item for viewing the Website Wikipedia for Fractal.
+        /// The Toolstrip Menu Item for viewing Help.
         /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void TsmiWhatIsAFractal_Click(object sender, EventArgs e)
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void ViewHelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            const string Message = "You will be directed to an external website, Wikipedia, in a moment.  If you wish to cancel and return to this application, please select 'Cancel', otherwise select 'Ok'.";
-            const string Caption = "External Website";
-            var result = MessageBox.Show(Message, Caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            frmHelpPage helpPage = new frmHelpPage();
+            helpPage.Show();
+        }
 
-            // If the cancel button was pressed 
-            if (result == DialogResult.Cancel)
+        /// <summary>
+        /// The ToolStrip Menu Item for viewing Advanced Options
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void AdvancedOptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AdvancedOptions ao = new AdvancedOptions(this);
+            ao.ShowDialog();
+        }
+
+        /// <summary>
+        /// The toolstrip menu item for opening an unencoded image.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void UnencodedImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            radioButtonEncode.Checked = true;
+
+            // Open image.
+            this.OpenRawImage();
+        }
+
+        /// <summary>
+        /// The toolstrip menu item for opening an encoded image.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void EncodedImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            radioButtonDecode.Checked = true;
+            this.OpenEncodedImage();
+        }
+
+        /// <summary>
+        /// The toolstrip menu item for choosing a stock photo.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void ChooseStockPhotoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            radioButtonEncode.Checked = true;
+
+            // Select Stock Photo
+            frmStockImagesPage stockImage = new frmStockImagesPage(this);
+            stockImage.ShowDialog();
+            this.rawImage = (Bitmap)this.pubpicture.Image;
+        }
+
+        /// <summary>
+        /// The toolstrip menu item for saving an encoded image.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void SaveEncodedImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            radioButtonEncode.Checked = true;
+            this.SaveEncodedImage();
+        }
+
+        /// <summary>
+        /// The toolstrip menu item for saving a decoded message to a text file.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void SaveDecodedMessageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.SaveTextFile();
+        }
+
+        /// <summary>
+        /// The toolstrip menu item for generating a fractal.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void FractalImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            radioButtonEncode.Checked = true;
+            this.Invalidate();
+            this.Update();
+
+            // Generate Fractal
+            this.GenerateFractal();
+            this.rawImage = (Bitmap)this.pubpicture.Image;
+        }
+
+        /// <summary>
+        /// The toolstrip for using Encryption.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void UseEncryptionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            checkBoxEncryption.Checked = true;
+        }
+
+        /// <summary>
+        /// The toolstrip menu item for turning off encryption.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void NoEncryptionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            checkBoxEncryption.Checked = false;
+        }
+
+        /// <summary>
+        /// The toolstrip menu item for Edit->Cut.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void CutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.ActiveControl is TextBox)
             {
-                // return to the form
-                this.Focus();
+                Clipboard.SetDataObject(((TextBox)this.ActiveControl).SelectedText, true);
+                ((TextBox)this.ActiveControl).SelectedText = string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// The toolstrip menu item for Edit->Copy.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void CopyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.ActiveControl is TextBox)
+            {
+                Clipboard.SetDataObject(((TextBox)this.ActiveControl).SelectedText, true);
+            }
+        }
+
+        /// <summary>
+        /// Th toolstrip menu item for Edit->Paste
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void PasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.ActiveControl is TextBox)
+            {
+                int cursorPosition = ((TextBox)this.ActiveControl).SelectionStart;
+                this.ActiveControl.Text = this.ActiveControl.Text.Insert(cursorPosition, Clipboard.GetText());
+            }
+        }
+
+        /// <summary>
+        /// The toolstrip menu item for Edit->Delete.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.ActiveControl is TextBox)
+            {
+                ((TextBox)this.ActiveControl).SelectedText = string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// The toolstrip menu item for Edit->Select All
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void SelectAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.ActiveControl is TextBox)
+            {
+                ((TextBox)this.ActiveControl).SelectAll();
+            }
+        }
+
+        /// <summary>
+        /// The toolstrip menu item for quitting.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void QuitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        /// <summary>
+        /// The radio button for choosing to Encode.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void RadioButtonEncode_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonEncode.Checked)
+            {
+                groupBoxEncode.Enabled = true;
+                groupBoxEncode.Location = new Point(5, 208);
+                this.AcceptButton = this.btnEncodeImage;
             }
             else
             {
-                // continue to website
-                System.Diagnostics.Process.Start("https://en.wikipedia.org/wiki/Fractal");
+                groupBoxEncode.Enabled = false;
+                groupBoxEncode.Location = new Point(5, -2000);
             }
         }
 
         /// <summary>
-        /// Method used to reset everything on the form.
+        /// The radio button for choosing to Decode.
         /// </summary>
-        private void ResetEverything()
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void RadioButtonDecode_CheckedChanged(object sender, EventArgs e)
         {
-            this.lblFunction.Text = string.Empty;
-            this.lblImageChoice.Text = string.Empty;
-            this.txtMessage.Clear();
-            this.ResetImage();
-            this.Refresh();
-        }
-
-        /// <summary>
-        /// The button command that will reset everything on the form.
-        /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void BtnResetAll_Click(object sender, EventArgs e)
-        {
-            this.ResetEverything();
-        }
-
-        /// <summary>
-        /// Method used to reset the image only.
-        /// </summary>
-        private void ResetImage()
-        {
-            this.btnCoding.Visible = false;
-            this.cmbMessage.Visible = false;
-            this.lblType.Visible = false;
-            this.cmbImage.Enabled = false;
-            this.lossless = new Bitmap(1, 1);
-            this.rawImage = new Bitmap(1, 1);
-            this.encodedImage = new Bitmap(1, 1);
-            this.pcbImage.Image = null;
-            this.imgEnc = null;
-            this.imgDec = null;
-            File.Delete(Path.GetFullPath(@"temp1.png"));
-            this.Refresh();
-        }
-
-        /// <summary>
-        /// The button command that will reset only the image displayed.
-        /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void BtnResetImage_Click(object sender, EventArgs e)
-        {
-            if (pcbImage.Image != null)
+            if (radioButtonDecode.Checked)
             {
-                this.ResetImage();
-                this.lblImageChoice.Text = string.Empty;
-                File.Delete(Path.GetFullPath(@"temp1.png"));
+                groupBoxDecode.Enabled = true;
+                groupBoxDecode.Location = new Point(5, 208);
+                this.AcceptButton = this.btnDecode;
             }
             else
             {
-                MessageBox.Show("There is not a picture currently displayed to be able to reset at this time. Please either choose if you wish to encode or decode and then choose your image.", "For Your Information");
+                groupBoxDecode.Enabled = false;
+                groupBoxDecode.Location = new Point(5, -2000);
             }
         }
 
         /// <summary>
-        /// The button command that will clear the text from the textbox.
+        /// The combo box for choosing an image for encoding.
         /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void BtnCancel_Click(object sender, EventArgs e)
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void ComboBoxImageSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.txtMessage.TextLength > 0)
+            if (comboBoxImageSelect.SelectedIndex == 0)
             {
-                Clipboard.SetText(this.txtMessage.Text);
-                this.txtMessage.Clear();
-            }
-            else
-            {
-                MessageBox.Show("There are no characters in the textbox above to clear at this time.", "For Your Information");
-            }
-        }
-
-        /// <summary>
-        /// The Method that will get the objects needed for either the encode or decode process.
-        /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void GetActionList(object sender, EventArgs e)
-        {
-            if (this.cmbFunction.SelectedIndex == 0)
-            {
-                this.checkBoxEncryption.Visible = true;
-                this.txtMessage.Enabled = true;
-                this.cmbImage.Items.Clear();
-                this.cmbImage.Items.Add(cmbImage.SelectedItem = "Upload My Image - Encode");
-                this.cmbImage.Items.Add(cmbImage.SelectedItem = "Use Stock Image");
-                this.cmbImage.Items.Add(cmbImage.SelectedItem = "Create Fractal Image");
-                this.cmbImage.Items.Add(cmbImage.SelectedItem = "Create Gradient Image");
-            }
-            else if (this.cmbFunction.SelectedIndex == 1)
-            {
-                this.checkBoxEncryption.Visible = false;
-                this.cmbImage.Items.Clear();
-                this.cmbImage.Items.Add(cmbImage.SelectedItem = "Download My Image - Decode");
-            }
-            else
-            {
-                this.cmbImage.Items.Clear();
-            }
-        }
-
-        /// <summary>
-        /// The method that will produce a list of the various options in the image choice dropdown list.
-        /// </summary>
-        private void GetMessageActionList()
-        {
-            if (this.cmbFunction.SelectedIndex == 0)
-            {
-                this.btnCoding.Text = "Encode (Hide) Message";
-            }
-            else if (this.cmbFunction.SelectedIndex == 1)
-            {
-                this.btnCoding.Text = "Decode (Retrieve) Message";
-            }
-
-            this.btnCoding.Visible = true;
-            this.cmbMessage.Visible = true;
-            this.lblType.Visible = true;
-        }
-
-        /// <summary>
-        /// The method that will produce a list of the various options in the image choice dropdown list.
-        /// And perform the task chosen.
-        /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void CmbImage_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (this.cmbImage.SelectedIndex == 0)
-            {
+                // Open image.
                 this.OpenRawImage();
             }
-
-            if (this.cmbImage.SelectedIndex == 1)
+            else if (comboBoxImageSelect.SelectedIndex == 1)
             {
+                // Select Stock Photo
                 frmStockImagesPage stockImage = new frmStockImagesPage(this);
                 stockImage.ShowDialog();
+                this.rawImage = (Bitmap)this.pictureBoxRaw.Image;
             }
-
-            if (this.cmbImage.SelectedIndex == 2)
+            else if (comboBoxImageSelect.SelectedIndex == 2)
             {
+                // Generate Fractal
                 this.GenerateFractal();
+                this.rawImage = (Bitmap)this.pictureBoxRaw.Image;
             }
-
-            if (this.cmbImage.SelectedIndex == 3)
+            else if (comboBoxImageSelect.SelectedIndex == 3)
             {
+                // Generate Gradient Pattern
                 this.GenerateGradient();
             }
         }
 
         /// <summary>
-        /// The method that runs when the value in the Image Choice field changes.
-        /// To produce the correct options available.
+        /// Checks that the message input textbox has been changed.
         /// </summary>
-        /// <param name="sender">The object that initiated the event</param>
-        /// <param name="e">The event arguments</param>
-        private void CmbImage_SelectedValueChanged(object sender, EventArgs e)
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void TextBoxInputMessage_TextChanged(object sender, EventArgs e)
         {
-            this.lblImageChoice.Text = this.cmbImage.Text;
-            this.lblImageChoice.Visible = true;
-            this.GetMessageActionList();
-            this.lblImageChoice.Focus();
+            if (this.pictureBoxRaw.Image != null)
+            {
+                this.btnEncodeImage.Enabled = true;
+            }
         }
 
         /// <summary>
-        /// The method that runs when the value in the function choice field changes.
-        /// To produce the correct options available.
+        /// Method to encode image
         /// </summary>
         /// <param name="sender">The object that initiated the event</param>
         /// <param name="e">The event arguments</param>
-        private void CmbFunction_SelectedValueChanged(object sender, EventArgs e)
+        private void BtnEncodeImage_Click(object sender, EventArgs e)
         {
-            this.lblFunction.Text = this.cmbFunction.Text;
-            this.lblFunction.Visible = true;
-            this.cmbImage.Enabled = true;
-            this.lblImageChoice.Visible = false;
-            this.btnCoding.Visible = false;
-            this.lblType.Visible = false;
-            this.cmbMessage.Visible = false;
-            this.lblFunction.Focus();
+            PleaseWait pw = new PleaseWait("Encoding...");
+            pw.Show();
+            pw.Update();
+            this.DoEncoding();
+            pw.Close();
         }
 
-        private void lblFunctionOptions_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Method used to open image
+        /// </summary>
+        /// <param name="sender">The object that initiated the event</param>
+        /// <param name="e">The event arguments</param>
+        private void BtnOpenEncodedImage_Click(object sender, EventArgs e)
         {
+            this.OpenEncodedImage();
+        }
 
+        /// <summary>
+        /// Method used to decode image
+        /// </summary>
+        /// <param name="sender">The object that initiated the event</param>
+        /// <param name="e">The event arguments</param>
+        private void BtnDecode_Click(object sender, EventArgs e)
+        {
+            PleaseWait pw = new PleaseWait("Decoding.");
+            pw.Show();
+            pw.Update();
+            this.DoDecoding();
+            pw.Close();
+        }
+
+        /// <summary>
+        /// The click event for the Save Text button.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void BtnSaveText_Click(object sender, EventArgs e)
+        {
+            this.SaveTextFile();
+        }
+
+        /// <summary>
+        /// The click event for the reset button.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void BtnReset_Click(object sender, EventArgs e)
+        {
+            this.ResetEverything();
+        }
+
+        private void gradientImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.GenerateGradient();
         }
     }
 }

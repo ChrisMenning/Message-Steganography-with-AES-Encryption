@@ -16,10 +16,12 @@ namespace Steganography_with_AES_Encryption
 
         public PasswordInputDialog(FormMain mainform)
         {
-            this.main = mainform;
+
             InitializeComponent();
 
             this.CenterToParent();
+            this.main = mainform;
+            this.AcceptButton = buttonOK;
         }
 
 
