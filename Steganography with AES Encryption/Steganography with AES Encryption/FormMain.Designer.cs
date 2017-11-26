@@ -84,9 +84,7 @@ namespace Steganography_with_AES_Encryption
             this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advancedOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.useEncryptionslowerButMoreSecureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.useEncryptionRecommendedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.noEncryptionLessSecureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EncryptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -443,7 +441,7 @@ namespace Steganography_with_AES_Encryption
             // 
             this.preferencesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.advancedOptionsToolStripMenuItem,
-            this.useEncryptionslowerButMoreSecureToolStripMenuItem});
+            this.EncryptionToolStripMenuItem});
             this.preferencesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
             this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(83, 32);
@@ -453,32 +451,17 @@ namespace Steganography_with_AES_Encryption
             // 
             this.advancedOptionsToolStripMenuItem.Enabled = false;
             this.advancedOptionsToolStripMenuItem.Name = "advancedOptionsToolStripMenuItem";
-            this.advancedOptionsToolStripMenuItem.Size = new System.Drawing.Size(234, 28);
+            this.advancedOptionsToolStripMenuItem.Size = new System.Drawing.Size(227, 28);
             this.advancedOptionsToolStripMenuItem.Text = "Advanced Options";
             this.advancedOptionsToolStripMenuItem.Click += new System.EventHandler(this.AdvancedOptionsToolStripMenuItem_Click);
             // 
-            // useEncryptionslowerButMoreSecureToolStripMenuItem
+            // EncryptionToolStripMenuItem
             // 
-            this.useEncryptionslowerButMoreSecureToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.useEncryptionRecommendedToolStripMenuItem,
-            this.noEncryptionLessSecureToolStripMenuItem});
-            this.useEncryptionslowerButMoreSecureToolStripMenuItem.Name = "useEncryptionslowerButMoreSecureToolStripMenuItem";
-            this.useEncryptionslowerButMoreSecureToolStripMenuItem.Size = new System.Drawing.Size(234, 28);
-            this.useEncryptionslowerButMoreSecureToolStripMenuItem.Text = "Encryption Options";
-            // 
-            // useEncryptionRecommendedToolStripMenuItem
-            // 
-            this.useEncryptionRecommendedToolStripMenuItem.Name = "useEncryptionRecommendedToolStripMenuItem";
-            this.useEncryptionRecommendedToolStripMenuItem.Size = new System.Drawing.Size(375, 28);
-            this.useEncryptionRecommendedToolStripMenuItem.Text = "Use Encryption (Slower, More Secure)";
-            this.useEncryptionRecommendedToolStripMenuItem.Click += new System.EventHandler(this.UseEncryptionToolStripMenuItem_Click);
-            // 
-            // noEncryptionLessSecureToolStripMenuItem
-            // 
-            this.noEncryptionLessSecureToolStripMenuItem.Name = "noEncryptionLessSecureToolStripMenuItem";
-            this.noEncryptionLessSecureToolStripMenuItem.Size = new System.Drawing.Size(375, 28);
-            this.noEncryptionLessSecureToolStripMenuItem.Text = "No Encryption (Faster, Less Secure)";
-            this.noEncryptionLessSecureToolStripMenuItem.Click += new System.EventHandler(this.NoEncryptionToolStripMenuItem_Click);
+            this.EncryptionToolStripMenuItem.CheckOnClick = true;
+            this.EncryptionToolStripMenuItem.Name = "EncryptionToolStripMenuItem";
+            this.EncryptionToolStripMenuItem.Size = new System.Drawing.Size(227, 28);
+            this.EncryptionToolStripMenuItem.Text = "Use Encryption?";
+            this.EncryptionToolStripMenuItem.Click += new System.EventHandler(this.EncryptionToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -909,7 +892,7 @@ namespace Steganography_with_AES_Encryption
         private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem advancedOptionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem useEncryptionslowerButMoreSecureToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem EncryptionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewHelpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
@@ -917,8 +900,6 @@ namespace Steganography_with_AES_Encryption
         private System.Windows.Forms.ToolStripMenuItem encodedImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fractalImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gradientImageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem useEncryptionRecommendedToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem noEncryptionLessSecureToolStripMenuItem;
         private System.Windows.Forms.ToolStripPanel BottomToolStripPanel;
         private System.Windows.Forms.ToolStripPanel TopToolStripPanel;
         private System.Windows.Forms.ToolStripPanel RightToolStripPanel;

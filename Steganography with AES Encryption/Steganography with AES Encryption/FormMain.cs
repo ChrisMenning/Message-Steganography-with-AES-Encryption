@@ -829,5 +829,17 @@ namespace Steganography_with_AES_Encryption
         {
             this.ResetEverything();
         }
+
+        private void EncryptionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (EncryptionToolStripMenuItem.Checked == true)
+            {
+                checkBoxEncryption.Checked = true;
+            }
+            else
+            {
+                checkBoxEncryption.Checked = false;
+            }
+        }
     }
 }
