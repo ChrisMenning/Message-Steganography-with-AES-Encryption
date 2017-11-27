@@ -684,6 +684,23 @@ namespace Steganography_with_AES_Encryption
         }
 
         /// <summary>
+        /// The encryption toolstrip menu item.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void EncryptionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (EncryptionToolStripMenuItem.Checked == true)
+            {
+                checkBoxEncryption.Checked = true;
+            }
+            else
+            {
+                checkBoxEncryption.Checked = false;
+            }
+        }
+
+        /// <summary>
         /// The radio button for choosing to Encode.
         /// </summary>
         /// <param name="sender">The sender</param>
@@ -720,6 +737,23 @@ namespace Steganography_with_AES_Encryption
             {
                 groupBoxDecode.Enabled = false;
                 groupBoxDecode.Location = new Point(5, -2000);
+            }
+        }
+
+        /// <summary>
+        /// The checkedChanged event for the Encryption checkbox.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void checkBoxEncryption_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxEncryption.Checked == true)
+            {
+                EncryptionToolStripMenuItem.Checked = true;
+            }
+            else
+            {
+                EncryptionToolStripMenuItem.Checked = false;
             }
         }
 
@@ -828,18 +862,6 @@ namespace Steganography_with_AES_Encryption
         private void BtnReset_Click(object sender, EventArgs e)
         {
             this.ResetEverything();
-        }
-
-        private void EncryptionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (EncryptionToolStripMenuItem.Checked == true)
-            {
-                checkBoxEncryption.Checked = true;
-            }
-            else
-            {
-                checkBoxEncryption.Checked = false;
-            }
         }
     }
 }

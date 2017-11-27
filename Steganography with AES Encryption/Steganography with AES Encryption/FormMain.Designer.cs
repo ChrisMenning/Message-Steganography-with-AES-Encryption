@@ -142,6 +142,7 @@ namespace Steganography_with_AES_Encryption
             this.checkBoxEncryption.TabIndex = 5;
             this.checkBoxEncryption.Text = "Use Encryption (Slower, but more secure)";
             this.checkBoxEncryption.UseVisualStyleBackColor = true;
+            this.checkBoxEncryption.CheckedChanged += new System.EventHandler(this.checkBoxEncryption_CheckedChanged);
             // 
             // dialogOpenRawImage
             // 
