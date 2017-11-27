@@ -281,12 +281,17 @@ namespace Steganography_with_AES_Encryption
                 this.bmpEnc = new BitmapEncoder(this.rawImage, aes.InitializationVector);
 
                 // Console.WriteLine("Encrypted string is " + aes.EncryptedMessageString().Length + " characters long.");
+
+                // Now pass the encrypted message into the bitmap encoder, hiding the message in the image.
                 string toBeEncoded = aes.EncryptedMessageString();
                 this.encodedImage = this.bmpEnc.Encoder(toBeEncoded);
             }
             else
             {
+                // Instantiate a bitmap encoder, passing the raw image into it.
                 this.bmpEnc = new BitmapEncoder(this.rawImage);
+
+                // Pass the un-encrypted message into the encoder, hiding the message in the image.
                 this.encodedImage = this.bmpEnc.Encoder(ascii);
             }
 
@@ -320,13 +325,18 @@ namespace Steganography_with_AES_Encryption
                 // despite not needing to use the string formatted version of the information. 
                 // The bytes will be more useful.
                 string stillEncryptedButDecoded = this.imgDec.Decoder(this.encodedImage);
+
+                // Declare a list of strings, returned from the image decoder.
+                // These are the 1s and 0s, grouped into 8-digit bytes, as strings.
                 List<string> bytesFomImage = this.imgDec.BytesList;
 
                 Console.WriteLine("BytesList is " + this.imgDec.BytesList.Count + " long.");
 
-                // 32 for 256 bits, 24 for 192 bits, and 16 for 128 bits
-                Console.WriteLine("Using AES block size: " + this.aesKeySize);
+                // In that list of bytes, the Initialization Vector is stored in the first 16, 24, or 32 bytes.
+                // Assign the IV to a byte array.
+                Console.WriteLine("Using AES Key size: " + this.aesKeySize);
                 byte[] derivedIV = new byte[this.aesKeySize];
+
                 for (int i = 0; i < this.aesKeySize; i++)
                 {
                     derivedIV[i] = Convert.ToByte(bytesFomImage[i], 2);
@@ -336,15 +346,18 @@ namespace Steganography_with_AES_Encryption
 
                 this.Update();
 
+                // Instantiate a new AESDecrypt object, and pass in a reference to the main form.
                 AESDecrypt aes = new AESDecrypt(this);
 
-                // Confirm that the derivedIV is the same length as the aesBlockSize.
+                // Confirm that the derivedIV is the same length as the aesKeySize.
+                // Note: This has never happened, but it doesn't hurt to check if something breaks.
                 if (derivedIV.Length != this.aesKeySize)
                 {
                     Console.WriteLine("!!!!!!!! DERIVED IV BLOCK SIZE MISMATCH !!!!!!!!");
                 }
 
-                // Erase IV from bytesFomImage list.
+                // Erase IV from bytesFomImage list. This doesn't need to appear alongside
+                // the decoded message.
                 for (int i = 0; i < this.aesKeySize; i++)
                 {
                     // remove the first from the list, 16, 24, or 32 times.
@@ -360,7 +373,8 @@ namespace Steganography_with_AES_Encryption
                 }
 
                 // Pull the first byte from the list. Convert this byte to an int. This should
-                // represent how many bytes are in the message.
+                // represent how many bytes are in the message, which should correspond to the length of the
+                // message, because in ASCII 1 char is 1 byte.
                 int messageLength = byteStringsToBytes[0];
 
                 Console.WriteLine("The message to be decrypted is " + messageLength);
