@@ -140,7 +140,8 @@ namespace Steganography_with_AES_Encryption
             // Create an Aes object with the specified key and IV.
             using (Aes aesAlg = Aes.Create())
             {
-                aesAlg.BlockSize = main.AesBlockSize * 8;
+                aesAlg.BlockSize = 128;
+                aesAlg.KeySize = main.AesKeySize * 8;
                 aesAlg.Key = key;
                 aesAlg.IV = IV;
                 aesAlg.Mode = CipherMode.CBC;
@@ -180,7 +181,8 @@ namespace Steganography_with_AES_Encryption
                 // This generates a new key and initialization vector (IV).
                 using (Aes myAes = Aes.Create())
                 {
-                    myAes.BlockSize = main.AesBlockSize * 8;
+                    myAes.BlockSize = 128;
+                    myAes.KeySize = main.AesKeySize * 8;
                     Console.WriteLine("Encrypter is using block size: " + myAes.BlockSize);
 
                     // Encrypt the string to an array of bytes.

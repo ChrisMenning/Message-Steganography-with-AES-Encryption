@@ -73,7 +73,7 @@ namespace Steganography_with_AES_Encryption
         private void SavePreferences()
         {
             File.Delete(this.filePath);
-            this.pref = this.main.AesBlockSize.ToString();
+            this.pref = this.main.AesKeySize.ToString();
             System.IO.File.WriteAllText(this.filePath, this.pref);
             File.SetAttributes(this.filePath, FileAttributes.Hidden);
         }
@@ -86,7 +86,7 @@ namespace Steganography_with_AES_Encryption
         private void ButtonRestoreDefaults_Click(object sender, EventArgs e)
         {
             radioButton128.Checked = true;
-            this.main.AesBlockSize = 16;
+            this.main.AesKeySize = 16;
             this.Update();
         }
 
@@ -113,18 +113,18 @@ namespace Steganography_with_AES_Encryption
         {
             if (radioButton128.Checked)
             {
-                this.main.AesBlockSize = 16;
+                this.main.AesKeySize = 16;
             }
             else if (radioButton192.Checked)
             {
-                this.main.AesBlockSize = 24;
+                this.main.AesKeySize = 24;
             }
             else if (radioButton256.Checked)
             {
-                this.main.AesBlockSize = 32;
+                this.main.AesKeySize = 32;
             }
 
-            Console.WriteLine("Setting AES encryption to " + this.main.AesBlockSize);
+            Console.WriteLine("Setting AES encryption to " + this.main.AesKeySize);
 
             if (checkBoxRememberSettings.Checked == true)
             {

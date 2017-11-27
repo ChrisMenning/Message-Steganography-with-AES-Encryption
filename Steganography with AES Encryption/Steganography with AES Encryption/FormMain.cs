@@ -51,9 +51,9 @@ namespace Steganography_with_AES_Encryption
         private string password;
 
         /// <summary>
-        /// the size of the AES block (16, 24, or 32)
+        /// The size of the AES key in bytes (16, 24, or 32)
         /// </summary>
-        private int aesBlockSize;
+        private int aesKeySize;
 
         /// <summary>
         /// A private picture box.
@@ -67,7 +67,7 @@ namespace Steganography_with_AES_Encryption
         {
             this.InitializeComponent();
             this.pubpicture = this.pictureBoxRaw;
-            this.aesBlockSize = 16;
+            this.aesKeySize = 16;
             this.Width = 1016;
             this.Height = 768;
             this.CenterToScreen();
@@ -75,6 +75,9 @@ namespace Steganography_with_AES_Encryption
 
             radioButtonEncode.Checked = true;
             groupBoxEncode.Location = new Point(5, 208);
+
+            // Instantiate Advanced Options once, to load the last encryption settings used.
+            AdvancedOptions ad = new AdvancedOptions(this);
         }
 
         /// <summary>
@@ -96,16 +99,16 @@ namespace Steganography_with_AES_Encryption
         /// <summary>
         /// Gets or sets the AES BlockSize field.
         /// </summary>
-        public int AesBlockSize
+        public int AesKeySize
         {
             get
             {
-                return this.aesBlockSize;
+                return this.aesKeySize;
             }
 
             set
             {
-                this.aesBlockSize = value;
+                this.aesKeySize = value;
             }
         }
 
@@ -372,9 +375,9 @@ namespace Steganography_with_AES_Encryption
                 Console.WriteLine("BytesList is " + this.imgDec.BytesList.Count + " long.");
 
                 // 32 for 256 bits, 24 for 192 bits, and 16 for 128 bits
-                Console.WriteLine("Using AES block size: " + this.aesBlockSize);
-                byte[] derivedIV = new byte[this.aesBlockSize];
-                for (int i = 0; i < this.aesBlockSize; i++)
+                Console.WriteLine("Using AES block size: " + this.aesKeySize);
+                byte[] derivedIV = new byte[this.aesKeySize];
+                for (int i = 0; i < this.aesKeySize; i++)
                 {
                     derivedIV[i] = Convert.ToByte(bytesFomImage[i], 2);
                 }
@@ -386,13 +389,13 @@ namespace Steganography_with_AES_Encryption
                 AESDecrypt aes = new AESDecrypt(this);
 
                 // Confirm that the derivedIV is the same length as the aesBlockSize.
-                if (derivedIV.Length != this.aesBlockSize)
+                if (derivedIV.Length != this.aesKeySize)
                 {
                     Console.WriteLine("!!!!!!!! DERIVED IV BLOCK SIZE MISMATCH !!!!!!!!");
                 }
 
                 // Erase IV from bytesFomImage list.
-                for (int i = 0; i < this.aesBlockSize; i++)
+                for (int i = 0; i < this.aesKeySize; i++)
                 {
                     // remove the first from the list, 16, 24, or 32 times.
                     bytesFomImage.RemoveAt(0);

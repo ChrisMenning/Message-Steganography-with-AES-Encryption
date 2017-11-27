@@ -93,7 +93,7 @@ namespace Steganography_with_AES_Encryption
         {
             const int Iterations = 300;
             var keyGenerator = new Rfc2898DeriveBytes(password, Salt, Iterations);
-            return keyGenerator.GetBytes(this.main.AesBlockSize);
+            return keyGenerator.GetBytes(this.main.AesKeySize);
         }
     }
 }
