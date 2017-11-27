@@ -38,7 +38,7 @@ namespace Steganography_with_AES_Encryption
         /// <summary>
         /// Declare the image encoder.
         /// </summary>
-        private BitmapEncoder imgEnc;
+        private BitmapEncoder bmpEnc;
 
         /// <summary>
         /// Declare the image decoder
@@ -167,7 +167,7 @@ namespace Steganography_with_AES_Encryption
 
             this.pubpicture.Image = null;
             this.pictureBoxEncoded.Image = null;
-            this.imgEnc = null;
+            this.bmpEnc = null;
             this.imgDec = null;
 
             btnEncodeImage.Enabled = false;
@@ -187,8 +187,6 @@ namespace Steganography_with_AES_Encryption
             if (this.dialogOpenRawImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 this.rawImage = new Bitmap(Bitmap.FromFile(this.dialogOpenRawImage.FileName));
-
-                // Draw the picturebox using the lossless copy.
                 this.pictureBoxRaw.Image = this.rawImage;
             }
 
@@ -278,18 +276,18 @@ namespace Steganography_with_AES_Encryption
 
                 this.Update();
 
-                // Instantiate the Image Encoder, passing in the raw image and the Initialization Vector from 
+                // Instantiate the Bitmap Encoder, passing in the raw image and the Initialization Vector from 
                 // the AES encrypter.
-                this.imgEnc = new BitmapEncoder(this.rawImage, aes.InitializationVector);
+                this.bmpEnc = new BitmapEncoder(this.rawImage, aes.InitializationVector);
 
                 // Console.WriteLine("Encrypted string is " + aes.EncryptedMessageString().Length + " characters long.");
                 string toBeEncoded = aes.EncryptedMessageString();
-                this.encodedImage = this.imgEnc.Encoder(toBeEncoded);
+                this.encodedImage = this.bmpEnc.Encoder(toBeEncoded);
             }
             else
             {
-                this.imgEnc = new BitmapEncoder(this.rawImage);
-                this.encodedImage = this.imgEnc.Encoder(ascii);
+                this.bmpEnc = new BitmapEncoder(this.rawImage);
+                this.encodedImage = this.bmpEnc.Encoder(ascii);
             }
 
             // Save the image.
