@@ -450,7 +450,6 @@ namespace Steganography_with_AES_Encryption
             // 
             // advancedOptionsToolStripMenuItem
             // 
-            this.advancedOptionsToolStripMenuItem.Enabled = false;
             this.advancedOptionsToolStripMenuItem.Name = "advancedOptionsToolStripMenuItem";
             this.advancedOptionsToolStripMenuItem.Size = new System.Drawing.Size(227, 28);
             this.advancedOptionsToolStripMenuItem.Text = "Advanced Options";
@@ -738,7 +737,6 @@ namespace Steganography_with_AES_Encryption
             // 
             // comboBoxImageSelect
             // 
-            this.comboBoxImageSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxImageSelect.FormattingEnabled = true;
             this.comboBoxImageSelect.Items.AddRange(new object[] {
             "Open your own Image",
@@ -749,6 +747,7 @@ namespace Steganography_with_AES_Encryption
             this.comboBoxImageSelect.Name = "comboBoxImageSelect";
             this.comboBoxImageSelect.Size = new System.Drawing.Size(242, 31);
             this.comboBoxImageSelect.TabIndex = 10;
+            this.comboBoxImageSelect.Text = "Choose Your Image";
             this.comboBoxImageSelect.SelectedIndexChanged += new System.EventHandler(this.ComboBoxImageSelect_SelectedIndexChanged);
             // 
             // btnEncodeImage
