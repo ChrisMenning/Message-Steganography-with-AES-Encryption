@@ -18,7 +18,6 @@ namespace Steganography_with_AES_Encryption
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Forms;
-    using PNGCompression;
     using Steganography_with_AES_Encryption.Classes;
 
     /// <summary>
@@ -57,11 +56,6 @@ namespace Steganography_with_AES_Encryption
         private int aesBlockSize;
 
         /// <summary>
-        /// The PNG Compressor object.
-        /// </summary>
-        private PNGCompressor pngCompressor;
-
-        /// <summary>
         /// A private picture box.
         /// </summary>
         private PictureBox pubpicture;
@@ -74,7 +68,6 @@ namespace Steganography_with_AES_Encryption
             this.InitializeComponent();
             this.pubpicture = this.pictureBoxRaw;
             this.aesBlockSize = 16;
-            this.pngCompressor = new PNGCompressor();
             this.Width = 1016;
             this.Height = 768;
             this.CenterToScreen();
