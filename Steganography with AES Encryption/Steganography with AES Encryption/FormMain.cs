@@ -156,27 +156,6 @@ namespace Steganography_with_AES_Encryption
         }
 
         /// <summary>
-        /// Accepts a mimeType and returns ImageCodecInfo.
-        /// </summary>
-        /// <param name="mimeType">The mimeType</param>
-        /// <returns>The ImageCodecInfo</returns>
-        private static ImageCodecInfo GetEncoderInfo(string mimeType)
-        {
-            int j;
-            ImageCodecInfo[] encoders;
-            encoders = ImageCodecInfo.GetImageEncoders();
-            for (j = 0; j < encoders.Length; ++j)
-            {
-                if (encoders[j].MimeType == mimeType)
-                {
-                    return encoders[j];
-                }
-            }
-
-            return null;
-        }
-
-        /// <summary>
         /// Resets Everything.
         /// </summary>
         private void ResetEverything()
@@ -248,37 +227,10 @@ namespace Steganography_with_AES_Encryption
             this.dialogSaveImage.ShowHelp = true;
             this.dialogSaveImage.FileName = "encoded";
             dialogSaveImage.ShowDialog();
-
-            ImageCodecInfo myImageCodecInfo;
-            System.Drawing.Imaging.Encoder myEncoder;
-            EncoderParameter myEncoderParameter;
-            EncoderParameters myEncoderParameters;
-
-            // Get an ImageCodecInfo object that represents the JPEG codec.
-            myImageCodecInfo = GetEncoderInfo("image/png");
-
-            Console.WriteLine("Saving with codec: " + myImageCodecInfo.FormatDescription);
-
-            // Create an Encoder object based on the GUID
-
-            // for the Quality parameter category.
-            myEncoder = System.Drawing.Imaging.Encoder.Quality;
-
-            // Create an EncoderParameters object.
-
-            // An EncoderParameters object has an array of EncoderParameter
-
-            // objects. In this case, there is only one
-
-            // EncoderParameter object in the array.
-            myEncoderParameters = new EncoderParameters(1);
-
-            myEncoderParameter = new EncoderParameter(myEncoder, 100L);
-            myEncoderParameters.Param[0] = myEncoderParameter;
-
+            
             if (dialogSaveImage.FileName != string.Empty)
             {
-                this.encodedImage.Save(dialogSaveImage.FileName, myImageCodecInfo, myEncoderParameters);
+                this.encodedImage.Save(dialogSaveImage.FileName);
             }
         }
 
@@ -705,13 +657,11 @@ namespace Steganography_with_AES_Encryption
         {
             if (radioButtonEncode.Checked)
             {
-                groupBoxEncode.Enabled = true;
                 groupBoxEncode.Location = new Point(5, 208);
                 this.AcceptButton = this.btnEncodeImage;
             }
             else
             {
-                groupBoxEncode.Enabled = false;
                 groupBoxEncode.Location = new Point(5, -2000);
             }
         }
@@ -725,13 +675,11 @@ namespace Steganography_with_AES_Encryption
         {
             if (radioButtonDecode.Checked)
             {
-                groupBoxDecode.Enabled = true;
                 groupBoxDecode.Location = new Point(5, 208);
                 this.AcceptButton = this.btnDecode;
             }
             else
             {
-                groupBoxDecode.Enabled = false;
                 groupBoxDecode.Location = new Point(5, -2000);
             }
         }
