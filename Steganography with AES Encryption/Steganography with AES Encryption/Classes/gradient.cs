@@ -59,21 +59,16 @@ namespace Steganography_with_AES_Encryption.Classes
                     cy = (yzoom * y) - Math.Abs(yMin);
                     loopgo++;
 
-                    while ((zx * zx) + (zy * zy) <= 4 && loopgo < 64)
+                    while ((zx * zx) + (zy * zy) <= 4 && loopgo < 1000)
                     {
+                        loopgo++;
                         tempzx = zx;
                         zx = (zx * zx) - (zy * zy) + cx; // width = width*2 - height*2 + width cx
                         zy = (2 * tempzx * zy) + cy; // height= 2*width*height + height cy
-
-                        loopgo++;
                     }
 
                     gradient.SetPixel(x, y, Color.FromArgb(loopgo % (128 * 2), loopgo % (32 * 7), loopgo % (16 * 14)));
-
-                    cy += yzoom;
                 }
-
-                cx += xzoom;
             }
 
             return gradient;

@@ -135,7 +135,7 @@ namespace Steganography_with_AES_Encryption
             this.btnResetImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
             this.btnResetImage.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnResetImage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnResetImage.Location = new System.Drawing.Point(270, 859);
+            this.btnResetImage.Location = new System.Drawing.Point(306, 859);
             this.btnResetImage.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnResetImage.Name = "btnResetImage";
             this.btnResetImage.Size = new System.Drawing.Size(171, 34);
@@ -197,6 +197,7 @@ namespace Steganography_with_AES_Encryption
             this.msMain.Name = "msMain";
             this.msMain.Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
             this.msMain.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.msMain.ShowItemToolTips = true;
             this.msMain.Size = new System.Drawing.Size(407, 33);
             this.msMain.Stretch = false;
             this.msMain.TabIndex = 5;
@@ -233,8 +234,8 @@ namespace Steganography_with_AES_Encryption
             // tsmiOpenImageDecode
             // 
             this.tsmiOpenImageDecode.Name = "tsmiOpenImageDecode";
-            this.tsmiOpenImageDecode.Size = new System.Drawing.Size(310, 30);
-            this.tsmiOpenImageDecode.Text = "Open Image To Decoded";
+            this.tsmiOpenImageDecode.Size = new System.Drawing.Size(298, 30);
+            this.tsmiOpenImageDecode.Text = "Open Image To Decode";
             this.tsmiOpenImageDecode.Click += new System.EventHandler(this.TsmiOpenImageDecode_Click);
             // 
             // tsmiGenerateImage
@@ -356,7 +357,6 @@ namespace Steganography_with_AES_Encryption
             // tsmiUseEncrypt
             // 
             this.tsmiUseEncrypt.CheckOnClick = true;
-            this.tsmiUseEncrypt.Enabled = false;
             this.tsmiUseEncrypt.Name = "tsmiUseEncrypt";
             this.tsmiUseEncrypt.Size = new System.Drawing.Size(456, 30);
             this.tsmiUseEncrypt.Text = "Use Encryption (slower, but more secure)";
@@ -594,7 +594,7 @@ namespace Steganography_with_AES_Encryption
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(1004, 859);
+            this.btnCancel.Location = new System.Drawing.Point(1051, 859);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(171, 34);
@@ -683,7 +683,7 @@ namespace Steganography_with_AES_Encryption
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(162)))), ((int)(((byte)(115)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1413, 647);
+            this.ClientSize = new System.Drawing.Size(1441, 682);
             this.Controls.Add(this.lblType);
             this.Controls.Add(this.btnResetAll);
             this.Controls.Add(this.btnCoding);
