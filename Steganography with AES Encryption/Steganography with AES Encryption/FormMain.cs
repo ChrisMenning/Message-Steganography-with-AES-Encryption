@@ -395,13 +395,13 @@ namespace Steganography_with_AES_Encryption
                 Console.WriteLine("The message to be decrypted is " + messageLength);
 
                 // Pass the byteStringsToBytes byte array, encryption key, and derived IV to the decrypter.
-                this.txtMessage.Text = aes.DecryptStringFromBytes_Aes(byteStringsToBytes, passwordHandler.EncryptionKey, derivedIV);
+                textBoxOutputMessage.Text = aes.DecryptStringFromBytes_Aes(byteStringsToBytes, passwordHandler.EncryptionKey, derivedIV);
             }
             else
             {
                 this.imgDec = new BitmapDecoder();
 
-                this.txtMessage.Text = this.imgDec.Decoder(this.encodedImage);
+                this.textBoxOutputMessage.Text = this.imgDec.Decoder(this.encodedImage);
             }
         }
 
@@ -412,36 +412,27 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event arguments</param>
         private void BtnCoding_Click(object sender, EventArgs e)
         {
-            if ((this.cmbFunction.SelectedIndex == 0) && (this.cmbImage.SelectedIndex != 3) && (this.btnCoding.Text == "3.  Encode (Hide) Message") && (this.txtMessage.TextLength > 0))
+            if ((this.cmbFunction.SelectedIndex == 0) && (this.cmbImage.SelectedIndex != 4) && (this.btnCoding.Text == "3. Encode (Hide) Message") && (this.txtMessage.TextLength > 0))
             {
                 Cursor.Current = Cursors.WaitCursor;
-                PleaseWait pw = new PleaseWait("Encoding...");
+                PleaseWait pw = new PleaseWait("Encoding. Thank you for your patience.");
                 pw.Show();
                 pw.Update();
                 this.DoEncoding();
                 pw.Close();
             }
 
-            if ((this.cmbFunction.SelectedIndex == 1) && (this.cmbImage.SelectedIndex == 3))// && (this.btnCoding.Text == "3. Decode (Retrieve) Message"))
+            if ((this.cmbFunction.SelectedIndex == 1) && (this.cmbImage.SelectedIndex == 4) && (this.btnCoding.Text == "3. Decode (Retrieve) Message"))
             {
-                this.dialogOpenRawImage.Filter = "PNG Image|*.png";
-                this.dialogOpenRawImage.ShowHelp = true;
-                this.dialogOpenRawImage.FileName = "*.png";
-                if (this.dialogOpenRawImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    this.encodedImage = new Bitmap(this.dialogOpenRawImage.FileName);
-                    //this.pictureBoxEncoded2.Image = this.encodedImage;
-                    this.pcbImage.Image = this.encodedImage;
-                    //this.btnDecode.Enabled = true;
-                }
 
                 Cursor.Current = Cursors.WaitCursor;
-                PleaseWait pw = new PleaseWait("Decoding.");
+                PleaseWait pw = new PleaseWait("Decoding. Thank you for your patience.");
                 pw.Show();
                 pw.Update();
                 this.DoDecoding();
                 pw.Close();
             }
+
         }
 
         /// <summary>
@@ -518,10 +509,19 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event arguments</param>
         private void TsmiOpenImageEncode_Click(object sender, EventArgs e)
         {
-            this.ResetImage();
-            this.cmbFunction.SelectedIndex = 0;
-            this.cmbImage.SelectedIndex = 0;
-            this.OpenRawImage();
+            if (cmbImage.Visible == false)
+            {
+                this.cmbFunction.SelectedIndex = 0;
+                this.cmbImage.SelectedIndex = 0;
+                this.OpenRawImage();
+            }
+            else
+            {
+                this.ResetImage();
+                this.cmbFunction.SelectedIndex = 0;
+                this.cmbImage.SelectedIndex = 0;
+                this.OpenRawImage();
+            }
         }
 
         /// <summary>
@@ -531,10 +531,19 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event arguments</param>
         private void TsmiOpenImageDecode_Click(object sender, EventArgs e)
         {
-            this.ResetImage();
-            this.cmbFunction.SelectedIndex = 1;
-            this.cmbImage.SelectedIndex = 4;
-            this.OpenRawImage();
+            if (cmbImage.Visible == false)
+            {
+                this.cmbFunction.SelectedIndex = 1;
+                this.cmbImage.SelectedIndex = 4;
+                this.OpenRawImage();
+            }
+            else
+            {
+                this.ResetImage();
+                this.cmbFunction.SelectedIndex = 1;
+                this.cmbImage.SelectedIndex = 4;
+                this.OpenRawImage();
+            }
         }
 
         /// <summary>
@@ -544,11 +553,22 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event arguments</param>
         private void TsmiStockImage_Click(object sender, EventArgs e)
         {
-            this.ResetImage();
-            this.cmbFunction.SelectedIndex = 0;
-            this.cmbImage.SelectedIndex = 1;
-            frmStockImagesPage stockImage = new frmStockImagesPage(this);
-            stockImage.ShowDialog();
+            if (cmbImage.Visible == false)
+            {
+                this.cmbFunction.SelectedIndex = 0;
+                this.cmbImage.SelectedIndex = 1;
+                frmStockImagesPage stockImage = new frmStockImagesPage(this);
+                stockImage.ShowDialog();
+
+            }
+            else
+            {
+                this.ResetImage();
+                this.cmbFunction.SelectedIndex = 0;
+                this.cmbImage.SelectedIndex = 1;
+                frmStockImagesPage stockImage = new frmStockImagesPage(this);
+                stockImage.ShowDialog();
+            }
         }
 
         /// <summary>
@@ -558,10 +578,19 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event arguments</param>
         private void TsmiFractalImage_Click(object sender, EventArgs e)
         {
-            this.ResetImage();
-            this.cmbFunction.SelectedIndex = 0;
-            this.cmbImage.SelectedIndex = 2;
-            this.GenerateFractal();
+            if (cmbImage.Visible == false)
+            {
+                this.cmbFunction.SelectedIndex = 0;
+                this.cmbImage.SelectedIndex = 2;
+                this.GenerateFractal();
+            }
+            else
+            {
+                this.ResetImage();
+                this.cmbFunction.SelectedIndex = 0;
+                this.cmbImage.SelectedIndex = 2;
+                this.GenerateFractal();
+            }
         }
 
         /// <summary>
@@ -571,10 +600,20 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event arguments</param>
         private void TsmiGradientImage_Click(object sender, EventArgs e)
         {
-            this.ResetImage();
-            this.cmbFunction.SelectedIndex = 0;
-            this.cmbImage.SelectedIndex = 2;
-            this.GenerateGradient();
+            if (cmbImage.Visible == false)
+            {
+                this.cmbFunction.SelectedIndex = 0;
+                this.cmbImage.SelectedIndex = 3;
+                this.GenerateGradient();
+            }
+            else
+            {
+                this.ResetImage();
+
+                this.cmbFunction.SelectedIndex = 0;
+                this.cmbImage.SelectedIndex = 3;
+                this.GenerateGradient();
+            }
         }
 
         /// <summary>
@@ -732,7 +771,7 @@ namespace Steganography_with_AES_Encryption
         private void ResetEverything()
         {
             this.lblFunction.Text = string.Empty;
-            this.lblImageChoice.Text = string.Empty;
+
             this.txtMessage.Clear();
             this.ResetImage();
             this.Refresh();
@@ -753,8 +792,11 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         private void ResetImage()
         {
+            this.lblImageChoice.Text = string.Empty;
+            this.lblImageOptions.Visible = false;
+            this.cmbImage.Visible = false;
             this.btnCoding.Visible = false;
-            this.cmbMessage.Visible = false;
+            this.checkBoxEncryption.Visible = false;
             this.lblType.Visible = false;
             this.cmbImage.Enabled = false;
             this.lossless = new Bitmap(1, 1);
@@ -816,7 +858,7 @@ namespace Steganography_with_AES_Encryption
                 this.checkBoxEncryption.Visible = true;
                 this.txtMessage.Enabled = true;
                 this.cmbImage.Items.Clear();
-                this.cmbImage.Items.Add(cmbImage.SelectedItem = "Upload My Image - Encode");
+                this.cmbImage.Items.Add(cmbImage.SelectedItem = "Open My Image - Encode");
                 this.cmbImage.Items.Add(cmbImage.SelectedItem = "Use Stock Image");
                 this.cmbImage.Items.Add(cmbImage.SelectedItem = "Create Fractal Image");
                 this.cmbImage.Items.Add(cmbImage.SelectedItem = "Create Gradient Image");
@@ -825,10 +867,11 @@ namespace Steganography_with_AES_Encryption
             {
                 this.checkBoxEncryption.Visible = false;
                 this.cmbImage.Items.Clear();
-                this.cmbImage.Items.Add(cmbImage.SelectedItem = "Download My Image - Decode");
+                this.cmbImage.Items.Add(cmbImage.SelectedItem = "Open My Image - Decode");
             }
             else
             {
+                this.lblImageOptions.Visible = true;
                 this.cmbImage.Items.Clear();
             }
         }
@@ -840,16 +883,17 @@ namespace Steganography_with_AES_Encryption
         {
             if (this.cmbFunction.SelectedIndex == 0)
             {
-                this.btnCoding.Text = "Encode (Hide) Message";
+                this.btnCoding.Text = "3. Encode (Hide) Message";
+                this.lblType.Visible = true;
             }
             else if (this.cmbFunction.SelectedIndex == 1)
             {
-                this.btnCoding.Text = "Decode (Retrieve) Message";
+                this.btnCoding.Text = "3. Decode (Retrieve) Message";
+                this.lblType.Visible = false;
             }
 
             this.btnCoding.Visible = true;
-            this.cmbMessage.Visible = true;
-            this.lblType.Visible = true;
+
         }
 
         /// <summary>
@@ -880,6 +924,26 @@ namespace Steganography_with_AES_Encryption
             {
                 this.GenerateGradient();
             }
+
+            if (this.cmbImage.SelectedIndex == 4)
+            {
+                this.OpenEncodedImage();
+            }
+
+
+        }
+
+        private void OpenEncodedImage()
+        {
+            this.dialogOpenRawImage.Filter = "PNG Image|*.png";
+            this.dialogOpenRawImage.ShowHelp = true;
+            this.dialogOpenRawImage.FileName = "*.png";
+            if (this.dialogOpenRawImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.encodedImage = new Bitmap(this.dialogOpenRawImage.FileName);
+                this.pcbImage.Image = this.encodedImage;
+
+            }
         }
 
         /// <summary>
@@ -904,19 +968,35 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event arguments</param>
         private void CmbFunction_SelectedValueChanged(object sender, EventArgs e)
         {
+            this.lblImageOptions.Visible = true;
+            this.cmbImage.Visible = true;
             this.lblFunction.Text = this.cmbFunction.Text;
             this.lblFunction.Visible = true;
             this.cmbImage.Enabled = true;
             this.lblImageChoice.Visible = false;
             this.btnCoding.Visible = false;
             this.lblType.Visible = false;
-            this.cmbMessage.Visible = false;
             this.lblFunction.Focus();
         }
 
-        private void lblFunctionOptions_Click(object sender, EventArgs e)
+        private void TsmiSaveEncodedImage_Click(object sender, EventArgs e)
         {
+            if ((this.cmbFunction.SelectedIndex == 0) && (this.cmbImage.SelectedIndex != 4) && (this.btnCoding.Text == "3. Encode (Hide) Message") && (this.txtMessage.TextLength > 0))
 
+            {
+                //Waiting for Stock Images to be complete");
+
+                Cursor.Current = Cursors.WaitCursor;
+                PleaseWait pw = new PleaseWait("Encoding. Thank you for your patience.");
+                pw.Show();
+                pw.Update();
+                this.DoEncoding();
+                pw.Close();
+            }
+            else
+            {
+                MessageBox.Show("There are no characters in the textbox or image displayed to encode at this time.", "For Your Information");
+            }
         }
     }
 }
