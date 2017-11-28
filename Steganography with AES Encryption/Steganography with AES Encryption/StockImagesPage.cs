@@ -37,7 +37,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cute puppy\n";
                     message += "\nSize:\n";
-                    message += "2048 X 2048";
+                    message += "Approximately 21.33 Inches by 21.33 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Dog_Medium;
                 }
@@ -46,7 +46,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cute puppy\n";
                     message += "\nSize:\n";
-                    message += "1024 X 1024";
+                    message += "Approximately 10.67 Inches by 10.67 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Dog_Medium;
                 }
@@ -55,7 +55,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cute puppy\n";
                     message += "\nSize:\n";
-                    message += "512 X 512";
+                    message += "Approximately 5.33 Inches by 5.33 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Dog_Medium;
                 }
@@ -64,7 +64,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a group of penguins\n";
                     message += "\nSize:\n";
-                    message += "1900 X 1899";
+                    message += "Approximately 19.79 Inches by 19.78 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Penguin_Medium;
                 }
@@ -73,7 +73,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a group of penguins\n";
                     message += "\nSize:\n";
-                    message += "950 X 950";
+                    message += "Approximately 9.9 Inches by 9.9 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Penguin_Medium;
                 }
@@ -82,7 +82,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a group of penguins\n";
                     message += "\nSize:\n";
-                    message += "475 X 475";
+                    message += "Approximately 4.95 Inches by 4.95 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Penguin_Medium;
                 }
@@ -91,7 +91,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cool looking rock\n";
                     message += "\nSize:\n";
-                    message += "4000 X 2248";
+                    message += "Approximately 41.67 Inches by 23.42 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Rocks_Medium;
                 }
@@ -100,7 +100,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cool looking rock\n";
                     message += "\nSize:\n";
-                    message += "2000 X 1124";
+                    message += "Approximately 20.83 Inches by 11.71 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Rocks_Medium;
                 }
@@ -109,7 +109,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cool looking rock\n";
                     message += "\nSize:\n";
-                    message += "1000 X 562";
+                    message += "Approximately 10.42 Inches by 5.85 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Rocks_Medium;
                 }
@@ -118,7 +118,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a tiger\n";
                     message += "\nSize:\n";
-                    message += "1600 X 1200";
+                    message += "Approximately 16.67 Inches by 12.5 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Tiger_Medium;
                 }
@@ -127,7 +127,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a tiger\n";
                     message += "\nSize:\n";
-                    message += "800 X 600";
+                    message += "Approximately 8.33 Inches by 6.25 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Tiger_Medium;
                 }
@@ -136,7 +136,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a tiger\n";
                     message += "\nSize:\n";
-                    message += "400 X 300";
+                    message += "Approximately 4.17 Inches by 3.13 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Tiger_Medium;
                 }
@@ -160,7 +160,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cute puppy\n";
                     message += "\nSize:\n";
-                    message += "2048 X 2048";
+                    message += "Approximately 21.33 Inches by 21.33 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Dog_Medium;
                 }
@@ -169,7 +169,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cute puppy\n";
                     message += "\nSize:\n";
-                    message += "1024 X 1024";
+                    message += "Approximately 10.67 Inches by 10.67 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Dog_Medium;
                 }
@@ -178,7 +178,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cute puppy\n";
                     message += "\nSize:\n";
-                    message += "512 X 512";
+                    message += "Approximately 5.33 Inches by 5.33 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Dog_Medium;
                 }
@@ -187,7 +187,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a group of penguins\n";
                     message += "\nSize:\n";
-                    message += "1900 X 1899";
+                    message += "Approximately 19.79 Inches by 19.78 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Penguin_Medium;
                 }
@@ -196,7 +196,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a group of penguins\n";
                     message += "\nSize:\n";
-                    message += "950 X 950";
+                    message += "Approximately 9.9 Inches by 9.9 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Penguin_Medium;
                 }
@@ -205,7 +205,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a group of penguins\n";
                     message += "\nSize:\n";
-                    message += "475 X 475";
+                    message += "Approximately 4.95 Inches by 4.95 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Penguin_Medium;
                 }
@@ -214,7 +214,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cool looking rock\n";
                     message += "\nSize:\n";
-                    message += "4000 X 2248";
+                    message += "Approximately 41.67 Inches by 23.42 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Rocks_Medium;
                 }
@@ -223,7 +223,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cool looking rock\n";
                     message += "\nSize:\n";
-                    message += "2000 X 1124";
+                    message += "Approximately 20.83 Inches by 11.71 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Rocks_Medium;
                 }
@@ -232,7 +232,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cool looking rock\n";
                     message += "\nSize:\n";
-                    message += "1000 X 562";
+                    message += "Approximately 10.42 Inches by 5.85 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Rocks_Medium;
                 }
@@ -241,7 +241,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a tiger\n";
                     message += "\nSize:\n";
-                    message += "1600 X 1200";
+                    message += "Approximately 16.67 Inches by 12.5 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Tiger_Medium;
                 }
@@ -250,7 +250,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a tiger\n";
                     message += "\nSize:\n";
-                    message += "800 X 600";
+                    message += "Approximately 8.33 Inches by 6.25 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Tiger_Medium;
                 }
@@ -259,7 +259,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a tiger\n";
                     message += "\nSize:\n";
-                    message += "400 X 300";
+                    message += "Approximately 4.17 Inches by 3.13 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Tiger_Medium;
                 }
@@ -282,7 +282,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cute puppy\n";
                     message += "\nSize:\n";
-                    message += "2048 X 2048";
+                    message += "Approximately 21.33 Inches by 21.33 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Dog_Medium;
                 }
@@ -291,7 +291,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cute puppy\n";
                     message += "\nSize:\n";
-                    message += "1024 X 1024";
+                    message += "Approximately 10.67 Inches by 10.67 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Dog_Medium;
                 }
@@ -300,7 +300,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cute puppy\n";
                     message += "\nSize:\n";
-                    message += "512 X 512";
+                    message += "Approximately 5.33 Inches by 5.33 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Dog_Medium;
                 }
@@ -309,7 +309,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a group of penguins\n";
                     message += "\nSize:\n";
-                    message += "1900 X 1899";
+                    message += "Approximately 19.79 Inches by 19.78 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Penguin_Medium;
                 }
@@ -318,7 +318,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a group of penguins\n";
                     message += "\nSize:\n";
-                    message += "950 X 950";
+                    message += "Approximately 9.9 Inches by 9.9 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Penguin_Medium;
                 }
@@ -327,7 +327,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a group of penguins\n";
                     message += "\nSize:\n";
-                    message += "475 X 475";
+                    message += "Approximately 4.95 Inches by 4.95 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Penguin_Medium;
                 }
@@ -336,7 +336,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cool looking rock\n";
                     message += "\nSize:\n";
-                    message += "4000 X 2248";
+                    message += "Approximately 41.67 Inches by 23.42 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Rocks_Medium;
                 }
@@ -345,7 +345,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cool looking rock\n";
                     message += "\nSize:\n";
-                    message += "2000 X 1124";
+                    message += "Approximately 20.83 Inches by 11.71 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Rocks_Medium;
                 }
@@ -354,7 +354,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cool looking rock\n";
                     message += "\nSize:\n";
-                    message += "1000 X 562";
+                    message += "Approximately 10.42 Inches by 5.85 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Rocks_Medium;
                 }
@@ -363,7 +363,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a tiger\n";
                     message += "\nSize:\n";
-                    message += "1600 X 1200";
+                    message += "Approximately 16.67 Inches by 12.5 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Tiger_Medium;
                 }
@@ -372,7 +372,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a tiger\n";
                     message += "\nSize:\n";
-                    message += "800 X 600";
+                    message += "Approximately 8.33 Inches by 6.25 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Tiger_Medium;
                 }
@@ -381,7 +381,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a tiger\n";
                     message += "\nSize:\n";
-                    message += "400 X 300";
+                    message += "Approximately 4.17 Inches by 3.13 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Tiger_Medium;
                 }
@@ -404,7 +404,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cute puppy\n";
                     message += "\nSize:\n";
-                    message += "2048 X 2048";
+                    message += "Approximately 21.33 Inches by 21.33 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Dog_Medium;
                 }
@@ -413,7 +413,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cute puppy\n";
                     message += "\nSize:\n";
-                    message += "1024 X 1024";
+                    message += "Approximately 10.67 Inches by 10.67 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Dog_Medium;
                 }
@@ -422,7 +422,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cute puppy\n";
                     message += "\nSize:\n";
-                    message += "512 X 512";
+                    message += "Approximately 5.33 Inches by 5.33 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Dog_Medium;
                 }
@@ -431,7 +431,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a group of penguins\n";
                     message += "\nSize:\n";
-                    message += "1900 X 1899";
+                    message += "Approximately 19.79 Inches by 19.78 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Penguin_Medium;
                 }
@@ -440,7 +440,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a group of penguins\n";
                     message += "\nSize:\n";
-                    message += "950 X 950";
+                    message += "Approximately 9.9 Inches by 9.9 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Penguin_Medium;
                 }
@@ -449,7 +449,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a group of penguins\n";
                     message += "\nSize:\n";
-                    message += "475 X 475";
+                    message += "Approximately 4.95 Inches by 4.95 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Penguin_Medium;
                 }
@@ -458,7 +458,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cool looking rock\n";
                     message += "\nSize:\n";
-                    message += "4000 X 2248";
+                    message += "Approximately 41.67 Inches by 23.42 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Rocks_Medium;
                 }
@@ -467,7 +467,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cool looking rock\n";
                     message += "\nSize:\n";
-                    message += "2000 X 1124";
+                    message += "Approximately 20.83 Inches by 11.71 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Rocks_Medium;
                 }
@@ -476,7 +476,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cool looking rock\n";
                     message += "\nSize:\n";
-                    message += "1000 X 562";
+                    message += "Approximately 10.42 Inches by 5.85 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Rocks_Medium;
                 }
@@ -485,7 +485,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a tiger\n";
                     message += "\nSize:\n";
-                    message += "1600 X 1200";
+                    message += "Approximately 16.67 Inches by 12.5 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Tiger_Medium;
                 }
@@ -494,7 +494,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a tiger\n";
                     message += "\nSize:\n";
-                    message += "800 X 600";
+                    message += "Approximately 8.33 Inches by 6.25 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Tiger_Medium;
                 }
@@ -503,7 +503,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a tiger\n";
                     message += "\nSize:\n";
-                    message += "400 X 300";
+                    message += "Approximately 4.17 Inches by 3.13 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Tiger_Medium;
                 }
@@ -526,7 +526,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cute puppy\n";
                     message += "\nSize:\n";
-                    message += "2048 X 2048";
+                    message += "Approximately 21.33 Inches by 21.33 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Dog_Medium;
                 }
@@ -535,7 +535,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cute puppy\n";
                     message += "\nSize:\n";
-                    message += "1024 X 1024";
+                    message += "Approximately 10.67 Inches by 10.67 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Dog_Medium;
                 }
@@ -544,7 +544,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cute puppy\n";
                     message += "\nSize:\n";
-                    message += "512 X 512";
+                    message += "Approximately 5.33 Inches by 5.33 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Dog_Medium;
                 }
@@ -553,7 +553,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a group of penguins\n";
                     message += "\nSize:\n";
-                    message += "1900 X 1899";
+                    message += "Approximately 19.79 Inches by 19.78 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Penguin_Medium;
                 }
@@ -562,7 +562,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a group of penguins\n";
                     message += "\nSize:\n";
-                    message += "950 X 950";
+                    message += "Approximately 9.9 Inches by 9.9 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Penguin_Medium;
                 }
@@ -571,7 +571,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a group of penguins\n";
                     message += "\nSize:\n";
-                    message += "475 X 475";
+                    message += "Approximately 4.95 Inches by 4.95 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Penguin_Medium;
                 }
@@ -580,7 +580,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cool looking rock\n";
                     message += "\nSize:\n";
-                    message += "4000 X 2248";
+                    message += "Approximately 41.67 Inches by 23.42 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Rocks_Medium;
                 }
@@ -589,7 +589,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cool looking rock\n";
                     message += "\nSize:\n";
-                    message += "2000 X 1124";
+                    message += "Approximately 20.83 Inches by 11.71 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Rocks_Medium;
                 }
@@ -598,7 +598,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cool looking rock\n";
                     message += "\nSize:\n";
-                    message += "1000 X 562";
+                    message += "Approximately 10.42 Inches by 5.85 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Rocks_Medium;
                 }
@@ -607,7 +607,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a tiger\n";
                     message += "\nSize:\n";
-                    message += "1600 X 1200";
+                    message += "Approximately 16.67 Inches by 12.5 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Tiger_Medium;
                 }
@@ -616,7 +616,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a tiger\n";
                     message += "\nSize:\n";
-                    message += "800 X 600";
+                    message += "Approximately 8.33 Inches by 6.25 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Tiger_Medium;
                 }
@@ -625,7 +625,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a tiger\n";
                     message += "\nSize:\n";
-                    message += "400 X 300";
+                    message += "Approximately 4.17 Inches by 3.13 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Tiger_Medium;
                 }
@@ -648,7 +648,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cute puppy\n";
                     message += "\nSize:\n";
-                    message += "2048 X 2048";
+                    message += "Approximately 21.33 Inches by 21.33 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Dog_Medium;
                 }
@@ -657,7 +657,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cute puppy\n";
                     message += "\nSize:\n";
-                    message += "1024 X 1024";
+                    message += "Approximately 10.67 Inches by 10.67 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Dog_Medium;
                 }
@@ -666,7 +666,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cute puppy\n";
                     message += "\nSize:\n";
-                    message += "512 X 512";
+                    message += "Approximately 5.33 Inches by 5.33 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Dog_Medium;
                 }
@@ -675,7 +675,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a group of penguins\n";
                     message += "\nSize:\n";
-                    message += "1900 X 1899";
+                    message += "Approximately 19.79 Inches by 19.78 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Penguin_Medium;
                 }
@@ -684,7 +684,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a group of penguins\n";
                     message += "\nSize:\n";
-                    message += "950 X 950";
+                    message += "Approximately 9.9 Inches by 9.9 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Penguin_Medium;
                 }
@@ -693,7 +693,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a group of penguins\n";
                     message += "\nSize:\n";
-                    message += "475 X 475";
+                    message += "Approximately 4.95 Inches by 4.95 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Penguin_Medium;
                 }
@@ -702,7 +702,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cool looking rock\n";
                     message += "\nSize:\n";
-                    message += "4000 X 2248";
+                    message += "Approximately 41.67 Inches by 23.42 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Rocks_Medium;
                 }
@@ -711,7 +711,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cool looking rock\n";
                     message += "\nSize:\n";
-                    message += "2000 X 1124";
+                    message += "Approximately 20.83 Inches by 11.71 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Rocks_Medium;
                 }
@@ -720,7 +720,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cool looking rock\n";
                     message += "\nSize:\n";
-                    message += "1000 X 562";
+                    message += "Approximately 10.42 Inches by 5.85 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Rocks_Medium;
                 }
@@ -729,7 +729,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a tiger\n";
                     message += "\nSize:\n";
-                    message += "1600 X 1200";
+                    message += "Approximately 16.67 Inches by 12.5 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Tiger_Medium;
                 }
@@ -738,7 +738,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a tiger\n";
                     message += "\nSize:\n";
-                    message += "800 X 600";
+                    message += "Approximately 8.33 Inches by 6.25 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Tiger_Medium;
                 }
@@ -747,7 +747,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a tiger\n";
                     message += "\nSize:\n";
-                    message += "400 X 300";
+                    message += "Approximately 4.17 Inches by 3.13 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Tiger_Medium;
                 }
@@ -770,7 +770,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cute puppy\n";
                     message += "\nSize:\n";
-                    message += "2048 X 2048";
+                    message += "Approximately 21.33 Inches by 21.33 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Dog_Medium;
                 }
@@ -779,7 +779,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cute puppy\n";
                     message += "\nSize:\n";
-                    message += "1024 X 1024";
+                    message += "Approximately 10.67 Inches by 10.67 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Dog_Medium;
                 }
@@ -788,7 +788,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cute puppy\n";
                     message += "\nSize:\n";
-                    message += "512 X 512";
+                    message += "Approximately 5.33 Inches by 5.33 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Dog_Medium;
                 }
@@ -797,7 +797,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a group of penguins\n";
                     message += "\nSize:\n";
-                    message += "1900 X 1899";
+                    message += "Approximately 19.79 Inches by 19.78 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Penguin_Medium;
                 }
@@ -806,7 +806,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a group of penguins\n";
                     message += "\nSize:\n";
-                    message += "950 X 950";
+                    message += "Approximately 9.9 Inches by 9.9 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Penguin_Medium;
                 }
@@ -815,7 +815,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a group of penguins\n";
                     message += "\nSize:\n";
-                    message += "475 X 475";
+                    message += "Approximately 4.95 Inches by 4.95 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Penguin_Medium;
                 }
@@ -824,7 +824,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cool looking rock\n";
                     message += "\nSize:\n";
-                    message += "4000 X 2248";
+                    message += "Approximately 41.67 Inches by 23.42 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Rocks_Medium;
                 }
@@ -833,7 +833,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cool looking rock\n";
                     message += "\nSize:\n";
-                    message += "2000 X 1124";
+                    message += "Approximately 20.83 Inches by 11.71 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Rocks_Medium;
                 }
@@ -842,7 +842,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a cool looking rock\n";
                     message += "\nSize:\n";
-                    message += "1000 X 562";
+                    message += "Approximately 10.42 Inches by 5.85 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Rocks_Medium;
                 }
@@ -851,7 +851,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a tiger\n";
                     message += "\nSize:\n";
-                    message += "1600 X 1200";
+                    message += "Approximately 16.67 Inches by 12.5 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Tiger_Medium;
                 }
@@ -860,7 +860,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a tiger\n";
                     message += "\nSize:\n";
-                    message += "800 X 600";
+                    message += "Approximately 8.33 Inches by 6.25 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Tiger_Medium;
                 }
@@ -869,7 +869,7 @@ namespace Steganography_with_AES_Encryption
                     message += "Picture Description:\n";
                     message += "Picture of a tiger\n";
                     message += "\nSize:\n";
-                    message += "400 X 300";
+                    message += "Approximately 4.17 Inches by 3.13 Inches";
                     rtbStockImage.Text = message;
                     ptbStockImage.Image = Properties.Resources.Tiger_Medium;
                 }
@@ -886,8 +886,7 @@ namespace Steganography_with_AES_Encryption
 
         private void btnSaveStockImage_Click(object sender, EventArgs e)
         {
-            Bitmap image;
-            
+
             try
             {
                 if (rdbDog.Checked)
