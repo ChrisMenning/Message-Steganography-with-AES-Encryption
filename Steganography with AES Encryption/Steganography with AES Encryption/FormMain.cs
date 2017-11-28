@@ -191,6 +191,10 @@ namespace Steganography_with_AES_Encryption
             }
 
             saveEncodedImageToolStripMenuItem.Enabled = false;
+            if (textBoxInputMessage.Text.Length > 0)
+            {
+                btnEncodeImage.Enabled = true;
+            }
         }
 
         /// <summary>
@@ -228,7 +232,7 @@ namespace Steganography_with_AES_Encryption
             
             if (dialogSaveImage.FileName != string.Empty)
             {
-                this.encodedImage.Save(dialogSaveImage.FileName);
+                this.encodedImage.Save(dialogSaveImage.FileName, System.Drawing.Imaging.ImageFormat.Png);
             }
         }
 
@@ -408,6 +412,11 @@ namespace Steganography_with_AES_Encryption
             this.rawImage = fractal;
             this.pubpicture.Image = this.rawImage;
             this.btnEncodeImage.Enabled = true;
+
+            if (textBoxInputMessage.Text.Length > 0)
+            {
+                btnEncodeImage.Enabled = true;
+            }
         }
 
         /// <summary>
@@ -425,6 +434,11 @@ namespace Steganography_with_AES_Encryption
             pw.Close();
             Cursor.Current = Cursors.Default;
             this.btnEncodeImage.Enabled = true;
+
+            if (textBoxInputMessage.Text.Length > 0)
+            {
+                btnEncodeImage.Enabled = true;
+            }
         }
 
         /// <summary>
@@ -497,6 +511,10 @@ namespace Steganography_with_AES_Encryption
             frmStockImagesPage stockImage = new frmStockImagesPage(this);
             stockImage.ShowDialog();
             this.rawImage = (Bitmap)this.pubpicture.Image;
+            if (textBoxInputMessage.Text.Length > 0)
+            {
+                btnEncodeImage.Enabled = true;
+            }
         }
 
         /// <summary>
@@ -731,6 +749,11 @@ namespace Steganography_with_AES_Encryption
                 frmStockImagesPage stockImage = new frmStockImagesPage(this);
                 stockImage.ShowDialog();
                 this.rawImage = (Bitmap)this.pictureBoxRaw.Image;
+
+                if (textBoxInputMessage.Text.Length > 0)
+                {
+                    btnEncodeImage.Enabled = true;
+                }
             }
             else if (comboBoxImageSelect.SelectedIndex == 2)
             {
