@@ -228,7 +228,7 @@ namespace Steganography_with_AES_Encryption
             this.dialogSaveImage.Filter = "PNG Image|*.png";
             this.dialogSaveImage.Title = "Save an Image File";
             this.dialogSaveImage.ShowHelp = true;
-            this.dialogSaveImage.FileName = string.Empty;
+            this.dialogSaveImage.FileName = "";
             this.dialogSaveImage.ShowDialog();
 
             ImageCodecInfo myImageCodecInfo;
@@ -262,18 +262,18 @@ namespace Steganography_with_AES_Encryption
             {
                 this.encodedImage.Save(this.dialogSaveImage.FileName, myImageCodecInfo, myEncoderParameters);
                 // this.pictureBoxEncoded.Image = this.encodedImage;
-                //this.pcbImage.Image = this.encodedImage;
+                //this.pcbImage.Image = this.encodedImage;//reactivated this
             }
 
             // Clean up.
             this.lossless.Dispose();
 
+            //ChrisM comments
             // pictureBoxEncoded.Image = Bitmap.FromFile(dialogSaveImage.FileName);
             // pictureBoxRaw.Image = Bitmap.FromFile(dialogSaveImage.FileName);
-            //pcbImage.Image = Bitmap.FromFile(dialogSaveImage.FileName);
             //this.encodedImage.Dispose();
             //this.rawImage.Dispose();
-            File.Delete(Path.GetFullPath(@"temp2.png")); //Erroring out at this point encoding stock image
+            File.Delete(Path.GetFullPath(@"temp2.png"));
         }
 
         /// <summary>
@@ -320,7 +320,7 @@ namespace Steganography_with_AES_Encryption
 
             // Save the image.
             this.SaveEncodedImage();
-            this.pcbImage.Image.Dispose();
+            // this.pcbImage.Image.Dispose();
 
             // pictureBoxRaw.Image.Dispose();
         }
@@ -395,13 +395,13 @@ namespace Steganography_with_AES_Encryption
                 Console.WriteLine("The message to be decrypted is " + messageLength);
 
                 // Pass the byteStringsToBytes byte array, encryption key, and derived IV to the decrypter.
-                textBoxOutputMessage.Text = aes.DecryptStringFromBytes_Aes(byteStringsToBytes, passwordHandler.EncryptionKey, derivedIV);
+                this.txtMessage.Text = aes.DecryptStringFromBytes_Aes(byteStringsToBytes, passwordHandler.EncryptionKey, derivedIV);
             }
             else
             {
                 this.imgDec = new BitmapDecoder();
 
-                this.textBoxOutputMessage.Text = this.imgDec.Decoder(this.encodedImage);
+                this.txtMessage.Text = this.imgDec.Decoder(this.encodedImage);
             }
         }
 
@@ -412,7 +412,7 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event arguments</param>
         private void BtnCoding_Click(object sender, EventArgs e)
         {
-            if ((this.cmbFunction.SelectedIndex == 0) && (this.cmbImage.SelectedIndex != 4) && (this.btnCoding.Text == "3. Encode (Hide) Message") && (this.txtMessage.TextLength > 0))
+            if ((this.cmbFunction.SelectedIndex == 0) && (this.btnCoding.Text == "3. Encode (Hide) Message") && (this.txtMessage.TextLength > 0))
             {
                 Cursor.Current = Cursors.WaitCursor;
                 PleaseWait pw = new PleaseWait("Encoding. Thank you for your patience.");
@@ -421,10 +421,13 @@ namespace Steganography_with_AES_Encryption
                 this.DoEncoding();
                 pw.Close();
             }
+            //     MessageBox.Show("You must have text in the text box so that it can encode the message.  Please try again.");
 
-            if ((this.cmbFunction.SelectedIndex == 1) && (this.cmbImage.SelectedIndex == 4) && (this.btnCoding.Text == "3. Decode (Retrieve) Message"))
+            if ((this.cmbFunction.SelectedIndex == 1) && (this.cmbImage.SelectedIndex == 0) && (this.btnCoding.Text == "3. Decode (Retrieve) Message"))
             {
-
+                MessageBox.Show("Dude");
+                this.txtMessage.Enabled = true;
+                this.txtMessage.MaxLength = 32767;
                 Cursor.Current = Cursors.WaitCursor;
                 PleaseWait pw = new PleaseWait("Decoding. Thank you for your patience.");
                 pw.Show();
@@ -432,8 +435,9 @@ namespace Steganography_with_AES_Encryption
                 this.DoDecoding();
                 pw.Close();
             }
-
         }
+
+
 
         /// <summary>
         /// Method used to create the mandelbrot fractal
@@ -474,8 +478,8 @@ namespace Steganography_with_AES_Encryption
         private void GenerateGradient()
         {
             Gradient gd = new Gradient();
-            Bitmap gradient = gd.GenerateGradient(1000, 1000, 34, 23, 12, 13);
-            Bitmap pic = new Bitmap(1000, 1000);
+            Bitmap gradient = gd.GenerateGradient(3000, 3000, 34, 23, 12, 13);
+            Bitmap pic = new Bitmap(3000, 3000);
             this.pcbImage.Image = gradient;
             Cursor.Current = Cursors.WaitCursor;
             PleaseWait pw = new PleaseWait("Ensuring Lossless Compression." + "\n" + "Depending on your image, this process could take awhile." + "\n" + "Thank you for your patience.");
@@ -708,6 +712,12 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event arguments</param>
         private void TsmiUseEncrypt_Click(object sender, EventArgs e)
         {
+            if (this.checkBoxEncryption.Visible == true)
+            {
+                this.tsmiUseEncrypt.Enabled = true;
+                this.Refresh();
+            }
+
             if (this.checkBoxEncryption.Checked)
             {
                 this.checkBoxEncryption.Checked = false;
@@ -819,6 +829,7 @@ namespace Steganography_with_AES_Encryption
             if (pcbImage.Image != null)
             {
                 this.ResetImage();
+                this.lblFunction.Visible = false;
                 this.lblImageChoice.Text = string.Empty;
                 File.Delete(Path.GetFullPath(@"temp1.png"));
             }

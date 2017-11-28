@@ -85,7 +85,6 @@ namespace Steganography_with_AES_Encryption
             this.pcbLichens = new System.Windows.Forms.PictureBox();
             this.lblMenu = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.cmbTextDecode = new System.Windows.Forms.ComboBox();
             this.cmbImage = new System.Windows.Forms.ComboBox();
             this.cmbFunction = new System.Windows.Forms.ComboBox();
             this.pcbImage = new System.Windows.Forms.PictureBox();
@@ -99,41 +98,19 @@ namespace Steganography_with_AES_Encryption
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.groupBoxDecode = new System.Windows.Forms.GroupBox();
-            this.labelDecodedMessage = new System.Windows.Forms.Label();
-            this.labelEncodedImage2 = new System.Windows.Forms.Label();
-            this.btnDecode = new System.Windows.Forms.Button();
-            this.pictureBoxEncoded2 = new System.Windows.Forms.PictureBox();
-            this.buttonOpenImage2 = new System.Windows.Forms.Button();
-            this.pictureBoxEncoded = new System.Windows.Forms.PictureBox();
             this.lblCharLimit = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.txtMessage = new System.Windows.Forms.TextBox();
-            this.cmbImageDecode = new System.Windows.Forms.ComboBox();
-            this.buttonOpenImage = new System.Windows.Forms.Button();
-            this.pictureBoxRaw = new System.Windows.Forms.PictureBox();
-            this.labelRawImage = new System.Windows.Forms.Label();
-            this.labelEncodedImage = new System.Windows.Forms.Label();
-            this.textBoxInputMessage = new System.Windows.Forms.TextBox();
-            this.labelInput = new System.Windows.Forms.Label();
-            this.btnEncodeImage = new System.Windows.Forms.Button();
-            this.groupBoxEncode = new System.Windows.Forms.GroupBox();
             this.lblFunction = new System.Windows.Forms.Label();
             this.lblImageChoice = new System.Windows.Forms.Label();
             this.btnCoding = new System.Windows.Forms.Button();
             this.btnResetAll = new System.Windows.Forms.Button();
             this.lblType = new System.Windows.Forms.Label();
-            this.textBoxOutputMessage = new System.Windows.Forms.TextBox();
             this.gpbLichens.SuspendLayout();
             this.msMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbLichens)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbImage)).BeginInit();
-            this.groupBoxDecode.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEncoded2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEncoded)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRaw)).BeginInit();
-            this.groupBoxEncode.SuspendLayout();
             this.SuspendLayout();
             // 
             // checkBoxEncryption
@@ -220,7 +197,7 @@ namespace Steganography_with_AES_Encryption
             this.msMain.Name = "msMain";
             this.msMain.Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
             this.msMain.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.msMain.Size = new System.Drawing.Size(292, 33);
+            this.msMain.Size = new System.Drawing.Size(407, 33);
             this.msMain.Stretch = false;
             this.msMain.TabIndex = 5;
             // 
@@ -379,6 +356,7 @@ namespace Steganography_with_AES_Encryption
             // tsmiUseEncrypt
             // 
             this.tsmiUseEncrypt.CheckOnClick = true;
+            this.tsmiUseEncrypt.Enabled = false;
             this.tsmiUseEncrypt.Name = "tsmiUseEncrypt";
             this.tsmiUseEncrypt.Size = new System.Drawing.Size(456, 30);
             this.tsmiUseEncrypt.Text = "Use Encryption (slower, but more secure)";
@@ -447,35 +425,24 @@ namespace Steganography_with_AES_Encryption
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
-            // cmbTextDecode
-            // 
-            this.cmbTextDecode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(239)))), ((int)(((byte)(251)))));
-            this.cmbTextDecode.FormattingEnabled = true;
-            this.cmbTextDecode.Location = new System.Drawing.Point(199, 76);
-            this.cmbTextDecode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cmbTextDecode.Name = "cmbTextDecode";
-            this.cmbTextDecode.Size = new System.Drawing.Size(232, 24);
-            this.cmbTextDecode.TabIndex = 16;
-            this.cmbTextDecode.Text = "Retrieve Message";
-            // 
             // cmbImage
             // 
             this.cmbImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(226)))), ((int)(((byte)(246)))));
-            this.cmbImage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbImage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbImage.Enabled = false;
             this.cmbImage.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbImage.FormattingEnabled = true;
-            this.cmbImage.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.cmbImage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.cmbImage.Items.AddRange(new object[] {
-            "Upload My Image - Encode",
+            "Open My Image - Encode",
             "Use Stock Image",
             "Create Fractal Image",
             "Create Gradient Image",
-            "Download My Image - Decode"});
+            "Open My Image - Decode"});
             this.cmbImage.Location = new System.Drawing.Point(104, 417);
             this.cmbImage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbImage.Name = "cmbImage";
-            this.cmbImage.Size = new System.Drawing.Size(312, 33);
+            this.cmbImage.Size = new System.Drawing.Size(304, 33);
             this.cmbImage.TabIndex = 2;
             this.cmbImage.Visible = false;
             this.cmbImage.SelectedIndexChanged += new System.EventHandler(this.CmbImage_SelectedIndexChanged);
@@ -611,88 +578,6 @@ namespace Steganography_with_AES_Encryption
             this.label3.TabIndex = 29;
             this.label3.Text = "Version 7.0";
             // 
-            // groupBoxDecode
-            // 
-            this.groupBoxDecode.Controls.Add(this.labelDecodedMessage);
-            this.groupBoxDecode.Controls.Add(this.labelEncodedImage2);
-            this.groupBoxDecode.Controls.Add(this.btnDecode);
-            this.groupBoxDecode.Controls.Add(this.pictureBoxEncoded2);
-            this.groupBoxDecode.Controls.Add(this.buttonOpenImage2);
-            this.groupBoxDecode.Controls.Add(this.pictureBoxEncoded);
-            this.groupBoxDecode.Controls.Add(this.cmbTextDecode);
-            this.groupBoxDecode.Location = new System.Drawing.Point(500, 1087);
-            this.groupBoxDecode.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.groupBoxDecode.Name = "groupBoxDecode";
-            this.groupBoxDecode.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.groupBoxDecode.Size = new System.Drawing.Size(815, 529);
-            this.groupBoxDecode.TabIndex = 31;
-            this.groupBoxDecode.TabStop = false;
-            this.groupBoxDecode.Text = "Retrieve Text from Image";
-            this.groupBoxDecode.Visible = false;
-            // 
-            // labelDecodedMessage
-            // 
-            this.labelDecodedMessage.AutoSize = true;
-            this.labelDecodedMessage.Location = new System.Drawing.Point(8, 350);
-            this.labelDecodedMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelDecodedMessage.Name = "labelDecodedMessage";
-            this.labelDecodedMessage.Size = new System.Drawing.Size(126, 17);
-            this.labelDecodedMessage.TabIndex = 7;
-            this.labelDecodedMessage.Text = "Decoded Message";
-            // 
-            // labelEncodedImage2
-            // 
-            this.labelEncodedImage2.AutoSize = true;
-            this.labelEncodedImage2.Location = new System.Drawing.Point(332, 17);
-            this.labelEncodedImage2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelEncodedImage2.Name = "labelEncodedImage2";
-            this.labelEncodedImage2.Size = new System.Drawing.Size(106, 17);
-            this.labelEncodedImage2.TabIndex = 6;
-            this.labelEncodedImage2.Text = "Encoded Image";
-            // 
-            // btnDecode
-            // 
-            this.btnDecode.Enabled = false;
-            this.btnDecode.Location = new System.Drawing.Point(624, 41);
-            this.btnDecode.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.btnDecode.Name = "btnDecode";
-            this.btnDecode.Size = new System.Drawing.Size(183, 65);
-            this.btnDecode.TabIndex = 5;
-            this.btnDecode.Text = "Decode Image";
-            this.btnDecode.UseVisualStyleBackColor = true;
-            // 
-            // pictureBoxEncoded2
-            // 
-            this.pictureBoxEncoded2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxEncoded2.Location = new System.Drawing.Point(199, 41);
-            this.pictureBoxEncoded2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.pictureBoxEncoded2.Name = "pictureBoxEncoded2";
-            this.pictureBoxEncoded2.Size = new System.Drawing.Size(417, 327);
-            this.pictureBoxEncoded2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxEncoded2.TabIndex = 3;
-            this.pictureBoxEncoded2.TabStop = false;
-            // 
-            // buttonOpenImage2
-            // 
-            this.buttonOpenImage2.Location = new System.Drawing.Point(8, 83);
-            this.buttonOpenImage2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.buttonOpenImage2.Name = "buttonOpenImage2";
-            this.buttonOpenImage2.Size = new System.Drawing.Size(183, 64);
-            this.buttonOpenImage2.TabIndex = 1;
-            this.buttonOpenImage2.Text = "Open Image";
-            this.buttonOpenImage2.UseVisualStyleBackColor = true;
-            // 
-            // pictureBoxEncoded
-            // 
-            this.pictureBoxEncoded.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxEncoded.Location = new System.Drawing.Point(63, 42);
-            this.pictureBoxEncoded.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.pictureBoxEncoded.Name = "pictureBoxEncoded";
-            this.pictureBoxEncoded.Size = new System.Drawing.Size(285, 249);
-            this.pictureBoxEncoded.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxEncoded.TabIndex = 3;
-            this.pictureBoxEncoded.TabStop = false;
-            // 
             // lblCharLimit
             // 
             this.lblCharLimit.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -730,112 +615,6 @@ namespace Steganography_with_AES_Encryption
             this.txtMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtMessage.Size = new System.Drawing.Size(650, 345);
             this.txtMessage.TabIndex = 33;
-            // 
-            // cmbImageDecode
-            // 
-            this.cmbImageDecode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(239)))), ((int)(((byte)(251)))));
-            this.cmbImageDecode.FormattingEnabled = true;
-            this.cmbImageDecode.Items.AddRange(new object[] {
-            "Upload Image"});
-            this.cmbImageDecode.Location = new System.Drawing.Point(627, 107);
-            this.cmbImageDecode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cmbImageDecode.Name = "cmbImageDecode";
-            this.cmbImageDecode.Size = new System.Drawing.Size(232, 24);
-            this.cmbImageDecode.TabIndex = 15;
-            this.cmbImageDecode.Text = "Choose Your Image";
-            // 
-            // buttonOpenImage
-            // 
-            this.buttonOpenImage.Location = new System.Drawing.Point(7, 266);
-            this.buttonOpenImage.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.buttonOpenImage.Name = "buttonOpenImage";
-            this.buttonOpenImage.Size = new System.Drawing.Size(183, 65);
-            this.buttonOpenImage.TabIndex = 0;
-            this.buttonOpenImage.Text = "Open Image";
-            this.buttonOpenImage.UseVisualStyleBackColor = true;
-            // 
-            // pictureBoxRaw
-            // 
-            this.pictureBoxRaw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxRaw.Location = new System.Drawing.Point(203, 266);
-            this.pictureBoxRaw.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.pictureBoxRaw.Name = "pictureBoxRaw";
-            this.pictureBoxRaw.Size = new System.Drawing.Size(285, 249);
-            this.pictureBoxRaw.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxRaw.TabIndex = 2;
-            this.pictureBoxRaw.TabStop = false;
-            // 
-            // labelRawImage
-            // 
-            this.labelRawImage.AutoSize = true;
-            this.labelRawImage.Location = new System.Drawing.Point(200, 235);
-            this.labelRawImage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelRawImage.Name = "labelRawImage";
-            this.labelRawImage.Size = new System.Drawing.Size(77, 17);
-            this.labelRawImage.TabIndex = 4;
-            this.labelRawImage.Text = "Raw Image";
-            // 
-            // labelEncodedImage
-            // 
-            this.labelEncodedImage.AutoSize = true;
-            this.labelEncodedImage.Location = new System.Drawing.Point(505, 235);
-            this.labelEncodedImage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelEncodedImage.Name = "labelEncodedImage";
-            this.labelEncodedImage.Size = new System.Drawing.Size(106, 17);
-            this.labelEncodedImage.TabIndex = 5;
-            this.labelEncodedImage.Text = "Encoded Image";
-            // 
-            // textBoxInputMessage
-            // 
-            this.textBoxInputMessage.Location = new System.Drawing.Point(19, 76);
-            this.textBoxInputMessage.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.textBoxInputMessage.MaxLength = 0;
-            this.textBoxInputMessage.Multiline = true;
-            this.textBoxInputMessage.Name = "textBoxInputMessage";
-            this.textBoxInputMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxInputMessage.Size = new System.Drawing.Size(775, 142);
-            this.textBoxInputMessage.TabIndex = 6;
-            // 
-            // labelInput
-            // 
-            this.labelInput.AutoSize = true;
-            this.labelInput.Location = new System.Drawing.Point(25, 38);
-            this.labelInput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelInput.Name = "labelInput";
-            this.labelInput.Size = new System.Drawing.Size(139, 17);
-            this.labelInput.TabIndex = 7;
-            this.labelInput.Text = "Input Message Here:";
-            // 
-            // btnEncodeImage
-            // 
-            this.btnEncodeImage.Enabled = false;
-            this.btnEncodeImage.Location = new System.Drawing.Point(7, 338);
-            this.btnEncodeImage.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.btnEncodeImage.Name = "btnEncodeImage";
-            this.btnEncodeImage.Size = new System.Drawing.Size(183, 65);
-            this.btnEncodeImage.TabIndex = 8;
-            this.btnEncodeImage.Text = "Hide Text in Image";
-            this.btnEncodeImage.UseVisualStyleBackColor = true;
-            // 
-            // groupBoxEncode
-            // 
-            this.groupBoxEncode.Controls.Add(this.btnEncodeImage);
-            this.groupBoxEncode.Controls.Add(this.labelInput);
-            this.groupBoxEncode.Controls.Add(this.textBoxInputMessage);
-            this.groupBoxEncode.Controls.Add(this.labelEncodedImage);
-            this.groupBoxEncode.Controls.Add(this.labelRawImage);
-            this.groupBoxEncode.Controls.Add(this.pictureBoxRaw);
-            this.groupBoxEncode.Controls.Add(this.buttonOpenImage);
-            this.groupBoxEncode.Controls.Add(this.cmbImageDecode);
-            this.groupBoxEncode.Location = new System.Drawing.Point(60, 1101);
-            this.groupBoxEncode.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.groupBoxEncode.Name = "groupBoxEncode";
-            this.groupBoxEncode.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.groupBoxEncode.Size = new System.Drawing.Size(815, 529);
-            this.groupBoxEncode.TabIndex = 30;
-            this.groupBoxEncode.TabStop = false;
-            this.groupBoxEncode.Text = "Hide Text in Image";
-            this.groupBoxEncode.Visible = false;
             // 
             // lblFunction
             // 
@@ -896,14 +675,6 @@ namespace Steganography_with_AES_Encryption
             this.lblType.Text = "Type your message below.";
             this.lblType.Visible = false;
             // 
-            // textBoxOutputMessage
-            // 
-            this.textBoxOutputMessage.Location = new System.Drawing.Point(812, 536);
-            this.textBoxOutputMessage.Multiline = true;
-            this.textBoxOutputMessage.Name = "textBoxOutputMessage";
-            this.textBoxOutputMessage.Size = new System.Drawing.Size(404, 73);
-            this.textBoxOutputMessage.TabIndex = 39;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -913,7 +684,6 @@ namespace Steganography_with_AES_Encryption
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(162)))), ((int)(((byte)(115)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1413, 647);
-            this.Controls.Add(this.textBoxOutputMessage);
             this.Controls.Add(this.lblType);
             this.Controls.Add(this.btnResetAll);
             this.Controls.Add(this.btnCoding);
@@ -922,8 +692,6 @@ namespace Steganography_with_AES_Encryption
             this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblCharLimit);
-            this.Controls.Add(this.groupBoxDecode);
-            this.Controls.Add(this.groupBoxEncode);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -947,13 +715,6 @@ namespace Steganography_with_AES_Encryption
             ((System.ComponentModel.ISupportInitialize)(this.pcbLichens)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbImage)).EndInit();
-            this.groupBoxDecode.ResumeLayout(false);
-            this.groupBoxDecode.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEncoded2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEncoded)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRaw)).EndInit();
-            this.groupBoxEncode.ResumeLayout(false);
-            this.groupBoxEncode.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -966,7 +727,6 @@ namespace Steganography_with_AES_Encryption
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pcbLichens;
         private System.Windows.Forms.GroupBox gpbLichens;
-        private System.Windows.Forms.ComboBox cmbTextDecode;
         private System.Windows.Forms.ComboBox cmbImage;
         private System.Windows.Forms.ComboBox cmbFunction;
         private System.Windows.Forms.PictureBox pcbImage;
@@ -1006,30 +766,13 @@ namespace Steganography_with_AES_Encryption
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripMenuItem tsmiWhatIsAFractal;
-        private System.Windows.Forms.GroupBox groupBoxDecode;
-        private System.Windows.Forms.Label labelDecodedMessage;
-        private System.Windows.Forms.Label labelEncodedImage2;
-        private System.Windows.Forms.Button btnDecode;
-        private System.Windows.Forms.PictureBox pictureBoxEncoded2;
-        private System.Windows.Forms.Button buttonOpenImage2;
-        private System.Windows.Forms.PictureBox pictureBoxEncoded;
         private System.Windows.Forms.Label lblCharLimit;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TextBox txtMessage;
-        private System.Windows.Forms.ComboBox cmbImageDecode;
-        private System.Windows.Forms.Button buttonOpenImage;
-        private System.Windows.Forms.PictureBox pictureBoxRaw;
-        private System.Windows.Forms.Label labelRawImage;
-        private System.Windows.Forms.Label labelEncodedImage;
-        private System.Windows.Forms.TextBox textBoxInputMessage;
-        private System.Windows.Forms.Label labelInput;
-        private System.Windows.Forms.Button btnEncodeImage;
-        private System.Windows.Forms.GroupBox groupBoxEncode;
         private System.Windows.Forms.Label lblFunction;
         private System.Windows.Forms.Label lblImageChoice;
         private System.Windows.Forms.Button btnCoding;
         private System.Windows.Forms.Button btnResetAll;
         private System.Windows.Forms.Label lblType;
-        private System.Windows.Forms.TextBox textBoxOutputMessage;
     }
 }
