@@ -198,7 +198,7 @@ namespace Steganography_with_AES_Encryption
             this.msMain.Padding = new System.Windows.Forms.Padding(8, 2, 8, 2);
             this.msMain.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.msMain.ShowItemToolTips = true;
-            this.msMain.Size = new System.Drawing.Size(407, 33);
+            this.msMain.Size = new System.Drawing.Size(292, 33);
             this.msMain.Stretch = false;
             this.msMain.TabIndex = 5;
             // 
@@ -644,7 +644,7 @@ namespace Steganography_with_AES_Encryption
             this.btnCoding.Margin = new System.Windows.Forms.Padding(4, 0, 4, 4);
             this.btnCoding.Name = "btnCoding";
             this.btnCoding.Size = new System.Drawing.Size(301, 34);
-            this.btnCoding.TabIndex = 36;
+            this.btnCoding.TabIndex = 3;
             this.btnCoding.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnCoding.UseVisualStyleBackColor = false;
             this.btnCoding.Visible = false;
