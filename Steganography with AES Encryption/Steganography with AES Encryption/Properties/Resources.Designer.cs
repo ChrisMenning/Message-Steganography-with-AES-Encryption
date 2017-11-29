@@ -113,7 +113,16 @@ namespace Steganography_with_AES_Encryption.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-
+        internal static System.Drawing.Bitmap Lichens {
+            get {
+                object obj = ResourceManager.GetObject("Lichens", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Penguin_Large {
             get {
                 object obj = ResourceManager.GetObject("Penguin_Large", resourceCulture);
@@ -137,12 +146,6 @@ namespace Steganography_with_AES_Encryption.Properties {
         internal static System.Drawing.Bitmap Penguin_Small {
             get {
                 object obj = ResourceManager.GetObject("Penguin_Small", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-                 }
-         }
-        internal static System.Drawing.Bitmap Lichens {
-            get {
-                object obj = ResourceManager.GetObject("Lichens", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

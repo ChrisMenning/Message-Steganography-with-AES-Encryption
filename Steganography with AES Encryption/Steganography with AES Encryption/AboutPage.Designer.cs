@@ -34,20 +34,20 @@
             // 
             // rtbAboutSection
             // 
-            this.rtbAboutSection.Location = new System.Drawing.Point(40, 28);
-            this.rtbAboutSection.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rtbAboutSection.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtbAboutSection.Location = new System.Drawing.Point(30, 23);
             this.rtbAboutSection.Name = "rtbAboutSection";
             this.rtbAboutSection.ReadOnly = true;
-            this.rtbAboutSection.Size = new System.Drawing.Size(491, 424);
+            this.rtbAboutSection.Size = new System.Drawing.Size(840, 384);
             this.rtbAboutSection.TabIndex = 0;
             this.rtbAboutSection.Text = "";
+            this.rtbAboutSection.WordWrap = false;
             // 
             // btnCloseAboutPage
             // 
-            this.btnCloseAboutPage.Location = new System.Drawing.Point(223, 484);
-            this.btnCloseAboutPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCloseAboutPage.Location = new System.Drawing.Point(449, 452);
             this.btnCloseAboutPage.Name = "btnCloseAboutPage";
-            this.btnCloseAboutPage.Size = new System.Drawing.Size(100, 28);
+            this.btnCloseAboutPage.Size = new System.Drawing.Size(75, 23);
             this.btnCloseAboutPage.TabIndex = 1;
             this.btnCloseAboutPage.Text = "Close";
             this.btnCloseAboutPage.UseVisualStyleBackColor = true;
@@ -55,12 +55,11 @@
             // 
             // frmAboutPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(577, 527);
+            this.ClientSize = new System.Drawing.Size(1025, 505);
             this.Controls.Add(this.btnCloseAboutPage);
             this.Controls.Add(this.rtbAboutSection);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmAboutPage";
             this.Text = "About";
             this.Load += new System.EventHandler(this.frmAboutPage_Load);

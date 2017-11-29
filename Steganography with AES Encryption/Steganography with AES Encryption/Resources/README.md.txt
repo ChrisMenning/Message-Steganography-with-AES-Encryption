@@ -1,4 +1,4 @@
-                                                      ,,                                   
+                                  
      `7MMF'                                                `7MM                                   
        MM                                                    MM                                   
        MM         .gP"Ya   .P"Ybmmm .gP"Ya `7MMpMMMb.   ,M""bMM   ,6"Yb.  `7Mb,od8 `7M'   `MF'    
@@ -20,25 +20,25 @@
                                                                                                   
                                                                                                   
 
-	Legendary Lichens Team Members:
-
-	Nathan Beyer, Leilani Ray, Chris Hoegger, Chris Menning
 
 
 
+Legendary Lichens Team Members:
 
-	What is Steganography?
-
-	Steganography is the process of hiding messages inside of something else. In the case of 
-	our program, we hide text messages inside of image files.
+Nathan Beyer, Leilani Ray, Chris Hoegger, Chris Menning
 
 
 
-	Purpose:
 
-	The purpose of this program is to allow the user to type a message in plain text 
-	(ASCII only) and hide that message within the Least Significant Bit of each color channel
-	of each pixel of a bitmap image.
+What is Steganography?
+
+Steganography is the process of hiding messages inside of something else. In the case of our program, we hide text messages inside of image files.
+
+
+
+Purpose:
+
+The purpose of this program is to allow the user to type a message in plain text (ASCII only) and hide that message within the Least Significant Bit of each color channel of each pixel of a bitmap image.
 
 
 

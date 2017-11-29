@@ -165,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\README.md" />
+    <None Include="Resources\README.md.rtf" />
     <None Include="Resources\Tiger.png" />
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +190,9 @@
   <ItemGroup>
     <None Include="Resources\Dog_Large.jpg" />
     <None Include="Resources\Lichens.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\README.md.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
