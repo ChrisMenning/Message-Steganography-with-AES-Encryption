@@ -22,7 +22,7 @@
 
 	Legendary Lichens Team Members:
 
-	Nathan Beyer, Leilani Ray, Chris Hoegger, Chris Menning
+	Nathan Beyer, Chris Hoegger, Chris Menning, Leilani Ray
 
 
 
@@ -30,7 +30,7 @@
 	What is Steganography?
 
 	Steganography is the process of hiding messages inside of something else. In the case of 
-	our program, we hide text messages inside of image files.
+	this program, you hide text messages inside of image files.
 
 
 
@@ -38,7 +38,7 @@
 
 	The purpose of this program is to allow the user to type a message in plain text 
 	(ASCII only) and hide that message within the Least Significant Bit of each color channel
-	of each pixel of a bitmap image.
+	for each pixel of a bitmap image.
 
 
 
