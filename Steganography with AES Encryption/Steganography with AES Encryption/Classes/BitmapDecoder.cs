@@ -1,5 +1,5 @@
 ﻿//----------------------------------------------------------------------------------
-// <copyright file="ImageDecoder.cs" company="Legendary Lichens">
+// <copyright file="BitmapDecoder.cs" company="Legendary Lichens">
 //    © Legendary Lichens. All rights reserved. 
 //    2017 - Nathan Beyer / Chris Hoegger / Chris Menning / Leilani Ray
 // </copyright>
@@ -17,7 +17,7 @@ namespace Steganography_with_AES_Encryption
     using System.Threading.Tasks;
 
     /// <summary>
-    /// The ImageDecoder Class.
+    /// The BitmapDecoder Class.
     /// </summary>
     public class BitmapDecoder
     {
@@ -41,10 +41,13 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         private StringBuilder decodedText;
 
-        List<string> bytesList;
+        /// <summary>
+        /// A list of bytes.
+        /// </summary>
+        private List<string> bytesList;
 
         /// <summary>
-        /// Initializes a new instance of the ImageDecoder class.
+        /// Initializes a new instance of the BitmapDecoder class.
         /// </summary>
         public BitmapDecoder()
         {
@@ -86,19 +89,25 @@ namespace Steganography_with_AES_Encryption
             }
         }
 
+        /// <summary>
+        /// Gets the BitsFromImage property.
+        /// </summary>
         public List<int> BitsFromImage
         {
             get
             {
-                return bitsFromImage;
+                return this.bitsFromImage;
             }
         }
 
+        /// <summary>
+        /// Gets the BytesList property.
+        /// </summary>
         public List<string> BytesList
         {
             get
             {
-                return bytesList;
+                return this.bytesList;
             }
         }
 
@@ -109,15 +118,6 @@ namespace Steganography_with_AES_Encryption
         /// <returns>The last bit of any byte.</returns>
         public int LastBitFromColorChannel(byte colorChannel)
         {
-            // Console.WriteLine("Byte from Color Channel: " + colorChannel);
-            //  if (colorChannel % 2 == 0)
-            //  {
-            //      return 0;
-            //  }
-            //  else
-            //  {
-            //      return 1;
-            //  }
             return colorChannel % 2;
         }
 
@@ -128,7 +128,7 @@ namespace Steganography_with_AES_Encryption
         /// <returns>A string of bits from the bitmap</returns>
         public string Decoder(Bitmap encoded)
         {
-          // Console.WriteLine("Trying to decode");
+            // Console.WriteLine("Trying to decode");
             this.EncodedImage = encoded;
 
             // Loop through each pixel of the encoded image.
@@ -138,9 +138,7 @@ namespace Steganography_with_AES_Encryption
                 {
                     Color pixelColor = this.EncodedImage.GetPixel(column, row);
 
-                    // Console.WriteLine("Decoder | Pixel color: " + pixelColor);
-
-                    // Pull the last bit out of each color channel and concatenate them onto the bytesFromImage list.
+                    // Pull the last bit out of each color channel and concatenate them onto the bitsFromImage list.
                     this.bitsFromImage.Add(this.LastBitFromColorChannel(pixelColor.A));
                     this.bitsFromImage.Add(this.LastBitFromColorChannel(pixelColor.R));
                     this.bitsFromImage.Add(this.LastBitFromColorChannel(pixelColor.G));
@@ -151,6 +149,34 @@ namespace Steganography_with_AES_Encryption
             Console.WriteLine("Decoder finished pulling bits from pixels. Found " + this.bitsFromImage.Count + " bits.");
             Console.WriteLine("Turning bits to bytes");
 
+            // Decode the part that says how long the cipher is supposed to be, then delete that part.
+            // Also, get the length so it may be passed to the part that converts single bits to 
+            // groups of 8-bits (bytes).
+            int cipherLength = this.DecodeLengthHeaderAndDeleteIt();
+
+            // Turn bits to bytes and pass in the length of the message.
+            this.TurnBitsToBytes(cipherLength);
+
+            Console.WriteLine("Finished turning bits to bytes. Found " + this.bytesList.Count + " bytes.");
+
+            this.decodedText = new StringBuilder();
+            for (int i = 0; i < this.bytesList.Count; i++)
+            {
+                // Console.WriteLine(bytesList[i]);
+                this.decodedText.Append((char)Convert.ToByte(this.bytesList[i], 2));
+            }
+
+            // Update the output textbox's text.
+            return this.decodedText.ToString();
+        }
+
+        /// <summary>
+        /// Decodes the first 32 bits (4 bytes), which is where the length of the encoded cipher is stored.
+        /// Then, those first 32 bits are removed from the string, leaving only the cipher and optional IV.
+        /// </summary>
+        /// <returns>An integer.</returns>
+        private int DecodeLengthHeaderAndDeleteIt()
+        {
             string messageLengthByteAsString = string.Empty;
             int messageLength = 0;
 
@@ -165,12 +191,8 @@ namespace Steganography_with_AES_Encryption
             // Convert string of binary back into an int.
             messageLength = Convert.ToInt32(messageLengthByteAsString, 2);
 
-
-            int eightCounter = 1;
-            string eightDigitByte = string.Empty;
-
             Console.WriteLine("Trimming first 32 bits from " + this.bitsFromImage.Count + " bits.");
-         
+
             // Remove first 4 bits from bitsFromImage list.
             for (int i = 0; i < 32; i++)
             {
@@ -180,35 +202,35 @@ namespace Steganography_with_AES_Encryption
             Console.WriteLine("bitsFromImage is now " + this.bitsFromImage.Count + " long.");
             Console.WriteLine("Decoder says message should be " + messageLength + " chars long.");
 
+            return messageLength;
+        }
+
+        /// <summary>
+        /// The long list of bits should be grouped into bytes.
+        /// </summary>
+        /// <param name="messageLength">An integer.</param>
+        private void TurnBitsToBytes(int messageLength)
+        {
+            int eightCounter = 1;
+            string eightDigitByte = string.Empty;
+
             // Loop through each digit of the bytesFromImage list.
             for (int i = 1; i <= (messageLength * 8); i++)
             {
                 // Create new 8-digit groups.
                 if (eightCounter <= 8)
                 {
-                    eightDigitByte += this.bitsFromImage[i -1].ToString();
+                    eightDigitByte += this.bitsFromImage[i - 1].ToString();
                     eightCounter++;
                 }
 
-                if (i % 8 == 0 && i !=0)
+                if (i % 8 == 0 && i != 0)
                 {
-                    bytesList.Add(eightDigitByte);
+                    this.bytesList.Add(eightDigitByte);
                     eightCounter = 1;
                     eightDigitByte = string.Empty;
                 }
             }
-
-            Console.WriteLine("Finished turning bits to bytes. Found " + bytesList.Count + " bytes.");
-
-            this.decodedText = new StringBuilder();
-            for (int i = 0; i < bytesList.Count; i++)
-            {
-                // Console.WriteLine(bytesList[i]);
-                this.decodedText.Append((char)Convert.ToByte(bytesList[i], 2));
-            }
-
-            // Update the output textbox's text.
-            return this.decodedText.ToString();
         }
     }
 }

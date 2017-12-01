@@ -30,7 +30,7 @@ namespace Steganography_with_AES_Encryption
     /// </summary>
     public class AESEncrypt
     {
-        private FormMain main;
+        private static FormMain main;
         /// <summary>
         /// The rawMessage string.
         /// </summary>
@@ -140,10 +140,11 @@ namespace Steganography_with_AES_Encryption
             // Create an Aes object with the specified key and IV.
             using (Aes aesAlg = Aes.Create())
             {
-                //aesAlg.BlockSize = IV.Length;
+                aesAlg.BlockSize = 128;
+                aesAlg.KeySize = main.AesKeySize * 8;
                 aesAlg.Key = key;
                 aesAlg.IV = IV;
-                // aesAlg.Mode = CipherMode.CBC;
+                aesAlg.Mode = CipherMode.CBC;
                 aesAlg.Padding = PaddingMode.Zeros;
 
                 // Create a decrytor to perform the stream transform.
@@ -180,8 +181,9 @@ namespace Steganography_with_AES_Encryption
                 // This generates a new key and initialization vector (IV).
                 using (Aes myAes = Aes.Create())
                 {
-                    // myAes.BlockSize = initializationVector.Length;
-                    // Console.WriteLine("Encrypter is using block size: " + initializationVector.Length);
+                    myAes.BlockSize = 128;
+                    myAes.KeySize = main.AesKeySize * 8;
+                    Console.WriteLine("Encrypter is using block size: " + myAes.BlockSize);
 
                     // Encrypt the string to an array of bytes.
                     this.encryptedMessage = EncryptStringToBytes_Aes(this.rawMessage, this.AesKey, myAes.IV);
@@ -213,7 +215,7 @@ namespace Steganography_with_AES_Encryption
             {
                 MessageBox.Show("Bad news. Encryption failed.");
             }
-            
+
             return str;
         }
     }

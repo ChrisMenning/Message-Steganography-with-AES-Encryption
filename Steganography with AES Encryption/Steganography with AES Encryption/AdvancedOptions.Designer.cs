@@ -32,10 +32,10 @@
             this.radioButton256 = new System.Windows.Forms.RadioButton();
             this.radioButton192 = new System.Windows.Forms.RadioButton();
             this.radioButton128 = new System.Windows.Forms.RadioButton();
-            this.button1 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonRestoreDefaults = new System.Windows.Forms.Button();
+            this.checkBoxRememberSettings = new System.Windows.Forms.CheckBox();
+            this.buttonOK = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
             this.groupBoxAESBlock.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,56 +84,58 @@
             this.radioButton128.Text = "128 bits";
             this.radioButton128.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // buttonRestoreDefaults
             // 
-            this.button1.Location = new System.Drawing.Point(12, 151);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(99, 42);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Restore Defaults";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonRestoreDefaults.Location = new System.Drawing.Point(12, 151);
+            this.buttonRestoreDefaults.Name = "buttonRestoreDefaults";
+            this.buttonRestoreDefaults.Size = new System.Drawing.Size(99, 42);
+            this.buttonRestoreDefaults.TabIndex = 3;
+            this.buttonRestoreDefaults.Text = "Restore Defaults";
+            this.buttonRestoreDefaults.UseVisualStyleBackColor = true;
+            this.buttonRestoreDefaults.Click += new System.EventHandler(this.ButtonRestoreDefaults_Click);
             // 
-            // checkBox1
+            // checkBoxRememberSettings
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 124);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(160, 21);
-            this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "Remember settings?";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBoxRememberSettings.AutoSize = true;
+            this.checkBoxRememberSettings.Checked = true;
+            this.checkBoxRememberSettings.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxRememberSettings.Location = new System.Drawing.Point(12, 124);
+            this.checkBoxRememberSettings.Name = "checkBoxRememberSettings";
+            this.checkBoxRememberSettings.Size = new System.Drawing.Size(160, 21);
+            this.checkBoxRememberSettings.TabIndex = 4;
+            this.checkBoxRememberSettings.Text = "Remember settings?";
+            this.checkBoxRememberSettings.UseVisualStyleBackColor = true;
+            this.checkBoxRememberSettings.CheckedChanged += new System.EventHandler(this.CheckBoxRememberSettings_CheckedChanged);
             // 
-            // button2
+            // buttonOK
             // 
-            this.button2.Location = new System.Drawing.Point(129, 151);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(99, 42);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "OK";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.buttonOK.Location = new System.Drawing.Point(129, 151);
+            this.buttonOK.Name = "buttonOK";
+            this.buttonOK.Size = new System.Drawing.Size(99, 42);
+            this.buttonOK.TabIndex = 5;
+            this.buttonOK.Text = "OK";
+            this.buttonOK.UseVisualStyleBackColor = true;
+            this.buttonOK.Click += new System.EventHandler(this.ButtonOK_Click);
             // 
-            // button3
+            // buttonCancel
             // 
-            this.button3.Location = new System.Drawing.Point(243, 151);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(99, 42);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Cancel";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.buttonCancel.Location = new System.Drawing.Point(243, 151);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(99, 42);
+            this.buttonCancel.TabIndex = 6;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // AdvancedOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(358, 210);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonCancel);
+            this.Controls.Add(this.buttonOK);
+            this.Controls.Add(this.checkBoxRememberSettings);
+            this.Controls.Add(this.buttonRestoreDefaults);
             this.Controls.Add(this.groupBoxAESBlock);
             this.Name = "AdvancedOptions";
             this.Text = "Advanced Options";
@@ -149,9 +151,9 @@
         private System.Windows.Forms.RadioButton radioButton256;
         private System.Windows.Forms.RadioButton radioButton192;
         private System.Windows.Forms.RadioButton radioButton128;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonRestoreDefaults;
+        private System.Windows.Forms.CheckBox checkBoxRememberSettings;
+        private System.Windows.Forms.Button buttonOK;
+        private System.Windows.Forms.Button buttonCancel;
     }
 }
