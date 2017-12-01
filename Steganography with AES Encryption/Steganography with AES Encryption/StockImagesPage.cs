@@ -1147,6 +1147,7 @@ namespace Steganography_with_AES_Encryption
                 String error = "There was an error trying to save your image: \n" + ex.Message;
                 MessageBox.Show(error);
             }
+            this.Close();
         }
 
         private void frmStockImagesPage_Load(object sender, EventArgs e)

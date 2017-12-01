@@ -523,7 +523,7 @@ namespace Steganography_with_AES_Encryption
 
             // Select Stock Photo
             frmStockImagesPage stockImage = new frmStockImagesPage(this);
-            stockImage.ShowDialog();
+            stockImage.Show();
             this.rawImage = (Bitmap)this.pubpicture.Image;
             if (textBoxInputMessage.Text.Length > 0)
             {
@@ -761,7 +761,7 @@ namespace Steganography_with_AES_Encryption
             {
                 // Select Stock Photo
                 frmStockImagesPage stockImage = new frmStockImagesPage(this);
-                stockImage.ShowDialog();
+                stockImage.Show();
                 this.rawImage = (Bitmap)this.pictureBoxRaw.Image;
 
                 if (textBoxInputMessage.Text.Length > 0)
