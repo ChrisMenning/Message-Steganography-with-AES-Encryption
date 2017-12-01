@@ -5,7 +5,7 @@
 // </copyright>
 //---------------------------------------------------------------------------------- 
 
-namespace Steganography_with_AES_Encryption.Classes
+namespace Steganography_with_AES_Encryption
 {
     using System;
     using System.Collections.Generic;
@@ -18,5 +18,39 @@ namespace Steganography_with_AES_Encryption.Classes
     /// </summary>
     public class CharacterCompute
     {
+        private int Width;
+
+        private int Height;
+
+        private FormMain Main;
+
+
+        public CharacterCompute(int wid, int heigh, FormMain main)
+        {
+            this.Width = wid;
+            this.Height = heigh;
+            this.Main = main;
+        }
+
+        public int CalcMax()
+        {
+            int ret = 0;
+
+            ret = ((this.Width * this.Height) / 2) - 32;
+
+            Console.WriteLine(ret);
+
+            return ret;
+            
+        }
+
+        public int CalcRemainingSpace()
+        {
+            int ret = 0;
+            ret = CalcMax() - Main.getTextBoxInput().Text.Length;
+
+            return ret;
+        }
+
     }
 }
