@@ -38,7 +38,7 @@
 
 	The purpose of this program is to allow the user to type a message in plain text 
 	(ASCII only) and hide that message within the Least Significant Bit of each color channel
-	for each pixel of a bitmap image.
+	of each pixel of a bitmap image.
 
 
 
