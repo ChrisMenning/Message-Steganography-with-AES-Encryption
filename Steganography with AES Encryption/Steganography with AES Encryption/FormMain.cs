@@ -45,6 +45,9 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         private BitmapDecoder imgDec;
 
+
+        private CharacterCompute charComp;
+
         /// <summary>
         /// The password
         /// </summary>
@@ -78,6 +81,8 @@ namespace Steganography_with_AES_Encryption
 
             // Instantiate Advanced Options once, to load the last encryption settings used.
             AdvancedOptions ad = new AdvancedOptions(this);
+
+            this.charComp = new CharacterCompute(this.pubpicture.Width, this.pubpicture.Height, this);
         }
 
         /// <summary>
@@ -127,6 +132,11 @@ namespace Steganography_with_AES_Encryption
                 this.pubpicture = value;
             }
         }
+
+        public TextBox getTextBoxInput() {
+            return this.textBoxInputMessage;
+        }
+            
 
         /// <summary>
         /// Accepts unicode and outputs ascii.
@@ -188,6 +198,7 @@ namespace Steganography_with_AES_Encryption
             {
                 this.rawImage = new Bitmap(Bitmap.FromFile(this.dialogOpenRawImage.FileName));
                 this.pictureBoxRaw.Image = this.rawImage;
+                textBoxInputMessage.MaxLength = charComp.CalcMax();
             }
 
             saveEncodedImageToolStripMenuItem.Enabled = false;
@@ -216,6 +227,7 @@ namespace Steganography_with_AES_Encryption
             }
 
             saveEncodedImageToolStripMenuItem.Enabled = false;
+
         }
 
         /// <summary>
@@ -412,6 +424,7 @@ namespace Steganography_with_AES_Encryption
             this.rawImage = fractal;
             this.pubpicture.Image = this.rawImage;
             this.btnEncodeImage.Enabled = true;
+            textBoxInputMessage.MaxLength = charComp.CalcMax();
 
             if (textBoxInputMessage.Text.Length > 0)
             {
@@ -434,6 +447,7 @@ namespace Steganography_with_AES_Encryption
             pw.Close();
             Cursor.Current = Cursors.Default;
             this.btnEncodeImage.Enabled = true;
+            textBoxInputMessage.MaxLength = charComp.CalcMax();
 
             if (textBoxInputMessage.Text.Length > 0)
             {
@@ -778,6 +792,7 @@ namespace Steganography_with_AES_Encryption
             if (this.pictureBoxRaw.Image != null)
             {
                 this.btnEncodeImage.Enabled = true;
+                labelCharLimit.Text = "Character Limit: " + charComp.CalcRemainingSpace().ToString();
             }
         }
 
@@ -842,5 +857,6 @@ namespace Steganography_with_AES_Encryption
         {
             this.ResetEverything();
         }
+
     }
 }
