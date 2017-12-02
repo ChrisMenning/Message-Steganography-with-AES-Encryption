@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBoxAESBlock = new System.Windows.Forms.GroupBox();
+            this.groupBoxAESKey = new System.Windows.Forms.GroupBox();
             this.radioButton256 = new System.Windows.Forms.RadioButton();
             this.radioButton192 = new System.Windows.Forms.RadioButton();
             this.radioButton128 = new System.Windows.Forms.RadioButton();
@@ -36,20 +36,20 @@
             this.checkBoxRememberSettings = new System.Windows.Forms.CheckBox();
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.groupBoxAESBlock.SuspendLayout();
+            this.groupBoxAESKey.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBoxAESBlock
+            // groupBoxAESKey
             // 
-            this.groupBoxAESBlock.Controls.Add(this.radioButton256);
-            this.groupBoxAESBlock.Controls.Add(this.radioButton192);
-            this.groupBoxAESBlock.Controls.Add(this.radioButton128);
-            this.groupBoxAESBlock.Location = new System.Drawing.Point(12, 12);
-            this.groupBoxAESBlock.Name = "groupBoxAESBlock";
-            this.groupBoxAESBlock.Size = new System.Drawing.Size(330, 100);
-            this.groupBoxAESBlock.TabIndex = 2;
-            this.groupBoxAESBlock.TabStop = false;
-            this.groupBoxAESBlock.Text = "AES block size";
+            this.groupBoxAESKey.Controls.Add(this.radioButton256);
+            this.groupBoxAESKey.Controls.Add(this.radioButton192);
+            this.groupBoxAESKey.Controls.Add(this.radioButton128);
+            this.groupBoxAESKey.Location = new System.Drawing.Point(12, 12);
+            this.groupBoxAESKey.Name = "groupBoxAESKey";
+            this.groupBoxAESKey.Size = new System.Drawing.Size(330, 100);
+            this.groupBoxAESKey.TabIndex = 2;
+            this.groupBoxAESKey.TabStop = false;
+            this.groupBoxAESKey.Text = "AES key size";
             // 
             // radioButton256
             // 
@@ -136,18 +136,18 @@
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.checkBoxRememberSettings);
             this.Controls.Add(this.buttonRestoreDefaults);
-            this.Controls.Add(this.groupBoxAESBlock);
+            this.Controls.Add(this.groupBoxAESKey);
             this.Name = "AdvancedOptions";
             this.Text = "Advanced Options";
-            this.groupBoxAESBlock.ResumeLayout(false);
-            this.groupBoxAESBlock.PerformLayout();
+            this.groupBoxAESKey.ResumeLayout(false);
+            this.groupBoxAESKey.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.GroupBox groupBoxAESBlock;
+        private System.Windows.Forms.GroupBox groupBoxAESKey;
         private System.Windows.Forms.RadioButton radioButton256;
         private System.Windows.Forms.RadioButton radioButton192;
         private System.Windows.Forms.RadioButton radioButton128;

@@ -137,7 +137,12 @@ namespace Steganography_with_AES_Encryption
         public TextBox getTextBoxInput() {
             return this.textBoxInputMessage;
         }
-            
+
+
+        public bool getCheckedEncrypt()
+        {
+            return this.checkBoxEncryption.Checked;
+        }
 
         /// <summary>
         /// Accepts unicode and outputs ascii.
@@ -246,7 +251,15 @@ namespace Steganography_with_AES_Encryption
             
             if (dialogSaveImage.FileName != string.Empty)
             {
-                this.encodedImage.Save(dialogSaveImage.FileName, System.Drawing.Imaging.ImageFormat.Png);
+                try
+                {
+                    this.encodedImage.Save(dialogSaveImage.FileName, System.Drawing.Imaging.ImageFormat.Png);
+                }
+                catch
+                {
+                    MessageBox.Show("Something's not right.");
+                }
+                
             }
         }
 
@@ -417,7 +430,6 @@ namespace Steganography_with_AES_Encryption
             this.rawImage = fractal;
             this.pubpicture.Image = this.rawImage;
             this.btnEncodeImage.Enabled = true;
-            textBoxInputMessage.MaxLength = charComp.CalcMax();
 
             if (textBoxInputMessage.Text.Length > 0)
             {
@@ -425,6 +437,7 @@ namespace Steganography_with_AES_Encryption
             }
 
             this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
+            textBoxInputMessage.MaxLength = charComp.CalcMax();
         }
 
         /// <summary>
@@ -442,13 +455,13 @@ namespace Steganography_with_AES_Encryption
             pw.Close();
             Cursor.Current = Cursors.Default;
             this.btnEncodeImage.Enabled = true;
-            textBoxInputMessage.MaxLength = charComp.CalcMax();
 
             if (textBoxInputMessage.Text.Length > 0)
             {
                 btnEncodeImage.Enabled = true;
             }
             this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
+            textBoxInputMessage.MaxLength = charComp.CalcMax();
         }
 
         /// <summary>
@@ -522,6 +535,8 @@ namespace Steganography_with_AES_Encryption
             stockImage.ShowDialog();
             this.rawImage = (Bitmap)this.pubpicture.Image;
             this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
+            textBoxInputMessage.MaxLength = charComp.CalcMax();
+
             if (textBoxInputMessage.Text.Length > 0)
             {
                 btnEncodeImage.Enabled = true;
@@ -760,12 +775,12 @@ namespace Steganography_with_AES_Encryption
                 frmStockImagesPage stockImage = new frmStockImagesPage(this);
                 stockImage.ShowDialog();
                 this.rawImage = (Bitmap)this.pictureBoxRaw.Image;
-                this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
                 if (textBoxInputMessage.Text.Length > 0)
                 {
                     btnEncodeImage.Enabled = true;
                 }
                 this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
+                textBoxInputMessage.MaxLength = charComp.CalcMax();
             }
             else if (comboBoxImageSelect.SelectedIndex == 2)
             {

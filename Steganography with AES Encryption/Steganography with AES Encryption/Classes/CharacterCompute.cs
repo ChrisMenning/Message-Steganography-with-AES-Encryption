@@ -36,12 +36,17 @@ namespace Steganography_with_AES_Encryption
         {
             int ret = 0;
 
-            ret = ((this.Width * this.Height) / 2) - 32;
+            if (Main.getCheckedEncrypt() == false)
+            {
+                ret = ((this.Width * this.Height) / 2) - 32;
+            }
+            else
+            {
+                ret = ((((this.Width * this.Height) / 2) - 32) / 10) - 2;
+            }
 
             Console.WriteLine(ret);
-
             return ret;
-            
         }
 
         public int CalcRemainingSpace()
