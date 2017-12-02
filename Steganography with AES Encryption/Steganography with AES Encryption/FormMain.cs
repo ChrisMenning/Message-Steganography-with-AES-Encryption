@@ -138,7 +138,6 @@ namespace Steganography_with_AES_Encryption
             return this.textBoxInputMessage;
         }
 
-
         public bool getCheckedEncrypt()
         {
             return this.checkBoxEncryption.Checked;
