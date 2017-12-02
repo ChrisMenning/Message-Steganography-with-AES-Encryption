@@ -350,33 +350,24 @@ namespace Steganography_with_AES_Encryption
 
                 Console.WriteLine("BytesList is " + this.imgDec.BytesList.Count + " long.");
 
-                // In that list of bytes, the Initialization Vector is stored in the first 16, 24, or 32 bytes.
+                // In that list of bytes, the Initialization Vector is stored in the first 16 bytes.
                 // Assign the IV to a byte array.
-                Console.WriteLine("Using AES Key size: " + this.aesKeySize);
-                byte[] derivedIV = new byte[this.aesKeySize];
+                Console.WriteLine("Using AES Key size: " + 16);
+                byte[] derivedIV = new byte[16];
 
-                for (int i = 0; i < this.aesKeySize; i++)
+                for (int i = 0; i < 16; i++)
                 {
                     derivedIV[i] = Convert.ToByte(bytesFomImage[i], 2);
                 }
-
-                Console.WriteLine("Derived IV is " + derivedIV.Count() + " bytes long.");
 
                 this.Update();
 
                 // Instantiate a new AESDecrypt object, and pass in a reference to the main form.
                 AESDecrypt aes = new AESDecrypt(this);
 
-                // Confirm that the derivedIV is the same length as the aesKeySize.
-                // Note: This has never happened, but it doesn't hurt to check if something breaks.
-                if (derivedIV.Length != this.aesKeySize)
-                {
-                    Console.WriteLine("!!!!!!!! DERIVED IV BLOCK SIZE MISMATCH !!!!!!!!");
-                }
-
                 // Erase IV from bytesFomImage list. This doesn't need to appear alongside
                 // the decoded message.
-                for (int i = 0; i < this.aesKeySize; i++)
+                for (int i = 0; i < 16; i++)
                 {
                     // remove the first from the list, 16, 24, or 32 times.
                     bytesFomImage.RemoveAt(0);
