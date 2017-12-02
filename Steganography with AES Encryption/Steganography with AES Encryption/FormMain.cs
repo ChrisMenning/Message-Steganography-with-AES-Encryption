@@ -150,7 +150,8 @@ namespace Steganography_with_AES_Encryption
         public string UnicodeToAscii(string inputUnicode)
         {
             // Force string to be ASCII in case there is other encoding (UTF-8, etc) contained therein.
-            // Non-ASCII chars may be more than one byte long, but this method can only handle one byte at this time.
+            // Non-ASCII chars may be more than one byte long, but the encoder and decoder can only handle
+            // one byte at this time.
             Encoding ascii = Encoding.ASCII;
             Encoding unicode = Encoding.Unicode;
 
@@ -370,7 +371,7 @@ namespace Steganography_with_AES_Encryption
 
                 // Declare a list of strings, returned from the image decoder.
                 // These are the 1s and 0s, grouped into 8-digit bytes, as strings.
-                List<string> bytesFomImage = this.imgDec.BytesList;
+                List<string> byteStringsFromImage = this.imgDec.BytesList;
 
                 // In that list of bytes, the Initialization Vector is stored in the first 16 bytes.
                 // Assign the IV to a byte array.
@@ -391,24 +392,24 @@ namespace Steganography_with_AES_Encryption
                 for (int i = 0; i < 16; i++)
                 {
                     // remove the first from the list, 16, 24, or 32 times.
-                    bytesFomImage.RemoveAt(0);
+                    byteStringsFromImage.RemoveAt(0);
                 }
 
                 // Convert the List of binary strings into a byte array.
-                int c = bytesFomImage.Count;
-                byte[] byteStringsToBytes = new byte[c];
+                int c = byteStringsFromImage.Count;
+                byte[] bytesFromImage = new byte[c];
                 for (int i = 0; i < c; i++)
                 {
-                    byteStringsToBytes[i] = Convert.ToByte(bytesFomImage[i], 2);
+                    bytesFromImage[i] = Convert.ToByte(byteStringsFromImage[i], 2);
                 }
 
                 // Pull the first byte from the list. Convert this byte to an int. This should
                 // represent how many bytes are in the message, which should correspond to the length of the
                 // message, because in ASCII 1 char is 1 byte.
-                int messageLength = byteStringsToBytes[0];
+                int messageLength = bytesFromImage[0];
 
                 // Pass the byteStringsToBytes byte array, encryption key, and derived IV to the decrypter.
-                textBoxOutputMessage.Text = aes.DecryptStringFromBytes_Aes(byteStringsToBytes, passwordHandler.EncryptionKey, derivedIV);
+                textBoxOutputMessage.Text = aes.DecryptStringFromBytes_Aes(bytesFromImage, passwordHandler.EncryptionKey, derivedIV);
             }
             else
             {
