@@ -589,7 +589,7 @@ namespace Steganography_with_AES_Encryption
         private void SaveEncodedImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             radioButtonEncode.Checked = true;
-            this.SaveEncodedImage();
+            DoEncoding();
         }
 
         /// <summary>
@@ -815,6 +815,7 @@ namespace Steganography_with_AES_Encryption
             if (this.pictureBoxRaw.Image != null)
             {
                 this.btnEncodeImage.Enabled = true;
+                saveEncodedImageToolStripMenuItem.Enabled = true;
                 labelCharLimit.Text = "Character Limit: " + charComp.CalcRemainingSpace().ToString();
             }
         }
