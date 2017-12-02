@@ -470,6 +470,23 @@ namespace Steganography_with_AES_Encryption
             textBoxInputMessage.MaxLength = charComp.CalcMax();
         }
 
+        private void SelectStockPhoto()
+        {
+            frmStockImagesPage stockImage = new frmStockImagesPage(this);
+            stockImage.ShowDialog();
+            this.rawImage = (Bitmap)this.pictureBoxRaw.Image;
+            this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
+            if (textBoxInputMessage.Text.Length > 0)
+            {
+                btnEncodeImage.Enabled = true;
+            }
+            if (this.rawImage != null)
+            {
+                this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
+                textBoxInputMessage.MaxLength = charComp.CalcMax();
+            }
+        }
+
         /// <summary>
         /// The ToolStrip Menu Item for viewing the About menu.
         /// </summary>
@@ -537,16 +554,7 @@ namespace Steganography_with_AES_Encryption
             radioButtonEncode.Checked = true;
 
             // Select Stock Photo
-            frmStockImagesPage stockImage = new frmStockImagesPage(this);
-            stockImage.ShowDialog();
-            this.rawImage = (Bitmap)this.pubpicture.Image;
-            this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
-            textBoxInputMessage.MaxLength = charComp.CalcMax();
-
-            if (textBoxInputMessage.Text.Length > 0)
-            {
-                btnEncodeImage.Enabled = true;
-            }
+            SelectStockPhoto();
         }
 
         /// <summary>
@@ -778,18 +786,7 @@ namespace Steganography_with_AES_Encryption
             else if (comboBoxImageSelect.SelectedIndex == 1)
             {
                 // Select Stock Photo
-                frmStockImagesPage stockImage = new frmStockImagesPage(this);
-                stockImage.ShowDialog();
-                this.rawImage = (Bitmap)this.pictureBoxRaw.Image;
-                if (textBoxInputMessage.Text.Length > 0)
-                {
-                    btnEncodeImage.Enabled = true;
-                }
-                if (this.rawImage != null)
-                {
-                    this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
-                    textBoxInputMessage.MaxLength = charComp.CalcMax();
-                }
+                SelectStockPhoto();
             }
             else if (comboBoxImageSelect.SelectedIndex == 2)
             {
