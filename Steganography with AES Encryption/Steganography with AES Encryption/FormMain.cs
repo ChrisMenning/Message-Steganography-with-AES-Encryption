@@ -779,8 +779,11 @@ namespace Steganography_with_AES_Encryption
                 {
                     btnEncodeImage.Enabled = true;
                 }
-                this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
-                textBoxInputMessage.MaxLength = charComp.CalcMax();
+                if (this.rawImage != null)
+                {
+                    this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
+                    textBoxInputMessage.MaxLength = charComp.CalcMax();
+                }
             }
             else if (comboBoxImageSelect.SelectedIndex == 2)
             {
