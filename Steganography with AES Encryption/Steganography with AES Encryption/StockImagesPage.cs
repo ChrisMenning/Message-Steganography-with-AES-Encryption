@@ -30,7 +30,7 @@ namespace Steganography_with_AES_Encryption
             this.Close();
         }
 
-        private void doRepetativeTasks(string desc, string size, Image img)
+        private void DoRepetativeTasks(string desc, string size, Image img)
         {
             message = "";
             message += "Picture Description:\n";
@@ -49,62 +49,62 @@ namespace Steganography_with_AES_Encryption
             {
                 if (rdbDog.Checked && rdbLarge.Checked)
                 {
-                    doRepetativeTasks("Picture of a cute puppy\n", "Approximately 21.33 Inches by 21.33 Inches",
+                    DoRepetativeTasks("Picture of a cute puppy\n", "Approximately 21.33 Inches by 21.33 Inches",
                         Properties.Resources.Dog_Large);
                 }
                 else if (rdbDog.Checked && rdbMedium.Checked)
                 {
-                    doRepetativeTasks("Picture of a cute puppy\n", "Approximately 10.67 Inches by 10.67 Inches",
+                    DoRepetativeTasks("Picture of a cute puppy\n", "Approximately 10.67 Inches by 10.67 Inches",
                         Properties.Resources.Dog_Medium);
                 }
                 else if (rdbDog.Checked && rdbSmall.Checked)
                 {
-                    doRepetativeTasks("Picture of a cute puppy\n", "Approximately 5.33 Inches by 5.33 Inches",
+                    DoRepetativeTasks("Picture of a cute puppy\n", "Approximately 5.33 Inches by 5.33 Inches",
                         Properties.Resources.Dog_Small);
                 }
                 else if (rdbPenguin.Checked && rdbLarge.Checked)
                 {
-                    doRepetativeTasks("Picture of a group of penguins\n", "Approximately 19.79 Inches by 19.78 Inches",
+                    DoRepetativeTasks("Picture of a group of penguins\n", "Approximately 19.79 Inches by 19.78 Inches",
                         Properties.Resources.Penguin_Large);
                 }
                 else if (rdbPenguin.Checked && rdbMedium.Checked)
                 {
-                    doRepetativeTasks("Picture of a group of penguins\n", "Approximately 9.9 Inches by 9.9 Inches",
+                    DoRepetativeTasks("Picture of a group of penguins\n", "Approximately 9.9 Inches by 9.9 Inches",
                         Properties.Resources.Penguin_Medium);
                 }
                 else if (rdbPenguin.Checked && rdbSmall.Checked)
                 {
-                    doRepetativeTasks("Picture of a group of penguins\n", "Approximately 4.95 Inches by 4.95 Inches",
+                    DoRepetativeTasks("Picture of a group of penguins\n", "Approximately 4.95 Inches by 4.95 Inches",
                         Properties.Resources.Penguin_Small);
                 }
                 else if (rdbRocks.Checked && rdbLarge.Checked)
                 {
-                    doRepetativeTasks("Picture of a cool looking rock\n", "Approximately 41.67 Inches by 23.42 Inches",
+                    DoRepetativeTasks("Picture of a cool looking rock\n", "Approximately 41.67 Inches by 23.42 Inches",
                         Properties.Resources.Rocks_Large);
                 }
                 else if (rdbRocks.Checked && rdbMedium.Checked)
                 {
-                    doRepetativeTasks("Picture of a cool looking rock\n", "Approximately 20.83 Inches by 11.71 Inches",
+                    DoRepetativeTasks("Picture of a cool looking rock\n", "Approximately 20.83 Inches by 11.71 Inches",
                         Properties.Resources.Rocks_Medium);
                 }
                 else if (rdbRocks.Checked && rdbSmall.Checked)
                 {
-                    doRepetativeTasks("Picture of a cool looking rock\n", "Approximately 10.42 Inches by 5.85 Inches",
+                    DoRepetativeTasks("Picture of a cool looking rock\n", "Approximately 10.42 Inches by 5.85 Inches",
                         Properties.Resources.Rocks_Small);
                 }
                 else if (rdbTiger.Checked && rdbLarge.Checked)
                 {
-                    doRepetativeTasks("Picture of a tiger\n", "Approximately 16.67 Inches by 12.5 Inches",
+                    DoRepetativeTasks("Picture of a tiger\n", "Approximately 16.67 Inches by 12.5 Inches",
                         Properties.Resources.Tiger_Large);
                 }
                 else if (rdbTiger.Checked && rdbMedium.Checked)
                 {
-                    doRepetativeTasks("Picture of a tiger\n", "Approximately 8.33 Inches by 6.25 Inches",
+                    DoRepetativeTasks("Picture of a tiger\n", "Approximately 8.33 Inches by 6.25 Inches",
                         Properties.Resources.Tiger_Medium);
                 }
                 else if (rdbTiger.Checked && rdbSmall.Checked)
                 {
-                    doRepetativeTasks("Picture of a tiger\n", "Approximately 4.17 Inches by 3.13 Inches",
+                    DoRepetativeTasks("Picture of a tiger\n", "Approximately 4.17 Inches by 3.13 Inches",
                         Properties.Resources.Tiger_Small);
                 }
 
