@@ -44,8 +44,7 @@ namespace Steganography_with_AES_Encryption
         /// Declare the image decoder
         /// </summary>
         private BitmapDecoder imgDec;
-
-
+        
         private CharacterCompute charComp;
 
         /// <summary>
@@ -201,10 +200,18 @@ namespace Steganography_with_AES_Encryption
             this.dialogOpenRawImage.FileName = string.Empty;
             if (this.dialogOpenRawImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                this.rawImage = new Bitmap(Bitmap.FromFile(this.dialogOpenRawImage.FileName));
-                this.pictureBoxRaw.Image = this.rawImage;
-                this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
-                textBoxInputMessage.MaxLength = charComp.CalcMax();
+                try
+                {
+                    this.rawImage = new Bitmap(Bitmap.FromFile(this.dialogOpenRawImage.FileName));
+                    this.pictureBoxRaw.Image = this.rawImage;
+                    this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
+                    textBoxInputMessage.MaxLength = charComp.CalcMax();
+                }
+                catch
+                {
+                    MessageBox.Show("That does not appear to be a supported image file.");
+                }
+                
             }
 
             saveEncodedImageToolStripMenuItem.Enabled = false;
@@ -227,9 +234,17 @@ namespace Steganography_with_AES_Encryption
             this.dialogOpenRawImage.FileName = "*.png";
             if (this.dialogOpenRawImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                this.encodedImage = new Bitmap(this.dialogOpenRawImage.FileName);
-                this.pictureBoxEncoded.Image = this.encodedImage;
-                this.btnDecode.Enabled = true;
+                try
+                {
+                    this.encodedImage = new Bitmap(this.dialogOpenRawImage.FileName);
+                    this.pictureBoxEncoded.Image = this.encodedImage;
+                    this.btnDecode.Enabled = true;
+                }
+                catch (ArgumentException e)
+                {
+                    MessageBox.Show("Invalid file.");
+                }
+                
             }
 
             saveEncodedImageToolStripMenuItem.Enabled = false;
@@ -351,25 +366,19 @@ namespace Steganography_with_AES_Encryption
                 this.imgDec = new BitmapDecoder();
 
                 // Decode the message from the image.
-                // Note: The Decoder method must be called, in order to decode the data, 
-                // despite not needing to use the string formatted version of the information. 
-                // The bytes will be more useful.
-                string stillEncryptedButDecoded = this.imgDec.Decoder(this.encodedImage);
+                this.imgDec.Decoder(this.encodedImage);
 
                 // Declare a list of strings, returned from the image decoder.
                 // These are the 1s and 0s, grouped into 8-digit bytes, as strings.
                 List<string> bytesFomImage = this.imgDec.BytesList;
 
-                Console.WriteLine("BytesList is " + this.imgDec.BytesList.Count + " long.");
-
                 // In that list of bytes, the Initialization Vector is stored in the first 16 bytes.
                 // Assign the IV to a byte array.
-                Console.WriteLine("Using AES Key size: " + 16);
                 byte[] derivedIV = new byte[16];
 
                 for (int i = 0; i < 16; i++)
                 {
-                    derivedIV[i] = Convert.ToByte(bytesFomImage[i], 2);
+                    derivedIV[i] = Convert.ToByte(this.imgDec.BytesList[i], 2);
                 }
 
                 this.Update();
@@ -397,8 +406,6 @@ namespace Steganography_with_AES_Encryption
                 // represent how many bytes are in the message, which should correspond to the length of the
                 // message, because in ASCII 1 char is 1 byte.
                 int messageLength = byteStringsToBytes[0];
-
-                Console.WriteLine("The message to be decrypted is " + messageLength);
 
                 // Pass the byteStringsToBytes byte array, encryption key, and derived IV to the decrypter.
                 textBoxOutputMessage.Text = aes.DecryptStringFromBytes_Aes(byteStringsToBytes, passwordHandler.EncryptionKey, derivedIV);
