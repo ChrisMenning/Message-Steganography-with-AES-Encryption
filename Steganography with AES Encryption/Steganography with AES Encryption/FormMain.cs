@@ -82,6 +82,7 @@ namespace Steganography_with_AES_Encryption
             // Instantiate Advanced Options once, to load the last encryption settings used.
             AdvancedOptions ad = new AdvancedOptions(this);
 
+            // Instantiate CharacterCompute once at initialization.
             this.charComp = new CharacterCompute(this.pubpicture.Width, this.pubpicture.Height, this);
         }
 
@@ -198,6 +199,7 @@ namespace Steganography_with_AES_Encryption
             {
                 this.rawImage = new Bitmap(Bitmap.FromFile(this.dialogOpenRawImage.FileName));
                 this.pictureBoxRaw.Image = this.rawImage;
+                this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
                 textBoxInputMessage.MaxLength = charComp.CalcMax();
             }
 
@@ -430,6 +432,8 @@ namespace Steganography_with_AES_Encryption
             {
                 btnEncodeImage.Enabled = true;
             }
+
+            this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
         }
 
         /// <summary>
@@ -453,6 +457,7 @@ namespace Steganography_with_AES_Encryption
             {
                 btnEncodeImage.Enabled = true;
             }
+            this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
         }
 
         /// <summary>
@@ -523,8 +528,9 @@ namespace Steganography_with_AES_Encryption
 
             // Select Stock Photo
             frmStockImagesPage stockImage = new frmStockImagesPage(this);
-            stockImage.Show();
+            stockImage.ShowDialog();
             this.rawImage = (Bitmap)this.pubpicture.Image;
+            this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
             if (textBoxInputMessage.Text.Length > 0)
             {
                 btnEncodeImage.Enabled = true;
@@ -761,13 +767,14 @@ namespace Steganography_with_AES_Encryption
             {
                 // Select Stock Photo
                 frmStockImagesPage stockImage = new frmStockImagesPage(this);
-                stockImage.Show();
+                stockImage.ShowDialog();
                 this.rawImage = (Bitmap)this.pictureBoxRaw.Image;
-
+                this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
                 if (textBoxInputMessage.Text.Length > 0)
                 {
                     btnEncodeImage.Enabled = true;
                 }
+                this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
             }
             else if (comboBoxImageSelect.SelectedIndex == 2)
             {
