@@ -242,7 +242,7 @@ namespace Steganography_with_AES_Encryption
                 }
                 catch (ArgumentException e)
                 {
-                    MessageBox.Show("Invalid file.");
+                    MessageBox.Show("Invalid file. " + e);
                 }
                 
             }
@@ -510,6 +510,30 @@ namespace Steganography_with_AES_Encryption
         }
 
         /// <summary>
+        /// The Tool Strip Menu Item for viewing the Website Wikipedia for Fractal.
+        /// </summary>
+        /// <param name="sender">The object that initiated the event</param>
+        /// <param name="e">The event arguments</param>
+        private void whatIsAFractalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            const string Message = "You will be directed to an external website, Wikipedia, in a moment.  If you wish to cancel and return to this application, please select 'Cancel', otherwise select 'Ok'.";
+            const string Caption = "External Website";
+            var result = MessageBox.Show(Message, Caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            // If the cancel button was pressed 
+            if (result == DialogResult.Cancel)
+            {
+                // return to the form
+                this.Focus();
+            }
+            else
+            {
+                // continue to website
+                System.Diagnostics.Process.Start("https://en.wikipedia.org/wiki/Fractal");
+            }
+        }
+
+        /// <summary>
         /// The ToolStrip Menu Item for viewing Advanced Options
         /// </summary>
         /// <param name="sender">The sender</param>
@@ -602,26 +626,6 @@ namespace Steganography_with_AES_Encryption
         private void GradientImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.GenerateGradient();
-        }
-
-        /// <summary>
-        /// The toolstrip for using Encryption.
-        /// </summary>
-        /// <param name="sender">The sender</param>
-        /// <param name="e">The event</param>
-        private void UseEncryptionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            checkBoxEncryption.Checked = true;
-        }
-
-        /// <summary>
-        /// The toolstrip menu item for turning off encryption.
-        /// </summary>
-        /// <param name="sender">The sender</param>
-        /// <param name="e">The event</param>
-        private void NoEncryptionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            checkBoxEncryption.Checked = false;
         }
 
         /// <summary>

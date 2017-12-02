@@ -139,7 +139,7 @@ namespace Steganography_with_AES_Encryption
             this.checkBoxEncryption.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.checkBoxEncryption.Name = "checkBoxEncryption";
             this.checkBoxEncryption.Size = new System.Drawing.Size(345, 27);
-            this.checkBoxEncryption.TabIndex = 5;
+            this.checkBoxEncryption.TabIndex = 2;
             this.checkBoxEncryption.Text = "Use Encryption (Slower, but more secure)";
             this.checkBoxEncryption.UseVisualStyleBackColor = true;
             this.checkBoxEncryption.CheckedChanged += new System.EventHandler(this.checkBoxEncryption_CheckedChanged);
@@ -205,7 +205,7 @@ namespace Steganography_with_AES_Encryption
             this.buttonReset.Location = new System.Drawing.Point(898, 20);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Size = new System.Drawing.Size(64, 143);
-            this.buttonReset.TabIndex = 6;
+            this.buttonReset.TabIndex = 9;
             this.buttonReset.Text = "Reset Form";
             this.buttonReset.UseVisualStyleBackColor = true;
             this.buttonReset.Click += new System.EventHandler(this.BtnReset_Click);
@@ -306,7 +306,7 @@ namespace Steganography_with_AES_Encryption
             this.fileToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(48, 32);
-            this.fileToolStripMenuItem.Text = "File";
+            this.fileToolStripMenuItem.Text = "&File";
             // 
             // openImageToolStripMenuItem
             // 
@@ -316,27 +316,33 @@ namespace Steganography_with_AES_Encryption
             this.chooseStockPhotoToolStripMenuItem});
             this.openImageToolStripMenuItem.Name = "openImageToolStripMenuItem";
             this.openImageToolStripMenuItem.Size = new System.Drawing.Size(267, 28);
-            this.openImageToolStripMenuItem.Text = "Open Image";
+            this.openImageToolStripMenuItem.Text = "&Open Image";
             // 
             // unencodedImageToolStripMenuItem
             // 
+            this.unencodedImageToolStripMenuItem.AutoToolTip = true;
             this.unencodedImageToolStripMenuItem.Name = "unencodedImageToolStripMenuItem";
             this.unencodedImageToolStripMenuItem.Size = new System.Drawing.Size(264, 28);
             this.unencodedImageToolStripMenuItem.Text = "Open Plain Image...";
+            this.unencodedImageToolStripMenuItem.ToolTipText = "for hiding text.";
             this.unencodedImageToolStripMenuItem.Click += new System.EventHandler(this.UnencodedImageToolStripMenuItem_Click);
             // 
             // encodedImageToolStripMenuItem
             // 
+            this.encodedImageToolStripMenuItem.AutoToolTip = true;
             this.encodedImageToolStripMenuItem.Name = "encodedImageToolStripMenuItem";
             this.encodedImageToolStripMenuItem.Size = new System.Drawing.Size(264, 28);
             this.encodedImageToolStripMenuItem.Text = "Open Encoded Image...";
+            this.encodedImageToolStripMenuItem.ToolTipText = "for retrieving hidden text.";
             this.encodedImageToolStripMenuItem.Click += new System.EventHandler(this.EncodedImageToolStripMenuItem_Click);
             // 
             // chooseStockPhotoToolStripMenuItem
             // 
+            this.chooseStockPhotoToolStripMenuItem.AutoToolTip = true;
             this.chooseStockPhotoToolStripMenuItem.Name = "chooseStockPhotoToolStripMenuItem";
             this.chooseStockPhotoToolStripMenuItem.Size = new System.Drawing.Size(264, 28);
             this.chooseStockPhotoToolStripMenuItem.Text = "Choose Stock Photo";
+            this.chooseStockPhotoToolStripMenuItem.ToolTipText = "for hiding text.";
             this.chooseStockPhotoToolStripMenuItem.Click += new System.EventHandler(this.ChooseStockPhotoToolStripMenuItem_Click);
             // 
             // generateImageToolStripMenuItem
@@ -346,7 +352,7 @@ namespace Steganography_with_AES_Encryption
             this.gradientImageToolStripMenuItem});
             this.generateImageToolStripMenuItem.Name = "generateImageToolStripMenuItem";
             this.generateImageToolStripMenuItem.Size = new System.Drawing.Size(267, 28);
-            this.generateImageToolStripMenuItem.Text = "Generate Image";
+            this.generateImageToolStripMenuItem.Text = "&Generate Image";
             // 
             // fractalImageToolStripMenuItem
             // 
@@ -369,25 +375,29 @@ namespace Steganography_with_AES_Encryption
             // 
             // saveEncodedImageToolStripMenuItem
             // 
+            this.saveEncodedImageToolStripMenuItem.AutoToolTip = true;
             this.saveEncodedImageToolStripMenuItem.Enabled = false;
             this.saveEncodedImageToolStripMenuItem.Name = "saveEncodedImageToolStripMenuItem";
             this.saveEncodedImageToolStripMenuItem.Size = new System.Drawing.Size(267, 28);
             this.saveEncodedImageToolStripMenuItem.Text = "Save Encoded Image";
+            this.saveEncodedImageToolStripMenuItem.ToolTipText = "Save PNG with hidden message...";
             this.saveEncodedImageToolStripMenuItem.Click += new System.EventHandler(this.SaveEncodedImageToolStripMenuItem_Click);
             // 
             // saveDecodedMessageToolStripMenuItem
             // 
+            this.saveDecodedMessageToolStripMenuItem.AutoToolTip = true;
             this.saveDecodedMessageToolStripMenuItem.Enabled = false;
             this.saveDecodedMessageToolStripMenuItem.Name = "saveDecodedMessageToolStripMenuItem";
             this.saveDecodedMessageToolStripMenuItem.Size = new System.Drawing.Size(267, 28);
             this.saveDecodedMessageToolStripMenuItem.Text = "Save Decoded Message";
+            this.saveDecodedMessageToolStripMenuItem.ToolTipText = "Save as text file...";
             this.saveDecodedMessageToolStripMenuItem.Click += new System.EventHandler(this.SaveDecodedMessageToolStripMenuItem_Click);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
             this.quitToolStripMenuItem.Size = new System.Drawing.Size(267, 28);
-            this.quitToolStripMenuItem.Text = "Quit";
+            this.quitToolStripMenuItem.Text = "&Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.QuitToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
@@ -401,41 +411,51 @@ namespace Steganography_with_AES_Encryption
             this.editToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(51, 32);
-            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Text = "&Edit";
             // 
             // cutToolStripMenuItem
             // 
+            this.cutToolStripMenuItem.AutoToolTip = true;
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(156, 28);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
             this.cutToolStripMenuItem.Text = "Cut";
+            this.cutToolStripMenuItem.ToolTipText = "Cut text (CTRL+X)";
             this.cutToolStripMenuItem.Click += new System.EventHandler(this.CutToolStripMenuItem_Click);
             // 
             // copyToolStripMenuItem
             // 
+            this.copyToolStripMenuItem.AutoToolTip = true;
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(156, 28);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
             this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.ToolTipText = "Copy text (CTRL+C)";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.CopyToolStripMenuItem_Click);
             // 
             // pasteToolStripMenuItem
             // 
+            this.pasteToolStripMenuItem.AutoToolTip = true;
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(156, 28);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
             this.pasteToolStripMenuItem.Text = "Paste";
+            this.pasteToolStripMenuItem.ToolTipText = "Paste text (CTRL+V)";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.PasteToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
+            this.deleteToolStripMenuItem.AutoToolTip = true;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(156, 28);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
             this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.ToolTipText = "Delete text (DEL)";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
             // selectAllToolStripMenuItem
             // 
+            this.selectAllToolStripMenuItem.AutoToolTip = true;
             this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(156, 28);
+            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
             this.selectAllToolStripMenuItem.Text = "Select-All";
+            this.selectAllToolStripMenuItem.ToolTipText = "Select-All text (CTRL+A)";
             this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.SelectAllToolStripMenuItem_Click);
             // 
             // preferencesToolStripMenuItem
@@ -446,13 +466,15 @@ namespace Steganography_with_AES_Encryption
             this.preferencesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
             this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(83, 32);
-            this.preferencesToolStripMenuItem.Text = "Settings";
+            this.preferencesToolStripMenuItem.Text = "&Settings";
             // 
             // advancedOptionsToolStripMenuItem
             // 
+            this.advancedOptionsToolStripMenuItem.AutoToolTip = true;
             this.advancedOptionsToolStripMenuItem.Name = "advancedOptionsToolStripMenuItem";
             this.advancedOptionsToolStripMenuItem.Size = new System.Drawing.Size(227, 28);
             this.advancedOptionsToolStripMenuItem.Text = "Advanced Options";
+            this.advancedOptionsToolStripMenuItem.ToolTipText = "Use custom AES key size";
             this.advancedOptionsToolStripMenuItem.Click += new System.EventHandler(this.AdvancedOptionsToolStripMenuItem_Click);
             // 
             // EncryptionToolStripMenuItem
@@ -472,7 +494,7 @@ namespace Steganography_with_AES_Encryption
             this.helpToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(58, 32);
-            this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.Text = "&Help";
             // 
             // viewHelpToolStripMenuItem
             // 
@@ -493,6 +515,7 @@ namespace Steganography_with_AES_Encryption
             this.whatIsAFractalToolStripMenuItem.Name = "whatIsAFractalToolStripMenuItem";
             this.whatIsAFractalToolStripMenuItem.Size = new System.Drawing.Size(221, 28);
             this.whatIsAFractalToolStripMenuItem.Text = "What is a Fractal?";
+            this.whatIsAFractalToolStripMenuItem.Click += new System.EventHandler(this.whatIsAFractalToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 
@@ -669,7 +692,7 @@ namespace Steganography_with_AES_Encryption
             this.buttonSaveText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonSaveText.Name = "buttonSaveText";
             this.buttonSaveText.Size = new System.Drawing.Size(180, 30);
-            this.buttonSaveText.TabIndex = 6;
+            this.buttonSaveText.TabIndex = 8;
             this.buttonSaveText.Text = "Save Text To File";
             this.buttonSaveText.UseVisualStyleBackColor = true;
             this.buttonSaveText.Click += new System.EventHandler(this.BtnSaveText_Click);
@@ -691,7 +714,7 @@ namespace Steganography_with_AES_Encryption
             this.btnDecode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDecode.Name = "btnDecode";
             this.btnDecode.Size = new System.Drawing.Size(262, 30);
-            this.btnDecode.TabIndex = 5;
+            this.btnDecode.TabIndex = 7;
             this.btnDecode.Text = "Decode Message From Image";
             this.btnDecode.UseVisualStyleBackColor = true;
             this.btnDecode.Click += new System.EventHandler(this.BtnDecode_Click);
@@ -702,7 +725,7 @@ namespace Steganography_with_AES_Encryption
             this.buttonOpenEncodedImage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonOpenEncodedImage.Name = "buttonOpenEncodedImage";
             this.buttonOpenEncodedImage.Size = new System.Drawing.Size(206, 30);
-            this.buttonOpenEncodedImage.TabIndex = 1;
+            this.buttonOpenEncodedImage.TabIndex = 6;
             this.buttonOpenEncodedImage.Text = "Open Image";
             this.buttonOpenEncodedImage.UseVisualStyleBackColor = true;
             this.buttonOpenEncodedImage.Click += new System.EventHandler(this.BtnOpenEncodedImage_Click);
@@ -746,7 +769,7 @@ namespace Steganography_with_AES_Encryption
             this.comboBoxImageSelect.Location = new System.Drawing.Point(512, 24);
             this.comboBoxImageSelect.Name = "comboBoxImageSelect";
             this.comboBoxImageSelect.Size = new System.Drawing.Size(242, 31);
-            this.comboBoxImageSelect.TabIndex = 10;
+            this.comboBoxImageSelect.TabIndex = 4;
             this.comboBoxImageSelect.Text = "Choose Your Image";
             this.comboBoxImageSelect.SelectedIndexChanged += new System.EventHandler(this.ComboBoxImageSelect_SelectedIndexChanged);
             // 
@@ -757,7 +780,7 @@ namespace Steganography_with_AES_Encryption
             this.btnEncodeImage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnEncodeImage.Name = "btnEncodeImage";
             this.btnEncodeImage.Size = new System.Drawing.Size(201, 30);
-            this.btnEncodeImage.TabIndex = 8;
+            this.btnEncodeImage.TabIndex = 5;
             this.btnEncodeImage.Text = "Hide Text in Image";
             this.btnEncodeImage.UseVisualStyleBackColor = true;
             this.btnEncodeImage.Click += new System.EventHandler(this.BtnEncodeImage_Click);
@@ -792,7 +815,7 @@ namespace Steganography_with_AES_Encryption
             this.textBoxInputMessage.Name = "textBoxInputMessage";
             this.textBoxInputMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxInputMessage.Size = new System.Drawing.Size(450, 450);
-            this.textBoxInputMessage.TabIndex = 6;
+            this.textBoxInputMessage.TabIndex = 3;
             this.textBoxInputMessage.TextChanged += new System.EventHandler(this.TextBoxInputMessage_TextChanged);
             // 
             // pictureBoxRaw
