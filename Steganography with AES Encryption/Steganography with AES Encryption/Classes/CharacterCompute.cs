@@ -42,6 +42,8 @@ namespace Steganography_with_AES_Encryption
             }
             else
             {
+                // Note: This calculation is experimental. It is not based on anything but the observed effects
+                // of experimenting with how many characters could fit in the 32x32 crab with encryption.
                 ret = ((((this.Width * this.Height) / 2) - 32) / 10) - 2;
             }
 

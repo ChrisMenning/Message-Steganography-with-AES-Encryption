@@ -61,11 +61,9 @@
     <Compile Include="Classes\AESDecrypt.cs" />
     <Compile Include="Classes\AESEncrypt.cs" />
     <Compile Include="Classes\CharacterCompute.cs" />
-    <Compile Include="Classes\FractalGenerator.cs" />
     <Compile Include="Classes\BitmapDecoder.cs">
     </Compile>
     <Compile Include="Classes\Gradient.cs" />
-    <Compile Include="Classes\JpegEncoder.cs" />
     <Compile Include="Classes\Mandelbrot.cs" />
     <Compile Include="Classes\PasswordHandler.cs" />
     <Compile Include="FormMain.cs">
@@ -75,12 +73,6 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\BitmapEncoder.cs" />
-    <Compile Include="FractalGeneratorTestForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FractalGeneratorTestForm.Designer.cs">
-      <DependentUpon>FractalGeneratorTestForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="HelpPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,9 +107,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FractalGeneratorTestForm.resx">
-      <DependentUpon>FractalGeneratorTestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HelpPage.resx">
       <DependentUpon>HelpPage.cs</DependentUpon>
