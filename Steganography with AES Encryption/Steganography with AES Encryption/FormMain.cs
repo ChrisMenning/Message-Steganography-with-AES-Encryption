@@ -183,6 +183,8 @@ namespace Steganography_with_AES_Encryption
 
             btnEncodeImage.Enabled = false;
             btnDecode.Enabled = false;
+
+            labelCharLimit.Text = "Character Limit: (select an image to show limit)";
         }
 
         /// <summary>
