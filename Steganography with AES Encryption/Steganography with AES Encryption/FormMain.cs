@@ -147,7 +147,7 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         /// <param name="inputUnicode">A string.</param>
         /// <returns>Another string.</returns>
-        public string UnicodeToAscii(string inputUnicode)
+        private string UnicodeToAscii(string inputUnicode)
         {
             // Force string to be ASCII in case there is other encoding (UTF-8, etc) contained therein.
             // Non-ASCII chars may be more than one byte long, but the encoder and decoder can only handle
@@ -184,9 +184,24 @@ namespace Steganography_with_AES_Encryption
             this.pictureBoxEncoded.Image = null;
             this.bmpEnc = null;
             this.imgDec = null;
+            this.textBoxInputMessage.MaxLength = 0;
 
             btnEncodeImage.Enabled = false;
             btnDecode.Enabled = false;
+        }
+
+        private void RepetativeRawImageTasks()
+        {
+            this.pictureBoxRaw.Image = this.rawImage;
+            this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
+            textBoxInputMessage.MaxLength = charComp.CalcMax();
+            charComp.CalcRemainingSpace();
+            saveEncodedImageToolStripMenuItem.Enabled = false;
+            if (textBoxInputMessage.Text.Length > 0)
+            {
+                btnEncodeImage.Enabled = true;
+            }
+            this.Update();
         }
 
         /// <summary>
@@ -204,9 +219,7 @@ namespace Steganography_with_AES_Encryption
                 try
                 {
                     this.rawImage = new Bitmap(Bitmap.FromFile(this.dialogOpenRawImage.FileName));
-                    this.pictureBoxRaw.Image = this.rawImage;
-                    this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
-                    textBoxInputMessage.MaxLength = charComp.CalcMax();
+                    RepetativeRawImageTasks();
                 }
                 catch
                 {
@@ -214,13 +227,51 @@ namespace Steganography_with_AES_Encryption
                 }
                 
             }
-
-            saveEncodedImageToolStripMenuItem.Enabled = false;
-            if (textBoxInputMessage.Text.Length > 0)
-            {
-                btnEncodeImage.Enabled = true;
-            }
         }
+
+
+        /// <summary>
+        /// Generates a fractal and places it into the picture box.
+        /// </summary>
+        private void GenerateFractal()
+        {
+            PleaseWait pw = new PleaseWait("Generating Fractal.");
+            pw.Show();
+            pw.Update();
+            Cursor.Current = Cursors.WaitCursor;
+            Mandelbrot mb = new Mandelbrot();
+            Bitmap fractal = mb.DrawMandelbrot(1000, 1000);
+            this.rawImage = fractal;
+            pw.Close();
+            Cursor.Current = Cursors.Default;
+            RepetativeRawImageTasks();
+        }
+
+        /// <summary>
+        /// Generates a gradient pattern and places it into the picture box.
+        /// </summary>
+        private void GenerateGradient()
+        {
+            radioButtonEncode.Checked = true;
+            Gradient generator = new Gradient();
+            PleaseWait pw = new PleaseWait("Generating Gradient.");
+            pw.Show();
+            pw.Update();
+            Cursor.Current = Cursors.WaitCursor;
+            this.rawImage = generator.GenerateGradient(1000, 1000, 34, 23, 12, 13);
+            pw.Close();
+            Cursor.Current = Cursors.Default;
+            RepetativeRawImageTasks();
+        }
+
+        private void SelectStockPhoto()
+        {
+            frmStockImagesPage stockImage = new frmStockImagesPage(this);
+            stockImage.ShowDialog();
+            this.rawImage = (Bitmap)this.pictureBoxRaw.Image;
+            RepetativeRawImageTasks();
+        }
+
 
         /// <summary>
         /// Opens an encoded image and gets it ready to be decoded.
@@ -249,7 +300,6 @@ namespace Steganography_with_AES_Encryption
             }
 
             saveEncodedImageToolStripMenuItem.Enabled = false;
-
         }
 
         /// <summary>
@@ -419,73 +469,6 @@ namespace Steganography_with_AES_Encryption
 
             saveDecodedMessageToolStripMenuItem.Enabled = true;
             buttonSaveText.Enabled = true;
-        }
-
-        /// <summary>
-        /// Generates a fractal and places it into the picture box.
-        /// </summary>
-        private void GenerateFractal()
-        {
-            PleaseWait pw = new PleaseWait("Generating Fractal.");
-            pw.Show();
-            pw.Update();
-            Cursor.Current = Cursors.WaitCursor;
-            Mandelbrot mb = new Mandelbrot();
-            Bitmap fractal = mb.DrawMandelbrot(1000, 1000);
-            pw.Close();
-            Cursor.Current = Cursors.Default;
-            this.rawImage = fractal;
-            this.pubpicture.Image = this.rawImage;
-            this.btnEncodeImage.Enabled = true;
-
-            if (textBoxInputMessage.Text.Length > 0)
-            {
-                btnEncodeImage.Enabled = true;
-            }
-
-            this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
-            textBoxInputMessage.MaxLength = charComp.CalcMax();
-        }
-
-        /// <summary>
-        /// Generates a gradient pattern and places it into the picture box.
-        /// </summary>
-        private void GenerateGradient()
-        {
-            radioButtonEncode.Checked = true;
-            Gradient generator = new Gradient();
-            PleaseWait pw = new PleaseWait("Generating Gradient.");
-            pw.Show();
-            pw.Update();
-            Cursor.Current = Cursors.WaitCursor;
-            this.pubpicture.Image = generator.GenerateGradient(1000, 1000, 34, 23, 12, 13);
-            pw.Close();
-            Cursor.Current = Cursors.Default;
-            this.btnEncodeImage.Enabled = true;
-
-            if (textBoxInputMessage.Text.Length > 0)
-            {
-                btnEncodeImage.Enabled = true;
-            }
-            this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
-            textBoxInputMessage.MaxLength = charComp.CalcMax();
-        }
-
-        private void SelectStockPhoto()
-        {
-            frmStockImagesPage stockImage = new frmStockImagesPage(this);
-            stockImage.ShowDialog();
-            this.rawImage = (Bitmap)this.pictureBoxRaw.Image;
-            this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
-            if (textBoxInputMessage.Text.Length > 0)
-            {
-                btnEncodeImage.Enabled = true;
-            }
-            if (this.rawImage != null)
-            {
-                this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
-                textBoxInputMessage.MaxLength = charComp.CalcMax();
-            }
         }
 
         /// <summary>
