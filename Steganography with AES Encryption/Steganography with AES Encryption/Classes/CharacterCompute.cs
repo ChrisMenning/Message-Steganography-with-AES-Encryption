@@ -65,6 +65,12 @@ namespace Steganography_with_AES_Encryption
             int ret = 0;
             ret = CalcMax() - Main.getTextBoxInput().Text.Length;
 
+            // If the textbox already holds more than the new maximum, truncate it.
+            if (Main.getTextBoxInput().Text.Length > Main.getTextBoxInput().MaxLength)
+            {
+                Main.getTextBoxInput().Text = Main.getTextBoxInput().Text.Substring(0, Main.getTextBoxInput().MaxLength);
+            }
+
             return ret;
         }
 
