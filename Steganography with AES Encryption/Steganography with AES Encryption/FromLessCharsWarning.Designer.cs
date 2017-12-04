@@ -35,12 +35,12 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(18, 24);
+            this.label1.Location = new System.Drawing.Point(20, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(245, 108);
+            this.label1.Size = new System.Drawing.Size(276, 155);
             this.label1.TabIndex = 0;
             this.label1.Text = "Using encryption makes your message more secure, but it also limits the length of" +
-    " the storable message by a factor of 10, and increased the time needed to encode" +
+    " the storable message by a factor of 10, and increases the time needed to encode" +
     " and decode.";
             // 
             // checkBoxShowNextTime
@@ -48,9 +48,10 @@
             this.checkBoxShowNextTime.AutoSize = true;
             this.checkBoxShowNextTime.Checked = true;
             this.checkBoxShowNextTime.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxShowNextTime.Location = new System.Drawing.Point(21, 178);
+            this.checkBoxShowNextTime.Location = new System.Drawing.Point(24, 256);
+            this.checkBoxShowNextTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBoxShowNextTime.Name = "checkBoxShowNextTime";
-            this.checkBoxShowNextTime.Size = new System.Drawing.Size(223, 21);
+            this.checkBoxShowNextTime.Size = new System.Drawing.Size(262, 27);
             this.checkBoxShowNextTime.TabIndex = 1;
             this.checkBoxShowNextTime.Text = "Show This Message Next Time";
             this.checkBoxShowNextTime.UseVisualStyleBackColor = true;
@@ -58,9 +59,10 @@
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(21, 138);
+            this.buttonOK.Location = new System.Drawing.Point(24, 198);
+            this.buttonOK.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Size = new System.Drawing.Size(242, 33);
+            this.buttonOK.Size = new System.Drawing.Size(272, 47);
             this.buttonOK.TabIndex = 2;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
@@ -68,12 +70,14 @@
             // 
             // FormLessChars
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 232);
+            this.ClientSize = new System.Drawing.Size(317, 334);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.checkBoxShowNextTime);
             this.Controls.Add(this.label1);
+            this.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.Name = "FormLessChars";
             this.Text = "Warning!";

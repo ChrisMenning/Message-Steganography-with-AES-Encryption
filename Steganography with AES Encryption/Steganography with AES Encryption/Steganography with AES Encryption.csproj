@@ -79,11 +79,11 @@
     <Compile Include="HelpPage.Designer.cs">
       <DependentUpon>HelpPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="lessCharsWarning.cs">
+    <Compile Include="FromLessCharsWarning.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="lessCharsWarning.Designer.cs">
-      <DependentUpon>lessCharsWarning.cs</DependentUpon>
+    <Compile Include="FromLessCharsWarning.Designer.cs">
+      <DependentUpon>FromLessCharsWarning.cs</DependentUpon>
     </Compile>
     <Compile Include="PasswordInputDialog.cs">
       <SubType>Form</SubType>
@@ -117,8 +117,8 @@
     <EmbeddedResource Include="HelpPage.resx">
       <DependentUpon>HelpPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="lessCharsWarning.resx">
-      <DependentUpon>lessCharsWarning.cs</DependentUpon>
+    <EmbeddedResource Include="FromLessCharsWarning.resx">
+      <DependentUpon>FromLessCharsWarning.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PasswordInputDialog.resx">
       <DependentUpon>PasswordInputDialog.cs</DependentUpon>

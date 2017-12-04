@@ -45,6 +45,8 @@ namespace Steganography_with_AES_Encryption
         public FormAdvancedOptions(FormMain main)
         { 
             this.InitializeComponent();
+            this.CenterToParent();
+            this.AcceptButton = this.buttonOK;
             this.main = main;
             this.filePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\AES settings.txt";
 
