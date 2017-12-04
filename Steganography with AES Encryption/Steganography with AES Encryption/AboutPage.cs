@@ -21,9 +21,7 @@ namespace Steganography_with_AES_Encryption
 
         private void frmAboutPage_Load(object sender, EventArgs e)
         {
-
             rtbAboutSection.Text = System.Text.Encoding.Default.GetString(Properties.Resources.README);
-
         }
 
         private void btnCloseAboutPage_Click(object sender, EventArgs e)

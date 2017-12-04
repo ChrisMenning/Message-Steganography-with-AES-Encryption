@@ -34,20 +34,19 @@
             // 
             // labelStaticWait
             // 
-            this.labelStaticWait.AutoSize = true;
-            this.labelStaticWait.Location = new System.Drawing.Point(168, 82);
+            this.labelStaticWait.Location = new System.Drawing.Point(16, 19);
             this.labelStaticWait.Name = "labelStaticWait";
-            this.labelStaticWait.Size = new System.Drawing.Size(97, 23);
+            this.labelStaticWait.Size = new System.Drawing.Size(304, 23);
             this.labelStaticWait.TabIndex = 0;
             this.labelStaticWait.Text = "Please Wait";
+            this.labelStaticWait.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelWaitMessage
             // 
             this.labelWaitMessage.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelWaitMessage.AutoSize = true;
-            this.labelWaitMessage.Location = new System.Drawing.Point(14, 162);
+            this.labelWaitMessage.Location = new System.Drawing.Point(12, 64);
             this.labelWaitMessage.Name = "labelWaitMessage";
-            this.labelWaitMessage.Size = new System.Drawing.Size(76, 23);
+            this.labelWaitMessage.Size = new System.Drawing.Size(308, 98);
             this.labelWaitMessage.TabIndex = 1;
             this.labelWaitMessage.Text = "Message";
             this.labelWaitMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -57,7 +56,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(456, 364);
+            this.ClientSize = new System.Drawing.Size(332, 171);
             this.ControlBox = false;
             this.Controls.Add(this.labelWaitMessage);
             this.Controls.Add(this.labelStaticWait);
@@ -67,7 +66,6 @@
             this.Name = "PleaseWait";
             this.Text = "Processing...";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
