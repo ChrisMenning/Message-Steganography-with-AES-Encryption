@@ -79,7 +79,7 @@ namespace Steganography_with_AES_Encryption
             groupBoxEncode.Location = new Point(5, 208);
 
             // Instantiate Advanced Options once, to load the last encryption settings used.
-            AdvancedOptions ad = new AdvancedOptions(this);
+            FormAdvancedOptions ad = new FormAdvancedOptions(this);
 
             // Instantiate CharacterCompute once at initialization.
             this.charComp = new CharacterCompute(this.pubpicture.Width, this.pubpicture.Height, this);
@@ -541,7 +541,7 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event</param>
         private void AdvancedOptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AdvancedOptions ao = new AdvancedOptions(this);
+            FormAdvancedOptions ao = new FormAdvancedOptions(this);
             ao.ShowDialog();
         }
 
@@ -766,9 +766,25 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event</param>
         private void checkBoxEncryption_CheckedChanged(object sender, EventArgs e)
         {
+            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\showWarning.txt";
+            FormLessChars flc = new FormLessChars();
+
             if (checkBoxEncryption.Checked == true)
             {
                 EncryptionToolStripMenuItem.Checked = true;
+
+                if (!File.Exists(filePath))
+                {
+                    flc.ShowDialog();
+                }
+                else
+                {
+                    string pref = System.IO.File.ReadAllText(filePath);
+                    if (pref == "True")
+                    {
+                        flc.ShowDialog();
+                    }
+                }
             }
             else
             {

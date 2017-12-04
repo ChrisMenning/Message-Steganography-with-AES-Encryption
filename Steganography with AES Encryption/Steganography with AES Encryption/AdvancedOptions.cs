@@ -21,7 +21,7 @@ namespace Steganography_with_AES_Encryption
     /// <summary>
     /// The AdvancedOptions form class. Extends the Form class.
     /// </summary>
-    public partial class AdvancedOptions : Form
+    public partial class FormAdvancedOptions : Form
     {
         /// <summary>
         /// A reference to the main form.
@@ -42,7 +42,7 @@ namespace Steganography_with_AES_Encryption
         /// Initializes a new instance of the AdvancedOptions class.
         /// </summary>
         /// <param name="main">A reference to the main form.</param>
-        public AdvancedOptions(FormMain main)
+        public FormAdvancedOptions(FormMain main)
         { 
             this.InitializeComponent();
             this.main = main;
@@ -87,7 +87,9 @@ namespace Steganography_with_AES_Encryption
         {
             radioButton128.Checked = true;
             this.main.AesKeySize = 16;
-            this.Update();
+            File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\showWarning.txt");
+            File.Delete(this.filePath);
+            this.Update();   
         }
 
         /// <summary>

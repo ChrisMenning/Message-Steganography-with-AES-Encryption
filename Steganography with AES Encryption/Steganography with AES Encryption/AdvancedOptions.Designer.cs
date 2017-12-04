@@ -1,6 +1,6 @@
 ﻿namespace Steganography_with_AES_Encryption
 {
-    partial class AdvancedOptions
+    partial class FormAdvancedOptions
     {
         /// <summary>
         /// Required designer variable.
@@ -127,7 +127,7 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
-            // AdvancedOptions
+            // FormAdvancedOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -137,7 +137,7 @@
             this.Controls.Add(this.checkBoxRememberSettings);
             this.Controls.Add(this.buttonRestoreDefaults);
             this.Controls.Add(this.groupBoxAESKey);
-            this.Name = "AdvancedOptions";
+            this.Name = "FormAdvancedOptions";
             this.Text = "Advanced Options";
             this.groupBoxAESKey.ResumeLayout(false);
             this.groupBoxAESKey.PerformLayout();
