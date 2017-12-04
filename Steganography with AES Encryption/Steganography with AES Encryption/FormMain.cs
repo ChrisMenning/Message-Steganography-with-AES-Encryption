@@ -753,6 +753,21 @@ namespace Steganography_with_AES_Encryption
             }
         }
 
+       
+        /// <summary>
+        /// Checks that the message input textbox has been changed.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
+        private void TextBoxInputMessage_TextChanged(object sender, EventArgs e)
+        {
+            if (this.pictureBoxRaw.Image != null)
+            {
+                this.btnEncodeImage.Enabled = true;
+                labelCharLimit.Text = "Character Limit: " + charComp.CalcRemainingSpace().ToString();
+            }
+        }
+
         /// <summary>
         /// The combo box for choosing an image for encoding.
         /// </summary>
@@ -764,6 +779,7 @@ namespace Steganography_with_AES_Encryption
             {
                 // Open image.
                 this.OpenRawImage();
+                TextBoxInputMessage_TextChanged(sender, e);
             }
             else if (comboBoxImageSelect.SelectedIndex == 1)
             {
@@ -777,31 +793,20 @@ namespace Steganography_with_AES_Encryption
                     btnEncodeImage.Enabled = true;
                 }
                 this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
+                TextBoxInputMessage_TextChanged(sender, e);
             }
             else if (comboBoxImageSelect.SelectedIndex == 2)
             {
                 // Generate Fractal
                 this.GenerateFractal();
                 this.rawImage = (Bitmap)this.pictureBoxRaw.Image;
+                TextBoxInputMessage_TextChanged(sender, e);
             }
             else if (comboBoxImageSelect.SelectedIndex == 3)
             {
                 // Generate Gradient Pattern
                 this.GenerateGradient();
-            }
-        }
-
-        /// <summary>
-        /// Checks that the message input textbox has been changed.
-        /// </summary>
-        /// <param name="sender">The sender</param>
-        /// <param name="e">The event</param>
-        private void TextBoxInputMessage_TextChanged(object sender, EventArgs e)
-        {
-            if (this.pictureBoxRaw.Image != null)
-            {
-                this.btnEncodeImage.Enabled = true;
-                labelCharLimit.Text = "Character Limit: " + charComp.CalcRemainingSpace().ToString();
+                TextBoxInputMessage_TextChanged(sender, e);
             }
         }
 
