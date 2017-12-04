@@ -773,6 +773,9 @@ namespace Steganography_with_AES_Encryption
             {
                 EncryptionToolStripMenuItem.Checked = false;
             }
+
+            textBoxInputMessage.MaxLength = charComp.CalcMax();
+            charComp.CalcRemainingSpace();
         }
 
         /// <summary>
