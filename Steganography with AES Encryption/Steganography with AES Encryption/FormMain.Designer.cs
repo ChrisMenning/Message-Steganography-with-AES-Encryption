@@ -50,6 +50,7 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.checkBoxEncryption = new System.Windows.Forms.CheckBox();
             this.dialogOpenRawImage = new System.Windows.Forms.OpenFileDialog();
             this.dialogSaveImage = new System.Windows.Forms.SaveFileDialog();
@@ -417,7 +418,7 @@ namespace Steganography_with_AES_Encryption
             // 
             this.cutToolStripMenuItem.AutoToolTip = true;
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(156, 28);
             this.cutToolStripMenuItem.Text = "Cut";
             this.cutToolStripMenuItem.ToolTipText = "Cut text (CTRL+X)";
             this.cutToolStripMenuItem.Click += new System.EventHandler(this.CutToolStripMenuItem_Click);
@@ -426,7 +427,7 @@ namespace Steganography_with_AES_Encryption
             // 
             this.copyToolStripMenuItem.AutoToolTip = true;
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(156, 28);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.ToolTipText = "Copy text (CTRL+C)";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.CopyToolStripMenuItem_Click);
@@ -435,7 +436,7 @@ namespace Steganography_with_AES_Encryption
             // 
             this.pasteToolStripMenuItem.AutoToolTip = true;
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(156, 28);
             this.pasteToolStripMenuItem.Text = "Paste";
             this.pasteToolStripMenuItem.ToolTipText = "Paste text (CTRL+V)";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.PasteToolStripMenuItem_Click);
@@ -444,7 +445,7 @@ namespace Steganography_with_AES_Encryption
             // 
             this.deleteToolStripMenuItem.AutoToolTip = true;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(156, 28);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.ToolTipText = "Delete text (DEL)";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
@@ -453,7 +454,7 @@ namespace Steganography_with_AES_Encryption
             // 
             this.selectAllToolStripMenuItem.AutoToolTip = true;
             this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
+            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(156, 28);
             this.selectAllToolStripMenuItem.Text = "Select-All";
             this.selectAllToolStripMenuItem.ToolTipText = "Select-All text (CTRL+A)";
             this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.SelectAllToolStripMenuItem_Click);
@@ -860,6 +861,7 @@ namespace Steganography_with_AES_Encryption
             this.Controls.Add(this.gpbLichensHeader);
             this.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "FormMain";
