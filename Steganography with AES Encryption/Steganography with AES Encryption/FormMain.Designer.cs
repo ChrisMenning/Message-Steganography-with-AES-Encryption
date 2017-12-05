@@ -804,7 +804,7 @@ namespace Steganography_with_AES_Encryption
             this.labelCharLimit.Name = "labelCharLimit";
             this.labelCharLimit.Size = new System.Drawing.Size(214, 30);
             this.labelCharLimit.TabIndex = 9;
-            this.labelCharLimit.Text = "Character Limit: n";
+            this.labelCharLimit.Text = "Character Limit: 0";
             this.labelCharLimit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // textBoxInputMessage
