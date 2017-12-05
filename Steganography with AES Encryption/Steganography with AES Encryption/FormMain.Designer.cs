@@ -143,7 +143,7 @@ namespace Steganography_with_AES_Encryption
             this.checkBoxEncryption.TabIndex = 2;
             this.checkBoxEncryption.Text = "Use Encryption (Slower, but more secure)";
             this.checkBoxEncryption.UseVisualStyleBackColor = true;
-            this.checkBoxEncryption.CheckedChanged += new System.EventHandler(this.checkBoxEncryption_CheckedChanged);
+            this.checkBoxEncryption.CheckedChanged += new System.EventHandler(this.CheckBoxEncryption_CheckedChanged);
             // 
             // dialogOpenRawImage
             // 
@@ -214,13 +214,13 @@ namespace Steganography_with_AES_Encryption
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 7F);
-            this.label3.Location = new System.Drawing.Point(165, 145);
+            this.label3.Location = new System.Drawing.Point(162, 143);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(315, 15);
+            this.label3.Size = new System.Drawing.Size(342, 17);
             this.label3.TabIndex = 34;
             this.label3.Text = "Nathan Beyer | Chris Hoegger | Chris Menning | Leilani Ray";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // pcbLichens
             // 
@@ -516,7 +516,7 @@ namespace Steganography_with_AES_Encryption
             this.whatIsAFractalToolStripMenuItem.Name = "whatIsAFractalToolStripMenuItem";
             this.whatIsAFractalToolStripMenuItem.Size = new System.Drawing.Size(221, 28);
             this.whatIsAFractalToolStripMenuItem.Text = "What is a Fractal?";
-            this.whatIsAFractalToolStripMenuItem.Click += new System.EventHandler(this.whatIsAFractalToolStripMenuItem_Click);
+            this.whatIsAFractalToolStripMenuItem.Click += new System.EventHandler(this.WhatIsAFractalToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 

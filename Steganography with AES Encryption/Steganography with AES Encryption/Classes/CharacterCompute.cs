@@ -39,7 +39,7 @@ namespace Steganography_with_AES_Encryption
         {
             int ret = 0;
 
-            if (Main.getCheckedEncrypt() == false)
+            if (Main.GetCheckedEncrypt() == false)
             {
                 // Without encryption, it's just the (total pixels / 2) minus the 32 bits reserved for storing
                 // information about the length of the message.
@@ -63,12 +63,12 @@ namespace Steganography_with_AES_Encryption
         public int CalcRemainingSpace()
         {
             int ret = 0;
-            ret = CalcMax() - Main.getTextBoxInput().Text.Length;
+            ret = CalcMax() - Main.GetTextBoxInput().Text.Length;
 
             // If the textbox already holds more than the new maximum, truncate it.
-            if (Main.getTextBoxInput().Text.Length > Main.getTextBoxInput().MaxLength)
+            if (Main.GetTextBoxInput().Text.Length > Main.GetTextBoxInput().MaxLength)
             {
-                Main.getTextBoxInput().Text = Main.getTextBoxInput().Text.Substring(0, Main.getTextBoxInput().MaxLength);
+                Main.GetTextBoxInput().Text = Main.GetTextBoxInput().Text.Substring(0, Main.GetTextBoxInput().MaxLength);
             }
 
             return ret;

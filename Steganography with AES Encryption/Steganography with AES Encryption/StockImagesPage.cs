@@ -156,7 +156,7 @@
             try
             {
                 main.Pubpicture.Image = selectedImage;
-                main.getTextBoxInput().MaxLength = charComp.CalcMax();
+                main.GetTextBoxInput().MaxLength = charComp.CalcMax();
             }
             catch (Exception ex)
             {
