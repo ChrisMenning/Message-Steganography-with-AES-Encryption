@@ -364,31 +364,43 @@ namespace Steganography_with_AES_Encryption
                 PasswordInputDialog pwid = new PasswordInputDialog(this);
                 pwid.ShowDialog();
 
-                // Instantiate the Encrypter and pass in the message and password.
-                AESEncrypt aes = new AESEncrypt(ascii, this.password, this);
+                try {
+                    // Instantiate the Encrypter and pass in the message and password.
+                    AESEncrypt aes = new AESEncrypt(ascii, this.password, this);
 
-                // Encrypt the message.
-                aes.EncryptMessage();
+                    // Encrypt the message.
+                    aes.EncryptMessage();
 
-                this.Update();
+                    this.Update();
 
-                // Instantiate the Bitmap Encoder, passing in the raw image and the Initialization Vector from 
-                // the AES encrypter.
-                this.bmpEnc = new BitmapEncoder(this.rawImage, aes.InitializationVector);
+                    // Instantiate the Bitmap Encoder, passing in the raw image and the Initialization Vector from 
+                    // the AES encrypter.
+                    this.bmpEnc = new BitmapEncoder(this.rawImage, aes.InitializationVector);
 
-                // Console.WriteLine("Encrypted string is " + aes.EncryptedMessageString().Length + " characters long.");
+                    // Console.WriteLine("Encrypted string is " + aes.EncryptedMessageString().Length + " characters long.");
 
-                // Now pass the encrypted message into the bitmap encoder, hiding the message in the image.
-                string toBeEncoded = aes.EncryptedMessageString();
-                this.encodedImage = this.bmpEnc.Encoder(toBeEncoded);
+                    // Now pass the encrypted message into the bitmap encoder, hiding the message in the image.
+                    string toBeEncoded = aes.EncryptedMessageString();
+                    this.encodedImage = this.bmpEnc.Encoder(toBeEncoded);
+                }
+                catch {
+                    MessageBox.Show("Encryption failed. Please try a different message or a different image.");
+                }
+                
             }
             else
             {
-                // Instantiate a bitmap encoder, passing the raw image into it.
-                this.bmpEnc = new BitmapEncoder(this.rawImage);
+                try {
+                    // Instantiate a bitmap encoder, passing the raw image into it.
+                    this.bmpEnc = new BitmapEncoder(this.rawImage);
 
-                // Pass the un-encrypted message into the encoder, hiding the message in the image.
-                this.encodedImage = this.bmpEnc.Encoder(ascii);
+                    // Pass the un-encrypted message into the encoder, hiding the message in the image.
+                    this.encodedImage = this.bmpEnc.Encoder(ascii);
+                }
+                catch {
+                    MessageBox.Show("Encoding failed. Please try a different message or a different image.");
+                }
+                
             }
 
             // Save the image.
@@ -416,55 +428,68 @@ namespace Steganography_with_AES_Encryption
                 // Instantiate an image decoder.
                 this.imgDec = new BitmapDecoder();
 
-                // Decode the message from the image.
-                this.imgDec.Decoder(this.encodedImage);
+                try {
 
-                // Declare a list of strings, returned from the image decoder.
-                // These are the 1s and 0s, grouped into 8-digit bytes, as strings.
-                List<string> byteStringsFromImage = this.imgDec.BytesList;
+                    // Decode the message from the image.
+                    this.imgDec.Decoder(this.encodedImage);
 
-                // In that list of bytes, the Initialization Vector is stored in the first 16 bytes.
-                // Assign the IV to a byte array.
-                byte[] derivedIV = new byte[16];
+                    // Declare a list of strings, returned from the image decoder.
+                    // These are the 1s and 0s, grouped into 8-digit bytes, as strings.
+                    List<string> byteStringsFromImage = this.imgDec.BytesList;
 
-                for (int i = 0; i < 16; i++)
-                {
-                    derivedIV[i] = Convert.ToByte(this.imgDec.BytesList[i], 2);
+                    // In that list of bytes, the Initialization Vector is stored in the first 16 bytes.
+                    // Assign the IV to a byte array.
+                    byte[] derivedIV = new byte[16];
+
+                    for (int i = 0; i < 16; i++)
+                    {
+                        derivedIV[i] = Convert.ToByte(this.imgDec.BytesList[i], 2);
+                    }
+
+                    this.Update();
+
+                    // Instantiate a new AESDecrypt object, and pass in a reference to the main form.
+                    AESDecrypt aes = new AESDecrypt(this);
+
+                    // Erase IV from bytesFomImage list. This doesn't need to appear alongside
+                    // the decoded message.
+                    for (int i = 0; i < 16; i++)
+                    {
+                        // remove the first from the list, 16, 24, or 32 times.
+                        byteStringsFromImage.RemoveAt(0);
+                    }
+
+                    // Convert the List of binary strings into a byte array.
+                    int c = byteStringsFromImage.Count;
+                    byte[] bytesFromImage = new byte[c];
+                    for (int i = 0; i < c; i++)
+                    {
+                        bytesFromImage[i] = Convert.ToByte(byteStringsFromImage[i], 2);
+                    }
+
+                    // Pull the first byte from the list. Convert this byte to an int. This should
+                    // represent how many bytes are in the message, which should correspond to the length of the
+                    // message, because in ASCII 1 char is 1 byte.
+                    int messageLength = bytesFromImage[0];
+
+                    // Pass the byteStringsToBytes byte array, encryption key, and derived IV to the decrypter.
+                    textBoxOutputMessage.Text = aes.DecryptStringFromBytes_Aes(bytesFromImage, passwordHandler.EncryptionKey, derivedIV);
+                }
+                catch {
+                    MessageBox.Show("There is something wrong with this image. \n It is possible there is no hidden message, \n or the wrong encryption is being used for decoding.");
                 }
 
-                this.Update();
-
-                // Instantiate a new AESDecrypt object, and pass in a reference to the main form.
-                AESDecrypt aes = new AESDecrypt(this);
-
-                // Erase IV from bytesFomImage list. This doesn't need to appear alongside
-                // the decoded message.
-                for (int i = 0; i < 16; i++)
-                {
-                    // remove the first from the list, 16, 24, or 32 times.
-                    byteStringsFromImage.RemoveAt(0);
-                }
-
-                // Convert the List of binary strings into a byte array.
-                int c = byteStringsFromImage.Count;
-                byte[] bytesFromImage = new byte[c];
-                for (int i = 0; i < c; i++)
-                {
-                    bytesFromImage[i] = Convert.ToByte(byteStringsFromImage[i], 2);
-                }
-
-                // Pull the first byte from the list. Convert this byte to an int. This should
-                // represent how many bytes are in the message, which should correspond to the length of the
-                // message, because in ASCII 1 char is 1 byte.
-                int messageLength = bytesFromImage[0];
-
-                // Pass the byteStringsToBytes byte array, encryption key, and derived IV to the decrypter.
-                textBoxOutputMessage.Text = aes.DecryptStringFromBytes_Aes(bytesFromImage, passwordHandler.EncryptionKey, derivedIV);
             }
             else
             {
-                this.imgDec = new BitmapDecoder();
-                this.textBoxOutputMessage.Text = this.imgDec.Decoder(this.encodedImage);
+                try {
+                    this.imgDec = new BitmapDecoder();
+                    this.textBoxOutputMessage.Text = this.imgDec.Decoder(this.encodedImage);
+                }
+                catch {
+                    MessageBox.Show("There is something wrong with this image. \n It is possible there is no hidden message, \n or the wrong encryption is being used for decoding.");
+                }
+
             }
 
             saveDecodedMessageToolStripMenuItem.Enabled = true;
