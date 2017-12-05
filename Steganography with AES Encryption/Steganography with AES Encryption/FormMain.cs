@@ -280,6 +280,7 @@ namespace Steganography_with_AES_Encryption
         {
             saveDecodedMessageToolStripMenuItem.Enabled = false;
             buttonSaveText.Enabled = false;
+            textBoxOutputMessage.Clear();
 
             this.dialogOpenRawImage.Filter = "PNG Image|*.png";
             this.dialogOpenRawImage.ShowHelp = true;
