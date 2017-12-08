@@ -20,8 +20,9 @@
 
         public frmStockImagesPage(FormMain main)
         {
-            this.main = main;
             InitializeComponent();
+            this.main = main;
+            this.CenterToParent();
         }
 
         private void btnStockImagesClose_Click(object sender, EventArgs e)
