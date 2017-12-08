@@ -775,7 +775,7 @@ namespace Steganography_with_AES_Encryption
             if (radioButtonEncode.Checked)
             {
                 groupBoxEncode.Location = new Point(5, 208);
-                this.AcceptButton = this.btnEncodeImage;
+                // this.AcceptButton = this.btnEncodeImage;
             }
             else
             {
