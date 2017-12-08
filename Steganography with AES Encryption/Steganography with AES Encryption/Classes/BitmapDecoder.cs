@@ -154,13 +154,13 @@ namespace Steganography_with_AES_Encryption
             this.decodedText = new StringBuilder();
             for (int i = 0; i < this.bytesList.Count; i++)
             {
-                // Console.WriteLine(bytesList[i]);
-                if (int.Parse(this.bytesList[i]) > 255)
+                char c = (char)Convert.ToByte(this.bytesList[i], 2);
+                if (c > 127)
                 {
                     MessageBox.Show("It looks like the message might be encrypted. \n Try again with encryption turned on.");
                     break;
                 }
-                char c = (char)Convert.ToByte(this.bytesList[i], 2);
+                
                 this.decodedText.Append(c);
             }
 

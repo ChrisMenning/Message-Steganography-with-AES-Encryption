@@ -207,18 +207,21 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         private void RepetativeRawImageTasks()
         {
-            this.pictureBoxRaw.Image = this.rawImage;
-            this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
-            textBoxInputMessage.MaxLength = this.charComp.CalcMax();
-            this.charComp.CalcRemainingSpace();
-            labelCharLimit.Text = "Character Limit: " + this.charComp.CalcRemainingSpace().ToString();
-            saveEncodedImageToolStripMenuItem.Enabled = false;
-            if (textBoxInputMessage.Text.Length > 0)
+            if (this.rawImage.Width * this.rawImage.Height < 15)
             {
-                btnEncodeImage.Enabled = true;
-            }
+                this.pictureBoxRaw.Image = this.rawImage;
+                this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
+                textBoxInputMessage.MaxLength = this.charComp.CalcMax();
+                this.charComp.CalcRemainingSpace();
+                labelCharLimit.Text = "Character Limit: " + this.charComp.CalcRemainingSpace().ToString();
+                saveEncodedImageToolStripMenuItem.Enabled = false;
+                if (textBoxInputMessage.Text.Length > 0)
+                {
+                    btnEncodeImage.Enabled = true;
+                }
 
-            this.Update();
+                this.Update();
+            }
         }
 
         /// <summary>
