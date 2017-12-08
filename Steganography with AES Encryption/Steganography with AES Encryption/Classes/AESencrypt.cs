@@ -91,12 +91,12 @@ namespace Steganography_with_AES_Encryption
         {
             get
             {
-                return aesKey;
+                return this.aesKey;
             }
 
             set
             {
-                aesKey = value;
+                this.aesKey = value;
             }
         }
 

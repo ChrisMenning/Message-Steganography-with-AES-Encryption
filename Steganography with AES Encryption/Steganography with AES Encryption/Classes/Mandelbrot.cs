@@ -76,7 +76,7 @@ namespace Steganography_with_AES_Encryption
             Zr = 0;
             Zim = rnd.NextDouble();
             Z2r = rnd.NextDouble();
-            Z2im = rnd.NextDouble();
+            Z2im = 0;
 
             // Calculate the values.
             int num_colors = Colors.Count;

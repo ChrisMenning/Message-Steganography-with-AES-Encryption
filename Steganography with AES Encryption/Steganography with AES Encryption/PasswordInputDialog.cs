@@ -47,8 +47,19 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event</param>
         private void ButtonOK_Click(object sender, EventArgs e)
         {
-            this.main.Password = textBoxInput.Text;
-            this.Close();
+            if (textBoxInput.Text == null)
+            {
+                MessageBox.Show("Password can not be blank.");
+            }
+            else if (textBoxInput.Text.Length < 4)
+            {
+                MessageBox.Show("Password must be at least 4 characters long.");
+            }
+            else
+            {
+                this.main.Password = textBoxInput.Text;
+                this.Close();
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Steganography_with_AES_Encryption
 {
-    partial class PasswordInputDialog
+    partial class FormLessChars
     {
         /// <summary>
         /// Required designer variable.
@@ -28,54 +28,60 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBoxInput = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.checkBoxShowNextTime = new System.Windows.Forms.CheckBox();
             this.buttonOK = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBoxInput
-            // 
-            this.textBoxInput.Location = new System.Drawing.Point(14, 93);
-            this.textBoxInput.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxInput.Name = "textBoxInput";
-            this.textBoxInput.PasswordChar = '*';
-            this.textBoxInput.Size = new System.Drawing.Size(339, 30);
-            this.textBoxInput.TabIndex = 0;
-            // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 33);
+            this.label1.Location = new System.Drawing.Point(20, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(307, 23);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Please enter a password or passphrase.";
+            this.label1.Size = new System.Drawing.Size(276, 155);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Using encryption makes your message more secure, but it also limits the length of" +
+    " the storable message by a factor of 10, and increases the time needed to encode" +
+    " and decode.";
+            // 
+            // checkBoxShowNextTime
+            // 
+            this.checkBoxShowNextTime.AutoSize = true;
+            this.checkBoxShowNextTime.Checked = true;
+            this.checkBoxShowNextTime.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxShowNextTime.Location = new System.Drawing.Point(24, 256);
+            this.checkBoxShowNextTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.checkBoxShowNextTime.Name = "checkBoxShowNextTime";
+            this.checkBoxShowNextTime.Size = new System.Drawing.Size(262, 27);
+            this.checkBoxShowNextTime.TabIndex = 1;
+            this.checkBoxShowNextTime.Text = "Show This Message Next Time";
+            this.checkBoxShowNextTime.UseVisualStyleBackColor = true;
+            this.checkBoxShowNextTime.CheckedChanged += new System.EventHandler(this.checkBoxShowNextTime_CheckedChanged);
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(14, 134);
+            this.buttonOK.Location = new System.Drawing.Point(24, 198);
             this.buttonOK.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Size = new System.Drawing.Size(340, 50);
+            this.buttonOK.Size = new System.Drawing.Size(272, 47);
             this.buttonOK.TabIndex = 2;
-            this.buttonOK.Text = "&OK";
+            this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
-            this.buttonOK.Click += new System.EventHandler(this.ButtonOK_Click);
+            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
-            // PasswordInputDialog
+            // FormLessChars
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(376, 208);
-            this.ControlBox = false;
+            this.ClientSize = new System.Drawing.Size(317, 334);
             this.Controls.Add(this.buttonOK);
+            this.Controls.Add(this.checkBoxShowNextTime);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBoxInput);
             this.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "PasswordInputDialog";
-            this.Text = "Please Enter Password";
+            this.MaximizeBox = false;
+            this.Name = "FormLessChars";
+            this.Text = "Warning!";
+            this.Load += new System.EventHandler(this.formLessChars_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -83,8 +89,8 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBoxInput;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox checkBoxShowNextTime;
         private System.Windows.Forms.Button buttonOK;
     }
 }

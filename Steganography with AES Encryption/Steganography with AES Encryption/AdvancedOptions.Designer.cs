@@ -1,6 +1,6 @@
 ﻿namespace Steganography_with_AES_Encryption
 {
-    partial class AdvancedOptions
+    partial class FormAdvancedOptions
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBoxAESBlock = new System.Windows.Forms.GroupBox();
+            this.groupBoxAESKey = new System.Windows.Forms.GroupBox();
             this.radioButton256 = new System.Windows.Forms.RadioButton();
             this.radioButton192 = new System.Windows.Forms.RadioButton();
             this.radioButton128 = new System.Windows.Forms.RadioButton();
@@ -36,27 +36,30 @@
             this.checkBoxRememberSettings = new System.Windows.Forms.CheckBox();
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.groupBoxAESBlock.SuspendLayout();
+            this.groupBoxAESKey.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBoxAESBlock
+            // groupBoxAESKey
             // 
-            this.groupBoxAESBlock.Controls.Add(this.radioButton256);
-            this.groupBoxAESBlock.Controls.Add(this.radioButton192);
-            this.groupBoxAESBlock.Controls.Add(this.radioButton128);
-            this.groupBoxAESBlock.Location = new System.Drawing.Point(12, 12);
-            this.groupBoxAESBlock.Name = "groupBoxAESBlock";
-            this.groupBoxAESBlock.Size = new System.Drawing.Size(330, 100);
-            this.groupBoxAESBlock.TabIndex = 2;
-            this.groupBoxAESBlock.TabStop = false;
-            this.groupBoxAESBlock.Text = "AES block size";
+            this.groupBoxAESKey.Controls.Add(this.radioButton256);
+            this.groupBoxAESKey.Controls.Add(this.radioButton192);
+            this.groupBoxAESKey.Controls.Add(this.radioButton128);
+            this.groupBoxAESKey.Location = new System.Drawing.Point(14, 17);
+            this.groupBoxAESKey.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBoxAESKey.Name = "groupBoxAESKey";
+            this.groupBoxAESKey.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBoxAESKey.Size = new System.Drawing.Size(371, 122);
+            this.groupBoxAESKey.TabIndex = 2;
+            this.groupBoxAESKey.TabStop = false;
+            this.groupBoxAESKey.Text = "AES key size";
             // 
             // radioButton256
             // 
             this.radioButton256.AutoSize = true;
-            this.radioButton256.Location = new System.Drawing.Point(238, 48);
+            this.radioButton256.Location = new System.Drawing.Point(267, 48);
+            this.radioButton256.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButton256.Name = "radioButton256";
-            this.radioButton256.Size = new System.Drawing.Size(79, 21);
+            this.radioButton256.Size = new System.Drawing.Size(90, 27);
             this.radioButton256.TabIndex = 2;
             this.radioButton256.TabStop = true;
             this.radioButton256.Text = "256 bits";
@@ -65,9 +68,10 @@
             // radioButton192
             // 
             this.radioButton192.AutoSize = true;
-            this.radioButton192.Location = new System.Drawing.Point(128, 48);
+            this.radioButton192.Location = new System.Drawing.Point(143, 48);
+            this.radioButton192.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButton192.Name = "radioButton192";
-            this.radioButton192.Size = new System.Drawing.Size(79, 21);
+            this.radioButton192.Size = new System.Drawing.Size(90, 27);
             this.radioButton192.TabIndex = 1;
             this.radioButton192.TabStop = true;
             this.radioButton192.Text = "192 bits";
@@ -76,9 +80,10 @@
             // radioButton128
             // 
             this.radioButton128.AutoSize = true;
-            this.radioButton128.Location = new System.Drawing.Point(20, 48);
+            this.radioButton128.Location = new System.Drawing.Point(21, 48);
+            this.radioButton128.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButton128.Name = "radioButton128";
-            this.radioButton128.Size = new System.Drawing.Size(79, 21);
+            this.radioButton128.Size = new System.Drawing.Size(90, 27);
             this.radioButton128.TabIndex = 0;
             this.radioButton128.TabStop = true;
             this.radioButton128.Text = "128 bits";
@@ -86,9 +91,10 @@
             // 
             // buttonRestoreDefaults
             // 
-            this.buttonRestoreDefaults.Location = new System.Drawing.Point(12, 151);
+            this.buttonRestoreDefaults.Location = new System.Drawing.Point(14, 198);
+            this.buttonRestoreDefaults.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonRestoreDefaults.Name = "buttonRestoreDefaults";
-            this.buttonRestoreDefaults.Size = new System.Drawing.Size(99, 42);
+            this.buttonRestoreDefaults.Size = new System.Drawing.Size(111, 60);
             this.buttonRestoreDefaults.TabIndex = 3;
             this.buttonRestoreDefaults.Text = "Restore Defaults";
             this.buttonRestoreDefaults.UseVisualStyleBackColor = true;
@@ -99,9 +105,10 @@
             this.checkBoxRememberSettings.AutoSize = true;
             this.checkBoxRememberSettings.Checked = true;
             this.checkBoxRememberSettings.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxRememberSettings.Location = new System.Drawing.Point(12, 124);
+            this.checkBoxRememberSettings.Location = new System.Drawing.Point(14, 159);
+            this.checkBoxRememberSettings.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBoxRememberSettings.Name = "checkBoxRememberSettings";
-            this.checkBoxRememberSettings.Size = new System.Drawing.Size(160, 21);
+            this.checkBoxRememberSettings.Size = new System.Drawing.Size(187, 27);
             this.checkBoxRememberSettings.TabIndex = 4;
             this.checkBoxRememberSettings.Text = "Remember settings?";
             this.checkBoxRememberSettings.UseVisualStyleBackColor = true;
@@ -109,9 +116,10 @@
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(129, 151);
+            this.buttonOK.Location = new System.Drawing.Point(145, 198);
+            this.buttonOK.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Size = new System.Drawing.Size(99, 42);
+            this.buttonOK.Size = new System.Drawing.Size(111, 60);
             this.buttonOK.TabIndex = 5;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
@@ -119,35 +127,38 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(243, 151);
+            this.buttonCancel.Location = new System.Drawing.Point(273, 198);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(99, 42);
+            this.buttonCancel.Size = new System.Drawing.Size(111, 60);
             this.buttonCancel.TabIndex = 6;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
-            // AdvancedOptions
+            // FormAdvancedOptions
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(358, 210);
+            this.ClientSize = new System.Drawing.Size(403, 283);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.checkBoxRememberSettings);
             this.Controls.Add(this.buttonRestoreDefaults);
-            this.Controls.Add(this.groupBoxAESBlock);
-            this.Name = "AdvancedOptions";
+            this.Controls.Add(this.groupBoxAESKey);
+            this.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Name = "FormAdvancedOptions";
             this.Text = "Advanced Options";
-            this.groupBoxAESBlock.ResumeLayout(false);
-            this.groupBoxAESBlock.PerformLayout();
+            this.groupBoxAESKey.ResumeLayout(false);
+            this.groupBoxAESKey.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.GroupBox groupBoxAESBlock;
+        private System.Windows.Forms.GroupBox groupBoxAESKey;
         private System.Windows.Forms.RadioButton radioButton256;
         private System.Windows.Forms.RadioButton radioButton192;
         private System.Windows.Forms.RadioButton radioButton128;

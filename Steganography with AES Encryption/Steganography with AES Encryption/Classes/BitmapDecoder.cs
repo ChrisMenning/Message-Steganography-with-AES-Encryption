@@ -14,7 +14,9 @@ namespace Steganography_with_AES_Encryption
     using System.Drawing;
     using System.Linq;
     using System.Text;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+    using System.Windows.Forms;
 
     /// <summary>
     /// The BitmapDecoder Class.
@@ -112,16 +114,6 @@ namespace Steganography_with_AES_Encryption
         }
 
         /// <summary>
-        /// Accepts a byte, determines if it is even or odd, and adds either a 1 or 0 to the bytesFromImage list.
-        /// </summary>
-        /// <param name="colorChannel">A byte that should come from a color channel</param>
-        /// <returns>The last bit of any byte.</returns>
-        public int LastBitFromColorChannel(byte colorChannel)
-        {
-            return colorChannel % 2;
-        }
-
-        /// <summary>
         /// Accepts a bitmap and decodes the message hidden in the LSB of each color channel of each pixel.
         /// </summary>
         /// <param name="encoded">The bitmap with a hidden message in it.</param>
@@ -139,10 +131,10 @@ namespace Steganography_with_AES_Encryption
                     Color pixelColor = this.EncodedImage.GetPixel(column, row);
 
                     // Pull the last bit out of each color channel and concatenate them onto the bitsFromImage list.
-                    this.bitsFromImage.Add(this.LastBitFromColorChannel(pixelColor.A));
-                    this.bitsFromImage.Add(this.LastBitFromColorChannel(pixelColor.R));
-                    this.bitsFromImage.Add(this.LastBitFromColorChannel(pixelColor.G));
-                    this.bitsFromImage.Add(this.LastBitFromColorChannel(pixelColor.B));
+                    this.bitsFromImage.Add(pixelColor.A % 2);
+                    this.bitsFromImage.Add(pixelColor.R % 2);
+                    this.bitsFromImage.Add(pixelColor.G % 2);
+                    this.bitsFromImage.Add(pixelColor.B % 2);
                 }
             }
 
@@ -163,7 +155,13 @@ namespace Steganography_with_AES_Encryption
             for (int i = 0; i < this.bytesList.Count; i++)
             {
                 // Console.WriteLine(bytesList[i]);
-                this.decodedText.Append((char)Convert.ToByte(this.bytesList[i], 2));
+                if (int.Parse(this.bytesList[i]) > 255)
+                {
+                    MessageBox.Show("It looks like the message might be encrypted. \n Try again with encryption turned on.");
+                    break;
+                }
+                char c = (char)Convert.ToByte(this.bytesList[i], 2);
+                this.decodedText.Append(c);
             }
 
             // Update the output textbox's text.

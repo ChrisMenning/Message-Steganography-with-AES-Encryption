@@ -21,32 +21,7 @@ namespace Steganography_with_AES_Encryption
 
         private void frmAboutPage_Load(object sender, EventArgs e)
         {
-            
-
-            string path = Directory.GetCurrentDirectory();
-            for(int i = 1; i <= 2; i++)
-            {
-                path = Directory.GetParent(path).ToString();
-            }
-            
-            path += "\\Resources\\README.md";        
-
-            try
-            {
-                using (StreamReader reader = new StreamReader(path))
-                {
-                    String message = reader.ReadToEnd();
-                    rtbAboutSection.Text = message;
-                    reader.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("There was a problem opening the READEME.md file\nError Message: " + ex.Message);
-                rtbAboutSection.Text = "There was a problem opening the READEME.md file\nError Message: " + ex.Message;
-            }
-
-            
+            rtbAboutSection.Text = System.Text.Encoding.Default.GetString(Properties.Resources.README);
         }
 
         private void btnCloseAboutPage_Click(object sender, EventArgs e)

@@ -44,8 +44,10 @@ namespace Steganography_with_AES_Encryption
         /// Declare the image decoder
         /// </summary>
         private BitmapDecoder imgDec;
-
-
+        
+        /// <summary>
+        /// Declare the character compute.
+        /// </summary>
         private CharacterCompute charComp;
 
         /// <summary>
@@ -80,7 +82,7 @@ namespace Steganography_with_AES_Encryption
             groupBoxEncode.Location = new Point(5, 208);
 
             // Instantiate Advanced Options once, to load the last encryption settings used.
-            AdvancedOptions ad = new AdvancedOptions(this);
+            FormAdvancedOptions ad = new FormAdvancedOptions(this);
 
             // Instantiate CharacterCompute once at initialization.
             this.charComp = new CharacterCompute(this.pubpicture.Width, this.pubpicture.Height, this);
@@ -134,20 +136,34 @@ namespace Steganography_with_AES_Encryption
             }
         }
 
-        public TextBox getTextBoxInput() {
+        /// <summary>
+        /// Gets the TextBox input text.
+        /// </summary>
+        /// <returns>A TextBox</returns>
+        public TextBox GetTextBoxInput()
+        {
             return this.textBoxInputMessage;
         }
-            
+
+        /// <summary>
+        /// Gets the status of the "Use Encryption" checkbox.
+        /// </summary>
+        /// <returns>A boolean</returns>
+        public bool GetCheckedEncrypt()
+        {
+            return this.checkBoxEncryption.Checked;
+        }
 
         /// <summary>
         /// Accepts unicode and outputs ascii.
         /// </summary>
         /// <param name="inputUnicode">A string.</param>
         /// <returns>Another string.</returns>
-        public string UnicodeToAscii(string inputUnicode)
+        private string UnicodeToAscii(string inputUnicode)
         {
             // Force string to be ASCII in case there is other encoding (UTF-8, etc) contained therein.
-            // Non-ASCII chars may be more than one byte long, but this method can only handle one byte at this time.
+            // Non-ASCII chars may be more than one byte long, but the encoder and decoder can only handle
+            // one byte at this time.
             Encoding ascii = Encoding.ASCII;
             Encoding unicode = Encoding.Unicode;
 
@@ -180,9 +196,29 @@ namespace Steganography_with_AES_Encryption
             this.pictureBoxEncoded.Image = null;
             this.bmpEnc = null;
             this.imgDec = null;
+            this.textBoxInputMessage.MaxLength = 0;
 
             btnEncodeImage.Enabled = false;
             btnDecode.Enabled = false;
+        }
+
+        /// <summary>
+        /// A method that sets many of the common traits across input images.
+        /// </summary>
+        private void RepetativeRawImageTasks()
+        {
+            this.pictureBoxRaw.Image = this.rawImage;
+            this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
+            textBoxInputMessage.MaxLength = this.charComp.CalcMax();
+            this.charComp.CalcRemainingSpace();
+            labelCharLimit.Text = "Character Limit: " + this.charComp.CalcRemainingSpace().ToString();
+            saveEncodedImageToolStripMenuItem.Enabled = false;
+            if (textBoxInputMessage.Text.Length > 0)
+            {
+                btnEncodeImage.Enabled = true;
+            }
+
+            this.Update();
         }
 
         /// <summary>
@@ -197,16 +233,64 @@ namespace Steganography_with_AES_Encryption
             this.dialogOpenRawImage.FileName = string.Empty;
             if (this.dialogOpenRawImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                this.rawImage = new Bitmap(Bitmap.FromFile(this.dialogOpenRawImage.FileName));
-                this.pictureBoxRaw.Image = this.rawImage;
-                this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
-                textBoxInputMessage.MaxLength = charComp.CalcMax();
+                try
+                {
+                    this.rawImage = new Bitmap(Bitmap.FromFile(this.dialogOpenRawImage.FileName));
+                    this.RepetativeRawImageTasks();
+                }
+                catch
+                {
+                    MessageBox.Show("That does not appear to be a supported image file.");
+                }
             }
+        }
 
-            saveEncodedImageToolStripMenuItem.Enabled = false;
-            if (textBoxInputMessage.Text.Length > 0)
+        /// <summary>
+        /// Generates a fractal and places it into the picture box.
+        /// </summary>
+        private void GenerateFractal()
+        {
+            PleaseWait pw = new PleaseWait("Generating Fractal.");
+            pw.Show();
+            pw.Update();
+            Cursor.Current = Cursors.WaitCursor;
+            Mandelbrot mb = new Mandelbrot();
+            Bitmap fractal = mb.DrawMandelbrot(1000, 1000);
+            this.rawImage = fractal;
+            pw.Close();
+            Cursor.Current = Cursors.Default;
+            this.RepetativeRawImageTasks();
+        }
+
+        /// <summary>
+        /// Generates a gradient pattern and places it into the picture box.
+        /// </summary>
+        private void GenerateGradient()
+        {
+            radioButtonEncode.Checked = true;
+            Gradient generator = new Gradient();
+            PleaseWait pw = new PleaseWait("Generating Gradient.");
+            pw.Show();
+            pw.Update();
+            Cursor.Current = Cursors.WaitCursor;
+            this.rawImage = generator.GenerateGradient(1000, 1000, 34, 23, 12, 13);
+            pw.Close();
+            Cursor.Current = Cursors.Default;
+            this.RepetativeRawImageTasks();
+        }
+
+        /// <summary>
+        /// A method that calls the StockPhoto form.
+        /// </summary>
+        private void SelectStockPhoto()
+        {
+            frmStockImagesPage stockImage = new frmStockImagesPage(this);
+            stockImage.ShowDialog();
+
+            if (this.pictureBoxRaw.Image != null)
             {
-                btnEncodeImage.Enabled = true;
+                this.rawImage = (Bitmap)this.pictureBoxRaw.Image;
+                this.RepetativeRawImageTasks();
             }
         }
 
@@ -217,19 +301,26 @@ namespace Steganography_with_AES_Encryption
         {
             saveDecodedMessageToolStripMenuItem.Enabled = false;
             buttonSaveText.Enabled = false;
+            textBoxOutputMessage.Clear();
 
             this.dialogOpenRawImage.Filter = "PNG Image|*.png";
             this.dialogOpenRawImage.ShowHelp = true;
             this.dialogOpenRawImage.FileName = "*.png";
             if (this.dialogOpenRawImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                this.encodedImage = new Bitmap(this.dialogOpenRawImage.FileName);
-                this.pictureBoxEncoded.Image = this.encodedImage;
-                this.btnDecode.Enabled = true;
+                try
+                {
+                    this.encodedImage = new Bitmap(this.dialogOpenRawImage.FileName);
+                    this.pictureBoxEncoded.Image = this.encodedImage;
+                    this.btnDecode.Enabled = true;
+                }
+                catch (ArgumentException e)
+                {
+                    MessageBox.Show("Invalid file. " + e);
+                }
             }
 
             saveEncodedImageToolStripMenuItem.Enabled = false;
-
         }
 
         /// <summary>
@@ -246,7 +337,14 @@ namespace Steganography_with_AES_Encryption
             
             if (dialogSaveImage.FileName != string.Empty)
             {
-                this.encodedImage.Save(dialogSaveImage.FileName, System.Drawing.Imaging.ImageFormat.Png);
+                try
+                {
+                    this.encodedImage.Save(dialogSaveImage.FileName, System.Drawing.Imaging.ImageFormat.Png);
+                }
+                catch
+                {
+                    MessageBox.Show("Something's not right.");
+                }
             }
         }
 
@@ -286,31 +384,45 @@ namespace Steganography_with_AES_Encryption
                 PasswordInputDialog pwid = new PasswordInputDialog(this);
                 pwid.ShowDialog();
 
-                // Instantiate the Encrypter and pass in the message and password.
-                AESEncrypt aes = new AESEncrypt(ascii, this.password, this);
+                try
+                {
+                    // Instantiate the Encrypter and pass in the message and password.
+                    AESEncrypt aes = new AESEncrypt(ascii, this.password, this);
 
-                // Encrypt the message.
-                aes.EncryptMessage();
+                    // Encrypt the message.
+                    aes.EncryptMessage();
 
-                this.Update();
+                    this.Update();
 
-                // Instantiate the Bitmap Encoder, passing in the raw image and the Initialization Vector from 
-                // the AES encrypter.
-                this.bmpEnc = new BitmapEncoder(this.rawImage, aes.InitializationVector);
+                    // Instantiate the Bitmap Encoder, passing in the raw image and the Initialization Vector from 
+                    // the AES encrypter.
+                    this.bmpEnc = new BitmapEncoder(this.rawImage, aes.InitializationVector);
 
-                // Console.WriteLine("Encrypted string is " + aes.EncryptedMessageString().Length + " characters long.");
+                    // Console.WriteLine("Encrypted string is " + aes.EncryptedMessageString().Length + " characters long.");
 
-                // Now pass the encrypted message into the bitmap encoder, hiding the message in the image.
-                string toBeEncoded = aes.EncryptedMessageString();
-                this.encodedImage = this.bmpEnc.Encoder(toBeEncoded);
+                    // Now pass the encrypted message into the bitmap encoder, hiding the message in the image.
+                    string toBeEncoded = aes.EncryptedMessageString();
+                    this.encodedImage = this.bmpEnc.Encoder(toBeEncoded);
+                }
+                catch
+                {
+                    MessageBox.Show("Encryption failed. Please try a different message or a different image.");
+                }
             }
             else
             {
-                // Instantiate a bitmap encoder, passing the raw image into it.
-                this.bmpEnc = new BitmapEncoder(this.rawImage);
+                try
+                {
+                    // Instantiate a bitmap encoder, passing the raw image into it.
+                    this.bmpEnc = new BitmapEncoder(this.rawImage);
 
-                // Pass the un-encrypted message into the encoder, hiding the message in the image.
-                this.encodedImage = this.bmpEnc.Encoder(ascii);
+                    // Pass the un-encrypted message into the encoder, hiding the message in the image.
+                    this.encodedImage = this.bmpEnc.Encoder(ascii);
+                }
+                catch
+                {
+                    MessageBox.Show("Encoding failed. Please try a different message or a different image.");
+                }
             }
 
             // Save the image.
@@ -338,126 +450,84 @@ namespace Steganography_with_AES_Encryption
                 // Instantiate an image decoder.
                 this.imgDec = new BitmapDecoder();
 
-                // Decode the message from the image.
-                // Note: The Decoder method must be called, in order to decode the data, 
-                // despite not needing to use the string formatted version of the information. 
-                // The bytes will be more useful.
-                string stillEncryptedButDecoded = this.imgDec.Decoder(this.encodedImage);
-
-                // Declare a list of strings, returned from the image decoder.
-                // These are the 1s and 0s, grouped into 8-digit bytes, as strings.
-                List<string> bytesFomImage = this.imgDec.BytesList;
-
-                Console.WriteLine("BytesList is " + this.imgDec.BytesList.Count + " long.");
-
-                // In that list of bytes, the Initialization Vector is stored in the first 16, 24, or 32 bytes.
-                // Assign the IV to a byte array.
-                Console.WriteLine("Using AES Key size: " + this.aesKeySize);
-                byte[] derivedIV = new byte[this.aesKeySize];
-
-                for (int i = 0; i < this.aesKeySize; i++)
+                try
                 {
-                    derivedIV[i] = Convert.ToByte(bytesFomImage[i], 2);
+                    // Decode the message from the image.
+                    this.imgDec.Decoder(this.encodedImage);
+
+                    // Declare a list of strings, returned from the image decoder.
+                    // These are the 1s and 0s, grouped into 8-digit bytes, as strings.
+                    List<string> byteStringsFromImage = this.imgDec.BytesList;
+
+                    // In that list of bytes, the Initialization Vector is stored in the first 16 bytes.
+                    // Assign the IV to a byte array.
+                    byte[] derivedIV = new byte[16];
+
+                    for (int i = 0; i < 16; i++)
+                    {
+                        derivedIV[i] = Convert.ToByte(this.imgDec.BytesList[i], 2);
+                    }
+
+                    this.Update();
+
+                    // Instantiate a new AESDecrypt object, and pass in a reference to the main form.
+                    AESDecrypt aes = new AESDecrypt(this);
+
+                    // Erase IV from bytesFomImage list. This doesn't need to appear alongside
+                    // the decoded message.
+                    for (int i = 0; i < 16; i++)
+                    {
+                        // remove the first from the list, 16, 24, or 32 times.
+                        byteStringsFromImage.RemoveAt(0);
+                    }
+
+                    // Convert the List of binary strings into a byte array.
+                    int c = byteStringsFromImage.Count;
+                    byte[] bytesFromImage = new byte[c];
+                    for (int i = 0; i < c; i++)
+                    {
+                        bytesFromImage[i] = Convert.ToByte(byteStringsFromImage[i], 2);
+                    }
+
+                    // Pull the first byte from the list. Convert this byte to an int. This should
+                    // represent how many bytes are in the message, which should correspond to the length of the
+                    // message, because in ASCII 1 char is 1 byte.
+                    int messageLength = bytesFromImage[0];
+
+                    // Pass the byteStringsToBytes byte array, encryption key, and derived IV to the decrypter.
+                    textBoxOutputMessage.Text = aes.DecryptStringFromBytes_Aes(bytesFromImage, passwordHandler.EncryptionKey, derivedIV);
+
+                    if (textBoxOutputMessage.Text.Contains("�"))
+                    {
+                        MessageBox.Show("It looks like the message didn't come out quite right. \n\n" +
+                            "Try changin the AES key size in Settings ->Advanced Options.");
+                    }
                 }
-
-                Console.WriteLine("Derived IV is " + derivedIV.Count() + " bytes long.");
-
-                this.Update();
-
-                // Instantiate a new AESDecrypt object, and pass in a reference to the main form.
-                AESDecrypt aes = new AESDecrypt(this);
-
-                // Confirm that the derivedIV is the same length as the aesKeySize.
-                // Note: This has never happened, but it doesn't hurt to check if something breaks.
-                if (derivedIV.Length != this.aesKeySize)
+                catch
                 {
-                    Console.WriteLine("!!!!!!!! DERIVED IV BLOCK SIZE MISMATCH !!!!!!!!");
+                    MessageBox.Show("There is something wrong with this image. \n " +
+                        "It is possible there is no hidden message in this image, " +
+                         "or the wrong encryption is being used for decoding. \n \n" +
+                        "Try changing the AES Key Size in Advanced Options.");
                 }
-
-                // Erase IV from bytesFomImage list. This doesn't need to appear alongside
-                // the decoded message.
-                for (int i = 0; i < this.aesKeySize; i++)
-                {
-                    // remove the first from the list, 16, 24, or 32 times.
-                    bytesFomImage.RemoveAt(0);
-                }
-
-                // Convert the List of binary strings into a byte array.
-                int c = bytesFomImage.Count;
-                byte[] byteStringsToBytes = new byte[c];
-                for (int i = 0; i < c; i++)
-                {
-                    byteStringsToBytes[i] = Convert.ToByte(bytesFomImage[i], 2);
-                }
-
-                // Pull the first byte from the list. Convert this byte to an int. This should
-                // represent how many bytes are in the message, which should correspond to the length of the
-                // message, because in ASCII 1 char is 1 byte.
-                int messageLength = byteStringsToBytes[0];
-
-                Console.WriteLine("The message to be decrypted is " + messageLength);
-
-                // Pass the byteStringsToBytes byte array, encryption key, and derived IV to the decrypter.
-                textBoxOutputMessage.Text = aes.DecryptStringFromBytes_Aes(byteStringsToBytes, passwordHandler.EncryptionKey, derivedIV);
             }
             else
             {
-                this.imgDec = new BitmapDecoder();
-                this.textBoxOutputMessage.Text = this.imgDec.Decoder(this.encodedImage);
+                try
+                {
+                    this.imgDec = new BitmapDecoder();
+                    this.textBoxOutputMessage.Text = this.imgDec.Decoder(this.encodedImage);
+                }
+                catch
+                {
+                    MessageBox.Show("There is something wrong with this image. \n" + 
+                        "It is likely there is no hidden message."
+                       );
+                }
             }
 
             saveDecodedMessageToolStripMenuItem.Enabled = true;
             buttonSaveText.Enabled = true;
-        }
-
-        /// <summary>
-        /// Generates a fractal and places it into the picture box.
-        /// </summary>
-        private void GenerateFractal()
-        {
-            PleaseWait pw = new PleaseWait("Generating Fractal.");
-            pw.Show();
-            pw.Update();
-            Cursor.Current = Cursors.WaitCursor;
-            Mandelbrot mb = new Mandelbrot();
-            Bitmap fractal = mb.DrawMandelbrot(1000, 1000);
-            pw.Close();
-            Cursor.Current = Cursors.Default;
-            this.rawImage = fractal;
-            this.pubpicture.Image = this.rawImage;
-            this.btnEncodeImage.Enabled = true;
-            textBoxInputMessage.MaxLength = charComp.CalcMax();
-
-            if (textBoxInputMessage.Text.Length > 0)
-            {
-                btnEncodeImage.Enabled = true;
-            }
-
-            this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
-        }
-
-        /// <summary>
-        /// Generates a gradient pattern and places it into the picture box.
-        /// </summary>
-        private void GenerateGradient()
-        {
-            radioButtonEncode.Checked = true;
-            Gradient generator = new Gradient();
-            PleaseWait pw = new PleaseWait("Generating Gradient.");
-            pw.Show();
-            pw.Update();
-            Cursor.Current = Cursors.WaitCursor;
-            this.pubpicture.Image = generator.GenerateGradient(1000, 1000, 34, 23, 12, 13);
-            pw.Close();
-            Cursor.Current = Cursors.Default;
-            this.btnEncodeImage.Enabled = true;
-            textBoxInputMessage.MaxLength = charComp.CalcMax();
-
-            if (textBoxInputMessage.Text.Length > 0)
-            {
-                btnEncodeImage.Enabled = true;
-            }
-            this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
         }
 
         /// <summary>
@@ -483,13 +553,37 @@ namespace Steganography_with_AES_Encryption
         }
 
         /// <summary>
+        /// The Tool Strip Menu Item for viewing the Website Wikipedia for Fractal.
+        /// </summary>
+        /// <param name="sender">The object that initiated the event</param>
+        /// <param name="e">The event arguments</param>
+        private void WhatIsAFractalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            const string Message = "You will be directed to an external website, Wikipedia, in a moment.  If you wish to cancel and return to this application, please select 'Cancel', otherwise select 'Ok'.";
+            const string Caption = "External Website";
+            var result = MessageBox.Show(Message, Caption, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            // If the cancel button was pressed 
+            if (result == DialogResult.Cancel)
+            {
+                // return to the form
+                this.Focus();
+            }
+            else
+            {
+                // continue to website
+                System.Diagnostics.Process.Start("https://en.wikipedia.org/wiki/Fractal");
+            }
+        }
+
+        /// <summary>
         /// The ToolStrip Menu Item for viewing Advanced Options
         /// </summary>
         /// <param name="sender">The sender</param>
         /// <param name="e">The event</param>
         private void AdvancedOptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AdvancedOptions ao = new AdvancedOptions(this);
+            FormAdvancedOptions ao = new FormAdvancedOptions(this);
             ao.ShowDialog();
         }
 
@@ -527,14 +621,7 @@ namespace Steganography_with_AES_Encryption
             radioButtonEncode.Checked = true;
 
             // Select Stock Photo
-            frmStockImagesPage stockImage = new frmStockImagesPage(this);
-            stockImage.ShowDialog();
-            this.rawImage = (Bitmap)this.pubpicture.Image;
-            this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
-            if (textBoxInputMessage.Text.Length > 0)
-            {
-                btnEncodeImage.Enabled = true;
-            }
+            this.SelectStockPhoto();
         }
 
         /// <summary>
@@ -545,7 +632,7 @@ namespace Steganography_with_AES_Encryption
         private void SaveEncodedImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             radioButtonEncode.Checked = true;
-            this.SaveEncodedImage();
+            this.DoEncoding();
         }
 
         /// <summary>
@@ -582,26 +669,6 @@ namespace Steganography_with_AES_Encryption
         private void GradientImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.GenerateGradient();
-        }
-
-        /// <summary>
-        /// The toolstrip for using Encryption.
-        /// </summary>
-        /// <param name="sender">The sender</param>
-        /// <param name="e">The event</param>
-        private void UseEncryptionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            checkBoxEncryption.Checked = true;
-        }
-
-        /// <summary>
-        /// The toolstrip menu item for turning off encryption.
-        /// </summary>
-        /// <param name="sender">The sender</param>
-        /// <param name="e">The event</param>
-        private void NoEncryptionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            checkBoxEncryption.Checked = false;
         }
 
         /// <summary>
@@ -739,16 +806,35 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         /// <param name="sender">The sender</param>
         /// <param name="e">The event</param>
-        private void checkBoxEncryption_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxEncryption_CheckedChanged(object sender, EventArgs e)
         {
+            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\showWarning.txt";
+            FormLessChars flc = new FormLessChars();
+
             if (checkBoxEncryption.Checked == true)
             {
                 EncryptionToolStripMenuItem.Checked = true;
+
+                if (!File.Exists(filePath))
+                {
+                    flc.ShowDialog();
+                }
+                else
+                {
+                    string pref = System.IO.File.ReadAllText(filePath);
+                    if (pref == "True")
+                    {
+                        flc.ShowDialog();
+                    }
+                }
             }
             else
             {
                 EncryptionToolStripMenuItem.Checked = false;
             }
+
+            this.textBoxInputMessage.MaxLength = this.charComp.CalcMax();
+            this.charComp.CalcRemainingSpace();
         }
 
         /// <summary>
@@ -766,15 +852,7 @@ namespace Steganography_with_AES_Encryption
             else if (comboBoxImageSelect.SelectedIndex == 1)
             {
                 // Select Stock Photo
-                frmStockImagesPage stockImage = new frmStockImagesPage(this);
-                stockImage.ShowDialog();
-                this.rawImage = (Bitmap)this.pictureBoxRaw.Image;
-                this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
-                if (textBoxInputMessage.Text.Length > 0)
-                {
-                    btnEncodeImage.Enabled = true;
-                }
-                this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
+                this.SelectStockPhoto();
             }
             else if (comboBoxImageSelect.SelectedIndex == 2)
             {
@@ -798,8 +876,17 @@ namespace Steganography_with_AES_Encryption
         {
             if (this.pictureBoxRaw.Image != null)
             {
-                this.btnEncodeImage.Enabled = true;
-                labelCharLimit.Text = "Character Limit: " + charComp.CalcRemainingSpace().ToString();
+                if (textBoxInputMessage.Text.Length > 0)
+                {
+                    this.btnEncodeImage.Enabled = true;
+                    saveEncodedImageToolStripMenuItem.Enabled = true;
+                    labelCharLimit.Text = "Character Limit: " + this.charComp.CalcRemainingSpace().ToString();
+                    this.Update();
+                }
+                else
+                {
+                    btnEncodeImage.Enabled = false;
+                }
             }
         }
 
@@ -864,6 +951,5 @@ namespace Steganography_with_AES_Encryption
         {
             this.ResetEverything();
         }
-
     }
 }
