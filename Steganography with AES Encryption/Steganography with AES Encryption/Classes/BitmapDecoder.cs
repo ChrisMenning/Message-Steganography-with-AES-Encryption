@@ -16,6 +16,7 @@ namespace Steganography_with_AES_Encryption
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+    using System.Windows.Forms;
 
     /// <summary>
     /// The BitmapDecoder Class.
@@ -154,6 +155,11 @@ namespace Steganography_with_AES_Encryption
             for (int i = 0; i < this.bytesList.Count; i++)
             {
                 // Console.WriteLine(bytesList[i]);
+                if (int.Parse(this.bytesList[i]) > 255)
+                {
+                    MessageBox.Show("It looks like the message might be encrypted. \n Try again with encryption turned on.");
+                    break;
+                }
                 char c = (char)Convert.ToByte(this.bytesList[i], 2);
                 this.decodedText.Append(c);
             }
