@@ -211,6 +211,7 @@ namespace Steganography_with_AES_Encryption
             this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
             textBoxInputMessage.MaxLength = this.charComp.CalcMax();
             this.charComp.CalcRemainingSpace();
+            labelCharLimit.Text = "Character Limit: " + this.charComp.CalcRemainingSpace().ToString();
             saveEncodedImageToolStripMenuItem.Enabled = false;
             if (textBoxInputMessage.Text.Length > 0)
             {
