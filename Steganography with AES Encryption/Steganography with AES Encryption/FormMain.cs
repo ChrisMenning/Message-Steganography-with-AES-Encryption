@@ -871,6 +871,10 @@ namespace Steganography_with_AES_Encryption
                     labelCharLimit.Text = "Character Limit: " + this.charComp.CalcRemainingSpace().ToString();
                     this.Update();
                 }
+                else
+                {
+                    btnEncodeImage.Enabled = false;
+                }
             }
         }
 
