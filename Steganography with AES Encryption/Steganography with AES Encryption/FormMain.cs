@@ -506,7 +506,10 @@ namespace Steganography_with_AES_Encryption
                 }
                 catch
                 {
-                    MessageBox.Show("There is something wrong with this image. \n It is possible there is no hidden message, \n or the wrong encryption is being used for decoding.");
+                    MessageBox.Show("There is something wrong with this image. \n" + 
+                        "It is possible there is no hidden message, \n " + 
+                        "or the wrong encryption is being used for decoding. \n \n" +
+                        "Try changing the AES Key Size in Advanced Options.");
                 }
             }
 
@@ -860,10 +863,13 @@ namespace Steganography_with_AES_Encryption
         {
             if (this.pictureBoxRaw.Image != null)
             {
-                this.btnEncodeImage.Enabled = true;
-                saveEncodedImageToolStripMenuItem.Enabled = true;
-                labelCharLimit.Text = "Character Limit: " + this.charComp.CalcRemainingSpace().ToString();
-                this.Update();
+                if (textBoxInputMessage.Text.Length > 0)
+                {
+                    this.btnEncodeImage.Enabled = true;
+                    saveEncodedImageToolStripMenuItem.Enabled = true;
+                    labelCharLimit.Text = "Character Limit: " + this.charComp.CalcRemainingSpace().ToString();
+                    this.Update();
+                }
             }
         }
 
