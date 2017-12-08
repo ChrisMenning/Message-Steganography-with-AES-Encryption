@@ -21,7 +21,15 @@ namespace Steganography_with_AES_Encryption
 
         private void frmAboutPage_Load(object sender, EventArgs e)
         {
-            rtbAboutSection.Text = System.Text.Encoding.Default.GetString(Properties.Resources.README);
+            try {
+                rtbAboutSection.Text = System.Text.Encoding.Default.GetString(Properties.Resources.README);
+            }
+            
+            catch (Exception ex)
+            {
+                MessageBox.Show("There was an error fetching the Readme.MD file. /n" + ex.Message);
+                rtbAboutSection.Text = "There was an error fetching the Readme.MD file. /n" + ex.Message;
+            }
         }
 
         private void btnCloseAboutPage_Click(object sender, EventArgs e)

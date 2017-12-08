@@ -175,6 +175,15 @@ namespace Steganography_with_AES_Encryption
 
             // Convert the new byte[] into a char[] and then into a string.
             char[] asciiChars = new char[ascii.GetCharCount(asciiBytes, 0, asciiBytes.Length)];
+
+            foreach (char c in asciiChars)
+            {
+                if (c > 127)
+                {
+                    MessageBox.Show("It looks like your input message might include Unicode when it needs to be ASCII.");
+                }
+            }
+
             ascii.GetChars(asciiBytes, 0, asciiBytes.Length, asciiChars, 0);
             string asciiString = new string(asciiChars);
             inputUnicode = asciiString;
