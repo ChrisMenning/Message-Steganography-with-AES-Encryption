@@ -286,8 +286,12 @@ namespace Steganography_with_AES_Encryption
         {
             frmStockImagesPage stockImage = new frmStockImagesPage(this);
             stockImage.ShowDialog();
-            this.rawImage = (Bitmap)this.pictureBoxRaw.Image;
-            this.RepetativeRawImageTasks();
+
+            if (this.pictureBoxRaw.Image != null)
+            {
+                this.rawImage = (Bitmap)this.pictureBoxRaw.Image;
+                this.RepetativeRawImageTasks();
+            }
         }
 
         /// <summary>
@@ -492,10 +496,19 @@ namespace Steganography_with_AES_Encryption
 
                     // Pass the byteStringsToBytes byte array, encryption key, and derived IV to the decrypter.
                     textBoxOutputMessage.Text = aes.DecryptStringFromBytes_Aes(bytesFromImage, passwordHandler.EncryptionKey, derivedIV);
+
+                    if (textBoxOutputMessage.Text.Contains("�"))
+                    {
+                        MessageBox.Show("It looks like the message didn't come out quite right. \n\n" +
+                            "Try changin the AES key size in Settings ->Advanced Options.");
+                    }
                 }
                 catch
                 {
-                    MessageBox.Show("There is something wrong with this image. \n It is possible there is no hidden message, \n or the wrong encryption is being used for decoding.");
+                    MessageBox.Show("There is something wrong with this image. \n " +
+                        "It is possible there is no hidden message in this image, " +
+                         "or the wrong encryption is being used for decoding. \n \n" +
+                        "Try changing the AES Key Size in Advanced Options.");
                 }
             }
             else
@@ -508,9 +521,8 @@ namespace Steganography_with_AES_Encryption
                 catch
                 {
                     MessageBox.Show("There is something wrong with this image. \n" + 
-                        "It is possible there is no hidden message, \n " + 
-                        "or the wrong encryption is being used for decoding. \n \n" +
-                        "Try changing the AES Key Size in Advanced Options.");
+                        "It is likely there is no hidden message."
+                       );
                 }
             }
 

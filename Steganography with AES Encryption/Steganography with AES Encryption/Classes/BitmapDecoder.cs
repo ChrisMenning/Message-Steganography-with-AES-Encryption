@@ -14,6 +14,7 @@ namespace Steganography_with_AES_Encryption
     using System.Drawing;
     using System.Linq;
     using System.Text;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -153,7 +154,8 @@ namespace Steganography_with_AES_Encryption
             for (int i = 0; i < this.bytesList.Count; i++)
             {
                 // Console.WriteLine(bytesList[i]);
-                this.decodedText.Append((char)Convert.ToByte(this.bytesList[i], 2));
+                char c = (char)Convert.ToByte(this.bytesList[i], 2);
+                this.decodedText.Append(c);
             }
 
             // Update the output textbox's text.
