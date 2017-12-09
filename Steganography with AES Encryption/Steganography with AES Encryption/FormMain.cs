@@ -353,12 +353,13 @@ namespace Steganography_with_AES_Encryption
             dialogSaveImage.Title = "Save an Image File";
             this.dialogSaveImage.ShowHelp = true;
             this.dialogSaveImage.FileName = "encoded";
-            dialogSaveImage.ShowDialog();
+            
 
             if (dialogSaveImage.FileName != string.Empty)
             {
                 try
                 {
+                    dialogSaveImage.ShowDialog();
                     this.encodedImage.Save(dialogSaveImage.FileName, System.Drawing.Imaging.ImageFormat.Png);
                 }
                 catch
