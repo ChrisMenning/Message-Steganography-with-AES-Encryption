@@ -74,7 +74,7 @@ namespace Steganography_with_AES_Encryption
             }
             catch
             {
-                MessageBox.Show("Failed to create AES key from password.");
+                MessageBox.Show("Failed to create AES key from password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
@@ -221,7 +221,7 @@ namespace Steganography_with_AES_Encryption
             }
             else
             {
-                MessageBox.Show("Bad news. Encryption failed.");
+                MessageBox.Show("Bad news. Encryption failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return str;

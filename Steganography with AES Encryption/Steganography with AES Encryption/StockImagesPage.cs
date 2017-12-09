@@ -111,7 +111,7 @@
             }
             catch (Exception ex)
             {
-                String error = "There was an error accessing loading a copy of the image into the picturebox: \n" + ex.Message;
+                String error = "There was an error loading a copy of the image into the picturebox: \n" + ex.Message;
                 MessageBox.Show(error);
             }
 
@@ -162,7 +162,7 @@
             catch (Exception ex)
             {
                 String error = "There was an error trying to save your image: \n" + ex.Message;
-                MessageBox.Show(error);
+                MessageBox.Show(error, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             this.Close();
         }

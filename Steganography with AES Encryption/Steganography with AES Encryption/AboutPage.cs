@@ -27,7 +27,7 @@ namespace Steganography_with_AES_Encryption
             
             catch (Exception ex)
             {
-                MessageBox.Show("There was an error fetching the Readme.MD file. /n" + ex.Message);
+                MessageBox.Show("There was an error fetching the Readme.MD file. /n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 rtbAboutSection.Text = "There was an error fetching the Readme.MD file. /n" + ex.Message;
             }
         }

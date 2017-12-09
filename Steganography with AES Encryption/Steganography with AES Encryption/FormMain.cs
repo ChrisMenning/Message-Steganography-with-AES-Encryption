@@ -265,7 +265,7 @@ namespace Steganography_with_AES_Encryption
                 }
                 catch
                 {
-                    MessageBox.Show("That does not appear to be a supported image file.");
+                    MessageBox.Show("That does not appear to be a supported image file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -341,7 +341,7 @@ namespace Steganography_with_AES_Encryption
                 }
                 catch (ArgumentException e)
                 {
-                    MessageBox.Show("Invalid file. " + e);
+                    MessageBox.Show("Invalid file. " + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -369,7 +369,7 @@ namespace Steganography_with_AES_Encryption
                 }
                 catch
                 {
-                    MessageBox.Show("Save Cancelled.");
+                    MessageBox.Show("Save Cancelled.", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -435,7 +435,7 @@ namespace Steganography_with_AES_Encryption
                 }
                 catch
                 {
-                    MessageBox.Show("Encryption cancelled.");
+                    MessageBox.Show("Encryption cancelled.", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
@@ -451,7 +451,7 @@ namespace Steganography_with_AES_Encryption
                 }
                 catch
                 {
-                    MessageBox.Show("Encoding failed. Please try a different message or a different image.");
+                    MessageBox.Show("Encoding failed. Please try a different message or a different image.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -533,7 +533,7 @@ namespace Steganography_with_AES_Encryption
                     if (textBoxOutputMessage.Text.Contains("�"))
                     {
                         MessageBox.Show("It looks like the message didn't come out quite right. \n\n" +
-                            "Try changin the AES key size in Settings ->Advanced Options.");
+                            "Try changin the AES key size in Settings ->Advanced Options.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }
                 catch
@@ -541,7 +541,7 @@ namespace Steganography_with_AES_Encryption
                     MessageBox.Show("There is something wrong with this image. \n " +
                         "It is possible there is no hidden message in this image, " +
                          "or the wrong encryption is being used for decoding. \n \n" +
-                        "Try changing the AES Key Size in Advanced Options.");
+                        "Try changing the AES Key Size in Advanced Options.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -554,8 +554,7 @@ namespace Steganography_with_AES_Encryption
                 catch
                 {
                     MessageBox.Show("There is something wrong with this image. \n" + 
-                        "It is likely there is no hidden message."
-                       );
+                        "It is likely there is no hidden message.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
                 }
             }
 
