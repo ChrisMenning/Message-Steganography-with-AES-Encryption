@@ -49,17 +49,22 @@ namespace Steganography_with_AES_Encryption
         {
             if (textBoxInput.Text == null)
             {
-                MessageBox.Show("Password can not be blank.");
+                MessageBox.Show("Password can not be blank.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (textBoxInput.Text.Length < 4)
             {
-                MessageBox.Show("Password must be at least 4 characters long.");
+                MessageBox.Show("Password must be at least 4 characters long.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
                 this.main.Password = textBoxInput.Text;
                 this.Close();
             }
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

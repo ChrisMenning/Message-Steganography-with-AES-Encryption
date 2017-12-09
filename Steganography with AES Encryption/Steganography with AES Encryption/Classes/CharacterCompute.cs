@@ -12,6 +12,7 @@ namespace Steganography_with_AES_Encryption
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using System.Windows.Forms;
 
     /// <summary>
     /// The Character Compute class
@@ -68,6 +69,8 @@ namespace Steganography_with_AES_Encryption
             // If the textbox already holds more than the new maximum, truncate it.
             if (Main.GetTextBoxInput().Text.Length > Main.GetTextBoxInput().MaxLength)
             {
+                MessageBox.Show("Your message is too long to fit in the image. It has been truncated to fit. \n" + 
+                    "If you would like to hide the whole message, please choose a larger image.", "Message Too Long", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Main.GetTextBoxInput().Text = Main.GetTextBoxInput().Text.Substring(0, Main.GetTextBoxInput().MaxLength);
             }
 

@@ -170,13 +170,27 @@ namespace Steganography_with_AES_Encryption
             // Convert the string into a byte array.
             byte[] unicodeBytes = unicode.GetBytes(inputUnicode);
 
+            foreach (byte b in unicodeBytes)
+            {
+                if (b > 127 && b < 160)
+                {
+                    MessageBox.Show("It looks like this text contains Unicode. \n" +
+                        "Please note that only ASCII characters will be retained." ,
+                        "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
+                }
+            }
+
             // Perform the conversion from one encoding to the other.
             byte[] asciiBytes = Encoding.Convert(unicode, ascii, unicodeBytes);
 
             // Convert the new byte[] into a char[] and then into a string.
             char[] asciiChars = new char[ascii.GetCharCount(asciiBytes, 0, asciiBytes.Length)];
+
             ascii.GetChars(asciiBytes, 0, asciiBytes.Length, asciiChars, 0);
+
             string asciiString = new string(asciiChars);
+
             inputUnicode = asciiString;
 
             return inputUnicode;
@@ -191,6 +205,9 @@ namespace Steganography_with_AES_Encryption
             this.encodedImage = new Bitmap(1, 1);
             textBoxInputMessage.Clear();
             textBoxOutputMessage.Clear();
+            this.checkBoxEncryption.Checked = false;
+            saveDecodedMessageToolStripMenuItem.Enabled = false;
+            saveEncodedImageToolStripMenuItem.Enabled = false;
 
             this.pubpicture.Image = null;
             this.pictureBoxEncoded.Image = null;
@@ -208,17 +225,25 @@ namespace Steganography_with_AES_Encryption
         private void RepetativeRawImageTasks()
         {
             this.pictureBoxRaw.Image = this.rawImage;
-            this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
-            textBoxInputMessage.MaxLength = this.charComp.CalcMax();
-            this.charComp.CalcRemainingSpace();
-            labelCharLimit.Text = "Character Limit: " + this.charComp.CalcRemainingSpace().ToString();
-            saveEncodedImageToolStripMenuItem.Enabled = false;
-            if (textBoxInputMessage.Text.Length > 0)
+            if (this.rawImage.Width * this.rawImage.Height > 15)
             {
-                btnEncodeImage.Enabled = true;
-            }
+                this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
+                textBoxInputMessage.MaxLength = this.charComp.CalcMax();
+                this.charComp.CalcRemainingSpace();
+                labelCharLimit.Text = "Character Limit: " + this.charComp.CalcRemainingSpace().ToString();
+                saveEncodedImageToolStripMenuItem.Enabled = false;
+                if (textBoxInputMessage.Text.Length > 0)
+                {
+                    btnEncodeImage.Enabled = true;
+                }
 
-            this.Update();
+                this.Update();
+            }
+            else
+            {
+                this.pictureBoxRaw.Image = null;
+                MessageBox.Show("Image too small to hold any text. \n" + "Please select another image.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
@@ -240,7 +265,7 @@ namespace Steganography_with_AES_Encryption
                 }
                 catch
                 {
-                    MessageBox.Show("That does not appear to be a supported image file.");
+                    MessageBox.Show("That does not appear to be a supported image file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -316,7 +341,7 @@ namespace Steganography_with_AES_Encryption
                 }
                 catch (ArgumentException e)
                 {
-                    MessageBox.Show("Invalid file. " + e);
+                    MessageBox.Show("Invalid file. " + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -333,17 +358,18 @@ namespace Steganography_with_AES_Encryption
             dialogSaveImage.Title = "Save an Image File";
             this.dialogSaveImage.ShowHelp = true;
             this.dialogSaveImage.FileName = "encoded";
-            dialogSaveImage.ShowDialog();
             
+
             if (dialogSaveImage.FileName != string.Empty)
             {
                 try
                 {
+                    dialogSaveImage.ShowDialog();
                     this.encodedImage.Save(dialogSaveImage.FileName, System.Drawing.Imaging.ImageFormat.Png);
                 }
                 catch
                 {
-                    MessageBox.Show("Something's not right.");
+                    MessageBox.Show("Save Cancelled.", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -374,6 +400,8 @@ namespace Steganography_with_AES_Encryption
             // First, make sure whatever unicode has been entered into the input box is forced into ASCII.
             string ascii = this.UnicodeToAscii(this.textBoxInputMessage.Text);
 
+            bool success = false;
+
             // Call the image encoder's main encoder method, passing in the text from the input box,
             // return the encoded bitmap, and assign the encoded bitmap to this.encodedImage for later saving.
 
@@ -403,10 +431,11 @@ namespace Steganography_with_AES_Encryption
                     // Now pass the encrypted message into the bitmap encoder, hiding the message in the image.
                     string toBeEncoded = aes.EncryptedMessageString();
                     this.encodedImage = this.bmpEnc.Encoder(toBeEncoded);
+                    success = true;
                 }
                 catch
                 {
-                    MessageBox.Show("Encryption failed. Please try a different message or a different image.");
+                    MessageBox.Show("Encryption cancelled.", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
@@ -418,17 +447,21 @@ namespace Steganography_with_AES_Encryption
 
                     // Pass the un-encrypted message into the encoder, hiding the message in the image.
                     this.encodedImage = this.bmpEnc.Encoder(ascii);
+                    success = true;
                 }
                 catch
                 {
-                    MessageBox.Show("Encoding failed. Please try a different message or a different image.");
+                    MessageBox.Show("Encoding failed. Please try a different message or a different image.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
-            // Save the image.
-            this.SaveEncodedImage();
+            if (success == true)
+            {
+                // Save the image.
+                this.SaveEncodedImage();
 
-            saveEncodedImageToolStripMenuItem.Enabled = true;
+                saveEncodedImageToolStripMenuItem.Enabled = true;
+            }
         }
 
         /// <summary>
@@ -448,7 +481,7 @@ namespace Steganography_with_AES_Encryption
                 PasswordHandler passwordHandler = new PasswordHandler(this.password, this);
 
                 // Instantiate an image decoder.
-                this.imgDec = new BitmapDecoder();
+                this.imgDec = new BitmapDecoder(this);
 
                 try
                 {
@@ -500,7 +533,7 @@ namespace Steganography_with_AES_Encryption
                     if (textBoxOutputMessage.Text.Contains("�"))
                     {
                         MessageBox.Show("It looks like the message didn't come out quite right. \n\n" +
-                            "Try changin the AES key size in Settings ->Advanced Options.");
+                            "Try changin the AES key size in Settings ->Advanced Options.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }
                 catch
@@ -508,21 +541,20 @@ namespace Steganography_with_AES_Encryption
                     MessageBox.Show("There is something wrong with this image. \n " +
                         "It is possible there is no hidden message in this image, " +
                          "or the wrong encryption is being used for decoding. \n \n" +
-                        "Try changing the AES Key Size in Advanced Options.");
+                        "Try changing the AES Key Size in Advanced Options.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
                 try
                 {
-                    this.imgDec = new BitmapDecoder();
+                    this.imgDec = new BitmapDecoder(this);
                     this.textBoxOutputMessage.Text = this.imgDec.Decoder(this.encodedImage);
                 }
                 catch
                 {
                     MessageBox.Show("There is something wrong with this image. \n" + 
-                        "It is likely there is no hidden message."
-                       );
+                        "It is likely there is no hidden message.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
                 }
             }
 
@@ -672,6 +704,36 @@ namespace Steganography_with_AES_Encryption
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (textBoxInputMessage.SelectionLength > 0)
+            {
+                cutToolStripMenuItem.Enabled = true;
+                copyToolStripMenuItem.Enabled = true;
+                deleteToolStripMenuItem.Enabled = true;
+            }
+            else
+            {
+                cutToolStripMenuItem.Enabled = false;
+                copyToolStripMenuItem.Enabled = false;
+                deleteToolStripMenuItem.Enabled = false;
+            }
+
+            if (Clipboard.ContainsText())
+            {
+                pasteToolStripMenuItem.Enabled = true;
+            }
+            else
+            {
+                pasteToolStripMenuItem.Enabled = false;
+            }
+        }
+
+        /// <summary>
         /// The toolstrip menu item for Edit->Cut.
         /// </summary>
         /// <param name="sender">The sender</param>
@@ -775,7 +837,7 @@ namespace Steganography_with_AES_Encryption
             if (radioButtonEncode.Checked)
             {
                 groupBoxEncode.Location = new Point(5, 208);
-                this.AcceptButton = this.btnEncodeImage;
+                // this.AcceptButton = this.btnEncodeImage;
             }
             else
             {
@@ -867,6 +929,12 @@ namespace Steganography_with_AES_Encryption
             }
         }
 
+        private void ComboBoxImageSelect_TextChanged(object sender, EventArgs e)
+        {
+            comboBoxImageSelect.Text = "Choose Your Image";
+        }
+
+
         /// <summary>
         /// Checks that the message input textbox has been changed.
         /// </summary>
@@ -951,5 +1019,6 @@ namespace Steganography_with_AES_Encryption
         {
             this.ResetEverything();
         }
+
     }
 }
