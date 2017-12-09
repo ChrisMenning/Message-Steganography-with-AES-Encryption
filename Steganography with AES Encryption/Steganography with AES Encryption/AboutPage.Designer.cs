@@ -36,20 +36,19 @@
             // 
             this.rtbAboutSection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(255)))));
             this.rtbAboutSection.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbAboutSection.Location = new System.Drawing.Point(40, 28);
-            this.rtbAboutSection.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rtbAboutSection.Location = new System.Drawing.Point(30, 23);
             this.rtbAboutSection.Name = "rtbAboutSection";
             this.rtbAboutSection.ReadOnly = true;
-            this.rtbAboutSection.Size = new System.Drawing.Size(1089, 568);
+            this.rtbAboutSection.Size = new System.Drawing.Size(818, 462);
             this.rtbAboutSection.TabIndex = 0;
             this.rtbAboutSection.Text = "";
             // 
             // btnCloseAboutPage
             // 
-            this.btnCloseAboutPage.Location = new System.Drawing.Point(515, 625);
-            this.btnCloseAboutPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCloseAboutPage.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.btnCloseAboutPage.Location = new System.Drawing.Point(386, 508);
             this.btnCloseAboutPage.Name = "btnCloseAboutPage";
-            this.btnCloseAboutPage.Size = new System.Drawing.Size(100, 28);
+            this.btnCloseAboutPage.Size = new System.Drawing.Size(75, 23);
             this.btnCloseAboutPage.TabIndex = 1;
             this.btnCloseAboutPage.Text = "Close";
             this.btnCloseAboutPage.UseVisualStyleBackColor = true;
@@ -57,13 +56,12 @@
             // 
             // frmAboutPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(162)))), ((int)(((byte)(115)))));
-            this.ClientSize = new System.Drawing.Size(1172, 689);
+            this.ClientSize = new System.Drawing.Size(879, 560);
             this.Controls.Add(this.btnCloseAboutPage);
             this.Controls.Add(this.rtbAboutSection);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmAboutPage";
             this.Text = "About";
             this.Load += new System.EventHandler(this.frmAboutPage_Load);

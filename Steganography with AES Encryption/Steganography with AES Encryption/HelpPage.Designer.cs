@@ -35,20 +35,19 @@
             // rtbHelpPage
             // 
             this.rtbHelpPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(255)))));
-            this.rtbHelpPage.Location = new System.Drawing.Point(93, 37);
-            this.rtbHelpPage.Margin = new System.Windows.Forms.Padding(4);
+            this.rtbHelpPage.Location = new System.Drawing.Point(70, 30);
             this.rtbHelpPage.Name = "rtbHelpPage";
             this.rtbHelpPage.ReadOnly = true;
-            this.rtbHelpPage.Size = new System.Drawing.Size(513, 389);
+            this.rtbHelpPage.Size = new System.Drawing.Size(386, 317);
             this.rtbHelpPage.TabIndex = 0;
             this.rtbHelpPage.Text = "";
             // 
             // btnCloseHelpPage
             // 
-            this.btnCloseHelpPage.Location = new System.Drawing.Point(272, 482);
-            this.btnCloseHelpPage.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCloseHelpPage.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.btnCloseHelpPage.Location = new System.Drawing.Point(204, 392);
             this.btnCloseHelpPage.Name = "btnCloseHelpPage";
-            this.btnCloseHelpPage.Size = new System.Drawing.Size(100, 28);
+            this.btnCloseHelpPage.Size = new System.Drawing.Size(75, 23);
             this.btnCloseHelpPage.TabIndex = 1;
             this.btnCloseHelpPage.Text = "Close";
             this.btnCloseHelpPage.UseVisualStyleBackColor = true;
@@ -56,14 +55,13 @@
             // 
             // frmHelpPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(162)))), ((int)(((byte)(115)))));
-            this.ClientSize = new System.Drawing.Size(681, 548);
+            this.ClientSize = new System.Drawing.Size(511, 445);
             this.Controls.Add(this.btnCloseHelpPage);
             this.Controls.Add(this.rtbHelpPage);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmHelpPage";
             this.Text = "Help";
             this.Load += new System.EventHandler(this.frmHelpPage_Load);
