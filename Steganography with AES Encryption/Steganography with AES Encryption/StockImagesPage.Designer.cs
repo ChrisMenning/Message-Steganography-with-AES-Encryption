@@ -169,6 +169,7 @@
             // 
             // rtbStockImage
             // 
+            this.rtbStockImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(255)))));
             this.rtbStockImage.Location = new System.Drawing.Point(13, 209);
             this.rtbStockImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rtbStockImage.Name = "rtbStockImage";

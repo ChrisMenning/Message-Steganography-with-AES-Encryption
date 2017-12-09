@@ -420,7 +420,7 @@ namespace Steganography_with_AES_Encryption
             this.cutToolStripMenuItem.AutoToolTip = true;
             this.cutToolStripMenuItem.Enabled = false;
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(156, 28);
             this.cutToolStripMenuItem.Text = "Cut";
             this.cutToolStripMenuItem.ToolTipText = "Cut text (CTRL+X)";
             this.cutToolStripMenuItem.Click += new System.EventHandler(this.CutToolStripMenuItem_Click);
@@ -430,7 +430,7 @@ namespace Steganography_with_AES_Encryption
             this.copyToolStripMenuItem.AutoToolTip = true;
             this.copyToolStripMenuItem.Enabled = false;
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(156, 28);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.ToolTipText = "Copy text (CTRL+C)";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.CopyToolStripMenuItem_Click);
@@ -439,7 +439,7 @@ namespace Steganography_with_AES_Encryption
             // 
             this.pasteToolStripMenuItem.AutoToolTip = true;
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(156, 28);
             this.pasteToolStripMenuItem.Text = "Paste";
             this.pasteToolStripMenuItem.ToolTipText = "Paste text (CTRL+V)";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.PasteToolStripMenuItem_Click);
@@ -449,7 +449,7 @@ namespace Steganography_with_AES_Encryption
             this.deleteToolStripMenuItem.AutoToolTip = true;
             this.deleteToolStripMenuItem.Enabled = false;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(156, 28);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.ToolTipText = "Delete text (DEL)";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
@@ -458,7 +458,7 @@ namespace Steganography_with_AES_Encryption
             // 
             this.selectAllToolStripMenuItem.AutoToolTip = true;
             this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
+            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(156, 28);
             this.selectAllToolStripMenuItem.Text = "Select-All";
             this.selectAllToolStripMenuItem.ToolTipText = "Select-All text (CTRL+A)";
             this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.SelectAllToolStripMenuItem_Click);
@@ -685,7 +685,7 @@ namespace Steganography_with_AES_Encryption
             this.groupBoxDecode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBoxDecode.Name = "groupBoxDecode";
             this.groupBoxDecode.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBoxDecode.Size = new System.Drawing.Size(1150, 554);
+            this.groupBoxDecode.Size = new System.Drawing.Size(1150, 503);
             this.groupBoxDecode.TabIndex = 31;
             this.groupBoxDecode.TabStop = false;
             this.groupBoxDecode.Text = "Retrieve Text from Image";
@@ -704,12 +704,13 @@ namespace Steganography_with_AES_Encryption
             // 
             // textBoxOutputMessage
             // 
+            this.textBoxOutputMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(255)))));
             this.textBoxOutputMessage.Location = new System.Drawing.Point(510, 60);
             this.textBoxOutputMessage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBoxOutputMessage.Multiline = true;
             this.textBoxOutputMessage.Name = "textBoxOutputMessage";
             this.textBoxOutputMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxOutputMessage.Size = new System.Drawing.Size(450, 450);
+            this.textBoxOutputMessage.Size = new System.Drawing.Size(450, 425);
             this.textBoxOutputMessage.TabIndex = 4;
             // 
             // btnDecode
@@ -741,7 +742,7 @@ namespace Steganography_with_AES_Encryption
             this.pictureBoxEncoded.Location = new System.Drawing.Point(30, 60);
             this.pictureBoxEncoded.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBoxEncoded.Name = "pictureBoxEncoded";
-            this.pictureBoxEncoded.Size = new System.Drawing.Size(450, 450);
+            this.pictureBoxEncoded.Size = new System.Drawing.Size(450, 425);
             this.pictureBoxEncoded.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxEncoded.TabIndex = 3;
             this.pictureBoxEncoded.TabStop = false;
@@ -758,14 +759,14 @@ namespace Steganography_with_AES_Encryption
             this.groupBoxEncode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBoxEncode.Name = "groupBoxEncode";
             this.groupBoxEncode.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBoxEncode.Size = new System.Drawing.Size(996, 556);
+            this.groupBoxEncode.Size = new System.Drawing.Size(996, 505);
             this.groupBoxEncode.TabIndex = 30;
             this.groupBoxEncode.TabStop = false;
             this.groupBoxEncode.Text = "Hide Text in Image";
             // 
             // comboBoxImageSelect
             // 
-            this.comboBoxImageSelect.BackColor = System.Drawing.Color.White;
+            this.comboBoxImageSelect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(255)))));
             this.comboBoxImageSelect.FormattingEnabled = true;
             this.comboBoxImageSelect.Items.AddRange(new object[] {
             "Open your own Image",
@@ -810,19 +811,19 @@ namespace Steganography_with_AES_Encryption
             this.labelCharLimit.Name = "labelCharLimit";
             this.labelCharLimit.Size = new System.Drawing.Size(214, 30);
             this.labelCharLimit.TabIndex = 9;
-            this.labelCharLimit.Text = "Character Limit: 0";
+            this.labelCharLimit.Text = "Characters Left: 0";
             this.labelCharLimit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // textBoxInputMessage
             // 
-            this.textBoxInputMessage.BackColor = System.Drawing.Color.White;
+            this.textBoxInputMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(255)))));
             this.textBoxInputMessage.Location = new System.Drawing.Point(30, 60);
             this.textBoxInputMessage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBoxInputMessage.MaxLength = 0;
             this.textBoxInputMessage.Multiline = true;
             this.textBoxInputMessage.Name = "textBoxInputMessage";
             this.textBoxInputMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxInputMessage.Size = new System.Drawing.Size(450, 450);
+            this.textBoxInputMessage.Size = new System.Drawing.Size(450, 425);
             this.textBoxInputMessage.TabIndex = 3;
             this.textBoxInputMessage.TextChanged += new System.EventHandler(this.TextBoxInputMessage_TextChanged);
             // 
@@ -832,7 +833,7 @@ namespace Steganography_with_AES_Encryption
             this.pictureBoxRaw.Location = new System.Drawing.Point(510, 60);
             this.pictureBoxRaw.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBoxRaw.Name = "pictureBoxRaw";
-            this.pictureBoxRaw.Size = new System.Drawing.Size(450, 450);
+            this.pictureBoxRaw.Size = new System.Drawing.Size(450, 425);
             this.pictureBoxRaw.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxRaw.TabIndex = 2;
             this.pictureBoxRaw.TabStop = false;

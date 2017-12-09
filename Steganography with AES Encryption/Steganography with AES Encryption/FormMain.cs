@@ -74,7 +74,7 @@ namespace Steganography_with_AES_Encryption
             this.pubpicture = this.pictureBoxRaw;
             this.aesKeySize = 16;
             this.Width = 1016;
-            this.Height = 768;
+            this.Height = 755;
             this.CenterToScreen();
             this.textBoxOutputMessage.ReadOnly = true;
 
@@ -230,7 +230,7 @@ namespace Steganography_with_AES_Encryption
                 this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
                 textBoxInputMessage.MaxLength = this.charComp.CalcMax();
                 this.charComp.CalcRemainingSpace();
-                labelCharLimit.Text = "Character Limit: " + this.charComp.CalcRemainingSpace().ToString();
+                labelCharLimit.Text = "Characters Left: " + this.charComp.CalcRemainingSpace().ToString();
                 saveEncodedImageToolStripMenuItem.Enabled = false;
                 if (textBoxInputMessage.Text.Length > 0)
                 {
@@ -948,7 +948,7 @@ namespace Steganography_with_AES_Encryption
                 {
                     this.btnEncodeImage.Enabled = true;
                     saveEncodedImageToolStripMenuItem.Enabled = true;
-                    labelCharLimit.Text = "Character Limit: " + this.charComp.CalcRemainingSpace().ToString();
+                    labelCharLimit.Text = "Characters Left: " + this.charComp.CalcRemainingSpace().ToString();
                     this.Update();
                 }
                 else
