@@ -476,7 +476,7 @@ namespace Steganography_with_AES_Encryption
                 PasswordHandler passwordHandler = new PasswordHandler(this.password, this);
 
                 // Instantiate an image decoder.
-                this.imgDec = new BitmapDecoder();
+                this.imgDec = new BitmapDecoder(this);
 
                 try
                 {
@@ -543,7 +543,7 @@ namespace Steganography_with_AES_Encryption
             {
                 try
                 {
-                    this.imgDec = new BitmapDecoder();
+                    this.imgDec = new BitmapDecoder(this);
                     this.textBoxOutputMessage.Text = this.imgDec.Decoder(this.encodedImage);
                 }
                 catch

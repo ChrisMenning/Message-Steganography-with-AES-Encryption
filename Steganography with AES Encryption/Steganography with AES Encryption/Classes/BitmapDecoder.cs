@@ -48,11 +48,14 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         private List<string> bytesList;
 
+        private FormMain main;
+
         /// <summary>
         /// Initializes a new instance of the BitmapDecoder class.
         /// </summary>
-        public BitmapDecoder()
+        public BitmapDecoder(FormMain main)
         {
+            this.main = main;
             this.bitsFromImage = new List<int>();
             this.testImage = Properties.Resources.Tiger;
             this.decodedText = new StringBuilder();
@@ -153,10 +156,27 @@ namespace Steganography_with_AES_Encryption
 
             this.decodedText = new StringBuilder();
 
+            int faults = 0;
             for (int i = 0; i < this.bytesList.Count; i++)
             {
                 char c = (char)Convert.ToByte(this.bytesList[i], 2);
+
+                if (main.GetCheckedEncrypt() == false)
+                {
+                    if (c > 128 && c < 159)
+                    {
+                        faults++;
+                    }
+                }
                 this.decodedText.Append(c);
+            }
+
+            // If 10% or more of the message is messed up, recommend encryption change.
+            if (faults > 3)
+            {
+                MessageBox.Show("It looks like the message was not entirely decoded correctly. \n" +
+                    "If you 'Use Encryption' was checked, try unchecking it, and vice versa.", "Warning", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
 
             // Update the output textbox's text.

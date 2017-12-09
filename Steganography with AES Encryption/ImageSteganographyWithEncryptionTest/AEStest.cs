@@ -46,12 +46,14 @@ namespace ImageSteganographyWithEncryptionTest
         [TestMethod]
         public void thereAndBackAgain()
         {
+            
             /// <summary>
             /// arrange
             /// </summary>
             string message = "This string is my test message";
+            FormMain fm = new FormMain();
             BitmapEncoder be = new BitmapEncoder();
-            BitmapDecoder bd = new BitmapDecoder();
+            BitmapDecoder bd = new BitmapDecoder(fm);
             Bitmap encodedImage;
 
             /// <summary>
