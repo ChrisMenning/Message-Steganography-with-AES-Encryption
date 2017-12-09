@@ -178,7 +178,7 @@ namespace Steganography_with_AES_Encryption
 
             foreach (char c in asciiChars)
             {
-                if (c > 127)
+                if ((int)c > 127)
                 {
                     MessageBox.Show("It looks like your input message might include Unicode when it needs to be ASCII.");
                 }
@@ -200,6 +200,9 @@ namespace Steganography_with_AES_Encryption
             this.encodedImage = new Bitmap(1, 1);
             textBoxInputMessage.Clear();
             textBoxOutputMessage.Clear();
+            this.checkBoxEncryption.Checked = false;
+            saveDecodedMessageToolStripMenuItem.Enabled = false;
+            saveEncodedImageToolStripMenuItem.Enabled = false;
 
             this.pubpicture.Image = null;
             this.pictureBoxEncoded.Image = null;
@@ -216,9 +219,9 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         private void RepetativeRawImageTasks()
         {
-            if (this.rawImage.Width * this.rawImage.Height < 15)
+            this.pictureBoxRaw.Image = this.rawImage;
+            if (this.rawImage.Width * this.rawImage.Height > 15)
             {
-                this.pictureBoxRaw.Image = this.rawImage;
                 this.charComp = new CharacterCompute(this.rawImage.Width, this.rawImage.Height, this);
                 textBoxInputMessage.MaxLength = this.charComp.CalcMax();
                 this.charComp.CalcRemainingSpace();
@@ -230,6 +233,11 @@ namespace Steganography_with_AES_Encryption
                 }
 
                 this.Update();
+            }
+            else
+            {
+                this.pictureBoxRaw.Image = null;
+                MessageBox.Show("Image too small to hold any text. \n" + "Please select another image.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
