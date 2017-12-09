@@ -170,22 +170,27 @@ namespace Steganography_with_AES_Encryption
             // Convert the string into a byte array.
             byte[] unicodeBytes = unicode.GetBytes(inputUnicode);
 
+            foreach (byte b in unicodeBytes)
+            {
+                if (b > 127 && b < 160)
+                {
+                    MessageBox.Show("It looks like this text contains Unicode. \n" +
+                        "Please note that only ASCII characters will be retained." ,
+                        "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
+                }
+            }
+
             // Perform the conversion from one encoding to the other.
             byte[] asciiBytes = Encoding.Convert(unicode, ascii, unicodeBytes);
 
             // Convert the new byte[] into a char[] and then into a string.
             char[] asciiChars = new char[ascii.GetCharCount(asciiBytes, 0, asciiBytes.Length)];
 
-            foreach (char c in asciiChars)
-            {
-                if ((int)c > 127)
-                {
-                    MessageBox.Show("It looks like your input message might include Unicode when it needs to be ASCII.");
-                }
-            }
-
             ascii.GetChars(asciiBytes, 0, asciiBytes.Length, asciiChars, 0);
+
             string asciiString = new string(asciiChars);
+
             inputUnicode = asciiString;
 
             return inputUnicode;
