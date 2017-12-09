@@ -778,6 +778,7 @@ namespace Steganography_with_AES_Encryption
             this.comboBoxImageSelect.TabIndex = 4;
             this.comboBoxImageSelect.Text = "Choose Your Image";
             this.comboBoxImageSelect.SelectedIndexChanged += new System.EventHandler(this.ComboBoxImageSelect_SelectedIndexChanged);
+            this.comboBoxImageSelect.TextChanged += new System.EventHandler(this.ComboBoxImageSelect_TextChanged);
             // 
             // btnEncodeImage
             // 

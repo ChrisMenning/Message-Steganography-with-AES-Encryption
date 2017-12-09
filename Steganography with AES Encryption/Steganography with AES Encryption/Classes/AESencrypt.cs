@@ -67,8 +67,16 @@ namespace Steganography_with_AES_Encryption
             // Instantiate a new PasswordHandler.
             PasswordHandler passwordHandler = new PasswordHandler(this.password, main);
 
-            // Set up the AESkey to be used later, using the PasswordHandler.
-            this.AesKey = passwordHandler.CreateKey(this.password);
+            try
+            {
+                // Set up the AESkey to be used later, using the PasswordHandler.
+                this.AesKey = passwordHandler.CreateKey(this.password);
+            }
+            catch
+            {
+                MessageBox.Show("Failed to create AES key from password.");
+            }
+            
         }
 
         /// <summary>

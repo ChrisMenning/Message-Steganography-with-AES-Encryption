@@ -354,7 +354,7 @@ namespace Steganography_with_AES_Encryption
             this.dialogSaveImage.ShowHelp = true;
             this.dialogSaveImage.FileName = "encoded";
             dialogSaveImage.ShowDialog();
-            
+
             if (dialogSaveImage.FileName != string.Empty)
             {
                 try
@@ -363,7 +363,7 @@ namespace Steganography_with_AES_Encryption
                 }
                 catch
                 {
-                    MessageBox.Show("Something's not right.");
+                    MessageBox.Show("Save Cancelled.");
                 }
             }
         }
@@ -394,6 +394,8 @@ namespace Steganography_with_AES_Encryption
             // First, make sure whatever unicode has been entered into the input box is forced into ASCII.
             string ascii = this.UnicodeToAscii(this.textBoxInputMessage.Text);
 
+            bool success = false;
+
             // Call the image encoder's main encoder method, passing in the text from the input box,
             // return the encoded bitmap, and assign the encoded bitmap to this.encodedImage for later saving.
 
@@ -423,10 +425,11 @@ namespace Steganography_with_AES_Encryption
                     // Now pass the encrypted message into the bitmap encoder, hiding the message in the image.
                     string toBeEncoded = aes.EncryptedMessageString();
                     this.encodedImage = this.bmpEnc.Encoder(toBeEncoded);
+                    success = true;
                 }
                 catch
                 {
-                    MessageBox.Show("Encryption failed. Please try a different message or a different image.");
+                    MessageBox.Show("Encryption cancelled.");
                 }
             }
             else
@@ -438,6 +441,7 @@ namespace Steganography_with_AES_Encryption
 
                     // Pass the un-encrypted message into the encoder, hiding the message in the image.
                     this.encodedImage = this.bmpEnc.Encoder(ascii);
+                    success = true;
                 }
                 catch
                 {
@@ -445,10 +449,13 @@ namespace Steganography_with_AES_Encryption
                 }
             }
 
-            // Save the image.
-            this.SaveEncodedImage();
+            if (success == true)
+            {
+                // Save the image.
+                this.SaveEncodedImage();
 
-            saveEncodedImageToolStripMenuItem.Enabled = true;
+                saveEncodedImageToolStripMenuItem.Enabled = true;
+            }
         }
 
         /// <summary>
@@ -916,6 +923,12 @@ namespace Steganography_with_AES_Encryption
                 this.GenerateGradient();
             }
         }
+
+        private void ComboBoxImageSelect_TextChanged(object sender, EventArgs e)
+        {
+            comboBoxImageSelect.Text = "Choose Your Image";
+        }
+
 
         /// <summary>
         /// Checks that the message input textbox has been changed.
