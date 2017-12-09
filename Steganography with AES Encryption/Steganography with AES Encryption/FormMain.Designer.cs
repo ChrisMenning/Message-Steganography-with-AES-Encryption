@@ -685,7 +685,7 @@ namespace Steganography_with_AES_Encryption
             this.groupBoxDecode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBoxDecode.Name = "groupBoxDecode";
             this.groupBoxDecode.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBoxDecode.Size = new System.Drawing.Size(1150, 554);
+            this.groupBoxDecode.Size = new System.Drawing.Size(1150, 503);
             this.groupBoxDecode.TabIndex = 31;
             this.groupBoxDecode.TabStop = false;
             this.groupBoxDecode.Text = "Retrieve Text from Image";
@@ -709,7 +709,7 @@ namespace Steganography_with_AES_Encryption
             this.textBoxOutputMessage.Multiline = true;
             this.textBoxOutputMessage.Name = "textBoxOutputMessage";
             this.textBoxOutputMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxOutputMessage.Size = new System.Drawing.Size(450, 450);
+            this.textBoxOutputMessage.Size = new System.Drawing.Size(450, 425);
             this.textBoxOutputMessage.TabIndex = 4;
             // 
             // btnDecode
@@ -741,7 +741,7 @@ namespace Steganography_with_AES_Encryption
             this.pictureBoxEncoded.Location = new System.Drawing.Point(30, 60);
             this.pictureBoxEncoded.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBoxEncoded.Name = "pictureBoxEncoded";
-            this.pictureBoxEncoded.Size = new System.Drawing.Size(450, 450);
+            this.pictureBoxEncoded.Size = new System.Drawing.Size(450, 425);
             this.pictureBoxEncoded.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxEncoded.TabIndex = 3;
             this.pictureBoxEncoded.TabStop = false;
@@ -758,7 +758,7 @@ namespace Steganography_with_AES_Encryption
             this.groupBoxEncode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBoxEncode.Name = "groupBoxEncode";
             this.groupBoxEncode.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBoxEncode.Size = new System.Drawing.Size(996, 556);
+            this.groupBoxEncode.Size = new System.Drawing.Size(996, 505);
             this.groupBoxEncode.TabIndex = 30;
             this.groupBoxEncode.TabStop = false;
             this.groupBoxEncode.Text = "Hide Text in Image";
@@ -822,7 +822,7 @@ namespace Steganography_with_AES_Encryption
             this.textBoxInputMessage.Multiline = true;
             this.textBoxInputMessage.Name = "textBoxInputMessage";
             this.textBoxInputMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxInputMessage.Size = new System.Drawing.Size(450, 450);
+            this.textBoxInputMessage.Size = new System.Drawing.Size(450, 425);
             this.textBoxInputMessage.TabIndex = 3;
             this.textBoxInputMessage.TextChanged += new System.EventHandler(this.TextBoxInputMessage_TextChanged);
             // 
@@ -832,7 +832,7 @@ namespace Steganography_with_AES_Encryption
             this.pictureBoxRaw.Location = new System.Drawing.Point(510, 60);
             this.pictureBoxRaw.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBoxRaw.Name = "pictureBoxRaw";
-            this.pictureBoxRaw.Size = new System.Drawing.Size(450, 450);
+            this.pictureBoxRaw.Size = new System.Drawing.Size(450, 425);
             this.pictureBoxRaw.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxRaw.TabIndex = 2;
             this.pictureBoxRaw.TabStop = false;
