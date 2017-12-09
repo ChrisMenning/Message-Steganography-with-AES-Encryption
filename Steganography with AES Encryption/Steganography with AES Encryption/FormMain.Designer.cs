@@ -704,6 +704,7 @@ namespace Steganography_with_AES_Encryption
             // 
             // textBoxOutputMessage
             // 
+            this.textBoxOutputMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(255)))));
             this.textBoxOutputMessage.Location = new System.Drawing.Point(510, 60);
             this.textBoxOutputMessage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBoxOutputMessage.Multiline = true;
@@ -765,7 +766,7 @@ namespace Steganography_with_AES_Encryption
             // 
             // comboBoxImageSelect
             // 
-            this.comboBoxImageSelect.BackColor = System.Drawing.Color.White;
+            this.comboBoxImageSelect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(255)))));
             this.comboBoxImageSelect.FormattingEnabled = true;
             this.comboBoxImageSelect.Items.AddRange(new object[] {
             "Open your own Image",
@@ -815,7 +816,7 @@ namespace Steganography_with_AES_Encryption
             // 
             // textBoxInputMessage
             // 
-            this.textBoxInputMessage.BackColor = System.Drawing.Color.White;
+            this.textBoxInputMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(255)))));
             this.textBoxInputMessage.Location = new System.Drawing.Point(30, 60);
             this.textBoxInputMessage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBoxInputMessage.MaxLength = 0;

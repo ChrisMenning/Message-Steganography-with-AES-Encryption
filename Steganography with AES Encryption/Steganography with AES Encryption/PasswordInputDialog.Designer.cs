@@ -36,6 +36,7 @@
             // 
             // textBoxInput
             // 
+            this.textBoxInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(255)))));
             this.textBoxInput.Location = new System.Drawing.Point(14, 93);
             this.textBoxInput.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxInput.Name = "textBoxInput";
@@ -78,6 +79,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(162)))), ((int)(((byte)(115)))));
             this.ClientSize = new System.Drawing.Size(376, 208);
             this.ControlBox = false;
             this.Controls.Add(this.buttonCancel);

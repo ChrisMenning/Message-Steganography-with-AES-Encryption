@@ -39,9 +39,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(276, 155);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Using encryption makes your message more secure, but it also limits the length of" +
-    " the storable message by a factor of 10, and increases the time needed to encode" +
-    " and decode.";
+            this.label1.Text = "Using encryption makes your message more secure, but it shortens the length that the message can be down to 10% of what's allowed without encryption.";
             // 
             // checkBoxShowNextTime
             // 

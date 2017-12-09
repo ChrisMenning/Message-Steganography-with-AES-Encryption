@@ -74,7 +74,7 @@ namespace Steganography_with_AES_Encryption
             this.pubpicture = this.pictureBoxRaw;
             this.aesKeySize = 16;
             this.Width = 1016;
-            this.Height = 760;
+            this.Height = 755;
             this.CenterToScreen();
             this.textBoxOutputMessage.ReadOnly = true;
 
