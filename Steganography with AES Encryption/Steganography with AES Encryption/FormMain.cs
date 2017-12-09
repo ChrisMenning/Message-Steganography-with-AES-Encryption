@@ -692,6 +692,36 @@ namespace Steganography_with_AES_Encryption
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (textBoxInputMessage.SelectionLength > 0)
+            {
+                cutToolStripMenuItem.Enabled = true;
+                copyToolStripMenuItem.Enabled = true;
+                deleteToolStripMenuItem.Enabled = true;
+            }
+            else
+            {
+                cutToolStripMenuItem.Enabled = false;
+                copyToolStripMenuItem.Enabled = false;
+                deleteToolStripMenuItem.Enabled = false;
+            }
+
+            if (Clipboard.ContainsText())
+            {
+                pasteToolStripMenuItem.Enabled = true;
+            }
+            else
+            {
+                pasteToolStripMenuItem.Enabled = false;
+            }
+        }
+
+        /// <summary>
         /// The toolstrip menu item for Edit->Cut.
         /// </summary>
         /// <param name="sender">The sender</param>
@@ -971,5 +1001,6 @@ namespace Steganography_with_AES_Encryption
         {
             this.ResetEverything();
         }
+
     }
 }
