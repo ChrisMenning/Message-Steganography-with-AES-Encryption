@@ -1,6 +1,16 @@
-﻿namespace Steganography_with_AES_Encryption
+﻿//----------------------------------------------------------------------------------
+// <copyright file="HelpPage.Designer.cs" company="Legendary Lichens">
+//    © Legendary Lichens. All rights reserved. 
+//    2017 - Nathan Beyer / Chris Hoegger / Chris Menning / Leilani Ray
+// </copyright>
+//---------------------------------------------------------------------------------- 
+
+namespace Steganography_with_AES_Encryption
 {
-    partial class frmHelpPage
+    /// <summary>
+    /// Designer Code for the Help Page Form.
+    /// </summary>
+    public partial class FrmHelpPage
     {
         /// <summary>
         /// Required designer variable.
@@ -8,15 +18,26 @@
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
+        /// Rich Text Box on Help Page; Displays Help information.
+        /// </summary>
+        private System.Windows.Forms.RichTextBox rtbHelpPage;
+
+        /// <summary>
+        /// Close Button on Help Page; Closes Form.
+        /// </summary>
+        private System.Windows.Forms.Button btnCloseHelpPage;
+
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && (this.components != null))
             {
-                components.Dispose();
+                this.components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
@@ -40,20 +61,20 @@
             this.rtbHelpPage.ReadOnly = true;
             this.rtbHelpPage.Size = new System.Drawing.Size(386, 317);
             this.rtbHelpPage.TabIndex = 0;
-            this.rtbHelpPage.Text = "";
+            this.rtbHelpPage.Text = string.Empty;
             // 
-            // btnCloseHelpPage
+            // BtnCloseHelpPage
             // 
             this.btnCloseHelpPage.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.btnCloseHelpPage.Location = new System.Drawing.Point(204, 392);
-            this.btnCloseHelpPage.Name = "btnCloseHelpPage";
+            this.btnCloseHelpPage.Name = "BtnCloseHelpPage";
             this.btnCloseHelpPage.Size = new System.Drawing.Size(75, 23);
             this.btnCloseHelpPage.TabIndex = 1;
             this.btnCloseHelpPage.Text = "Close";
             this.btnCloseHelpPage.UseVisualStyleBackColor = true;
-            this.btnCloseHelpPage.Click += new System.EventHandler(this.btnCloseHelpPage_Click);
+            this.btnCloseHelpPage.Click += new System.EventHandler(this.BtnCloseHelpPage_Click);
             // 
-            // frmHelpPage
+            // FrmHelpPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -62,16 +83,12 @@
             this.ClientSize = new System.Drawing.Size(511, 445);
             this.Controls.Add(this.btnCloseHelpPage);
             this.Controls.Add(this.rtbHelpPage);
-            this.Name = "frmHelpPage";
+            this.Name = "FrmHelpPage";
             this.Text = "Help";
-            this.Load += new System.EventHandler(this.frmHelpPage_Load);
+            this.Load += new System.EventHandler(this.FrmHelpPage_Load);
             this.ResumeLayout(false);
 
         }
-
         #endregion
-
-        private System.Windows.Forms.RichTextBox rtbHelpPage;
-        private System.Windows.Forms.Button btnCloseHelpPage;
     }
 }

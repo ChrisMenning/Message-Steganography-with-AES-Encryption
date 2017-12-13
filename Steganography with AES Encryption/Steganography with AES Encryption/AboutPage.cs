@@ -1,38 +1,61 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.IO;
-using Steganography_with_AES_Encryption.Properties;
+﻿//----------------------------------------------------------------------------------
+// <copyright file="AboutPage.cs" company="Legendary Lichens">
+//    © Legendary Lichens. All rights reserved. 
+//    2017 - Nathan Beyer / Chris Hoegger / Chris Menning / Leilani Ray
+// </copyright>
+//---------------------------------------------------------------------------------- 
 
 namespace Steganography_with_AES_Encryption
 {
-    public partial class frmAboutPage : Form
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using Steganography_with_AES_Encryption.Properties;
+
+    /// <summary>
+    /// Code for the About Page Form.
+    /// </summary>
+    public partial class FrmAboutPage : Form
     {
-        public frmAboutPage()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FrmAboutPage"/> class.
+        /// </summary>
+        public FrmAboutPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
-        private void frmAboutPage_Load(object sender, EventArgs e)
+        /// <summary>
+        /// Form Load Event for the About Page.
+        /// </summary>
+        /// <param name="sender">Object sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void FrmAboutPage_Load(object sender, EventArgs e)
         {
-            try {
-                rtbAboutSection.Text = System.Text.Encoding.Default.GetString(Properties.Resources.README);
+            try
+            {
+                this.rtbAboutSection.Text = System.Text.Encoding.Default.GetString(Properties.Resources.README);
             }
-            
             catch (Exception ex)
             {
                 MessageBox.Show("There was an error fetching the Readme.MD file. /n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                rtbAboutSection.Text = "There was an error fetching the Readme.MD file. /n" + ex.Message;
+                this.rtbAboutSection.Text = "There was an error fetching the Readme.MD file. /n" + ex.Message;
             }
         }
 
-        private void btnCloseAboutPage_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Click event for the Close Button on the About Page.
+        /// </summary>
+        /// <param name="sender">Object sender.</param>
+        /// <param name="e">Event arguments.</param>
+        private void BtnCloseAboutPage_Click(object sender, EventArgs e)
         {
             this.Close();
         }

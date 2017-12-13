@@ -309,7 +309,7 @@ namespace Steganography_with_AES_Encryption
         /// </summary>
         private void SelectStockPhoto()
         {
-            frmStockImagesPage stockImage = new frmStockImagesPage(this);
+            FrmStockImagesPage stockImage = new FrmStockImagesPage(this);
             stockImage.ShowDialog();
 
             if (this.pictureBoxRaw.Image != null)
@@ -569,7 +569,7 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event</param>
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAboutPage aboutPage = new frmAboutPage();
+            FrmAboutPage aboutPage = new FrmAboutPage();
             aboutPage.Show();
         }
 
@@ -580,7 +580,7 @@ namespace Steganography_with_AES_Encryption
         /// <param name="e">The event</param>
         private void ViewHelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmHelpPage helpPage = new frmHelpPage();
+            FrmHelpPage helpPage = new FrmHelpPage();
             helpPage.Show();
         }
 
