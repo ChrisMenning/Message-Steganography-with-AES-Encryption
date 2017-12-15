@@ -217,6 +217,8 @@ namespace Steganography_with_AES_Encryption
 
             btnEncodeImage.Enabled = false;
             btnDecode.Enabled = false;
+            this.labelCharLimit.Text = "Characters Left: (select an image)";
+            this.comboBoxImageSelect.Text = "Choose Your Image";
         }
 
         /// <summary>
@@ -704,10 +706,10 @@ namespace Steganography_with_AES_Encryption
         }
 
         /// <summary>
-        /// 
+        /// When tool strip menu is clicked.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event</param>
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (textBoxInputMessage.SelectionLength > 0)
