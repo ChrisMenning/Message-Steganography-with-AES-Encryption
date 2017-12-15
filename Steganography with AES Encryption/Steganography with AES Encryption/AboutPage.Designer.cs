@@ -1,6 +1,16 @@
-﻿namespace Steganography_with_AES_Encryption
+﻿//----------------------------------------------------------------------------------
+// <copyright file="AboutPage.Designer.cs" company="Legendary Lichens">
+//    © Legendary Lichens. All rights reserved. 
+//    2017 - Nathan Beyer / Chris Hoegger / Chris Menning / Leilani Ray
+// </copyright>
+//---------------------------------------------------------------------------------- 
+
+namespace Steganography_with_AES_Encryption
 {
-    partial class frmAboutPage
+    /// <summary>
+    /// Code for the About Page Form.
+    /// </summary>
+    public partial class FrmAboutPage
     {
         /// <summary>
         /// Required designer variable.
@@ -8,15 +18,26 @@
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
+        /// Rich Text Box Object; Stores About Information.
+        /// </summary>
+        private System.Windows.Forms.RichTextBox rtbAboutSection;
+
+        /// <summary>
+        /// Close Button Object; Closes Form.
+        /// </summary>
+        private System.Windows.Forms.Button btnCloseAboutPage;
+
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && (this.components != null))
             {
-                components.Dispose();
+                this.components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
@@ -36,44 +57,38 @@
             // 
             this.rtbAboutSection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(255)))));
             this.rtbAboutSection.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbAboutSection.Location = new System.Drawing.Point(40, 28);
-            this.rtbAboutSection.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rtbAboutSection.Location = new System.Drawing.Point(30, 23);
             this.rtbAboutSection.Name = "rtbAboutSection";
             this.rtbAboutSection.ReadOnly = true;
-            this.rtbAboutSection.Size = new System.Drawing.Size(1089, 568);
+            this.rtbAboutSection.Size = new System.Drawing.Size(818, 462);
             this.rtbAboutSection.TabIndex = 0;
-            this.rtbAboutSection.Text = "";
+            this.rtbAboutSection.Text = string.Empty;
             // 
-            // btnCloseAboutPage
+            // BtnCloseAboutPage
             // 
-            this.btnCloseAboutPage.Location = new System.Drawing.Point(515, 625);
-            this.btnCloseAboutPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnCloseAboutPage.Name = "btnCloseAboutPage";
-            this.btnCloseAboutPage.Size = new System.Drawing.Size(100, 28);
+            this.btnCloseAboutPage.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.btnCloseAboutPage.Location = new System.Drawing.Point(386, 508);
+            this.btnCloseAboutPage.Name = "BtnCloseAboutPage";
+            this.btnCloseAboutPage.Size = new System.Drawing.Size(75, 23);
             this.btnCloseAboutPage.TabIndex = 1;
             this.btnCloseAboutPage.Text = "Close";
             this.btnCloseAboutPage.UseVisualStyleBackColor = true;
-            this.btnCloseAboutPage.Click += new System.EventHandler(this.btnCloseAboutPage_Click);
+            this.btnCloseAboutPage.Click += new System.EventHandler(this.BtnCloseAboutPage_Click);
             // 
-            // frmAboutPage
+            // FrmAboutPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(162)))), ((int)(((byte)(115)))));
-            this.ClientSize = new System.Drawing.Size(1172, 689);
+            this.ClientSize = new System.Drawing.Size(879, 560);
             this.Controls.Add(this.btnCloseAboutPage);
             this.Controls.Add(this.rtbAboutSection);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "frmAboutPage";
+            this.Name = "FrmAboutPage";
             this.Text = "About";
-            this.Load += new System.EventHandler(this.frmAboutPage_Load);
+            this.Load += new System.EventHandler(this.FrmAboutPage_Load);
             this.ResumeLayout(false);
 
         }
-
         #endregion
-
-        private System.Windows.Forms.RichTextBox rtbAboutSection;
-        private System.Windows.Forms.Button btnCloseAboutPage;
     }
 }
