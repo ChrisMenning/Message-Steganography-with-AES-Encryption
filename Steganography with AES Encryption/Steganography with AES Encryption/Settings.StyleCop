@@ -1,0 +1,16 @@
+<StyleCopSettings Version="105">
+  <Analyzers>
+    <Analyzer AnalyzerId="StyleCop.CSharp.NamingRules">
+      <AnalyzerSettings>
+        <CollectionProperty Name="Hungarian">
+          <Value>dI</Value>
+          <Value>dl</Value>
+          <Value>dr</Value>
+          <Value>dR</Value>
+          <Value>em</Value>
+          <Value>im</Value>
+        </CollectionProperty>
+      </AnalyzerSettings>
+    </Analyzer>
+  </Analyzers>
+</StyleCopSettings>

@@ -1,65 +1,116 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//----------------------------------------------------------------------------------
+// <copyright file="Mandelbrot.cs" company="Legendary Lichens">
+//    © Legendary Lichens. All rights reserved. 
+//    2017 - Nathan Beyer / Chris Hoegger / Chris Menning / Leilani Ray
+// </copyright>
+//---------------------------------------------------------------------------------- 
 
 namespace Steganography_with_AES_Encryption
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    /// <summary>
+    /// The main method of the mandelbrot.
+    /// </summary>
     public class Mandelbrot
     {
-        private double m_Xmin, m_Xmax, m_Ymin, m_Ymax;
+        /// <summary>
+        /// Declare min X.
+        /// </summary>
+        private const double MINX = -2.2;
 
-        public int MaxIterations;
-        public double Zr, Zim, Z2r, Z2im;
+        /// <summary>
+        /// Declare max X.
+        /// </summary>
+        private const double MAXX = 1;
 
-        public List<Color> Colors = new List<Color>();
+        /// <summary>
+        /// Declare min Y.
+        /// </summary>
+        private const double MINY = -1.2;
 
-        private Bitmap m_Bm;
+        /// <summary>
+        /// Declare max Y.
+        /// </summary>
+        private const double MAXY = 1.2;
 
-        private const double MIN_X = -2.2;
-        private const double MAX_X = 1;
-        private const double MIN_Y = -1.2;
-        private const double MAX_Y = 1.2;
+        /// <summary>
+        /// Declare an integer for iterations.
+        /// </summary>
+        private int maxIterations;
 
+        /// <summary>
+        /// Declare doubles for both reals and both imaginaries.
+        /// </summary>
+        private double zr, zim, z2r, z2im;
+
+        /// <summary>
+        /// Declare a List of colors.
+        /// </summary>
+        private List<Color> colors = new List<Color>();
+
+        /// <summary>
+        /// Declare a bitmap.
+        /// </summary>
+        private Bitmap emBm;
+
+        /// <summary>
+        /// Declare the doubles for mins and maxes.
+        /// </summary>
+        private double emXmin, emXmax, emYmin, emYmax;
+
+        /// <summary>
+        /// Initializes a new instance of the Mandelbrot class.
+        /// </summary>
         public Mandelbrot()
         {
-            MaxIterations = 64;
+            this.maxIterations = 64;
 
             // Create some default colors.
-            ResetColors();
+            this.ResetColors();
 
             Random rnd = new Random();
             for (int i = 0; i < 8; i++)
             {
-                Colors.Add(Color.FromArgb(rnd.Next(1, 256), rnd.Next(1, 256), rnd.Next(1, 256)));
+                this.colors.Add(Color.FromArgb(rnd.Next(1, 256), rnd.Next(1, 256), rnd.Next(1, 256)));
             }
 
             // Display the first Mandelbrot set.
-            m_Xmin = MIN_X;
-            m_Xmax = MAX_X;
-            m_Ymin = MIN_Y;
-            m_Ymax = MAX_Y;
+            this.emXmin = MINX;
+            this.emXmax = MAXX;
+            this.emYmin = MINY;
+            this.emYmax = MAXY;
 
-            DrawMandelbrot(1000, 1000);
+            this.DrawMandelbrot(1000, 1000);
         }
 
-        // Reset the number of colors to 0.
+        /// <summary>
+        /// Reset the number of colors to 0.
+        /// </summary>
         public void ResetColors()
         {
-            Colors = new List<Color>();
+            this.colors = new List<Color>();
         }
 
-        // Draw the Mandelbrot set.
+        /// <summary>
+        /// Draw the Mandelbrot set.
+        /// </summary>
+        /// <param name="width">The width of the image.</param>
+        /// <param name="height">The height of the image.</param>
+        /// <returns>A bitmap</returns>
         public Bitmap DrawMandelbrot(int width, int height)
         {
             // Work until the magnitude squared > 4.
             const int MAX_MAG_SQUARED = 4;
             
             // Make a Bitmap to draw on.
-            m_Bm = new Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            Graphics gr = Graphics.FromImage(m_Bm);
+            this.emBm = new Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            Graphics gr = Graphics.FromImage(this.emBm);
 
             // Adjust the coordinate bounds to fit.
 
@@ -68,47 +119,49 @@ namespace Steganography_with_AES_Encryption
             // imaginary part (Y value).
             int wid = width;
             int hgt = height;
-            double dReaC = (m_Xmax - m_Xmin) / (wid - 1);
-            double dImaC = (m_Ymax - m_Ymin) / (hgt - 1);
+            double dReaC = (this.emXmax - this.emXmin) / (wid - 1);
+            double dImaC = (this.emYmax - this.emYmin) / (hgt - 1);
 
             // Randomize some values
             Random rnd = new Random();
-            Zr = 0;
-            Zim = rnd.NextDouble();
-            Z2r = rnd.NextDouble();
-            Z2im = 0;
+            this.zr = 0;
+            this.zim = rnd.NextDouble();
+            this.z2r = rnd.NextDouble();
+            this.z2im = 0;
 
             // Calculate the values.
-            int num_colors = Colors.Count;
-            double ReaC = m_Xmin;
-            for (int X = 0; X < wid; X++)
+            int num_colors = this.colors.Count;
+            double reaC = this.emXmin;
+            for (int x = 0; x < wid; x++)
             {
-                double ImaC = m_Ymin;
-                for (int Y = 0; Y < hgt; Y++)
+                double iMaC = this.emYmin;
+                for (int y = 0; y < hgt; y++)
                 {
-                    double ReaZ = Zr;
-                    double ImaZ = Zim;
-                    double ReaZ2 = Z2r;
-                    double ImaZ2 = Z2im;
+                    double reaZ = this.zr;
+                    double imaZ = this.zim;
+                    double reaZ2 = this.z2r;
+                    double imaZ2 = this.z2im;
                     int clr = 1;
-                    while ((clr < MaxIterations) && (ReaZ2 + ImaZ2 < MAX_MAG_SQUARED))
+                    while ((clr < this.maxIterations) && (reaZ2 + imaZ2 < MAX_MAG_SQUARED))
                     {
                         // Calculate Z(clr).
-                        ReaZ2 = ReaZ * ReaZ;
-                        ImaZ2 = ImaZ * ImaZ;
-                        ImaZ = 2 * ImaZ * ReaZ + ImaC;
-                        ReaZ = ReaZ2 - ImaZ2 + ReaC;
+                        reaZ2 = reaZ * reaZ;
+                        imaZ2 = imaZ * imaZ;
+                        imaZ = ((2 * imaZ) * reaZ) + iMaC;
+                        reaZ = reaZ2 - imaZ2 + reaC;
                         clr++;
                     }
 
                     // Set the pixel's value.
-                    m_Bm.SetPixel(X, Y, Colors[clr % num_colors]);
+                    this.emBm.SetPixel(x, y, this.colors[clr % num_colors]);
 
-                    ImaC += dImaC;
+                    iMaC += dImaC;
                 }
-                ReaC += dReaC;
+
+                reaC += dReaC;
             }
-            return m_Bm;
+
+            return this.emBm;
         }
     }
 }
